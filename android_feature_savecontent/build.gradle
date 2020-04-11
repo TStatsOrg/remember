@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -6,12 +6,8 @@ android {
     compileSdkVersion compileVersion
 
     defaultConfig {
-        applicationId "com.app.remember"
         minSdkVersion minVersion
         targetSdkVersion targetVersion
-        versionCode 1
-        versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -42,7 +38,6 @@ dependencies {
 
     // local libraries
     implementation project(":shared")
-    implementation project(":android_feature_savecontent")
 
     // Android X
     implementation "androidx.core:core-ktx:$androidXVersion"
@@ -55,5 +50,4 @@ dependencies {
     // UI Tests
     androidTestImplementation "androidx.test.ext:junit:$jUnitInstrVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-
 }
