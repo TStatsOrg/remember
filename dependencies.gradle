@@ -1,5 +1,0 @@
-ext {
-
-    def kotlinVersion = "1.3.50"
-
-}
