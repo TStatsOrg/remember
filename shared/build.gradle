@@ -1,13 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-multiplatform'
 
+def RememberFramework = "RememberShared"
+
 kotlin {
     targets {
         final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") ? presets.iosArm64 : presets.iosX64
 
         fromPreset(iOSTarget, 'iOS') {
             binaries {
-                framework('SharedCode')
+                framework(RememberFramework)
             }
         }
 
@@ -79,7 +81,7 @@ configurations {
 task packForXCode(type: Sync) {
     final File frameworkDir = new File(buildDir, "xcode-frameworks")
     final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
-    final def framework = kotlin.targets.iOS.binaries.getFramework("SharedCode", mode)
+    final def framework = kotlin.targets.iOS.binaries.getFramework(RememberFramework, mode)
 
     inputs.property "mode", mode
     dependsOn framework.linkTask
