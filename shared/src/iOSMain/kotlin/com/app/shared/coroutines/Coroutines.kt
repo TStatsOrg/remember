@@ -17,3 +17,7 @@ actual val MainDispatcher: CoroutineDispatcher = iOSDispatcher()
 actual val IODispatcher: CoroutineDispatcher = iOSDispatcher()
 actual val DefaultDispatcher: CoroutineDispatcher = iOSDispatcher()
 
+/**
+ * Function that can provide a context
+ */
+actual fun provideViewModelScope(): CoroutineScope = iOSScope()

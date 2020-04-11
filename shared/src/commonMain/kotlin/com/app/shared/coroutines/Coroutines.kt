@@ -14,3 +14,8 @@ expect val AppScope: CoroutineScope
 expect val MainDispatcher: CoroutineDispatcher
 expect val IODispatcher: CoroutineDispatcher
 expect val DefaultDispatcher: CoroutineDispatcher
+
+/**
+ * Function that can provide a context
+ */
+expect fun provideViewModelScope(): CoroutineScope

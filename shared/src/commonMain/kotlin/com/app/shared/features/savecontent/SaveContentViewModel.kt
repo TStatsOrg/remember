@@ -1,9 +1,10 @@
 package com.app.shared.features.savecontent
 
+import com.app.shared.business.SavedContent
+
 interface SaveContentViewModel {
 
-    enum class HandledContent(val mimeType: String) {
-        Text(mimeType = "text/"),
-        Image(mimeType = "image/")
-    }
+    fun clear()
+    fun handle(sharedData: SharedData)
+    fun observePreviewState(callback: (SavedContent) -> Unit)
 }
