@@ -2,3 +2,4 @@ include ':android_feature_savecontent'
 include ':shared'
 include ':android_app'
 rootProject.name = "Remember"
+enableFeaturePreview('GRADLE_METADATA')

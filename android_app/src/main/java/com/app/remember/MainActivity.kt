@@ -1,14 +1,17 @@
 package com.app.remember
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.app.shared.MLPTest
+import androidx.appcompat.app.AppCompatActivity
+import com.app.remember.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private val binding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        MLPTest().doThis()
+        setContentView(binding.root)
     }
 }
