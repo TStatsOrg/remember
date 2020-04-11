@@ -1,2 +1,3 @@
+include ':shared'
 include ':android_app'
 rootProject.name = "Remember"
