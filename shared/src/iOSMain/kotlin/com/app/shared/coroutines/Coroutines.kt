@@ -7,7 +7,6 @@ import kotlin.coroutines.CoroutineContext
 /**
  * The main app scope, for things that can't be put in a ViewModle scope
  */
-@InternalCoroutinesApi
 actual val AppScope: CoroutineScope = iOSScope()
 
 /**
