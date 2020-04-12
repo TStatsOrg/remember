@@ -9,19 +9,19 @@ import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.feature.preview.SharedPreviewViewModel
 import com.app.shared.navigation.AppNavigation
 import com.app.shared.redux.Store
+import com.app.shared.utils.CalendarUtils
+import com.app.shared.utils.SystemCalendarUtils
 import org.koin.dsl.module
 
 object DependencyProvider {
 
     val module = module {
         single { Store(initialState = AppState(), reducer = AppStateReducer) }
-        single<PreviewViewModel> {
-            SharedPreviewViewModel(
-                store = get()
-            )
-        }
-        single<MainHubViewModel> { SharedMainHubViewModel(store = get()) }
+        single<CalendarUtils> { SystemCalendarUtils() }
+        single<PreviewViewModel> { SharedPreviewViewModel(store = get(), calendar = get()) }
+        single<MainHubViewModel> { SharedMainHubViewModel(store = get(), calendar = get()) }
         single<AppNavigation> { MainAppNavigation() }
         single { BookmarksAdapter() }
+
     }
 }

@@ -8,18 +8,22 @@ import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
+import com.app.shared.utils.CalendarUtils
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class SharedMainHubViewModel(private val store: Store<AppState>): MainHubViewModel {
+class SharedMainHubViewModel(
+    private val store: Store<AppState>,
+    private val calendar: CalendarUtils
+): MainHubViewModel {
 
     private val scope = provideViewModelScope()
 
     override fun loadBookmarks() {
         scope.launch(context = MainDispatcher) {
-            store.dispatch(action = Actions.Bookmark.Load(time = 1234L))
+            store.dispatch(action = Actions.Bookmark.Load(time = calendar.getTime()))
         }
     }
 

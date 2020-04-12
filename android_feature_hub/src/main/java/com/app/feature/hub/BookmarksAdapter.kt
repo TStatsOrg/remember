@@ -16,7 +16,11 @@ class BookmarksAdapter: RecyclerView.Adapter<BookmarkViewHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
-        return BookmarkViewHolder(binding = ViewBookmarkBinding.inflate(LayoutInflater.from(parent.context)))
+        return BookmarkViewHolder(binding = ViewBookmarkBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ))
     }
 
     override fun getItemCount(): Int = viewState.size

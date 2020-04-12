@@ -8,13 +8,17 @@ import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
+import com.app.shared.utils.CalendarUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 
-class SharedPreviewViewModel(private val store: Store<AppState>): PreviewViewModel {
+class SharedPreviewViewModel(
+    private val store: Store<AppState>,
+    private val calendar: CalendarUtils
+): PreviewViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
 
@@ -32,7 +36,7 @@ class SharedPreviewViewModel(private val store: Store<AppState>): PreviewViewMod
 
     override fun save() {
         scope.launch(context = MainDispatcher) {
-            store.dispatch(action = Actions.Bookmark.Save(time = 123L))
+            store.dispatch(action = Actions.Bookmark.Save(time = calendar.getTime()))
         }
     }
 
