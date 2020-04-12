@@ -1,8 +1,8 @@
 package com.app.shared.data.repository
 
-import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.Bookmark2DTO
 
 interface BookmarkRepository {
-    suspend fun save(bookmark: BookmarkDTO)
-    suspend fun getAll(): List<BookmarkDTO>
+    suspend fun save(dto: Bookmark2DTO)
+    suspend fun load(): List<Bookmark2DTO>
 }

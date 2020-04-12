@@ -8,15 +8,11 @@ import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.capture.DataCapture
 import com.app.shared.data.capture.DataProcess
-import com.app.shared.data.dto.Bookmark2DTO
-import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
 import com.app.shared.utils.CalendarUtils
-import com.app.shared.utils.MLogger
 import com.app.shared.utils.toDTO
-import com.app.shared.utils.toState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
@@ -41,41 +37,21 @@ class SharedPreviewViewModel(
             val result = capture.unbox()
             val processed = process.process(capture = result)
             val bookmarkDTO = processed.toDTO(date = calendarUtils.getTime())
-            val state = bookmarkDTO?.toState()
 
-            MLogger.log(message = "Result is $state")
-        }
-    }
-
-    override fun handle(previewData: PreviewData) {
-        scope.launch(context = MainDispatcher) {
-            when (val unboxed = previewData.unbox()) {
-                is PreviewDataType.Text -> store.dispatch(action = Actions.Bookmark.Preview.Text(content = unboxed.content))
-                is PreviewDataType.Link -> store.dispatch(action = Actions.Bookmark.Preview.Link(url = unboxed.url))
-                is PreviewDataType.Unsupported -> Unit
+            if (bookmarkDTO != null) {
+                store.dispatch(action = Actions.Bookmark.Preview.Present(dto = bookmarkDTO))
             }
         }
     }
 
-    override fun save(previewData: PreviewData) {
+    override fun save(capture: DataCapture) {
         scope.launch(context = MainDispatcher) {
+            val result = capture.unbox()
+            val processed = process.process(capture = result)
+            val bookmarkDTO = processed.toDTO(date = calendarUtils.getTime())
 
-            val dto = when (val unboxed = previewData.unbox()) {
-                is PreviewDataType.Text -> object : BookmarkDTO {
-                    override val id: Int = unboxed.content.hashCode()
-                    override val content: String = unboxed.content
-                    override val type: BookmarkDTO.Type = BookmarkDTO.Type.Text
-                }
-                is PreviewDataType.Link -> object : BookmarkDTO {
-                    override val id: Int = unboxed.url.hashCode()
-                    override val content: String = unboxed.url
-                    override val type: BookmarkDTO.Type = BookmarkDTO.Type.Link
-                }
-                else -> null
-            }
-
-            if (dto != null) {
-                bookmarkRepository.save(bookmark = dto)
+            if (bookmarkDTO != null) {
+                bookmarkRepository.save(dto = bookmarkDTO)
                 delegate?.didSaveBookmark()
             }
         }

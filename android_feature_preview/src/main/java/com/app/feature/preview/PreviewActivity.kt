@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.app.feature.preview.databinding.ViewPreviewBinding
 import com.app.shared.data.capture.SystemDataCapture
 import com.app.shared.feature.preview.PreviewViewModel
-import com.app.shared.feature.preview.PreviewData
 import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
 
@@ -24,23 +23,20 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
 
         viewModel.delegate = this
 
-        val capture = SystemDataCapture(intent = intent)
-        viewModel.capture(capture = capture)
-
         viewModel.observePreviewState {
             redraw(viewState = PreviewViewState(content = it))
         }
 
-        val data = PreviewData(intent = intent)
-        viewModel.handle(previewData = data)
+        val capture = SystemDataCapture(intent = intent)
+        viewModel.capture(capture = capture)
 
         binding.saveContentButton.setOnClickListener {
-            viewModel.save(previewData = data)
+            viewModel.save(capture = capture)
         }
     }
 
     private fun redraw(viewState: PreviewViewState) = with(viewState) {
-        binding.textContent.text = resource
+        binding.textContent.text = "$resource"
     }
 
     // PreviewViewModel.Delegate

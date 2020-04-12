@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Room
 import com.app.feature.hub.BookmarksAdapter
 import com.app.remember.tmpdependencies.AppDatabase
+import com.app.remember.tmpdependencies.toAbstract
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
+import com.app.shared.data.capture.DataProcess
 import com.app.shared.data.capture.SystemDataProcess
 import com.app.shared.data.repository.BookmarkRepository
-import com.app.shared.data.repository.SharedBookmarkRepository
+import com.app.shared.data.repository.SystemBookmarkRepository
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.feature.mainhub.SharedMainHubViewModel
 import com.app.shared.feature.preview.PreviewViewModel
@@ -26,20 +28,43 @@ class DependencyProvider(private val appContext: Context) {
     }
 
     val module = module {
-        single { Store(initialState = AppState(), reducer = AppStateReducer) }
-        single<CalendarUtils> { SystemCalendarUtils() }
+        single {
+            Store(initialState = AppState(), reducer = AppStateReducer)
+        }
+        single<CalendarUtils> {
+            SystemCalendarUtils()
+
+        }
+        single<DataProcess> {
+            SystemDataProcess()
+        }
+
+        single<BookmarkRepository> {
+            SystemBookmarkRepository(
+                imageBookmarkDAO = db.imageDao().toAbstract(),
+                linkBookmarkDAO = db.linkDao().toAbstract(),
+                textBookmarkDAO = db.textDao().toAbstract()
+            )
+        }
+
         single<PreviewViewModel> {
             SharedPreviewViewModel(
                 store = get(),
                 bookmarkRepository = get(),
-                process = SystemDataProcess(),
+                process = get(),
                 calendarUtils = get())
         }
-        single<MainHubViewModel> { SharedMainHubViewModel(store = get(), calendar = get(), bookmarkRepository = get()) }
-        single<AppNavigation> { MainAppNavigation() }
-        single { BookmarksAdapter() }
 
-        single { db.toAbstract() }
-        single<BookmarkRepository> { SharedBookmarkRepository(dao = get()) }
+        single<MainHubViewModel> {
+            SharedMainHubViewModel(store = get(), calendar = get(), bookmarkRepository = get())
+        }
+
+        single<AppNavigation> {
+            MainAppNavigation()
+        }
+
+        single {
+            BookmarksAdapter()
+        }
     }
 }

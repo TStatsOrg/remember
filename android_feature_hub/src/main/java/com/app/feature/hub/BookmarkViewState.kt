@@ -6,13 +6,17 @@ class BookmarkViewState(bookmark: BookmarkState) {
 
     val id: Int = bookmark.id
 
-    val content: String = when(bookmark) {
-        is BookmarkState.Text -> bookmark.value
-        is BookmarkState.Link -> bookmark.url
+    val content: String? = when(bookmark) {
+        is BookmarkState.Text -> bookmark.text
+        is BookmarkState.Link -> bookmark.title
+        is BookmarkState.Image -> bookmark.url
+        is BookmarkState.Unsupported -> "${bookmark.id}"
     }
 
     val type: String = when(bookmark) {
         is BookmarkState.Text -> "T"
         is BookmarkState.Link -> "L"
+        is BookmarkState.Image -> "I"
+        is BookmarkState.Unsupported -> "N/A"
     }
 }

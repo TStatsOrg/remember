@@ -6,7 +6,6 @@ import com.app.shared.business.BookmarkState
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
-import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
@@ -26,18 +25,12 @@ class SharedMainHubViewModel(
 
     override fun loadBookmarks() {
         scope.launch(context = MainDispatcher) {
-            store.dispatch(action = Actions.Bookmark.Load(time = calendar.getTime()))
 
-            val dtos = bookmarkRepository.getAll()
-            val bookmarks: List<BookmarkState> = dtos.mapNotNull {
-                when(it.type) {
-                    BookmarkDTO.Type.Text -> BookmarkState.Text(id = it.id, value = it.content)
-                    BookmarkDTO.Type.Link -> BookmarkState.Link(id = it.id, url = it.content)
-                    BookmarkDTO.Type.Unknown -> null
-                }
-            }
+            store.dispatch(action = Actions.Bookmark.Load.Start(time = calendar.getTime()))
 
-            store.dispatch(action = Actions.Bookmark.Loaded(time = calendar.getTime(), bookmarks = bookmarks))
+            val dtos = bookmarkRepository.load()
+
+            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = dtos))
         }
     }
 

@@ -1,6 +1,6 @@
 package com.app.shared.utils
 
-import com.app.shared.business.BookmarkState2
+import com.app.shared.business.BookmarkState
 import com.app.shared.data.capture.DataProcess
 import com.app.shared.data.dto.Bookmark2DTO
 
@@ -28,14 +28,14 @@ fun DataProcess.Item.toDTO(date: Long): Bookmark2DTO? {
     }
 }
 
-fun Bookmark2DTO.toState(): BookmarkState2 {
+fun Bookmark2DTO.toState(): BookmarkState {
     return when(this) {
-        is Bookmark2DTO.TextBookmarkDTO -> BookmarkState2.Text(
+        is Bookmark2DTO.TextBookmarkDTO -> BookmarkState.Text(
             id = this.id,
             date = this.date,
             text = this.text
         )
-        is Bookmark2DTO.LinkBookmarkDTO -> BookmarkState2.Link(
+        is Bookmark2DTO.LinkBookmarkDTO -> BookmarkState.Link(
             id = this.id,
             date = this.date,
             url = this.url,
@@ -43,16 +43,16 @@ fun Bookmark2DTO.toState(): BookmarkState2 {
             description = this.description,
             icon = this.icon
         )
-        is Bookmark2DTO.ImageBookmarkDTO -> BookmarkState2.Image(
+        is Bookmark2DTO.ImageBookmarkDTO -> BookmarkState.Image(
             id = this.id,
             date = this.date,
             url = this.url
         )
-        else -> BookmarkState2.Unsupported(
+        else -> BookmarkState.Unsupported(
             id = this.id,
             date = this.date
         )
     }
 }
 
-fun List<Bookmark2DTO>.toState(): List<BookmarkState2> = this.map { it.toState() }
+fun List<Bookmark2DTO>.toState(): List<BookmarkState> = this.map { it.toState() }

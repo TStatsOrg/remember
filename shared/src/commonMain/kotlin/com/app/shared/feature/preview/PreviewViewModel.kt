@@ -7,11 +7,10 @@ interface PreviewViewModel {
 
     var delegate: Delegate?
 
-    fun capture(capture: DataCapture)
-
     fun clear()
-    fun handle(previewData: PreviewData)
-    fun save(previewData: PreviewData)
+    fun capture(capture: DataCapture)
+    fun save(capture: DataCapture)
+
     fun observePreviewState(callback: (BookmarkState) -> Unit)
 
     interface Delegate {

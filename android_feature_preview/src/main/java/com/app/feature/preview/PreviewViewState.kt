@@ -5,7 +5,9 @@ import com.app.shared.business.BookmarkState
 class PreviewViewState(content: BookmarkState) {
 
     val resource = when(content) {
-        is BookmarkState.Text -> content.value
-        is BookmarkState.Link -> content.url
+        is BookmarkState.Text -> content.text
+        is BookmarkState.Link -> content.title
+        is BookmarkState.Image -> content.url
+        is BookmarkState.Unsupported -> content.id
     }
 }
