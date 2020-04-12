@@ -6,12 +6,16 @@ import org.koin.core.context.startKoin
 
 class MyApplication: Application() {
 
+    private val provider by lazy {
+        DependencyProvider(appContext = this)
+    }
+
     override fun onCreate() {
         super.onCreate()
 
         startKoin {
             androidContext(this@MyApplication)
-            modules(DependencyProvider.module)
+            modules(provider.module)
         }
     }
 }

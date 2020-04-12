@@ -12,8 +12,8 @@ sealed class Actions: Action {
             data class Link(val url: String): Preview()
         }
 
-        data class Save(val time: Long): Bookmark()
-
         data class Load(val time: Long): Bookmark()
+
+        data class Loaded(val time: Long, val bookmarks: List<com.app.shared.business.Bookmark>): Bookmark()
     }
 }

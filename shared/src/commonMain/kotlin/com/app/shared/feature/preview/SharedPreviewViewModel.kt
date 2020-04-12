@@ -6,9 +6,10 @@ import com.app.shared.business.Bookmark
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
+import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
-import com.app.shared.utils.CalendarUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
@@ -17,8 +18,10 @@ import kotlinx.coroutines.launch
 
 class SharedPreviewViewModel(
     private val store: Store<AppState>,
-    private val calendar: CalendarUtils
+    private val bookmarkRepository: BookmarkRepository
 ): PreviewViewModel {
+
+    override var delegate: PreviewViewModel.Delegate? = null
 
     private val scope: CoroutineScope = provideViewModelScope()
 
@@ -34,9 +37,27 @@ class SharedPreviewViewModel(
         }
     }
 
-    override fun save() {
+    override fun save(previewData: PreviewData) {
         scope.launch(context = MainDispatcher) {
-            store.dispatch(action = Actions.Bookmark.Save(time = calendar.getTime()))
+
+            val dto = when (val unboxed = previewData.unbox()) {
+                is PreviewDataType.Text -> object : BookmarkDTO {
+                    override val id: Int = unboxed.content.hashCode()
+                    override val content: String = unboxed.content
+                    override val type: BookmarkDTO.Type = BookmarkDTO.Type.Text
+                }
+                is PreviewDataType.Link -> object : BookmarkDTO {
+                    override val id: Int = unboxed.url.hashCode()
+                    override val content: String = unboxed.url
+                    override val type: BookmarkDTO.Type = BookmarkDTO.Type.Link
+                }
+                else -> null
+            }
+
+            if (dto != null) {
+                bookmarkRepository.save(bookmark = dto)
+                delegate?.didSaveBookmark()
+            }
         }
     }
 

@@ -28,6 +28,9 @@ buildscript {
     // Stable Koin Version
     ext.koinVersion = "2.1.5"
 
+    // ROOM
+    ext.roomVersion = "2.2.5"
+
     // unit tests
     ext.mockkVersion = "1.9.3"
     ext.jUnitVersion = "4.12"
