@@ -3,6 +3,7 @@ package com.app.feature.preview
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.app.feature.preview.databinding.ViewPreviewBinding
+import com.app.shared.data.capture.SystemDataCapture
 import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.feature.preview.PreviewData
 import com.app.shared.navigation.AppNavigation
@@ -22,6 +23,10 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
         setContentView(binding.root)
 
         viewModel.delegate = this
+
+        val capture = SystemDataCapture(intent = intent)
+        val result = capture.unbox()
+        viewModel.capture(capture = result)
 
         viewModel.observePreviewState {
             redraw(viewState = PreviewViewState(content = it))

@@ -6,10 +6,13 @@ import com.app.shared.business.BookmarkState
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
+import com.app.shared.data.capture.DataCapture
+import com.app.shared.data.capture.DataProcess
 import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
+import com.app.shared.utils.MLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
@@ -18,7 +21,8 @@ import kotlinx.coroutines.launch
 
 class SharedPreviewViewModel(
     private val store: Store<AppState>,
-    private val bookmarkRepository: BookmarkRepository
+    private val bookmarkRepository: BookmarkRepository,
+    private val process: DataProcess
 ): PreviewViewModel {
 
     override var delegate: PreviewViewModel.Delegate? = null
@@ -26,6 +30,14 @@ class SharedPreviewViewModel(
     private val scope: CoroutineScope = provideViewModelScope()
 
     override fun clear() = store.dispatch(action = Actions.Bookmark.Preview.Reset)
+
+    override fun capture(capture: DataCapture.Item) {
+        scope.launch(context = MainDispatcher) {
+            val result = process.process(capture = capture)
+
+            MLogger.log(message = "Result is $result")
+        }
+    }
 
     override fun handle(previewData: PreviewData) {
         scope.launch(context = MainDispatcher) {

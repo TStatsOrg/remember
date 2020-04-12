@@ -6,6 +6,7 @@ import com.app.feature.hub.BookmarksAdapter
 import com.app.remember.tmpdependencies.AppDatabase
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
+import com.app.shared.data.capture.SystemDataProcess
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.SharedBookmarkRepository
 import com.app.shared.feature.mainhub.MainHubViewModel
@@ -27,7 +28,7 @@ class DependencyProvider(private val appContext: Context) {
     val module = module {
         single { Store(initialState = AppState(), reducer = AppStateReducer) }
         single<CalendarUtils> { SystemCalendarUtils() }
-        single<PreviewViewModel> { SharedPreviewViewModel(store = get(), bookmarkRepository = get()) }
+        single<PreviewViewModel> { SharedPreviewViewModel(store = get(), bookmarkRepository = get(), process = SystemDataProcess()) }
         single<MainHubViewModel> { SharedMainHubViewModel(store = get(), calendar = get(), bookmarkRepository = get()) }
         single<AppNavigation> { MainAppNavigation() }
         single { BookmarksAdapter() }
