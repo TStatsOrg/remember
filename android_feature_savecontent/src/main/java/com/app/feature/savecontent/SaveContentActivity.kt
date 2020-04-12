@@ -35,6 +35,10 @@ class SaveContentActivity: AppCompatActivity() {
             redraw(binding, SaveContentViewState(content = it))
         }
 
+        binding.saveContentButton.setOnClickListener {
+            viewModel.save()
+        }
+
         val data = SharedData(intent = intent)
         viewModel.handle(sharedData = data)
     }

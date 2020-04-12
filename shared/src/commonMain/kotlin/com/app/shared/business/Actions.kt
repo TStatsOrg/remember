@@ -9,4 +9,6 @@ sealed class Actions: Action {
         data class Text(val content: String): PreviewContent()
         data class Link(val url: String): PreviewContent()
     }
+
+    object SaveContent: Actions()
 }

@@ -1,7 +1,6 @@
 package com.app.shared.features.savecontent
 
 import android.content.Intent
-import android.net.Uri
 
 actual class SharedData(private val intent: Intent) {
 
@@ -13,39 +12,30 @@ actual class SharedData(private val intent: Intent) {
         return this.type?.startsWith(type.mimeType) ?: false
     }
 
-    private fun asUrl(string: String): Uri? {
-        return try {
-            Uri.parse(string)
-        } catch (e: Throwable) {
-            null
-        }
-    }
-
     private fun isUrl(string: String): Boolean {
         return string.startsWith("http://") || string.startsWith("https://")
     }
 
     actual fun unbox(): SharedDataType {
-        if (intent.isSendAction()) {
+        if (!intent.isSendAction()) {
+            return SharedDataType.Unsupported
+        }
 
-            if (intent.isOfMimeType(HandledContent.Text)) {
-                val textValue: String? = intent.getStringExtra(Intent.EXTRA_TEXT)
+        if (intent.isOfMimeType(HandledContent.Text)) {
+            val textValue: String? = intent.getStringExtra(Intent.EXTRA_TEXT)
 
-                if (textValue != null) {
-                    return if (isUrl(string = textValue)) {
-                        SharedDataType.Link(url = textValue)
-                    } else {
-                        SharedDataType.Text(content = textValue)
-                    }
+            if (textValue != null) {
+                return if (isUrl(string = textValue)) {
+                    SharedDataType.Link(url = textValue)
+                } else {
+                    SharedDataType.Text(content = textValue)
                 }
-
-                return SharedDataType.Unsupported
             }
 
-            if (intent.isOfMimeType(HandledContent.Image)) {
-                return SharedDataType.Unsupported
-            }
+            return SharedDataType.Unsupported
+        }
 
+        if (intent.isOfMimeType(HandledContent.Image)) {
             return SharedDataType.Unsupported
         }
 

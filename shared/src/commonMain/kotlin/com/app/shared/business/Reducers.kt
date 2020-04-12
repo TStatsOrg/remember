@@ -7,6 +7,15 @@ val AppStateReducer: Reducer<AppState> = { old, action ->
         is Actions.PreviewContent.Reset -> old.copy(previewContent = null)
         is Actions.PreviewContent.Text -> old.copy(previewContent = SavedContent.Text(value = action.content))
         is Actions.PreviewContent.Link -> old.copy(previewContent = SavedContent.Link(url = action.url))
+        is Actions.SaveContent -> {
+            val oldArray = old.allSavedContent.toMutableList()
+
+            if (old.previewContent != null) {
+                oldArray.add(old.previewContent)
+            }
+
+            old.copy(allSavedContent = oldArray)
+        }
         else -> old
     }
 }

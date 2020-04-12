@@ -21,14 +21,18 @@ open class SharedSaveContentViewModel(private val store: Store<AppState>): SaveC
     override fun clear() = store.dispatch(action = Actions.PreviewContent.Reset)
 
     override fun handle(sharedData: SharedData) {
-        val unboxed = sharedData.unbox() ?: return
-
         scope.launch(context = MainDispatcher) {
-            when (unboxed) {
+            when (val unboxed = sharedData.unbox()) {
                 is SharedDataType.Text -> store.dispatch(action = Actions.PreviewContent.Text(content = unboxed.content))
                 is SharedDataType.Link -> store.dispatch(action = Actions.PreviewContent.Link(url = unboxed.url))
                 is SharedDataType.Unsupported -> Unit
             }
+        }
+    }
+
+    override fun save() {
+        scope.launch(context = MainDispatcher) {
+            store.dispatch(action = Actions.SaveContent)
         }
     }
 

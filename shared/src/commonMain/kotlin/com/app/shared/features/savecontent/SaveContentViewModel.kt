@@ -6,5 +6,6 @@ interface SaveContentViewModel {
 
     fun clear()
     fun handle(sharedData: SharedData)
+    fun save()
     fun observePreviewState(callback: (SavedContent) -> Unit)
 }
