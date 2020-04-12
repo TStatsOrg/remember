@@ -4,17 +4,17 @@ import com.app.shared.redux.Reducer
 
 val AppStateReducer: Reducer<AppState> = { old, action ->
     when (action) {
-        is Actions.PreviewContent.Reset -> old.copy(previewContent = null)
-        is Actions.PreviewContent.Text -> old.copy(previewContent = SavedContent.Text(value = action.content))
-        is Actions.PreviewContent.Link -> old.copy(previewContent = SavedContent.Link(url = action.url))
-        is Actions.SaveContent -> {
-            val oldArray = old.allSavedContent.toMutableList()
+        is Actions.Preview.Reset -> old.copy(preview = null)
+        is Actions.Preview.Text -> old.copy(preview = Bookmark.Text(value = action.content))
+        is Actions.Preview.Link -> old.copy(preview = Bookmark.Link(url = action.url))
+        is Actions.SaveBookmark -> {
+            val oldArray = old.bookmarks.toMutableList()
 
-            if (old.previewContent != null) {
-                oldArray.add(old.previewContent)
+            if (old.preview != null) {
+                oldArray.add(old.preview)
             }
 
-            old.copy(allSavedContent = oldArray)
+            old.copy(bookmarks = oldArray)
         }
         else -> old
     }

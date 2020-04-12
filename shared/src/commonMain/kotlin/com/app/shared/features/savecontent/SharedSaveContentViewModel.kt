@@ -2,7 +2,7 @@ package com.app.shared.features.savecontent
 
 import com.app.shared.business.Actions
 import com.app.shared.business.AppState
-import com.app.shared.business.SavedContent
+import com.app.shared.business.Bookmark
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
@@ -18,13 +18,13 @@ open class SharedSaveContentViewModel(private val store: Store<AppState>): SaveC
 
     private val scope: CoroutineScope = provideViewModelScope()
 
-    override fun clear() = store.dispatch(action = Actions.PreviewContent.Reset)
+    override fun clear() = store.dispatch(action = Actions.Preview.Reset)
 
     override fun handle(sharedData: SharedData) {
         scope.launch(context = MainDispatcher) {
             when (val unboxed = sharedData.unbox()) {
-                is SharedDataType.Text -> store.dispatch(action = Actions.PreviewContent.Text(content = unboxed.content))
-                is SharedDataType.Link -> store.dispatch(action = Actions.PreviewContent.Link(url = unboxed.url))
+                is SharedDataType.Text -> store.dispatch(action = Actions.Preview.Text(content = unboxed.content))
+                is SharedDataType.Link -> store.dispatch(action = Actions.Preview.Link(url = unboxed.url))
                 is SharedDataType.Unsupported -> Unit
             }
         }
@@ -32,15 +32,15 @@ open class SharedSaveContentViewModel(private val store: Store<AppState>): SaveC
 
     override fun save() {
         scope.launch(context = MainDispatcher) {
-            store.dispatch(action = Actions.SaveContent)
+            store.dispatch(action = Actions.SaveBookmark)
         }
     }
 
-    override fun observePreviewState(callback: (SavedContent) -> Unit) {
+    override fun observePreviewState(callback: (Bookmark) -> Unit) {
         scope.launch(context = MainDispatcher) {
             store.asFlow()
                 .flowOn(context = DefaultDispatcher)
-                .mapNotNull { it.previewContent }
+                .mapNotNull { it.preview }
                 .collect {
                     callback(it)
                 }

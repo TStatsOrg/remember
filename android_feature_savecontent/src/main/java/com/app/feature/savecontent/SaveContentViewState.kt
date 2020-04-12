@@ -1,11 +1,11 @@
 package com.app.feature.savecontent
 
-import com.app.shared.business.SavedContent
+import com.app.shared.business.Bookmark
 
-class SaveContentViewState(content: SavedContent) {
+class SaveContentViewState(content: Bookmark) {
 
     val resource = when(content) {
-        is SavedContent.Text -> content.value
-        is SavedContent.Link -> content.url
+        is Bookmark.Text -> content.value
+        is Bookmark.Link -> content.url
     }
 }

@@ -17,16 +17,12 @@ class SaveContentActivity: AppCompatActivity() {
     private val viewModel: SaveContentViewModel by inject()
     private val navigator: AppNavigation by inject()
 
-    private val redraw by lazy {
-        Redraw
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         viewModel.observePreviewState {
-            redraw(binding, SaveContentViewState(content = it))
+            redraw(viewState = SaveContentViewState(content = it))
         }
 
         binding.saveContentButton.setOnClickListener {
@@ -36,5 +32,9 @@ class SaveContentActivity: AppCompatActivity() {
 
         val data = SharedData(intent = intent)
         viewModel.handle(sharedData = data)
+    }
+
+    private fun redraw(viewState: SaveContentViewState) = with(viewState) {
+        binding.textContent.text = resource
     }
 }
