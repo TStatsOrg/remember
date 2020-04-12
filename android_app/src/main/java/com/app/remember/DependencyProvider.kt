@@ -1,5 +1,6 @@
 package com.app.remember
 
+import com.app.feature.hub.BookmarksAdapter
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
 import com.app.shared.feature.mainhub.MainHubViewModel
@@ -21,5 +22,6 @@ object DependencyProvider {
         }
         single<MainHubViewModel> { SharedMainHubViewModel(store = get()) }
         single<AppNavigation> { MainAppNavigation() }
+        single { BookmarksAdapter() }
     }
 }

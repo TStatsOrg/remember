@@ -4,11 +4,16 @@ import com.app.shared.redux.Action
 
 sealed class Actions: Action {
 
-    sealed class Preview: Actions() {
-        object Reset: Preview()
-        data class Text(val content: String): Preview()
-        data class Link(val url: String): Preview()
-    }
+    sealed class Bookmark: Actions() {
 
-    object SaveBookmark: Actions()
+        sealed class Preview: Bookmark() {
+            object Reset: Preview()
+            data class Text(val content: String): Preview()
+            data class Link(val url: String): Preview()
+        }
+
+        data class Save(val time: Long): Bookmark()
+
+        data class Load(val time: Long): Bookmark()
+    }
 }

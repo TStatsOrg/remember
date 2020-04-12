@@ -14,18 +14,17 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 
-open class SharedPreviewViewModel(private val store: Store<AppState>):
-    PreviewViewModel {
+class SharedPreviewViewModel(private val store: Store<AppState>): PreviewViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
 
-    override fun clear() = store.dispatch(action = Actions.Preview.Reset)
+    override fun clear() = store.dispatch(action = Actions.Bookmark.Preview.Reset)
 
     override fun handle(previewData: PreviewData) {
         scope.launch(context = MainDispatcher) {
             when (val unboxed = previewData.unbox()) {
-                is PreviewDataType.Text -> store.dispatch(action = Actions.Preview.Text(content = unboxed.content))
-                is PreviewDataType.Link -> store.dispatch(action = Actions.Preview.Link(url = unboxed.url))
+                is PreviewDataType.Text -> store.dispatch(action = Actions.Bookmark.Preview.Text(content = unboxed.content))
+                is PreviewDataType.Link -> store.dispatch(action = Actions.Bookmark.Preview.Link(url = unboxed.url))
                 is PreviewDataType.Unsupported -> Unit
             }
         }
@@ -33,7 +32,7 @@ open class SharedPreviewViewModel(private val store: Store<AppState>):
 
     override fun save() {
         scope.launch(context = MainDispatcher) {
-            store.dispatch(action = Actions.SaveBookmark)
+            store.dispatch(action = Actions.Bookmark.Save(time = 123L))
         }
     }
 

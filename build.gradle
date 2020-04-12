@@ -23,6 +23,7 @@ buildscript {
     ext.androidXVersion = "1.2.0"
     ext.appCompatVersion = "1.1.0"
     ext.constraintLayoutVersion = "1.1.3"
+    ext.recyclerViewVersion = "1.1.0"
 
     // Stable Koin Version
     ext.koinVersion = "2.1.5"
