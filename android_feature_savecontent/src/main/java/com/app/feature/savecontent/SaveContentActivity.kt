@@ -3,11 +3,10 @@ package com.app.feature.savecontent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.app.feature.savecontent.databinding.ViewSharecontentBinding
-import com.app.shared.business.AppState
-import com.app.shared.business.AppStateReducer
+import com.app.shared.features.savecontent.SaveContentViewModel
 import com.app.shared.features.savecontent.SharedData
-import com.app.shared.features.savecontent.SharedSaveContentViewModel
-import com.app.shared.redux.Store
+import com.app.shared.navigation.AppNavigation
+import org.koin.android.ext.android.inject
 
 class SaveContentActivity: AppCompatActivity() {
 
@@ -15,13 +14,8 @@ class SaveContentActivity: AppCompatActivity() {
         ViewSharecontentBinding.inflate(layoutInflater)
     }
 
-    private val store by lazy {
-        Store(initialState = AppState(), reducer = AppStateReducer)
-    }
-
-    private val viewModel: SharedSaveContentViewModel by lazy {
-        SharedSaveContentViewModel(store = store)
-    }
+    private val viewModel: SaveContentViewModel by inject()
+    private val navigator: AppNavigation by inject()
 
     private val redraw by lazy {
         Redraw
@@ -37,6 +31,7 @@ class SaveContentActivity: AppCompatActivity() {
 
         binding.saveContentButton.setOnClickListener {
             viewModel.save()
+            navigator.seeMainHub(context = this)
         }
 
         val data = SharedData(intent = intent)
