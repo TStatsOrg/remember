@@ -8,11 +8,15 @@ import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.capture.DataCapture
 import com.app.shared.data.capture.DataProcess
+import com.app.shared.data.dto.Bookmark2DTO
 import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
+import com.app.shared.utils.CalendarUtils
 import com.app.shared.utils.MLogger
+import com.app.shared.utils.toDTO
+import com.app.shared.utils.toState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
@@ -22,6 +26,7 @@ import kotlinx.coroutines.launch
 class SharedPreviewViewModel(
     private val store: Store<AppState>,
     private val bookmarkRepository: BookmarkRepository,
+    private val calendarUtils: CalendarUtils,
     private val process: DataProcess
 ): PreviewViewModel {
 
@@ -31,11 +36,14 @@ class SharedPreviewViewModel(
 
     override fun clear() = store.dispatch(action = Actions.Bookmark.Preview.Reset)
 
-    override fun capture(capture: DataCapture.Item) {
+    override fun capture(capture: DataCapture) {
         scope.launch(context = MainDispatcher) {
-            val result = process.process(capture = capture)
+            val result = capture.unbox()
+            val processed = process.process(capture = result)
+            val bookmarkDTO = processed.toDTO(date = calendarUtils.getTime())
+            val state = bookmarkDTO?.toState()
 
-            MLogger.log(message = "Result is $result")
+            MLogger.log(message = "Result is $state")
         }
     }
 

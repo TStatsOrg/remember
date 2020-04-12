@@ -28,7 +28,13 @@ class DependencyProvider(private val appContext: Context) {
     val module = module {
         single { Store(initialState = AppState(), reducer = AppStateReducer) }
         single<CalendarUtils> { SystemCalendarUtils() }
-        single<PreviewViewModel> { SharedPreviewViewModel(store = get(), bookmarkRepository = get(), process = SystemDataProcess()) }
+        single<PreviewViewModel> {
+            SharedPreviewViewModel(
+                store = get(),
+                bookmarkRepository = get(),
+                process = SystemDataProcess(),
+                calendarUtils = get())
+        }
         single<MainHubViewModel> { SharedMainHubViewModel(store = get(), calendar = get(), bookmarkRepository = get()) }
         single<AppNavigation> { MainAppNavigation() }
         single { BookmarksAdapter() }

@@ -7,7 +7,7 @@ interface PreviewViewModel {
 
     var delegate: Delegate?
 
-    fun capture(capture: DataCapture.Item)
+    fun capture(capture: DataCapture)
 
     fun clear()
     fun handle(previewData: PreviewData)

@@ -25,8 +25,7 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
         viewModel.delegate = this
 
         val capture = SystemDataCapture(intent = intent)
-        val result = capture.unbox()
-        viewModel.capture(capture = result)
+        viewModel.capture(capture = capture)
 
         viewModel.observePreviewState {
             redraw(viewState = PreviewViewState(content = it))
