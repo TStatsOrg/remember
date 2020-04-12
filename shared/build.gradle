@@ -52,6 +52,8 @@ kotlin {
             api "io.ktor:ktor-client-okhttp:$ktorVersion"
             api "io.ktor:ktor-client-json-jvm:$ktorVersion"
 
+            implementation "org.jsoup:jsoup:$jsoupVersion"
+
             // serialisation
             api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
         }

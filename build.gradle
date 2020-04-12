@@ -31,6 +31,9 @@ buildscript {
     // ROOM
     ext.roomVersion = "2.2.5"
 
+    // Jsoup
+    ext.jsoupVersion = "1.11.1"
+
     // unit tests
     ext.mockkVersion = "1.9.3"
     ext.jUnitVersion = "4.12"
