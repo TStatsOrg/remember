@@ -12,7 +12,9 @@ import org.koin.android.ext.android.inject
 class MainHubActivity: AppCompatActivity() {
 
     private val viewModel: MainHubViewModel by inject()
-    private val adapter: BookmarksAdapter = BookmarksAdapter()
+    private val adapter: BookmarksAdapter by inject()
+    private val layoutManager = LinearLayoutManager(this)
+    private val animator = DefaultItemAnimator()
 
     private val binding by lazy {
         ViewMainhubBinding.inflate(layoutInflater)
@@ -23,11 +25,10 @@ class MainHubActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         binding.bookmarksRecyclerView.adapter = adapter
-        binding.bookmarksRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.bookmarksRecyclerView.itemAnimator = DefaultItemAnimator()
+        binding.bookmarksRecyclerView.layoutManager = layoutManager
+        binding.bookmarksRecyclerView.itemAnimator = animator
 
         viewModel.observeBookmarkState {
-            MLogger.log("Got ${it.size} elements")
             adapter.redraw(viewState = it.map { BookmarkViewState(bookmark = it) })
         }
 
