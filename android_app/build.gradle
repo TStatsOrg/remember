@@ -42,7 +42,7 @@ dependencies {
 
     // local libraries
     implementation project(":shared")
-    implementation project(":android_feature_savecontent")
+    implementation project(":android_feature_preview")
     implementation project(":android_feature_hub")
 
     // coroutines

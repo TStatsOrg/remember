@@ -1,5 +1,5 @@
 include ':android_feature_hub'
-include ':android_feature_savecontent'
+include ':android_feature_preview'
 include ':shared'
 include ':android_app'
 rootProject.name = "Remember"

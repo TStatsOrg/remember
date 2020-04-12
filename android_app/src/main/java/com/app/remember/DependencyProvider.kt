@@ -2,10 +2,10 @@ package com.app.remember
 
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
-import com.app.shared.features.mainhub.MainHubViewModel
-import com.app.shared.features.mainhub.SharedMainHubViewModel
-import com.app.shared.features.preview.PreviewViewModel
-import com.app.shared.features.preview.SharedPreviewViewModel
+import com.app.shared.feature.mainhub.MainHubViewModel
+import com.app.shared.feature.mainhub.SharedMainHubViewModel
+import com.app.shared.feature.preview.PreviewViewModel
+import com.app.shared.feature.preview.SharedPreviewViewModel
 import com.app.shared.navigation.AppNavigation
 import com.app.shared.redux.Store
 import org.koin.dsl.module

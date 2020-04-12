@@ -3,7 +3,7 @@ package com.app.feature.hub
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.app.feature.hub.databinding.ViewMainhubBinding
-import com.app.shared.features.mainhub.MainHubViewModel
+import com.app.shared.feature.mainhub.MainHubViewModel
 import org.koin.android.ext.android.inject
 
 class MainHubActivity: AppCompatActivity() {
