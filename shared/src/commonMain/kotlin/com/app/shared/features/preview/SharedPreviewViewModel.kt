@@ -1,4 +1,4 @@
-package com.app.shared.features.savecontent
+package com.app.shared.features.preview
 
 import com.app.shared.business.Actions
 import com.app.shared.business.AppState
@@ -14,18 +14,19 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 
-open class SharedSaveContentViewModel(private val store: Store<AppState>): SaveContentViewModel {
+open class SharedPreviewViewModel(private val store: Store<AppState>):
+    PreviewViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
 
     override fun clear() = store.dispatch(action = Actions.Preview.Reset)
 
-    override fun handle(sharedData: SharedData) {
+    override fun handle(previewData: PreviewData) {
         scope.launch(context = MainDispatcher) {
-            when (val unboxed = sharedData.unbox()) {
-                is SharedDataType.Text -> store.dispatch(action = Actions.Preview.Text(content = unboxed.content))
-                is SharedDataType.Link -> store.dispatch(action = Actions.Preview.Link(url = unboxed.url))
-                is SharedDataType.Unsupported -> Unit
+            when (val unboxed = previewData.unbox()) {
+                is PreviewDataType.Text -> store.dispatch(action = Actions.Preview.Text(content = unboxed.content))
+                is PreviewDataType.Link -> store.dispatch(action = Actions.Preview.Link(url = unboxed.url))
+                is PreviewDataType.Unsupported -> Unit
             }
         }
     }

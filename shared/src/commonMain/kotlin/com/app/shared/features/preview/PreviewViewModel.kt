@@ -1,11 +1,11 @@
-package com.app.shared.features.savecontent
+package com.app.shared.features.preview
 
 import com.app.shared.business.Bookmark
 
-interface SaveContentViewModel {
+interface PreviewViewModel {
 
     fun clear()
-    fun handle(sharedData: SharedData)
+    fun handle(previewData: PreviewData)
     fun save()
     fun observePreviewState(callback: (Bookmark) -> Unit)
 }

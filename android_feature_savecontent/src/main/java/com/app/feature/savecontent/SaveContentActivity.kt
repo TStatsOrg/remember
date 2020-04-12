@@ -3,8 +3,8 @@ package com.app.feature.savecontent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.app.feature.savecontent.databinding.ViewSharecontentBinding
-import com.app.shared.features.savecontent.SaveContentViewModel
-import com.app.shared.features.savecontent.SharedData
+import com.app.shared.features.preview.PreviewViewModel
+import com.app.shared.features.preview.PreviewData
 import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
 
@@ -14,7 +14,7 @@ class SaveContentActivity: AppCompatActivity() {
         ViewSharecontentBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: SaveContentViewModel by inject()
+    private val viewModel: PreviewViewModel by inject()
     private val navigator: AppNavigation by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +30,8 @@ class SaveContentActivity: AppCompatActivity() {
             navigator.seeMainHub(context = this)
         }
 
-        val data = SharedData(intent = intent)
-        viewModel.handle(sharedData = data)
+        val data = PreviewData(intent = intent)
+        viewModel.handle(previewData = data)
     }
 
     private fun redraw(viewState: SaveContentViewState) = with(viewState) {

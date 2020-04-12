@@ -1,8 +1,8 @@
-package com.app.shared.features.savecontent
+package com.app.shared.features.preview
 
 import android.content.Intent
 
-actual class SharedData(private val intent: Intent) {
+actual class PreviewData(private val intent: Intent) {
 
     private fun Intent.isSendAction(): Boolean {
         return this.action == Intent.ACTION_SEND
@@ -16,9 +16,9 @@ actual class SharedData(private val intent: Intent) {
         return string.startsWith("http://") || string.startsWith("https://")
     }
 
-    actual fun unbox(): SharedDataType {
+    actual fun unbox(): PreviewDataType {
         if (!intent.isSendAction()) {
-            return SharedDataType.Unsupported
+            return PreviewDataType.Unsupported
         }
 
         if (intent.isOfMimeType(HandledContent.Text)) {
@@ -26,20 +26,20 @@ actual class SharedData(private val intent: Intent) {
 
             if (textValue != null) {
                 return if (isUrl(string = textValue)) {
-                    SharedDataType.Link(url = textValue)
+                    PreviewDataType.Link(url = textValue)
                 } else {
-                    SharedDataType.Text(content = textValue)
+                    PreviewDataType.Text(content = textValue)
                 }
             }
 
-            return SharedDataType.Unsupported
+            return PreviewDataType.Unsupported
         }
 
         if (intent.isOfMimeType(HandledContent.Image)) {
-            return SharedDataType.Unsupported
+            return PreviewDataType.Unsupported
         }
 
-        return SharedDataType.Unsupported
+        return PreviewDataType.Unsupported
     }
 
     private enum class HandledContent(val mimeType: String) {
