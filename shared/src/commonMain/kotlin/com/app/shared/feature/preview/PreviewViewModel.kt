@@ -1,6 +1,6 @@
 package com.app.shared.feature.preview
 
-import com.app.shared.business.Bookmark
+import com.app.shared.business.BookmarkState
 
 interface PreviewViewModel {
 
@@ -9,7 +9,7 @@ interface PreviewViewModel {
     fun clear()
     fun handle(previewData: PreviewData)
     fun save(previewData: PreviewData)
-    fun observePreviewState(callback: (Bookmark) -> Unit)
+    fun observePreviewState(callback: (BookmarkState) -> Unit)
 
     interface Delegate {
         fun didSaveBookmark()

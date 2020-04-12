@@ -2,7 +2,7 @@ package com.app.shared.feature.mainhub
 
 import com.app.shared.business.Actions
 import com.app.shared.business.AppState
-import com.app.shared.business.Bookmark
+import com.app.shared.business.BookmarkState
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
@@ -29,10 +29,10 @@ class SharedMainHubViewModel(
             store.dispatch(action = Actions.Bookmark.Load(time = calendar.getTime()))
 
             val dtos = bookmarkRepository.getAll()
-            val bookmarks: List<Bookmark> = dtos.mapNotNull {
+            val bookmarks: List<BookmarkState> = dtos.mapNotNull {
                 when(it.type) {
-                    BookmarkDTO.Type.Text -> Bookmark.Text(id = it.id, value = it.content)
-                    BookmarkDTO.Type.Link -> Bookmark.Link(id = it.id, url = it.content)
+                    BookmarkDTO.Type.Text -> BookmarkState.Text(id = it.id, value = it.content)
+                    BookmarkDTO.Type.Link -> BookmarkState.Link(id = it.id, url = it.content)
                     BookmarkDTO.Type.Unknown -> null
                 }
             }
@@ -41,7 +41,7 @@ class SharedMainHubViewModel(
         }
     }
 
-    override fun observeBookmarkState(callback: (List<Bookmark>) -> Unit) {
+    override fun observeBookmarkState(callback: (List<BookmarkState>) -> Unit) {
         scope.launch(context = MainDispatcher) {
             store.asFlow()
                 .flowOn(DefaultDispatcher)

@@ -1,11 +1,11 @@
 package com.app.feature.preview
 
-import com.app.shared.business.Bookmark
+import com.app.shared.business.BookmarkState
 
-class PreviewViewState(content: Bookmark) {
+class PreviewViewState(content: BookmarkState) {
 
     val resource = when(content) {
-        is Bookmark.Text -> content.value
-        is Bookmark.Link -> content.url
+        is BookmarkState.Text -> content.value
+        is BookmarkState.Link -> content.url
     }
 }

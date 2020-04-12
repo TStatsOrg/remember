@@ -2,7 +2,7 @@ package com.app.shared.feature.preview
 
 import com.app.shared.business.Actions
 import com.app.shared.business.AppState
-import com.app.shared.business.Bookmark
+import com.app.shared.business.BookmarkState
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
@@ -61,7 +61,7 @@ class SharedPreviewViewModel(
         }
     }
 
-    override fun observePreviewState(callback: (Bookmark) -> Unit) {
+    override fun observePreviewState(callback: (BookmarkState) -> Unit) {
         scope.launch(context = MainDispatcher) {
             store.asFlow()
                 .flowOn(context = DefaultDispatcher)

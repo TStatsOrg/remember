@@ -14,6 +14,6 @@ sealed class Actions: Action {
 
         data class Load(val time: Long): Bookmark()
 
-        data class Loaded(val time: Long, val bookmarks: List<com.app.shared.business.Bookmark>): Bookmark()
+        data class Loaded(val time: Long, val bookmarks: List<BookmarkState>): Bookmark()
     }
 }
