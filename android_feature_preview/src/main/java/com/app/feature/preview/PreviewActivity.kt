@@ -3,7 +3,7 @@ package com.app.feature.preview
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.app.feature.preview.databinding.ViewPreviewBinding
-import com.app.shared.data.capture.SystemDataCapture
+import com.app.shared.feature.capture.DataCaptureViewModel
 import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
@@ -16,9 +16,8 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
     }
 
     private val viewModel: PreviewViewModel by inject()
+    private val captureViewModel: DataCaptureViewModel by inject(parameters = { parametersOf(intent) })
     private val navigator: AppNavigation by inject()
-
-    private val obhy: PreviewViewModel by inject(parameters = { parametersOf(intent) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +29,12 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
             redraw(viewState = PreviewViewState(content = it))
         }
 
-        val capture = SystemDataCapture(intent = intent)
-        viewModel.capture(capture = capture)
+        captureViewModel.capture { item ->
+            viewModel.present(processed = item)
 
-        binding.saveContentButton.setOnClickListener {
-            viewModel.save(capture = capture)
+            binding.saveContentButton.setOnClickListener {
+                viewModel.save(processed = item)
+            }
         }
     }
 

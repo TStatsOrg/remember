@@ -2,7 +2,7 @@ package com.app.shared.data.capture
 
 interface DataProcess {
 
-    suspend fun process(capture: DataCapture.Item): Item
+    fun process(capture: DataCapture.Item): Item
 
     sealed class Item {
         /**

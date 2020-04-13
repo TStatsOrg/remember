@@ -6,7 +6,6 @@ import com.app.shared.business.BookmarkState
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
-import com.app.shared.data.capture.DataCapture
 import com.app.shared.data.capture.DataProcess
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.redux.Store
@@ -22,8 +21,7 @@ import kotlinx.coroutines.launch
 class SharedPreviewViewModel(
     private val store: Store<AppState>,
     private val bookmarkRepository: BookmarkRepository,
-    private val calendarUtils: CalendarUtils,
-    private val process: DataProcess
+    private val calendarUtils: CalendarUtils
 ): PreviewViewModel {
 
     override var delegate: PreviewViewModel.Delegate? = null
@@ -32,10 +30,8 @@ class SharedPreviewViewModel(
 
     override fun clear() = store.dispatch(action = Actions.Bookmark.Preview.Reset)
 
-    override fun capture(capture: DataCapture) {
+    override fun present(processed: DataProcess.Item) {
         scope.launch(context = MainDispatcher) {
-            val result = capture.unbox()
-            val processed = process.process(capture = result)
             val bookmarkDTO = processed.toDTO(date = calendarUtils.getTime())
 
             if (bookmarkDTO != null) {
@@ -44,10 +40,8 @@ class SharedPreviewViewModel(
         }
     }
 
-    override fun save(capture: DataCapture) {
+    override fun save(processed: DataProcess.Item) {
         scope.launch(context = MainDispatcher) {
-            val result = capture.unbox()
-            val processed = process.process(capture = result)
             val bookmarkDTO = processed.toDTO(date = calendarUtils.getTime())
 
             if (bookmarkDTO != null) {
