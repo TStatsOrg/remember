@@ -13,6 +13,7 @@ import SwiftSoup
 class iOSDataProcess: NSObject {
     
     func process(item: DataCaptureItem) {
+        
         switch item {
         case _ as DataCaptureItem.Unknown:
             let item = DataProcessItem.Unknown()
@@ -29,34 +30,29 @@ class iOSDataProcess: NSObject {
                     return
                 }
                 
-                let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                    
-                    guard let data = data, let contents = String(data: data, encoding: .utf8) else {
-                        return
-                    }
-                    
-                    do {
-                        let document: Document = try SwiftSoup.parse(contents)
-                        let title = try document.title()
-                        let description = try document.head()?.select("meta[name=description]").first()?.attr("content")
-                        let firstImage = try document.head()?.select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
-                        let secondImage = try document.head()?.select("meta[itemprop=image]").first()?.attr("itemprop")
-                        let thirdImage = try document.select("img").first()?.attr("href")
-                        
-                        let item = DataProcessItem.Link(url: content,
-                                                        title: title,
-                                                        description: description,
-                                                        icon: firstImage ?? secondImage ?? thirdImage)
-                        
-                        print(item)
-                    } catch Exception.Error(_, let message) {
-                        print(message)
-                    } catch {
-                        print("Unknown error")
-                    }
+                guard let contents = try? String(contentsOf: url) else {
+                    return
                 }
                 
-                task.resume()
+                do {
+                    let document: Document = try SwiftSoup.parse(contents)
+                    let title = try document.title()
+                    let description = try document.head()?.select("meta[name=description]").first()?.attr("content")
+                    let firstImage = try document.head()?.select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
+                    let secondImage = try document.head()?.select("meta[itemprop=image]").first()?.attr("itemprop")
+                    let thirdImage = try document.select("img").first()?.attr("href")
+                    
+                    let item = DataProcessItem.Link(url: content,
+                                                    title: title,
+                                                    description: description,
+                                                    icon: firstImage ?? secondImage ?? thirdImage)
+                    
+                    print(item)
+                } catch Exception.Error(_, let message) {
+                    print(message)
+                } catch {
+                    print("Unknown error")
+                }
             } else {
                 let item = DataProcessItem.Text(text: content)
                 print(item)

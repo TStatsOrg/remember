@@ -29,19 +29,10 @@ actual class SystemDataProcess: DataProcess {
 
             // get document
             val document = Jsoup.connect(url).get()
-            // get title
             val title = document.title()
-
-            // get description
-            val descriptionElement = document.head().select("meta[name=description]").first()
-            val description = descriptionElement?.attr("content")
-
-            // first image
-            val firstImageCandidate = document.head().select("link[href~=.*\\.(ico|png)]").first()
-            val firstImageSrc = firstImageCandidate?.attr("href")
-            // second image
-            val secondImageCandidate = document.head().select("meta[itemprop=image]").first()
-            val secondImageSrc = secondImageCandidate?.attr("itemprop")
+            val description = document.head().select("meta[name=description]").first()?.attr("content")
+            val firstImageSrc = document.head().select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
+            val secondImageSrc = document.head().select("meta[itemprop=image]").first()?.attr("itemprop")
 
             return@withContext DataProcess.Item.Link(
                 url = url,

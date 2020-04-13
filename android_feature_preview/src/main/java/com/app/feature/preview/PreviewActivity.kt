@@ -7,6 +7,7 @@ import com.app.shared.data.capture.SystemDataCapture
 import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
 
@@ -16,6 +17,8 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
 
     private val viewModel: PreviewViewModel by inject()
     private val navigator: AppNavigation by inject()
+
+    private val obhy: PreviewViewModel by inject(parameters = { parametersOf(intent) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
