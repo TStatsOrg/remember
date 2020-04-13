@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RememberShared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

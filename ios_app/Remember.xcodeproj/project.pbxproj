@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0DD3472DC85281A17A693D50 /* Pods_RememberUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69873F0B76C33CEB7C5AA587 /* Pods_RememberUITests.framework */; };
+		1B72E0F02444905D0042EBD7 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */; };
+		1B72E0F32444905D0042EBD7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B72E0F12444905D0042EBD7 /* MainInterface.storyboard */; };
+		1B72E0F72444905D0042EBD7 /* SharePreview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* SharePreview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D02441E9600060EC1D /* AppDelegate.swift */; };
 		1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D22441E9600060EC1D /* SceneDelegate.swift */; };
 		1BA773D52441E9600060EC1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D42441E9600060EC1D /* ContentView.swift */; };
@@ -23,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1B72E0F52444905D0042EBD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BA773C52441E9600060EC1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B72E0EC2444905C0042EBD7;
+			remoteInfo = SharePreview;
+		};
 		1BA773E42441E9670060EC1D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1BA773C52441E9600060EC1D /* Project object */;
@@ -40,6 +50,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1B72E0FB2444905D0042EBD7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1B72E0F72444905D0042EBD7 /* SharePreview.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BA774052441ED240060EC1D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -54,6 +75,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B72E0ED2444905C0042EBD7 /* SharePreview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharePreview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		1B72E0F22444905D0042EBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		1B72E0F42444905D0042EBD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B72E0FC244494C00042EBD7 /* Remember.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Remember.entitlements; sourceTree = "<group>"; };
 		1BA773CD2441E9600060EC1D /* Remember.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remember.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773D02441E9600060EC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BA773D22441E9600060EC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +107,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1B72E0EA2444905C0042EBD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BA773CA2441E9600060EC1D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -109,12 +142,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B72E0EE2444905C0042EBD7 /* SharePreview */ = {
+			isa = PBXGroup;
+			children = (
+				1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */,
+				1B72E0F12444905D0042EBD7 /* MainInterface.storyboard */,
+				1B72E0F42444905D0042EBD7 /* Info.plist */,
+			);
+			path = SharePreview;
+			sourceTree = "<group>";
+		};
 		1BA773C42441E9600060EC1D = {
 			isa = PBXGroup;
 			children = (
 				1BA773CF2441E9600060EC1D /* Remember */,
 				1BA773E62441E9670060EC1D /* RememberTests */,
 				1BA773F12441E9670060EC1D /* RememberUITests */,
+				1B72E0EE2444905C0042EBD7 /* SharePreview */,
 				1BA773CE2441E9600060EC1D /* Products */,
 				1BA774012441ED240060EC1D /* Frameworks */,
 				65B5D446B87529E0875D4F1A /* Pods */,
@@ -127,6 +171,7 @@
 				1BA773CD2441E9600060EC1D /* Remember.app */,
 				1BA773E32441E9670060EC1D /* RememberTests.xctest */,
 				1BA773EE2441E9670060EC1D /* RememberUITests.xctest */,
+				1B72E0ED2444905C0042EBD7 /* SharePreview.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +179,7 @@
 		1BA773CF2441E9600060EC1D /* Remember */ = {
 			isa = PBXGroup;
 			children = (
+				1B72E0FC244494C00042EBD7 /* Remember.entitlements */,
 				1BA773D02441E9600060EC1D /* AppDelegate.swift */,
 				1BA773D22441E9600060EC1D /* SceneDelegate.swift */,
 				1BA773D42441E9600060EC1D /* ContentView.swift */,
@@ -192,13 +238,29 @@
 				E4D29E8740A7F773A970820D /* Pods-RememberUITests.debug.xcconfig */,
 				9A6E36CFF02172784ED04114 /* Pods-RememberUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1B72E0EC2444905C0042EBD7 /* SharePreview */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B72E0F82444905D0042EBD7 /* Build configuration list for PBXNativeTarget "SharePreview" */;
+			buildPhases = (
+				1B72E0E92444905C0042EBD7 /* Sources */,
+				1B72E0EA2444905C0042EBD7 /* Frameworks */,
+				1B72E0EB2444905C0042EBD7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SharePreview;
+			productName = SharePreview;
+			productReference = 1B72E0ED2444905C0042EBD7 /* SharePreview.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		1BA773CC2441E9600060EC1D /* Remember */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BA773F72441E9670060EC1D /* Build configuration list for PBXNativeTarget "Remember" */;
@@ -209,10 +271,12 @@
 				1BA773CA2441E9600060EC1D /* Frameworks */,
 				1BA773CB2441E9600060EC1D /* Resources */,
 				1BA774052441ED240060EC1D /* Embed Frameworks */,
+				1B72E0FB2444905D0042EBD7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1B72E0F62444905D0042EBD7 /* PBXTargetDependency */,
 			);
 			name = Remember;
 			productName = Remember;
@@ -267,6 +331,9 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Gabriel Coman";
 				TargetAttributes = {
+					1B72E0EC2444905C0042EBD7 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 					1BA773CC2441E9600060EC1D = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -296,11 +363,20 @@
 				1BA773CC2441E9600060EC1D /* Remember */,
 				1BA773E22441E9670060EC1D /* RememberTests */,
 				1BA773ED2441E9670060EC1D /* RememberUITests */,
+				1B72E0EC2444905C0042EBD7 /* SharePreview */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1B72E0EB2444905C0042EBD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B72E0F32444905D0042EBD7 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BA773CB2441E9600060EC1D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +490,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1B72E0E92444905C0042EBD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B72E0F02444905D0042EBD7 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BA773C92441E9600060EC1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -443,6 +527,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1B72E0F62444905D0042EBD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B72E0EC2444905C0042EBD7 /* SharePreview */;
+			targetProxy = 1B72E0F52444905D0042EBD7 /* PBXContainerItemProxy */;
+		};
 		1BA773E52441E9670060EC1D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1BA773CC2441E9600060EC1D /* Remember */;
@@ -456,6 +545,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1B72E0F12444905D0042EBD7 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B72E0F22444905D0042EBD7 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		1BA773DB2441E9660060EC1D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -467,6 +564,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1B72E0F92444905D0042EBD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SharePreview/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.Remember.SharePreview;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1B72E0FA2444905D0042EBD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SharePreview/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.Remember.SharePreview;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		1BA773F52441E9670060EC1D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -585,7 +718,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85A4F7B84E55C2498E67A0F0 /* Pods-Remember.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Remember/Remember.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Remember/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -606,7 +741,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 209B88ADE76F864D3F1BB738 /* Pods-Remember.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Remember/Remember.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Remember/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -710,6 +847,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1B72E0F82444905D0042EBD7 /* Build configuration list for PBXNativeTarget "SharePreview" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B72E0F92444905D0042EBD7 /* Debug */,
+				1B72E0FA2444905D0042EBD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1BA773C82441E9600060EC1D /* Build configuration list for PBXProject "Remember" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
