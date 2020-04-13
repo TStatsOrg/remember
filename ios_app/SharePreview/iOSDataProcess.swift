@@ -1,5 +1,5 @@
 //
-//  iOSDataProcess.swift
+//  iOSRawDataProcess.swift
 //  SharePreview
 //
 //  Created by Gabriel Coman on 13/04/2020.
@@ -10,47 +10,48 @@ import Foundation
 import RememberShared
 import SwiftSoup
 
-class iOSDataProcess: NSObject, DataProcess {
+class iOSDataProcess: NSObject, RawDataProcess {
     
-    func process(capture: DataCaptureItem) -> DataProcessItem {
+    func process(capture_ capture: String?) -> RawDataProcessItem {
+            
+        // if null, it's unknown
+        guard let content = capture else {
+            return RawDataProcessItem.Unknown()
+        }
+        
+        // if not url, must be text
+        if !content.isUrl() {
+            return RawDataProcessItem.Text(text: content)
+        }
+        
+        // if it's image, leave it at that
+        if content.isImage() {
+            return RawDataProcessItem.Image(url: content)
+        }
+        
+        // else, is a link, so get details
+        guard let url = URL(string: content) else {
+            return RawDataProcessItem.Unknown()
+        }
 
-        switch capture {
-        case _ as DataCaptureItem.Unknown:
-            return DataProcessItem.Unknown()
-        case let image as DataCaptureItem.Image:
-            return DataProcessItem.Image(url: image.url)
-        case let text as DataCaptureItem.Text:
-            let content = text.text
+        guard let contents = try? String(contentsOf: url) else {
+            return RawDataProcessItem.Unknown()
+        }
 
-            if !content.isUrl() {
-                return DataProcessItem.Text(text: content)
-            }
+        do {
+            let document: Document = try SwiftSoup.parse(contents)
+            let title = try? document.title()
+            let description = try? document.head()?.select("meta[name=description]").first()?.attr("content")
+            let firstImage = try? document.head()?.select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
+            let secondImage = try? document.head()?.select("meta[itemprop=image]").first()?.attr("itemprop")
+            let thirdImage = try? document.select("img").first()?.attr("href")
 
-            guard let url = URL(string: content) else {
-                return DataProcessItem.Unknown()
-            }
-
-            guard let contents = try? String(contentsOf: url) else {
-                return DataProcessItem.Unknown()
-            }
-
-            do {
-                let document: Document = try SwiftSoup.parse(contents)
-                let title = try? document.title()
-                let description = try? document.head()?.select("meta[name=description]").first()?.attr("content")
-                let firstImage = try? document.head()?.select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
-                let secondImage = try? document.head()?.select("meta[itemprop=image]").first()?.attr("itemprop")
-                let thirdImage = try? document.select("img").first()?.attr("href")
-
-                return DataProcessItem.Link(url: content,
-                                            title: title,
-                                            description: description,
-                                            icon: firstImage ?? secondImage ?? thirdImage)
-            } catch {
-                return DataProcessItem.Unknown()
-            }
-        default:
-            return DataProcessItem.Unknown()
+            return RawDataProcessItem.Link(url: content,
+                                           title: title,
+                                           description: description,
+                                           icon: firstImage ?? secondImage ?? thirdImage)
+        } catch {
+            return RawDataProcessItem.Unknown()
         }
     }
 }
@@ -58,5 +59,9 @@ class iOSDataProcess: NSObject, DataProcess {
 extension String {
     internal func isUrl() -> Bool {
         return self.hasPrefix("http://") || self.hasPrefix("https://")
+    }
+    
+    internal func isImage() -> Bool {
+        return self.hasSuffix(".jpg") || self.hasSuffix(".jpeg") || self.hasSuffix(".png")
     }
 }

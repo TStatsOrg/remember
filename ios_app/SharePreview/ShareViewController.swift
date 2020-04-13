@@ -12,32 +12,15 @@ import MobileCoreServices
 import RememberShared
 
 class ShareViewController: UIViewController {
-
-    private lazy var capture = {
-        return iOSDataCapture(withExtensionContext: self.extensionContext)
-    }()
-    
-    private lazy var process = {
-        return iOSDataProcess()
-    }()
-    
-    private lazy var captureViewModel = {
-        return SharedDataCaptureViewModel(dataCapture: capture, dataProcess: process)
-    }()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        capture.process { item in
-            self.captureViewModel.capture { processedItem in
-                
-            }
-        }
-        
-        let capture = iOSDataCapture(withExtensionContext: extensionContext)
+        let capture = ExtensionContextDataCapture(withExtensionContext: self.extensionContext)
         let process = iOSDataProcess()
-        capture.process { (item) in
-            process.process(capture: item)
+        capture.capture { (value) in
+            let result = process.process(capture_: value)
+            print(result)
         }
     }
     

@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0DD3472DC85281A17A693D50 /* Pods_RememberUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69873F0B76C33CEB7C5AA587 /* Pods_RememberUITests.framework */; };
+		1B1826302444D247002F1361 /* ExtensionContextDataCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B18262F2444D247002F1361 /* ExtensionContextDataCapture.swift */; };
+		1B1826402444D611002F1361 /* iOSDataProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B18263F2444D611002F1361 /* iOSDataProcess.swift */; };
+		1B1826432444D67C002F1361 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B1826422444D67B002F1361 /* MainInterface.storyboard */; };
 		1B72E0F02444905D0042EBD7 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */; };
-		1B72E0F32444905D0042EBD7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B72E0F12444905D0042EBD7 /* MainInterface.storyboard */; };
 		1B72E0F72444905D0042EBD7 /* SharePreview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* SharePreview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B72E0FE24449DF70042EBD7 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; };
 		1B72E0FF24449DF70042EBD7 /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1B72E10324449EA30042EBD7 /* iOSDataCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E10224449EA30042EBD7 /* iOSDataCapture.swift */; };
-		1B72E1052444A8B70042EBD7 /* iOSDataProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E1042444A8B70042EBD7 /* iOSDataProcess.swift */; };
 		1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D02441E9600060EC1D /* AppDelegate.swift */; };
 		1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D22441E9600060EC1D /* SceneDelegate.swift */; };
 		1BA773D52441E9600060EC1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D42441E9600060EC1D /* ContentView.swift */; };
@@ -92,13 +92,13 @@
 
 /* Begin PBXFileReference section */
 		066A574D3C74827974F81853 /* Pods-SharePreview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharePreview.release.xcconfig"; path = "Target Support Files/Pods-SharePreview/Pods-SharePreview.release.xcconfig"; sourceTree = "<group>"; };
+		1B18262F2444D247002F1361 /* ExtensionContextDataCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionContextDataCapture.swift; sourceTree = "<group>"; };
+		1B18263F2444D611002F1361 /* iOSDataProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSDataProcess.swift; sourceTree = "<group>"; };
+		1B1826422444D67B002F1361 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		1B1826442444D6AD002F1361 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B72E0ED2444905C0042EBD7 /* SharePreview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharePreview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		1B72E0F22444905D0042EBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		1B72E0F42444905D0042EBD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B72E0FC244494C00042EBD7 /* Remember.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Remember.entitlements; sourceTree = "<group>"; };
-		1B72E10224449EA30042EBD7 /* iOSDataCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSDataCapture.swift; sourceTree = "<group>"; };
-		1B72E1042444A8B70042EBD7 /* iOSDataProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSDataProcess.swift; sourceTree = "<group>"; };
 		1BA773CD2441E9600060EC1D /* Remember.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remember.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773D02441E9600060EC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BA773D22441E9600060EC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,11 +168,11 @@
 		1B72E0EE2444905C0042EBD7 /* SharePreview */ = {
 			isa = PBXGroup;
 			children = (
-				1B72E10224449EA30042EBD7 /* iOSDataCapture.swift */,
-				1B72E1042444A8B70042EBD7 /* iOSDataProcess.swift */,
+				1B1826442444D6AD002F1361 /* Info.plist */,
+				1B1826422444D67B002F1361 /* MainInterface.storyboard */,
+				1B18263F2444D611002F1361 /* iOSDataProcess.swift */,
+				1B18262F2444D247002F1361 /* ExtensionContextDataCapture.swift */,
 				1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */,
-				1B72E0F12444905D0042EBD7 /* MainInterface.storyboard */,
-				1B72E0F42444905D0042EBD7 /* Info.plist */,
 			);
 			path = SharePreview;
 			sourceTree = "<group>";
@@ -405,7 +405,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B72E0F32444905D0042EBD7 /* MainInterface.storyboard in Resources */,
+				1B1826432444D67C002F1361 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,9 +582,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B72E1052444A8B70042EBD7 /* iOSDataProcess.swift in Sources */,
-				1B72E10324449EA30042EBD7 /* iOSDataCapture.swift in Sources */,
+				1B1826302444D247002F1361 /* ExtensionContextDataCapture.swift in Sources */,
 				1B72E0F02444905D0042EBD7 /* ShareViewController.swift in Sources */,
+				1B1826402444D611002F1361 /* iOSDataProcess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,14 +635,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1B72E0F12444905D0042EBD7 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1B72E0F22444905D0042EBD7 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		1BA773DB2441E9660060EC1D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
