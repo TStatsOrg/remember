@@ -19,7 +19,7 @@ class ShareViewController: UIViewController {
         let capture = ExtensionContextDataCapture(withExtensionContext: self.extensionContext)
         let process = iOSDataProcess()
         capture.capture { (value) in
-            let result = process.process(capture_: value)
+            let result = process.process(capture: value)
             print(result)
         }
     }

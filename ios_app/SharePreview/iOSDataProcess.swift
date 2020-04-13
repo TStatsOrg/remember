@@ -12,7 +12,7 @@ import SwiftSoup
 
 class iOSDataProcess: NSObject, RawDataProcess {
     
-    func process(capture_ capture: String?) -> RawDataProcessItem {
+    func process(capture: String?) -> RawDataProcessItem {
             
         // if null, it's unknown
         guard let content = capture else {

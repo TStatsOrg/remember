@@ -6,7 +6,8 @@ import com.app.shared.business.BookmarkState
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
-import com.app.shared.data.capture.DataProcess
+import com.app.shared.data.capture.RawDataProcess
+import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
@@ -17,12 +18,16 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SharedPreviewViewModel(
     private val store: Store<AppState>,
     private val bookmarkRepository: BookmarkRepository,
-    private val calendarUtils: CalendarUtils
+    private val calendar: CalendarUtils,
+    private val processor: RawDataProcess
 ): PreviewViewModel {
+
+    private var temporaryDTO: BookmarkDTO? = null
 
     override var delegate: PreviewViewModel.Delegate? = null
 
@@ -30,22 +35,29 @@ class SharedPreviewViewModel(
 
     override fun clear() = store.dispatch(action = Actions.Bookmark.Preview.Reset)
 
-    override fun present(processed: DataProcess.Item) {
+    override fun present(capturedRawData: String?) {
         scope.launch(context = MainDispatcher) {
-            val bookmarkDTO = processed.toDTO(date = calendarUtils.getTime())
 
-            if (bookmarkDTO != null) {
-                store.dispatch(action = Actions.Bookmark.Preview.Present(dto = bookmarkDTO))
+            // do this on a secondary thread
+            val data = withContext(context = DefaultDispatcher) {
+                return@withContext processor.process(capture = capturedRawData)
+            }
+
+            // transform to DTO
+            val dto = data.toDTO(date = calendar.getTime())
+
+            // send action
+            if (dto != null) {
+                temporaryDTO = dto
+                store.dispatch(action = Actions.Bookmark.Preview.Present(dto = dto))
             }
         }
     }
 
-    override fun save(processed: DataProcess.Item) {
+    override fun save() {
         scope.launch(context = MainDispatcher) {
-            val bookmarkDTO = processed.toDTO(date = calendarUtils.getTime())
-
-            if (bookmarkDTO != null) {
-                bookmarkRepository.save(dto = bookmarkDTO)
+            temporaryDTO?.let {
+                bookmarkRepository.save(dto = it)
                 delegate?.didSaveBookmark()
             }
         }

@@ -1,15 +1,14 @@
 package com.app.shared.feature.preview
 
 import com.app.shared.business.BookmarkState
-import com.app.shared.data.capture.DataProcess
 
 interface PreviewViewModel {
 
     var delegate: Delegate?
 
     fun clear()
-    fun present(processed: DataProcess.Item)
-    fun save(processed: DataProcess.Item)
+    fun present(capturedRawData: String?)
+    fun save()
 
     fun observePreviewState(callback: (BookmarkState) -> Unit)
 

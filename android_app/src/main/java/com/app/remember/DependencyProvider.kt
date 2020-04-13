@@ -1,21 +1,16 @@
 package com.app.remember
 
 import android.content.Context
-import android.content.Intent
 import androidx.room.Room
 import com.app.feature.hub.BookmarksAdapter
 import com.app.remember.tmpdependencies.AppDatabase
 import com.app.remember.tmpdependencies.toAbstract
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
-import com.app.shared.data.capture.DataCapture
-import com.app.shared.data.capture.DataProcess
-import com.app.shared.data.capture.SystemDataCapture
-import com.app.shared.data.capture.SystemDataProcess
+import com.app.shared.data.capture.AndroidDataProcess
+import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.SystemBookmarkRepository
-import com.app.shared.feature.capture.DataCaptureViewModel
-import com.app.shared.feature.capture.SharedDataCaptureViewModel
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.feature.mainhub.SharedMainHubViewModel
 import com.app.shared.feature.preview.PreviewViewModel
@@ -38,7 +33,6 @@ class DependencyProvider(private val appContext: Context) {
         }
         single<CalendarUtils> {
             SystemCalendarUtils()
-
         }
 
         single<BookmarkRepository> {
@@ -49,14 +43,19 @@ class DependencyProvider(private val appContext: Context) {
             )
         }
 
-        single<PreviewViewModel> {
+        single<RawDataProcess> {
+            AndroidDataProcess()
+        }
+
+        factory <PreviewViewModel> {
             SharedPreviewViewModel(
                 store = get(),
                 bookmarkRepository = get(),
-                calendarUtils = get())
+                calendar = get(),
+                processor = get())
         }
 
-        single<MainHubViewModel> {
+        factory<MainHubViewModel> {
             SharedMainHubViewModel(
                 store = get(),
                 calendar = get(),
@@ -69,21 +68,6 @@ class DependencyProvider(private val appContext: Context) {
 
         single {
             BookmarksAdapter()
-        }
-
-//        factory<DataCapture> { params ->
-//            SystemDataCapture(intent = params.get(0) as Intent)
-//        }
-//
-//        single<DataProcess> {
-//            SystemDataProcess()
-//        }
-
-        factory<DataCaptureViewModel> { params ->
-            SharedDataCaptureViewModel(
-                dataCapture = SystemDataCapture(intent = params.get(0) as Intent),
-                dataProcess = SystemDataProcess()
-            )
         }
     }
 }

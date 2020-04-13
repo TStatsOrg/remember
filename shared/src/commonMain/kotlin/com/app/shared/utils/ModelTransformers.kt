@@ -1,17 +1,17 @@
 package com.app.shared.utils
 
 import com.app.shared.business.BookmarkState
-import com.app.shared.data.capture.DataProcess
+import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dto.BookmarkDTO
 
-fun DataProcess.Item.toDTO(date: Long): BookmarkDTO? {
+fun RawDataProcess.Item.toDTO(date: Long): BookmarkDTO? {
     return when(this) {
-        is DataProcess.Item.Text -> object : BookmarkDTO.TextBookmarkDTO {
+        is RawDataProcess.Item.Text -> object : BookmarkDTO.TextBookmarkDTO {
             override val text: String = this@toDTO.text
             override val id: Int = this@toDTO.hashCode()
             override val date: Long = date
         }
-        is DataProcess.Item.Link -> object : BookmarkDTO.LinkBookmarkDTO {
+        is RawDataProcess.Item.Link -> object : BookmarkDTO.LinkBookmarkDTO {
             override val url: String = this@toDTO.url
             override val title: String? = this@toDTO.title
             override val description: String? = this@toDTO.description
@@ -19,12 +19,12 @@ fun DataProcess.Item.toDTO(date: Long): BookmarkDTO? {
             override val id: Int = this@toDTO.url.hashCode()
             override val date: Long = date
         }
-        is DataProcess.Item.Image -> object : BookmarkDTO.ImageBookmarkDTO {
+        is RawDataProcess.Item.Image -> object : BookmarkDTO.ImageBookmarkDTO {
             override val url: String = this@toDTO.url
             override val id: Int = this@toDTO.url.hashCode()
             override val date: Long = date
         }
-        DataProcess.Item.Unknown -> null
+        RawDataProcess.Item.Unknown -> null
     }
 }
 
