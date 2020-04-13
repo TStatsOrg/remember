@@ -2,7 +2,7 @@ package com.app.remember.tmpdependencies
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.app.shared.data.dto.Bookmark2DTO
+import com.app.shared.data.dto.BookmarkDTO
 
 @Entity(tableName = "bookmarks_texts")
 class RoomTextBookmarkDTO(
@@ -10,4 +10,4 @@ class RoomTextBookmarkDTO(
     override val id: Int,
     override val date: Long,
     override val text: String
-) : Bookmark2DTO.TextBookmarkDTO
+) : BookmarkDTO.TextBookmarkDTO

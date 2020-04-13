@@ -3,7 +3,7 @@ package com.app.shared.data.repository
 import com.app.shared.data.dao.ImageBookmarkDAO
 import com.app.shared.data.dao.LinkBookmarkDAO
 import com.app.shared.data.dao.TextBookmarkDAO
-import com.app.shared.data.dto.Bookmark2DTO
+import com.app.shared.data.dto.BookmarkDTO
 
 class SystemBookmarkRepository(
     private val imageBookmarkDAO: ImageBookmarkDAO,
@@ -11,15 +11,15 @@ class SystemBookmarkRepository(
     private val linkBookmarkDAO: LinkBookmarkDAO
 ): BookmarkRepository {
 
-    override suspend fun save(dto: Bookmark2DTO) {
+    override suspend fun save(dto: BookmarkDTO) {
         when (dto) {
-            is Bookmark2DTO.TextBookmarkDTO -> textBookmarkDAO.insert(dto = dto)
-            is Bookmark2DTO.LinkBookmarkDTO -> linkBookmarkDAO.insert(dto = dto)
-            is Bookmark2DTO.ImageBookmarkDTO -> imageBookmarkDAO.insert(dto = dto)
+            is BookmarkDTO.TextBookmarkDTO -> textBookmarkDAO.insert(dto = dto)
+            is BookmarkDTO.LinkBookmarkDTO -> linkBookmarkDAO.insert(dto = dto)
+            is BookmarkDTO.ImageBookmarkDTO -> imageBookmarkDAO.insert(dto = dto)
         }
     }
 
-    override suspend fun load(): List<Bookmark2DTO> {
+    override suspend fun load(): List<BookmarkDTO> {
         val texts = textBookmarkDAO.getAll()
         val links = linkBookmarkDAO.getAll()
         val images = imageBookmarkDAO.getAll()

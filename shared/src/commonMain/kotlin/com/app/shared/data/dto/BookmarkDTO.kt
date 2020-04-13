@@ -2,22 +2,20 @@ package com.app.shared.data.dto
 
 interface BookmarkDTO {
     val id: Int
-    val content: String
-    val type: Type
+    val date: Long
 
-    enum class Type(val raw: String) {
-        Text("text"),
-        Link("link"),
-        Unknown("n/a");
+    interface TextBookmarkDTO: BookmarkDTO {
+        val text: String
+    }
 
-        companion object {
-            fun fromString(rawValue: String): Type {
-                return when (rawValue) {
-                    "text" -> Text
-                    "link" -> Link
-                    else -> Unknown
-                }
-            }
-        }
+    interface LinkBookmarkDTO: BookmarkDTO {
+        val url: String
+        val title: String?
+        val description: String?
+        val icon: String?
+    }
+
+    interface ImageBookmarkDTO: BookmarkDTO {
+        val url: String
     }
 }

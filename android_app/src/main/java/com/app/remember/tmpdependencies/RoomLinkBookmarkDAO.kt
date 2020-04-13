@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.app.shared.data.dao.LinkBookmarkDAO
-import com.app.shared.data.dto.Bookmark2DTO
+import com.app.shared.data.dto.BookmarkDTO
 
 @Dao
 interface RoomLinkBookmarkDAO {
@@ -18,7 +18,7 @@ interface RoomLinkBookmarkDAO {
 
 fun RoomLinkBookmarkDAO.toAbstract(): LinkBookmarkDAO {
     return object : LinkBookmarkDAO {
-        override suspend fun insert(dto: Bookmark2DTO.LinkBookmarkDTO) {
+        override suspend fun insert(dto: BookmarkDTO.LinkBookmarkDTO) {
             this@toAbstract.insert(dto = RoomLinkBookmarkDTO(
                 id = dto.id,
                 date = dto.date,
@@ -29,7 +29,7 @@ fun RoomLinkBookmarkDAO.toAbstract(): LinkBookmarkDAO {
             ))
         }
 
-        override suspend fun getAll(): List<Bookmark2DTO.LinkBookmarkDTO> {
+        override suspend fun getAll(): List<BookmarkDTO.LinkBookmarkDTO> {
             return this@toAbstract.getAll()
         }
     }

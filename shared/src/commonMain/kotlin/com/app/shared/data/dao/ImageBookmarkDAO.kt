@@ -1,8 +1,8 @@
 package com.app.shared.data.dao
 
-import com.app.shared.data.dto.Bookmark2DTO
+import com.app.shared.data.dto.BookmarkDTO
 
 interface ImageBookmarkDAO {
-    suspend fun insert(dto: Bookmark2DTO.ImageBookmarkDTO)
-    suspend fun getAll(): List<Bookmark2DTO.ImageBookmarkDTO>
+    suspend fun insert(dto: BookmarkDTO.ImageBookmarkDTO)
+    suspend fun getAll(): List<BookmarkDTO.ImageBookmarkDTO>
 }

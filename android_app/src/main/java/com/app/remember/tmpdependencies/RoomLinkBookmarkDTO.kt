@@ -2,7 +2,7 @@ package com.app.remember.tmpdependencies
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.app.shared.data.dto.Bookmark2DTO
+import com.app.shared.data.dto.BookmarkDTO
 
 @Entity(tableName = "bookmarks_links")
 data class RoomLinkBookmarkDTO(
@@ -13,4 +13,4 @@ data class RoomLinkBookmarkDTO(
     override val title: String?,
     override val description: String?,
     override val icon: String?
-) : Bookmark2DTO.LinkBookmarkDTO
+) : BookmarkDTO.LinkBookmarkDTO

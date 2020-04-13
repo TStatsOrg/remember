@@ -2,16 +2,16 @@ package com.app.shared.utils
 
 import com.app.shared.business.BookmarkState
 import com.app.shared.data.capture.DataProcess
-import com.app.shared.data.dto.Bookmark2DTO
+import com.app.shared.data.dto.BookmarkDTO
 
-fun DataProcess.Item.toDTO(date: Long): Bookmark2DTO? {
+fun DataProcess.Item.toDTO(date: Long): BookmarkDTO? {
     return when(this) {
-        is DataProcess.Item.Text -> object : Bookmark2DTO.TextBookmarkDTO {
+        is DataProcess.Item.Text -> object : BookmarkDTO.TextBookmarkDTO {
             override val text: String = this@toDTO.text
             override val id: Int = this@toDTO.hashCode()
             override val date: Long = date
         }
-        is DataProcess.Item.Link -> object : Bookmark2DTO.LinkBookmarkDTO {
+        is DataProcess.Item.Link -> object : BookmarkDTO.LinkBookmarkDTO {
             override val url: String = this@toDTO.url
             override val title: String? = this@toDTO.title
             override val description: String? = this@toDTO.description
@@ -19,7 +19,7 @@ fun DataProcess.Item.toDTO(date: Long): Bookmark2DTO? {
             override val id: Int = this@toDTO.url.hashCode()
             override val date: Long = date
         }
-        is DataProcess.Item.Image -> object : Bookmark2DTO.ImageBookmarkDTO {
+        is DataProcess.Item.Image -> object : BookmarkDTO.ImageBookmarkDTO {
             override val url: String = this@toDTO.url
             override val id: Int = this@toDTO.url.hashCode()
             override val date: Long = date
@@ -28,14 +28,14 @@ fun DataProcess.Item.toDTO(date: Long): Bookmark2DTO? {
     }
 }
 
-fun Bookmark2DTO.toState(): BookmarkState {
+fun BookmarkDTO.toState(): BookmarkState {
     return when(this) {
-        is Bookmark2DTO.TextBookmarkDTO -> BookmarkState.Text(
+        is BookmarkDTO.TextBookmarkDTO -> BookmarkState.Text(
             id = this.id,
             date = this.date,
             text = this.text
         )
-        is Bookmark2DTO.LinkBookmarkDTO -> BookmarkState.Link(
+        is BookmarkDTO.LinkBookmarkDTO -> BookmarkState.Link(
             id = this.id,
             date = this.date,
             url = this.url,
@@ -43,7 +43,7 @@ fun Bookmark2DTO.toState(): BookmarkState {
             description = this.description,
             icon = this.icon
         )
-        is Bookmark2DTO.ImageBookmarkDTO -> BookmarkState.Image(
+        is BookmarkDTO.ImageBookmarkDTO -> BookmarkState.Image(
             id = this.id,
             date = this.date,
             url = this.url
@@ -55,4 +55,4 @@ fun Bookmark2DTO.toState(): BookmarkState {
     }
 }
 
-fun List<Bookmark2DTO>.toState(): List<BookmarkState> = this.map { it.toState() }
+fun List<BookmarkDTO>.toState(): List<BookmarkState> = this.map { it.toState() }
