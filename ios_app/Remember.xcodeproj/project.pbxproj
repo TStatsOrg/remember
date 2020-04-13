@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,10 @@
 		1B72E0F02444905D0042EBD7 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */; };
 		1B72E0F32444905D0042EBD7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B72E0F12444905D0042EBD7 /* MainInterface.storyboard */; };
 		1B72E0F72444905D0042EBD7 /* SharePreview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* SharePreview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B72E0FE24449DF70042EBD7 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; };
+		1B72E0FF24449DF70042EBD7 /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B72E10324449EA30042EBD7 /* iOSDataCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E10224449EA30042EBD7 /* iOSDataCapture.swift */; };
+		1B72E1052444A8B70042EBD7 /* iOSDataProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E1042444A8B70042EBD7 /* iOSDataProcess.swift */; };
 		1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D02441E9600060EC1D /* AppDelegate.swift */; };
 		1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D22441E9600060EC1D /* SceneDelegate.swift */; };
 		1BA773D52441E9600060EC1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D42441E9600060EC1D /* ContentView.swift */; };
@@ -23,6 +27,7 @@
 		1BA774082441EDC60060EC1D /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55BD566A834A29B8EECAB76A /* Pods_RememberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A370652B0E6B7AF34C4373 /* Pods_RememberTests.framework */; };
 		6906FBE769DA967DC32AAE83 /* Pods_Remember.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA85FD0FAF2FD08AA0573A00 /* Pods_Remember.framework */; };
+		7733625158468767252A869F /* Pods_SharePreview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAC50CBAA2836BF2C751F8C /* Pods_SharePreview.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +66,17 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B72E10024449DF70042EBD7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1B72E0FF24449DF70042EBD7 /* RememberShared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BA774052441ED240060EC1D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,11 +91,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		066A574D3C74827974F81853 /* Pods-SharePreview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharePreview.release.xcconfig"; path = "Target Support Files/Pods-SharePreview/Pods-SharePreview.release.xcconfig"; sourceTree = "<group>"; };
 		1B72E0ED2444905C0042EBD7 /* SharePreview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharePreview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		1B72E0F22444905D0042EBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		1B72E0F42444905D0042EBD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B72E0FC244494C00042EBD7 /* Remember.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Remember.entitlements; sourceTree = "<group>"; };
+		1B72E10224449EA30042EBD7 /* iOSDataCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSDataCapture.swift; sourceTree = "<group>"; };
+		1B72E1042444A8B70042EBD7 /* iOSDataProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSDataProcess.swift; sourceTree = "<group>"; };
 		1BA773CD2441E9600060EC1D /* Remember.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remember.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773D02441E9600060EC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BA773D22441E9600060EC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +121,8 @@
 		9A6E36CFF02172784ED04114 /* Pods-RememberUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RememberUITests.release.xcconfig"; path = "Target Support Files/Pods-RememberUITests/Pods-RememberUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9DB98E00CAA37CAF8113EE21 /* Pods-RememberTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RememberTests.debug.xcconfig"; path = "Target Support Files/Pods-RememberTests/Pods-RememberTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA85FD0FAF2FD08AA0573A00 /* Pods_Remember.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remember.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBFD73E7EFF9936586D9BC15 /* Pods-SharePreview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharePreview.debug.xcconfig"; path = "Target Support Files/Pods-SharePreview/Pods-SharePreview.debug.xcconfig"; sourceTree = "<group>"; };
+		BEAC50CBAA2836BF2C751F8C /* Pods_SharePreview.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharePreview.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A370652B0E6B7AF34C4373 /* Pods_RememberTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RememberTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4D29E8740A7F773A970820D /* Pods-RememberUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RememberUITests.debug.xcconfig"; path = "Target Support Files/Pods-RememberUITests/Pods-RememberUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +132,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B72E0FE24449DF70042EBD7 /* RememberShared.framework in Frameworks */,
+				7733625158468767252A869F /* Pods_SharePreview.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +168,8 @@
 		1B72E0EE2444905C0042EBD7 /* SharePreview */ = {
 			isa = PBXGroup;
 			children = (
+				1B72E10224449EA30042EBD7 /* iOSDataCapture.swift */,
+				1B72E1042444A8B70042EBD7 /* iOSDataProcess.swift */,
 				1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */,
 				1B72E0F12444905D0042EBD7 /* MainInterface.storyboard */,
 				1B72E0F42444905D0042EBD7 /* Info.plist */,
@@ -224,6 +249,7 @@
 				BA85FD0FAF2FD08AA0573A00 /* Pods_Remember.framework */,
 				C9A370652B0E6B7AF34C4373 /* Pods_RememberTests.framework */,
 				69873F0B76C33CEB7C5AA587 /* Pods_RememberUITests.framework */,
+				BEAC50CBAA2836BF2C751F8C /* Pods_SharePreview.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -237,6 +263,8 @@
 				2163C0AF5857DB3E3F1885A4 /* Pods-RememberTests.release.xcconfig */,
 				E4D29E8740A7F773A970820D /* Pods-RememberUITests.debug.xcconfig */,
 				9A6E36CFF02172784ED04114 /* Pods-RememberUITests.release.xcconfig */,
+				BBFD73E7EFF9936586D9BC15 /* Pods-SharePreview.debug.xcconfig */,
+				066A574D3C74827974F81853 /* Pods-SharePreview.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -248,9 +276,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B72E0F82444905D0042EBD7 /* Build configuration list for PBXNativeTarget "SharePreview" */;
 			buildPhases = (
+				917C2C75CF8FC0D5477BC029 /* [CP] Check Pods Manifest.lock */,
+				1B72E10124449E190042EBD7 /* ShellScript */,
 				1B72E0E92444905C0042EBD7 /* Sources */,
 				1B72E0EA2444905C0042EBD7 /* Frameworks */,
 				1B72E0EB2444905C0042EBD7 /* Resources */,
+				1B72E10024449DF70042EBD7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -272,6 +303,7 @@
 				1BA773CB2441E9600060EC1D /* Resources */,
 				1BA774052441ED240060EC1D /* Embed Frameworks */,
 				1B72E0FB2444905D0042EBD7 /* Embed App Extensions */,
+				8F7C1CB80A635B8E9D5D2AEB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -426,6 +458,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1B72E10124449E190042EBD7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/../shared/build/xcode-frameworks\"\n./gradlew :shared:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+		};
 		1BA774002441EB4C0060EC1D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,6 +536,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8F7C1CB80A635B8E9D5D2AEB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Remember/Pods-Remember-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Remember/Pods-Remember-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remember/Pods-Remember-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		917C2C75CF8FC0D5477BC029 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SharePreview-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -494,6 +582,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B72E1052444A8B70042EBD7 /* iOSDataProcess.swift in Sources */,
+				1B72E10324449EA30042EBD7 /* iOSDataCapture.swift in Sources */,
 				1B72E0F02444905D0042EBD7 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,8 +656,16 @@
 /* Begin XCBuildConfiguration section */
 		1B72E0F92444905D0042EBD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBFD73E7EFF9936586D9BC15 /* Pods-SharePreview.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$SRCROOT/../shared/build/xcode-frameworks",
+					./gradlew,
+					":shared:packForXCode",
+					"-PXCODE_CONFIGURATION=${CONFIGURATION}",
+					"${inherited}",
+				);
 				INFOPLIST_FILE = SharePreview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -584,8 +682,16 @@
 		};
 		1B72E0FA2444905D0042EBD7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 066A574D3C74827974F81853 /* Pods-SharePreview.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$SRCROOT/../shared/build/xcode-frameworks",
+					./gradlew,
+					":shared:packForXCode",
+					"-PXCODE_CONFIGURATION=${CONFIGURATION}",
+					"${inherited}",
+				);
 				INFOPLIST_FILE = SharePreview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -724,7 +830,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Remember/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"${inherited}",
+					"$(SRCROOT)/../shared/build/xcode-frameworks",
+				);
 				INFOPLIST_FILE = Remember/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -747,7 +856,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Remember/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"${inherited}",
+					"$(SRCROOT)/../shared/build/xcode-frameworks",
+				);
 				INFOPLIST_FILE = Remember/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
