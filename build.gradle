@@ -28,8 +28,8 @@ buildscript {
     // Stable Koin Version
     ext.koinVersion = "2.1.5"
 
-    // ROOM
-    ext.roomVersion = "2.2.5"
+    // REALM
+    ext.realmVersion = "6.0.2"
 
     // Jsoup
     ext.jsoupVersion = "1.11.1"
@@ -54,6 +54,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion"
+        classpath "io.realm:realm-gradle-plugin:$realmVersion"
     }
 }
 

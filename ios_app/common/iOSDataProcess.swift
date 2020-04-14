@@ -10,9 +10,9 @@ import Foundation
 import RememberShared
 import SwiftSoup
 
-class iOSDataProcess: NSObject, RawDataProcess {
+public class iOSDataProcess: NSObject, RawDataProcess {
     
-    func process(capture: String?) -> RawDataProcessItem {
+    public func process(capture: String?) -> RawDataProcessItem {
             
         // if null, it's unknown
         guard let content = capture else {

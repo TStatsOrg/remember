@@ -1,3 +1,4 @@
+include ':android_dependencies'
 include ':android_feature_hub'
 include ':android_feature_preview'
 include ':shared'

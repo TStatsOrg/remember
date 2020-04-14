@@ -12,3 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
+ios_app/Pods/*

@@ -43,6 +43,7 @@ dependencies {
 
     // local libraries
     implementation project(":shared")
+    implementation project(":android_dependencies")
     implementation project(":android_feature_preview")
     implementation project(":android_feature_hub")
 
@@ -56,11 +57,6 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
     implementation 'org.jsoup:jsoup:1.11.1'
-
-    // Room
-    implementation "androidx.room:room-runtime:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
 
     // koin DI
     implementation "org.koin:koin-core:$koinVersion"

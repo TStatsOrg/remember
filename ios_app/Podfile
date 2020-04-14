@@ -4,6 +4,8 @@
 target 'Remember' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+  
+  pod 'RealmSwift', '4.4.0'
 
   # Pods for Remember
 
@@ -21,7 +23,16 @@ target 'Remember' do
     inherit! :search_paths
 
     # Pods for SharePreview
-    pod 'SwiftSoup'
+    pod 'SwiftSoup', '2.3.1'
+    pod 'RealmSwift', '4.4.0'
+  end
+  
+  target 'common' do
+    inherit! :search_paths
+
+    # Pods for SharePreview
+    pod 'SwiftSoup', '2.3.1'
+    pod 'RealmSwift', '4.4.0'
   end
 end
 

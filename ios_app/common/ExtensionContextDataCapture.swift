@@ -10,15 +10,15 @@ import Foundation
 import Social
 import RememberShared
 
-class ExtensionContextDataCapture: NSObject, RawDataCapture {
+public class ExtensionContextDataCapture: NSObject, RawDataCapture {
     
     private let extensionContext: NSExtensionContext?
     
-    init(withExtensionContext context: NSExtensionContext?) {
+    public init(withExtensionContext context: NSExtensionContext?) {
         extensionContext = context
     }
     
-    func capture(data: @escaping (String?) -> Void) {
+    public func capture(data: @escaping (String?) -> Void) {
         // if context is empty - just callback w/ unknown
         guard let context = extensionContext else {
             data(nil)

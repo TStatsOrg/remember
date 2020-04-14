@@ -1,9 +1,11 @@
 package com.app.shared.data.repository
 
+import com.app.shared.coroutines.IODispatcher
 import com.app.shared.data.dao.ImageBookmarkDAO
 import com.app.shared.data.dao.LinkBookmarkDAO
 import com.app.shared.data.dao.TextBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
+import kotlinx.coroutines.withContext
 
 class SystemBookmarkRepository(
     private val imageBookmarkDAO: ImageBookmarkDAO,
@@ -12,18 +14,22 @@ class SystemBookmarkRepository(
 ): BookmarkRepository {
 
     override suspend fun save(dto: BookmarkDTO) {
-        when (dto) {
-            is BookmarkDTO.TextBookmarkDTO -> textBookmarkDAO.insert(dto = dto)
-            is BookmarkDTO.LinkBookmarkDTO -> linkBookmarkDAO.insert(dto = dto)
-            is BookmarkDTO.ImageBookmarkDTO -> imageBookmarkDAO.insert(dto = dto)
+        withContext(context = IODispatcher) {
+            when (dto) {
+                is BookmarkDTO.TextBookmarkDTO -> textBookmarkDAO.insert(dto = dto)
+                is BookmarkDTO.LinkBookmarkDTO -> linkBookmarkDAO.insert(dto = dto)
+                is BookmarkDTO.ImageBookmarkDTO -> imageBookmarkDAO.insert(dto = dto)
+            }
         }
     }
 
     override suspend fun load(): List<BookmarkDTO> {
-        val texts = textBookmarkDAO.getAll()
-        val links = linkBookmarkDAO.getAll()
-        val images = imageBookmarkDAO.getAll()
+        return withContext(context = IODispatcher) {
+            val texts = textBookmarkDAO.getAll()
+            val links = linkBookmarkDAO.getAll()
+            val images = imageBookmarkDAO.getAll()
 
-        return (texts + links + images).sortedBy { it.date }
+            return@withContext (texts + links + images).sortedBy { it.date }
+        }
     }
 }

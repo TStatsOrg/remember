@@ -1,10 +1,8 @@
 package com.app.remember
 
 import android.content.Context
-import androidx.room.Room
+import com.app.dependencies.data.dao.Database
 import com.app.feature.hub.BookmarksAdapter
-import com.app.remember.tmpdependencies.AppDatabase
-import com.app.remember.tmpdependencies.toAbstract
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
 import com.app.shared.data.capture.AndroidDataProcess
@@ -23,10 +21,6 @@ import org.koin.dsl.module
 
 class DependencyProvider(private val appContext: Context) {
 
-    val db by lazy {
-        Room.databaseBuilder(appContext, AppDatabase::class.java, "bookmark-database").build()
-    }
-
     val module = module {
         single {
             Store(initialState = AppState(), reducer = AppStateReducer)
@@ -37,9 +31,9 @@ class DependencyProvider(private val appContext: Context) {
 
         single<BookmarkRepository> {
             SystemBookmarkRepository(
-                imageBookmarkDAO = db.imageDao().toAbstract(),
-                linkBookmarkDAO = db.linkDao().toAbstract(),
-                textBookmarkDAO = db.textDao().toAbstract()
+                imageBookmarkDAO = Database.getImageDAO(),
+                linkBookmarkDAO = Database.getLinkDAO(),
+                textBookmarkDAO = Database.getTextDAO()
             )
         }
 
