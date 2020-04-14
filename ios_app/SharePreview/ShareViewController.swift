@@ -10,7 +10,7 @@ import UIKit
 import Social
 import MobileCoreServices
 import RememberShared
-import common
+import ios_dependencies
 
 class ShareViewController: UIViewController {
     

@@ -27,7 +27,7 @@ target 'Remember' do
     pod 'RealmSwift', '4.4.0'
   end
   
-  target 'common' do
+  target 'ios_dependencies' do
     inherit! :search_paths
 
     # Pods for SharePreview
