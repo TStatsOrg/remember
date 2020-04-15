@@ -11,7 +11,7 @@ interface BookmarkDTO {
     interface LinkBookmarkDTO: BookmarkDTO {
         val url: String
         val title: String?
-        val description: String?
+        val caption: String?
         val icon: String?
     }
 

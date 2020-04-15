@@ -8,7 +8,7 @@ import com.app.shared.business.AppStateReducer
 import com.app.shared.data.capture.AndroidDataProcess
 import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.repository.BookmarkRepository
-import com.app.shared.data.repository.SystemBookmarkRepository
+import com.app.shared.data.repository.SharedBookmarkRepository
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.feature.mainhub.SharedMainHubViewModel
 import com.app.shared.feature.preview.PreviewViewModel
@@ -30,7 +30,7 @@ class DependencyProvider(private val appContext: Context) {
         }
 
         single<BookmarkRepository> {
-            SystemBookmarkRepository(
+            SharedBookmarkRepository(
                 imageBookmarkDAO = Database.getImageDAO(),
                 linkBookmarkDAO = Database.getLinkDAO(),
                 textBookmarkDAO = Database.getTextDAO()

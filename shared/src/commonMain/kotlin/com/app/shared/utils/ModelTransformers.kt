@@ -14,7 +14,7 @@ fun RawDataProcess.Item.toDTO(date: Long): BookmarkDTO? {
         is RawDataProcess.Item.Link -> object : BookmarkDTO.LinkBookmarkDTO {
             override val url: String = this@toDTO.url
             override val title: String? = this@toDTO.title
-            override val description: String? = this@toDTO.description
+            override val caption: String? = this@toDTO.description
             override val icon: String? = this@toDTO.icon
             override val id: Int = this@toDTO.url.hashCode()
             override val date: Long = date
@@ -40,7 +40,7 @@ fun BookmarkDTO.toState(): BookmarkState {
             date = this.date,
             url = this.url,
             title = this.title,
-            description = this.description,
+            description = this.caption,
             icon = this.icon
         )
         is BookmarkDTO.ImageBookmarkDTO -> BookmarkState.Image(

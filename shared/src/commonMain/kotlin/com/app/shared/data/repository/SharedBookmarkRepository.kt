@@ -7,7 +7,7 @@ import com.app.shared.data.dao.TextBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
 import kotlinx.coroutines.withContext
 
-class SystemBookmarkRepository(
+class SharedBookmarkRepository(
     private val imageBookmarkDAO: ImageBookmarkDAO,
     private val textBookmarkDAO: TextBookmarkDAO,
     private val linkBookmarkDAO: LinkBookmarkDAO

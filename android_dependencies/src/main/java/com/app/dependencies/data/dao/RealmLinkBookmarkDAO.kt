@@ -19,7 +19,7 @@ class RealmLinkBookmarkDAO(private val realm: Realm): LinkBookmarkDAO {
             id = dto.id,
             date = dto.date,
             title = dto.title,
-            description = dto.description,
+            caption = dto.caption,
             icon = dto.icon,
             url = dto.url
         )

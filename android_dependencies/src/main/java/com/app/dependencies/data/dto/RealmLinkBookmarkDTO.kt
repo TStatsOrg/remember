@@ -10,6 +10,6 @@ open class RealmLinkBookmarkDTO(
     override var date: Long = 0L,
     override var url: String = "",
     override var title: String? = null,
-    override var description: String? = null,
+    override var caption: String? = null,
     override var icon: String? = null
 ) : RealmObject(), BookmarkDTO.LinkBookmarkDTO

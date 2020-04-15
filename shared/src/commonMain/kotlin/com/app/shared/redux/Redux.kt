@@ -1,5 +1,7 @@
 package com.app.shared.redux
 
+import com.app.shared.business.AppState
+import com.app.shared.business.AppStateReducer
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
@@ -36,3 +38,8 @@ fun <S: State> Store<S>.asFlow() = callbackFlow {
 
     awaitClose { cancel() }
 }
+
+/**
+ * Default store
+ */
+val store = Store(initialState = AppState(), reducer = AppStateReducer)

@@ -14,14 +14,23 @@ import ios_dependencies
 
 class ShareViewController: UIViewController {
     
+    private lazy var viewModel: PreviewViewModel = {
+        return DependencyProvider.getPreviewViewModel()
+    }()
+    
+    private lazy var capture: RawDataCapture = {
+        return DependencyProvider.getDataCapture(context: self.extensionContext)
+    }()
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let capture = ExtensionContextDataCapture(withExtensionContext: self.extensionContext)
-        let process = iOSDataProcess()
+        viewModel.observePreviewState { (state) in
+            print("State is \(state)")
+        }
+        
         capture.capture { (value) in
-            let result = process.process(capture: value)
-            print(result)
+            self.viewModel.present(capturedRawData: value)
         }
     }
     
