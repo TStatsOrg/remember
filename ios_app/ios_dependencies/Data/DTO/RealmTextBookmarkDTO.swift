@@ -21,7 +21,5 @@ class RealmTextBookmarkDTO: Object, BookmarkDTOTextBookmarkDTO {
         self.text = text
     }
     
-    required init() {
-        fatalError("init() has not been implemented")
-    }
+    required init() {}
 }

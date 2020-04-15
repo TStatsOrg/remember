@@ -13,8 +13,13 @@ import RealmSwift
 
 class RealmImageBookmarkDAO: ImageBookmarkDAO {
     
+    private let realm: Realm?
+    
+    public init(realm: Realm?){
+        self.realm = realm
+    }
+    
     func insert(dto: BookmarkDTOImageBookmarkDTO) {
-        let realm = try? Realm()
         let model = RealmImageBookmarkDTO(id: dto.id, date: dto.date, url: dto.url)
         try? realm?.write {
             realm?.add(model)
@@ -22,8 +27,7 @@ class RealmImageBookmarkDAO: ImageBookmarkDAO {
     }
     
     func getAll() -> [BookmarkDTOImageBookmarkDTO] {
-        let realm = try? Realm()
-        let result = realm?.objects(RealmImageBookmarkDTO.self).filter("")
+        let result = realm?.objects(RealmImageBookmarkDTO.self)//.filter("")
         return result?.map { $0 } ?? []
     }
 }

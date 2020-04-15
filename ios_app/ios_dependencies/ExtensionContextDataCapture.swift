@@ -41,7 +41,10 @@ public class ExtensionContextDataCapture: NSObject, RawDataCapture {
         if itemProvider.hasItemConformingToTypeIdentifier("public.text") {
             itemProvider.loadItem(forTypeIdentifier: "public.text") { (item, error) in
                 let textItem: String? = item as? String
-                data(textItem)
+                
+                DispatchQueue.main.async {
+                    data(textItem)
+                }
             }
         }
         
@@ -51,7 +54,10 @@ public class ExtensionContextDataCapture: NSObject, RawDataCapture {
                 
                 let url: URL? = item as? URL
                 let urlItem: String? = url?.absoluteString
-                data(urlItem)
+                
+                DispatchQueue.main.async {
+                    data(urlItem)
+                }
             }
         }
     }

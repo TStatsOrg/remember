@@ -9,17 +9,19 @@
 import UIKit
 import Social
 import MobileCoreServices
-import RememberShared
 import ios_dependencies
+import RememberShared
 
-class ShareViewController: UIViewController {
+class ShareViewController: UIViewController, PreviewViewModelDelegate {
     
     private lazy var viewModel: PreviewViewModel = {
-        return DependencyProvider.getPreviewViewModel()
+        let vm = DependencyProvider.shared.getPreviewViewModel()
+        vm.delegate = self
+        return vm
     }()
     
     private lazy var capture: RawDataCapture = {
-        return DependencyProvider.getDataCapture(context: self.extensionContext)
+        return DependencyProvider.shared.getDataCapture(context: self.extensionContext)
     }()
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,7 +30,7 @@ class ShareViewController: UIViewController {
         viewModel.observePreviewState { (state) in
             print("State is \(state)")
         }
-        
+
         capture.capture { (value) in
             self.viewModel.present(capturedRawData: value)
         }
@@ -39,13 +41,18 @@ class ShareViewController: UIViewController {
     }
     
     @IBAction func didTapSave(_ sender: Any) {
-        extensionContext?.completeRequest(returningItems: [], completionHandler: { (success) in
-            print("Success is \(success)")
-        })
+        self.viewModel.save()
+    }
+    
+    // PreviewViewModelDelegate
+    
+    func didSaveBookmark() {
+        extensionContext?.completeRequest(returningItems: []) { (success) in
+            
+        }
     }
     
     struct ShareError: Error {
         let reason: String? = nil
     }
-    
 }

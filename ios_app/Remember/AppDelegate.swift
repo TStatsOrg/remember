@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import ios_dependencies
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let realm = DependencyProvider.shared.database
+        let dao: RealmLinkBookmarkDAO = RealmLinkBookmarkDAO(realm: realm)
+        let value = dao.getAll()
+        print(value)
         
         return true
     }

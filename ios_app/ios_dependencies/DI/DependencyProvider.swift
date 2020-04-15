@@ -9,28 +9,45 @@
 import Foundation
 import RememberShared
 import Social
+import RealmSwift
 
 public class DependencyProvider {
     
-    static func getCalendarUtils() -> CalendarUtils {
+    public static let shared = DependencyProvider()
+    
+    private lazy var config: Realm.Configuration = {
+            
+        if var directory: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:"group.app.remember") {
+            directory.appendPathComponent("db.realm", isDirectory: true)
+            return Realm.Configuration(fileURL: directory, schemaVersion: 1)
+        } else {
+            return Realm.Configuration.defaultConfiguration
+        }
+    }()
+    
+    public lazy var database: Realm? = {
+        return try? Realm(configuration: config)
+    }()
+    
+    func getCalendarUtils() -> CalendarUtils {
         return SystemCalendarUtils()
     }
     
-    static func getProcessor() -> RawDataProcess {
+    public func getProcessor() -> RawDataProcess {
         return iOSDataProcess()
     }
     
-    static func getBookmarkRepository() -> BookmarkRepository {
-        return SharedBookmarkRepository(imageBookmarkDAO: RealmImageBookmarkDAO(),
-                                        textBookmarkDAO: RealmTextBookmarkDAO(),
-                                        linkBookmarkDAO: RealmLinkBookmarkDAO())
+    public func getBookmarkRepository() -> BookmarkRepository {
+        return SharedBookmarkRepository(imageBookmarkDAO: RealmImageBookmarkDAO(realm: database),
+                                        textBookmarkDAO: RealmTextBookmarkDAO(realm: database),
+                                        linkBookmarkDAO: RealmLinkBookmarkDAO(realm: database))
     }
     
-    public static func getDataCapture(context: NSExtensionContext?) -> RawDataCapture {
+    public func getDataCapture(context: NSExtensionContext?) -> RawDataCapture {
         return ExtensionContextDataCapture(withExtensionContext: context)
     }
     
-    public static func getPreviewViewModel() -> PreviewViewModel {
+    public func getPreviewViewModel() -> PreviewViewModel {
         return SharedPreviewViewModel(store: ReduxKt.store,
                                       bookmarkRepository: getBookmarkRepository(),
                                       calendar: getCalendarUtils(),

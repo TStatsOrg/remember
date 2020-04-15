@@ -21,7 +21,5 @@ class RealmImageBookmarkDTO: Object, BookmarkDTOImageBookmarkDTO {
         self.url = url
     }
     
-    required init() {
-        fatalError("init() has not been implemented")
-    }
+    required init() {}
 }

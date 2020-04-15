@@ -26,8 +26,6 @@ class RealmLinkBookmarkDTO: Object, BookmarkDTOLinkBookmarkDTO {
         self.caption = caption
         self.icon = icon
     }
-    
-    required init() {
-        fatalError("init() has not been implemented")
-    }
+
+    required init() {}
 }

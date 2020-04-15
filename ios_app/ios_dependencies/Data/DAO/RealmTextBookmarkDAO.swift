@@ -13,8 +13,13 @@ import RealmSwift
 
 class RealmTextBookmarkDAO: TextBookmarkDAO {
     
+    private let realm: Realm?
+    
+    public init(realm: Realm?){
+        self.realm = realm
+    }
+    
     func insert(dto__ dto: BookmarkDTOTextBookmarkDTO) {
-        let realm = try? Realm()
         let model = RealmTextBookmarkDTO(id: dto.id, date: dto.date, text: dto.text)
         try? realm?.write {
             realm?.add(model)
@@ -22,8 +27,7 @@ class RealmTextBookmarkDAO: TextBookmarkDAO {
     }
     
     func getAll() -> [BookmarkDTOTextBookmarkDTO] {
-        let realm = try? Realm()
-        let result = realm?.objects(RealmTextBookmarkDTO.self).filter("")
+        let result = realm?.objects(RealmTextBookmarkDTO.self)//.filter("")
         return result?.map { $0 } ?? []
     }
 }
