@@ -52,6 +52,8 @@ kotlin {
             api "io.ktor:ktor-client-okhttp:$ktorVersion"
             api "io.ktor:ktor-client-json-jvm:$ktorVersion"
 
+            implementation "org.jsoup:jsoup:$jsoupVersion"
+
             // serialisation
             api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
         }
@@ -60,16 +62,16 @@ kotlin {
             dependsOn commonMain
             dependencies {
                 // kotlin
-                api 'org.jetbrains.kotlin:kotlin-stdlib'
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib'
                 // kotlin
-                api "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVersion"
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVersion"
 
                 // ktor
-                api "io.ktor:ktor-client-core-native:$ktorVersion"
-                api "io.ktor:ktor-client-ios:$ktorVersion"
+                implementation "io.ktor:ktor-client-core-native:$ktorVersion"
+                implementation "io.ktor:ktor-client-ios:$ktorVersion"
 
                 // serialisation
-                api "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serializationVersion"
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serializationVersion"
             }
         }
     }
