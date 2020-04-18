@@ -11,6 +11,7 @@
 		1B1826432444D67C002F1361 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B1826422444D67B002F1361 /* MainInterface.storyboard */; };
 		1B72E0F02444905D0042EBD7 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */; };
 		1B72E0F72444905D0042EBD7 /* SharePreview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* SharePreview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B874FBA244B2611001E3543 /* RealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B874FB9244B2611001E3543 /* RealmDatabase.swift */; };
 		1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D02441E9600060EC1D /* AppDelegate.swift */; };
 		1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D22441E9600060EC1D /* SceneDelegate.swift */; };
 		1BA773D52441E9600060EC1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D42441E9600060EC1D /* ContentView.swift */; };
@@ -139,6 +140,7 @@
 		1B72E0ED2444905C0042EBD7 /* SharePreview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharePreview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B72E0EF2444905D0042EBD7 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		1B72E0FC244494C00042EBD7 /* Remember.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Remember.entitlements; sourceTree = "<group>"; };
+		1B874FB9244B2611001E3543 /* RealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabase.swift; sourceTree = "<group>"; };
 		1BA773CD2441E9600060EC1D /* Remember.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remember.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773D02441E9600060EC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BA773D22441E9600060EC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				1BC2B077244649BB00E73BB6 /* RealmImageBookmarkDAO.swift */,
 				1BC2B07924464C1900E73BB6 /* RealmTextBookmarkDAO.swift */,
 				1BC2B07B24464C9700E73BB6 /* RealmLinkBookmarkDAO.swift */,
+				1B874FB9244B2611001E3543 /* RealmDatabase.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B874FBA244B2611001E3543 /* RealmDatabase.swift in Sources */,
 				1BC2B078244649BB00E73BB6 /* RealmImageBookmarkDAO.swift in Sources */,
 				1BC2B06A2446465D00E73BB6 /* ExtensionContextDataCapture.swift in Sources */,
 				1BC2B0742446481600E73BB6 /* RealmLinkBookmarkDTO.swift in Sources */,

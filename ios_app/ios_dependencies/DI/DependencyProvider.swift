@@ -11,46 +11,54 @@ import RememberShared
 import Social
 import RealmSwift
 
+@propertyWrapper
+public struct Injected<Service> {
+    
+    public init() {}
+    
+    public var wrappedValue: Service {
+        return DependencyProvider.shared.resolve()
+    }
+}
+
+public typealias DependencyFactory<T> = () -> T
+
 public class DependencyProvider {
     
     public static let shared = DependencyProvider()
     
-    private lazy var config: Realm.Configuration = {
-            
-        if var directory: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:"group.app.remember") {
-            directory.appendPathComponent("db.realm", isDirectory: true)
-            return Realm.Configuration(fileURL: directory, schemaVersion: 1)
-        } else {
-            return Realm.Configuration.defaultConfiguration
+    private var factories: [String: DependencyFactory<Any>] = [:]
+    
+    public func register<T>(factory: @escaping DependencyFactory<T>) {
+        let key = String(describing: T.self)
+        factories[key] = factory
+    }
+    
+    public func resolve<T>() -> T {
+        let key = String(describing: T.self)
+        
+        guard let component = factories[key]?() as? T else {
+            fatalError("Dependency '\(T.self)' not resolved!")
         }
-    }()
-    
-    public lazy var database: Realm? = {
-        return try? Realm(configuration: config)
-    }()
-    
-    func getCalendarUtils() -> CalendarUtils {
-        return SystemCalendarUtils()
+        
+        return component
     }
     
-    public func getProcessor() -> RawDataProcess {
-        return iOSDataProcess()
-    }
-    
-    public func getBookmarkRepository() -> BookmarkRepository {
-        return SharedBookmarkRepository(imageBookmarkDAO: RealmImageBookmarkDAO(realm: database),
-                                        textBookmarkDAO: RealmTextBookmarkDAO(realm: database),
-                                        linkBookmarkDAO: RealmLinkBookmarkDAO(realm: database))
+    private init() {
+        register { SystemCalendarUtils() as CalendarUtils }
+        register { iOSDataProcess() as RawDataProcess }
+        register { ReduxKt.store }
+        register { RealmDatabase() as Database }
+        register { SharedBookmarkRepository(imageBookmarkDAO: (self.resolve() as Database).getImageBookmarkDAO(),
+                                            textBookmarkDAO: (self.resolve() as Database).getTextBookmarkDAO(),
+                                            linkBookmarkDAO: (self.resolve() as Database).getLinkBookmarkDAO()) as BookmarkRepository }
+        register { SharedPreviewViewModel(store: self.resolve(),
+                                          bookmarkRepository: self.resolve(),
+                                          calendar: self.resolve(),
+                                          processor: self.resolve()) as PreviewViewModel }
     }
     
     public func getDataCapture(context: NSExtensionContext?) -> RawDataCapture {
         return ExtensionContextDataCapture(withExtensionContext: context)
-    }
-    
-    public func getPreviewViewModel() -> PreviewViewModel {
-        return SharedPreviewViewModel(store: ReduxKt.store,
-                                      bookmarkRepository: getBookmarkRepository(),
-                                      calendar: getCalendarUtils(),
-                                      processor: getProcessor())
     }
 }

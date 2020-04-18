@@ -14,11 +14,7 @@ import RememberShared
 
 class ShareViewController: UIViewController, PreviewViewModelDelegate {
     
-    private lazy var viewModel: PreviewViewModel = {
-        let vm = DependencyProvider.shared.getPreviewViewModel()
-        vm.delegate = self
-        return vm
-    }()
+    @Injected var viewModel: PreviewViewModel
     
     private lazy var capture: RawDataCapture = {
         return DependencyProvider.shared.getDataCapture(context: self.extensionContext)
@@ -26,6 +22,8 @@ class ShareViewController: UIViewController, PreviewViewModelDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        viewModel.delegate = self
         
         viewModel.observePreviewState { (state) in
             print("State is \(state)")
