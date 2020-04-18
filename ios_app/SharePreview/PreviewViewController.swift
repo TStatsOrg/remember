@@ -12,7 +12,7 @@ import MobileCoreServices
 import ios_dependencies
 import RememberShared
 
-class ShareViewController: UIViewController, PreviewViewModelDelegate {
+class PreviewViewController: UIViewController {
     
     @Injected var viewModel: PreviewViewModel
     @Injected var capture: RawDataCapture
@@ -26,7 +26,7 @@ class ShareViewController: UIViewController, PreviewViewModelDelegate {
             print("State is \(state)")
         }
 
-        capture.capture(input: extensionContext){ (value) in
+        capture.capture(input: extensionContext) { (value) in
             self.viewModel.present(capturedRawData: value)
         }
     }
@@ -39,15 +39,18 @@ class ShareViewController: UIViewController, PreviewViewModelDelegate {
         self.viewModel.save()
     }
     
-    // PreviewViewModelDelegate
+    struct ShareError: Error {
+        let reason: String? = nil
+    }
+}
+
+// MARK: PreviewViewModelDelegate
+
+extension PreviewViewController: PreviewViewModelDelegate {
     
     func didSaveBookmark() {
         extensionContext?.completeRequest(returningItems: []) { (success) in
             
         }
-    }
-    
-    struct ShareError: Error {
-        let reason: String? = nil
     }
 }

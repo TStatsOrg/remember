@@ -11,6 +11,7 @@ class BookmarkViewState(bookmark: BookmarkState) {
         is BookmarkState.Link -> bookmark.title
         is BookmarkState.Image -> bookmark.url
         is BookmarkState.Unsupported -> "${bookmark.id}"
+        else -> null
     }
 
     val type: String = when(bookmark) {
@@ -18,5 +19,6 @@ class BookmarkViewState(bookmark: BookmarkState) {
         is BookmarkState.Link -> "L"
         is BookmarkState.Image -> "I"
         is BookmarkState.Unsupported -> "N/A"
+        else -> "N/A"
     }
 }

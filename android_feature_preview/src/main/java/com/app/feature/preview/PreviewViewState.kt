@@ -9,5 +9,6 @@ class PreviewViewState(content: BookmarkState) {
         is BookmarkState.Link -> content.title
         is BookmarkState.Image -> content.url
         is BookmarkState.Unsupported -> content.id
+        else -> null
     }
 }

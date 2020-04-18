@@ -7,21 +7,12 @@
 //
 
 import UIKit
-import ios_dependencies
-import RememberShared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    @Injected var database: Database
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        let dao = database.getLinkBookmarkDAO()
-        let value = dao.getAll()
-        print(value)
-        
         return true
     }
 

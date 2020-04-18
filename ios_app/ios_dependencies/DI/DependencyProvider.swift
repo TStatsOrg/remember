@@ -14,10 +14,10 @@ import RealmSwift
 @propertyWrapper
 public struct Injected<Service> {
     
-    public init() {}
+    public private(set) var wrappedValue: Service
     
-    public var wrappedValue: Service {
-        return DependencyProvider.shared.resolve()
+    public init() {
+        wrappedValue = DependencyProvider.shared.resolve()
     }
 }
 
@@ -27,15 +27,15 @@ public class DependencyProvider {
     
     public static let shared = DependencyProvider()
     
-    private var factories: [String: DependencyFactory<Any>] = [:]
+    private var factories: [ObjectIdentifier: DependencyFactory<Any>] = [:]
     
     public func register<T>(factory: @escaping DependencyFactory<T>) {
-        let key = String(describing: T.self)
+        let key = ObjectIdentifier(T.self)
         factories[key] = factory
     }
     
     public func resolve<T>() -> T {
-        let key = String(describing: T.self)
+        let key = ObjectIdentifier(T.self)
         
         guard let component = factories[key]?() as? T else {
             fatalError("Dependency '\(T.self)' could not be resolved!")
@@ -57,5 +57,8 @@ public class DependencyProvider {
                                           bookmarkRepository: self.resolve(),
                                           calendar: self.resolve(),
                                           processor: self.resolve()) as PreviewViewModel }
+        register { SharedMainHubViewModel(store: self.resolve(),
+                                          calendar: self.resolve(),
+                                          bookmarkRepository: self.resolve()) as MainHubViewModel }
     }
 }
