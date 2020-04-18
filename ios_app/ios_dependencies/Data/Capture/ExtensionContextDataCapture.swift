@@ -12,15 +12,8 @@ import RememberShared
 
 public class ExtensionContextDataCapture: NSObject, RawDataCapture {
     
-    private let extensionContext: NSExtensionContext?
-    
-    public init(withExtensionContext context: NSExtensionContext?) {
-        extensionContext = context
-    }
-    
-    public func capture(data: @escaping (String?) -> Void) {
-        // if context is empty - just callback w/ unknown
-        guard let context = extensionContext else {
+    public func capture(input: Any?, data: @escaping (String?) -> Void) {
+        guard let context = input as? NSExtensionContext else {
             data(nil)
             return
         }

@@ -1,11 +1,14 @@
 package com.app.remember
 
 import android.content.Context
+import android.content.Intent
 import com.app.dependencies.data.dao.RealmDatabase
 import com.app.feature.hub.BookmarksAdapter
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
 import com.app.shared.data.capture.AndroidDataProcess
+import com.app.shared.data.capture.IntentDataCapture
+import com.app.shared.data.capture.RawDataCapture
 import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dao.Database
 import com.app.shared.data.repository.BookmarkRepository
@@ -40,9 +43,8 @@ class DependencyProvider(private val appContext: Context) {
             )
         }
 
-        single<RawDataProcess> {
-            AndroidDataProcess()
-        }
+        single<RawDataCapture<Intent>> { IntentDataCapture() }
+        single<RawDataProcess> { AndroidDataProcess() }
 
         factory <PreviewViewModel> {
             SharedPreviewViewModel(

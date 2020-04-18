@@ -1,9 +1,10 @@
 package com.app.feature.preview
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.app.feature.preview.databinding.ViewPreviewBinding
-import com.app.shared.data.capture.IntentDataCapture
+import com.app.shared.data.capture.RawDataCapture
 import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
@@ -16,6 +17,7 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
 
     private val viewModel: PreviewViewModel by inject()
     private val navigator: AppNavigation by inject()
+    private val capture: RawDataCapture<Intent> by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +32,7 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
             viewModel.save()
         }
 
-        val capture = IntentDataCapture(intent = intent)
-        capture.capture {
+        capture.capture(input = intent) {
             viewModel.present(capturedRawData = it)
         }
     }

@@ -15,10 +15,7 @@ import RememberShared
 class ShareViewController: UIViewController, PreviewViewModelDelegate {
     
     @Injected var viewModel: PreviewViewModel
-    
-    private lazy var capture: RawDataCapture = {
-        return DependencyProvider.shared.getDataCapture(context: self.extensionContext)
-    }()
+    @Injected var capture: RawDataCapture
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -29,7 +26,7 @@ class ShareViewController: UIViewController, PreviewViewModelDelegate {
             print("State is \(state)")
         }
 
-        capture.capture { (value) in
+        capture.capture(input: extensionContext){ (value) in
             self.viewModel.present(capturedRawData: value)
         }
     }

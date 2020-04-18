@@ -245,6 +245,15 @@
 			path = SharePreview;
 			sourceTree = "<group>";
 		};
+		1B874FBB244B2BED001E3543 /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				1BC2B0682446465D00E73BB6 /* ExtensionContextDataCapture.swift */,
+				1BC2B0672446465D00E73BB6 /* iOSDataProcess.swift */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
 		1BA773C42441E9600060EC1D = {
 			isa = PBXGroup;
 			children = (
@@ -330,8 +339,6 @@
 			children = (
 				1BC2B07D24464D0600E73BB6 /* DI */,
 				1BC2B06E244647F000E73BB6 /* Data */,
-				1BC2B0682446465D00E73BB6 /* ExtensionContextDataCapture.swift */,
-				1BC2B0672446465D00E73BB6 /* iOSDataProcess.swift */,
 				1BC2B05D2446464300E73BB6 /* ios_dependencies.h */,
 				1BC2B05E2446464300E73BB6 /* Info.plist */,
 			);
@@ -341,6 +348,7 @@
 		1BC2B06E244647F000E73BB6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				1B874FBB244B2BED001E3543 /* Capture */,
 				1BC2B070244647F900E73BB6 /* DAO */,
 				1BC2B06F244647F500E73BB6 /* DTO */,
 			);

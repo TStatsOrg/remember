@@ -38,7 +38,7 @@ public class DependencyProvider {
         let key = String(describing: T.self)
         
         guard let component = factories[key]?() as? T else {
-            fatalError("Dependency '\(T.self)' not resolved!")
+            fatalError("Dependency '\(T.self)' could not be resolved!")
         }
         
         return component
@@ -46,6 +46,7 @@ public class DependencyProvider {
     
     private init() {
         register { SystemCalendarUtils() as CalendarUtils }
+        register { ExtensionContextDataCapture() as RawDataCapture }
         register { iOSDataProcess() as RawDataProcess }
         register { ReduxKt.store }
         register { RealmDatabase() as Database }
@@ -56,9 +57,5 @@ public class DependencyProvider {
                                           bookmarkRepository: self.resolve(),
                                           calendar: self.resolve(),
                                           processor: self.resolve()) as PreviewViewModel }
-    }
-    
-    public func getDataCapture(context: NSExtensionContext?) -> RawDataCapture {
-        return ExtensionContextDataCapture(withExtensionContext: context)
     }
 }
