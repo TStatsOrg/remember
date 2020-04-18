@@ -1,24 +1,24 @@
 package com.app.feature.hub
 
+import android.net.Uri
 import com.app.shared.business.BookmarkState
 
-class BookmarkViewState(bookmark: BookmarkState) {
+sealed class BookmarkViewState(bookmark: BookmarkState) {
 
     val id: Int = bookmark.id
+    val date: String = "20 Apr 2020"
 
-    val content: String? = when(bookmark) {
-        is BookmarkState.Text -> bookmark.text
-        is BookmarkState.Link -> bookmark.title
-        is BookmarkState.Image -> bookmark.url
-        is BookmarkState.Unsupported -> "${bookmark.id}"
-        else -> null
+    data class Image(private val bookmark: BookmarkState.Image): BookmarkViewState(bookmark) {
+        val url: Uri? = try { Uri.parse(bookmark.url) } catch (e: Throwable) { null }
     }
 
-    val type: String = when(bookmark) {
-        is BookmarkState.Text -> "T"
-        is BookmarkState.Link -> "L"
-        is BookmarkState.Image -> "I"
-        is BookmarkState.Unsupported -> "N/A"
-        else -> "N/A"
+    data class Text(private val bookmark: BookmarkState.Text): BookmarkViewState(bookmark) {
+        val text: String = bookmark.text
+    }
+
+    data class Link(private val bookmark: BookmarkState.Link): BookmarkViewState(bookmark) {
+        val title: String? = bookmark.title
+        val caption: String? = bookmark.description
+        val icon: Uri? = try { Uri.parse(bookmark.icon) } catch (e: Throwable) { null }
     }
 }

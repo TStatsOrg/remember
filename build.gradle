@@ -28,6 +28,9 @@ buildscript {
     // material design
     ext.materialDesignVersion = "1.2.0-alpha03"
 
+    // Glide
+    ext.glideVersion = "4.11.0"
+
     // Stable Koin Version
     ext.koinVersion = "2.1.5"
 

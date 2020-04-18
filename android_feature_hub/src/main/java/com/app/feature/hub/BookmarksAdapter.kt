@@ -4,9 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.app.feature.hub.databinding.ViewBookmarkBinding
+import com.app.dependencies.data.utils.AndroidImageLoader
+import com.app.feature.hub.databinding.ViewImageBookmarkBinding
+import com.app.feature.hub.databinding.ViewLinkBookmarkBinding
+import com.app.feature.hub.databinding.ViewTextBookmarkBinding
+import com.app.feature.hub.viewholders.BookmarkViewHolder
+import com.app.feature.hub.viewholders.ImageBookmarkViewHolder
+import com.app.feature.hub.viewholders.LinkBookmarkViewHolder
+import com.app.feature.hub.viewholders.TextBookmarkViewHolder
 
-class BookmarksAdapter: RecyclerView.Adapter<BookmarkViewHolder>() {
+class BookmarksAdapter(private val imageLoader: AndroidImageLoader): RecyclerView.Adapter<BookmarkViewHolder<*>>() {
 
     private var viewState: List<BookmarkViewState> = listOf()
         set(value) {
@@ -15,22 +22,31 @@ class BookmarksAdapter: RecyclerView.Adapter<BookmarkViewHolder>() {
             field = value
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
-        return BookmarkViewHolder(binding = ViewBookmarkBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        ))
+    override fun getItemViewType(position: Int): Int {
+        return when (viewState[position]) {
+            is BookmarkViewState.Text -> 0
+            is BookmarkViewState.Image -> 1
+            is BookmarkViewState.Link -> 2
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder<*> {
+        val inflater = LayoutInflater.from(parent.context)
+        return when (viewType) {
+            2 -> LinkBookmarkViewHolder(binding = ViewLinkBookmarkBinding.inflate(inflater, parent, false), loader = imageLoader)
+            1 -> ImageBookmarkViewHolder(binding = ViewImageBookmarkBinding.inflate(inflater, parent, false), loader = imageLoader)
+            else -> TextBookmarkViewHolder(binding = ViewTextBookmarkBinding.inflate(inflater, parent, false))
+        }
     }
 
     override fun getItemCount(): Int = viewState.size
 
-    override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {
-        holder.redraw(viewState = viewState[position])
+    override fun onBindViewHolder(holder: BookmarkViewHolder<*>, position: Int) {
+        (holder as? BookmarkViewHolder<BookmarkViewState>)?.redraw(viewState[position])
     }
 
-    fun redraw(viewState: List<BookmarkViewState>) {
-        this.viewState = viewState
+    fun redraw(viewState: BookmarksViewState) {
+        this.viewState = viewState.viewStates
     }
 
     internal class BookmarkDif(

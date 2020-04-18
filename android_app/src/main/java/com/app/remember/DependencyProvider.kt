@@ -3,6 +3,8 @@ package com.app.remember
 import android.content.Context
 import android.content.Intent
 import com.app.dependencies.data.dao.RealmDatabase
+import com.app.dependencies.data.utils.AndroidImageLoader
+import com.app.dependencies.data.utils.GlideImageLoader
 import com.app.feature.hub.BookmarksAdapter
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
@@ -35,6 +37,7 @@ class DependencyProvider(private val appContext: Context) {
         single<CalendarUtils> { SystemCalendarUtils() }
         single<RawDataCapture<Intent>> { IntentDataCapture() }
         single<RawDataProcess> { AndroidDataProcess() }
+        single<AndroidImageLoader> { GlideImageLoader() }
 
         // repos
         single<BookmarkRepository> {
@@ -62,6 +65,6 @@ class DependencyProvider(private val appContext: Context) {
         }
 
         // adapters
-        single { BookmarksAdapter() }
+        single { BookmarksAdapter(imageLoader = get()) }
     }
 }

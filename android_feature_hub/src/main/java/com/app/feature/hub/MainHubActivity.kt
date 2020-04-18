@@ -28,7 +28,7 @@ class MainHubActivity: AppCompatActivity() {
         binding.bookmarksRecyclerView.itemAnimator = animator
 
         viewModel.observeBookmarkState {
-            adapter.redraw(viewState = it.map { BookmarkViewState(bookmark = it) })
+            adapter.redraw(viewState = BookmarksViewState(state = it))
         }
 
         viewModel.loadBookmarks()
