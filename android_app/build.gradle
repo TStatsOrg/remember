@@ -56,7 +56,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
-    implementation 'org.jsoup:jsoup:1.11.1'
+    // Material Design Components
+    implementation "com.google.android.material:material:$materialDesignVersion"
 
     // koin DI
     implementation "org.koin:koin-core:$koinVersion"

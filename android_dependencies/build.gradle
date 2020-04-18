@@ -45,6 +45,9 @@ dependencies {
     implementation "androidx.core:core-ktx:$androidXVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
 
+    // Material Design Components
+    implementation "com.google.android.material:material:$materialDesignVersion"
+
     // Unit Tests
     testImplementation "junit:junit:$jUnitVersion"
 

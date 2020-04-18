@@ -44,6 +44,9 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
+    // Material Design Components
+    implementation "com.google.android.material:material:$materialDesignVersion"
+
     // koin DI
     implementation "org.koin:koin-core:$koinVersion"
     implementation "org.koin:koin-android:$koinVersion"

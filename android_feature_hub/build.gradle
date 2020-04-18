@@ -38,12 +38,16 @@ dependencies {
 
     // local libraries
     implementation project(":shared")
+    implementation project(":android_dependencies")
 
     // Android X
     implementation "androidx.core:core-ktx:$androidXVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+
+    // Material Design Components
+    implementation "com.google.android.material:material:$materialDesignVersion"
 
     // koin DI
     implementation "org.koin:koin-core:$koinVersion"

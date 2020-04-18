@@ -8,6 +8,7 @@ import com.app.shared.data.capture.RawDataCapture
 import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class PreviewActivity: AppCompatActivity() {
 
