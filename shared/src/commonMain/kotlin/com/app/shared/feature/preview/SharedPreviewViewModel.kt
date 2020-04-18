@@ -27,9 +27,8 @@ class SharedPreviewViewModel(
     private val processor: RawDataProcess
 ): PreviewViewModel {
 
+    private var bookmarkSaved: (() -> Unit)? = null
     private var temporaryDTO: BookmarkDTO? = null
-
-    override var delegate: PreviewViewModel.Delegate? = null
 
     private val scope: CoroutineScope = provideViewModelScope()
 
@@ -58,7 +57,7 @@ class SharedPreviewViewModel(
         scope.launch(context = MainDispatcher) {
             temporaryDTO?.let {
                 bookmarkRepository.save(dto = it)
-                delegate?.didSaveBookmark()
+                bookmarkSaved?.invoke()
             }
         }
     }
@@ -72,5 +71,9 @@ class SharedPreviewViewModel(
                     callback(it)
                 }
         }
+    }
+
+    override fun observeBookmarkSaved(callback: () -> Unit) {
+        bookmarkSaved = callback
     }
 }

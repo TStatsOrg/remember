@@ -9,7 +9,7 @@ import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
 
-class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
+class PreviewActivity: AppCompatActivity() {
 
     private val binding: ViewPreviewBinding by lazy {
         ViewPreviewBinding.inflate(layoutInflater)
@@ -23,9 +23,11 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        viewModel.delegate = this
         viewModel.observePreviewState {
             redraw(viewState = PreviewViewState(content = it))
+        }
+        viewModel.observeBookmarkSaved {
+            navigator.seeMainHub(context = this)
         }
 
         binding.saveContentButton.setOnClickListener {
@@ -40,8 +42,4 @@ class PreviewActivity: AppCompatActivity(), PreviewViewModel.Delegate {
     private fun redraw(viewState: PreviewViewState) = with(viewState) {
         binding.textContent.text = "$resource"
     }
-
-    // PreviewViewModel.Delegate
-
-    override fun didSaveBookmark() = navigator.seeMainHub(context = this)
 }
