@@ -2,13 +2,16 @@ package com.app.shared.business
 
 import com.app.shared.redux.State
 
-sealed class BookmarkState(open val id: Int, open val date: Long): State {
+interface BookmarkState: State {
+
+    val id: Int
+    val date: Long
 
     data class Text(
         override val id: Int,
         override val date: Long,
         val text: String
-    ) : BookmarkState(id, date)
+    ) : BookmarkState
 
     data class Link(
         override val id: Int,
@@ -17,18 +20,18 @@ sealed class BookmarkState(open val id: Int, open val date: Long): State {
         val title: String?,
         val description: String?,
         val icon: String?
-    ): BookmarkState(id, date)
+    ): BookmarkState
 
     data class Image(
         override val id: Int,
         override val date: Long,
         val url: String
-    ): BookmarkState(id, date)
+    ): BookmarkState
 
     data class Unsupported(
         override val id: Int,
         override val date: Long
-    ): BookmarkState(id, date)
+    ): BookmarkState
 }
 
 data class SavedBookmarksState(
