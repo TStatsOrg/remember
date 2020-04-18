@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.shared.feature.mainhub.MainHubViewModel
-import com.app.shared.utils.MLogger
 import org.koin.android.ext.android.inject
 
 class MainHubActivity: AppCompatActivity() {

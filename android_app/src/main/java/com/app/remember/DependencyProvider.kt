@@ -26,15 +26,17 @@ import org.koin.dsl.module
 class DependencyProvider(private val appContext: Context) {
 
     val module = module {
+        // general
+        single { Store(initialState = AppState(), reducer = AppStateReducer) }
         single<Database> { RealmDatabase(context = appContext) }
+        single<AppNavigation> { MainAppNavigation() }
 
-        single {
-            Store(initialState = AppState(), reducer = AppStateReducer)
-        }
-        single<CalendarUtils> {
-            SystemCalendarUtils()
-        }
+        // utils
+        single<CalendarUtils> { SystemCalendarUtils() }
+        single<RawDataCapture<Intent>> { IntentDataCapture() }
+        single<RawDataProcess> { AndroidDataProcess() }
 
+        // repos
         single<BookmarkRepository> {
             SharedBookmarkRepository(
                 imageBookmarkDAO = (get() as Database).getImageBookmarkDAO(),
@@ -43,10 +45,8 @@ class DependencyProvider(private val appContext: Context) {
             )
         }
 
-        single<RawDataCapture<Intent>> { IntentDataCapture() }
-        single<RawDataProcess> { AndroidDataProcess() }
-
-        factory <PreviewViewModel> {
+        // view models
+        factory<PreviewViewModel> {
             SharedPreviewViewModel(
                 store = get(),
                 bookmarkRepository = get(),
@@ -61,12 +61,7 @@ class DependencyProvider(private val appContext: Context) {
                 bookmarkRepository = get())
         }
 
-        single<AppNavigation> {
-            MainAppNavigation()
-        }
-
-        single {
-            BookmarksAdapter()
-        }
+        // adapters
+        single { BookmarksAdapter() }
     }
 }

@@ -20,10 +20,12 @@ class PreviewViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        viewModel.delegate = self
-        
         viewModel.observePreviewState { (state) in
             print("State is \(state)")
+        }
+        
+        viewModel.observeBookmarkSaved {
+            self.extensionContext?.completeRequest(returningItems: [])
         }
 
         capture.capture(input: extensionContext) { (value) in
@@ -41,16 +43,5 @@ class PreviewViewController: UIViewController {
     
     struct ShareError: Error {
         let reason: String? = nil
-    }
-}
-
-// MARK: PreviewViewModelDelegate
-
-extension PreviewViewController: PreviewViewModelDelegate {
-    
-    func didSaveBookmark() {
-        extensionContext?.completeRequest(returningItems: []) { (success) in
-            
-        }
     }
 }
