@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'Remember' do
+target 'ios_app' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
@@ -17,22 +17,23 @@ target 'Remember' do
     # Pods for testing
   end
 
-  target 'SharePreview' do
+  target 'ios_feature_preview' do
     inherit! :search_paths
 
-    # Pods for SharePreview
+    # dependencies
     pod 'SwiftSoup', '2.3.1'
-    pod 'RealmSwift', '4.4.0'
   end
   
   target 'ios_feature_hub' do
     inherit! :search_paths
+    
+    # dependencies
   end
   
   target 'ios_dependencies' do
     inherit! :search_paths
 
-    # Pods for SharePreview
+    # dependencies
     pod 'SwiftSoup', '2.3.1'
     pod 'RealmSwift', '4.4.0'
   end

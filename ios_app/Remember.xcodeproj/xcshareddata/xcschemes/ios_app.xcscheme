@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1BA773CC2441E9600060EC1D"
-               BuildableName = "Remember.app"
-               BlueprintName = "Remember"
+               BuildableName = "ios_app.app"
+               BlueprintName = "ios_app"
                ReferencedContainer = "container:Remember.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1BA773CC2441E9600060EC1D"
-            BuildableName = "Remember.app"
-            BlueprintName = "Remember"
+            BuildableName = "ios_app.app"
+            BlueprintName = "ios_app"
             ReferencedContainer = "container:Remember.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,8 +82,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1BA773CC2441E9600060EC1D"
-            BuildableName = "Remember.app"
-            BlueprintName = "Remember"
+            BuildableName = "ios_app.app"
+            BlueprintName = "ios_app"
             ReferencedContainer = "container:Remember.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1BA773CC2441E9600060EC1D"
-               BuildableName = "Remember.app"
-               BlueprintName = "Remember"
+               BuildableName = "ios_app.app"
+               BlueprintName = "ios_app"
                ReferencedContainer = "container:Remember.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -57,16 +57,20 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "com.apple.mobilesafari"
+         RemotePath = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/Applications/MobileSafari.app">
+      </RemoteRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1BA773CC2441E9600060EC1D"
-            BuildableName = "Remember.app"
-            BlueprintName = "Remember"
+            BuildableName = "ios_app.app"
+            BlueprintName = "ios_app"
             ReferencedContainer = "container:Remember.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -80,8 +84,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1BA773CC2441E9600060EC1D"
-            BuildableName = "Remember.app"
-            BlueprintName = "Remember"
+            BuildableName = "ios_app.app"
+            BlueprintName = "ios_app"
             ReferencedContainer = "container:Remember.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
