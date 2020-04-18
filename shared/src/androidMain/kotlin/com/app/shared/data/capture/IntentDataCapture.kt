@@ -4,11 +4,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Parcelable
 
-class IntentDataCapture(private val intent: Intent): RawDataCapture {
+class IntentDataCapture: RawDataCapture<Intent> {
 
-    override fun capture(data: (String?) -> Unit) {
-        val action = intent.action
-        val type = intent.type
+    override fun capture(input: Intent, data: (String?) -> Unit) {
+        val action = input.action
+        val type = input.type
 
         if (action != Intent.ACTION_SEND) {
             data(null)
@@ -21,13 +21,13 @@ class IntentDataCapture(private val intent: Intent): RawDataCapture {
         }
 
         if (type.startsWith("text/")) {
-            val content = intent.content()
+            val content = input.content()
             data(content)
             return
         }
 
         if (type.startsWith("image/")) {
-            val uri = intent.uri()
+            val uri = input.uri()
             data(uri)
             return
         }

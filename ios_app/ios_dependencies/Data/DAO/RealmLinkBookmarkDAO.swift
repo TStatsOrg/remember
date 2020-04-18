@@ -20,21 +20,9 @@ public class RealmLinkBookmarkDAO: LinkBookmarkDAO {
     }
     
     public func insert(dto_ dto: BookmarkDTOLinkBookmarkDTO) {
-//        let realm = try? Realm()
-//        let model = RealmLinkBookmarkDTO()
-//        model.id = dto.id
-//        model.date = dto.date
-//        model.url = dto.url
-//        model.title = dto.title
-//        model.icon = dto.icon
-//        model.caption = dto.caption
         let model = RealmLinkBookmarkDTO(id: dto.id, date: dto.date, url: dto.url, title: dto.title, icon: dto.icon, caption: dto.caption)
-        do {
-            try realm?.write {
-                realm?.add(model)
-            }
-        } catch {
-            print(error)
+        try? realm?.write {
+            realm?.add(model)
         }
     }
     

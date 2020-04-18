@@ -27,7 +27,7 @@ class RealmImageBookmarkDAO: ImageBookmarkDAO {
     }
     
     func getAll() -> [BookmarkDTOImageBookmarkDTO] {
-        let result = realm?.objects(RealmImageBookmarkDTO.self)//.filter("")
+        let result = realm?.objects(RealmImageBookmarkDTO.self)
         return result?.map { $0 } ?? []
     }
 }

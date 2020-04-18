@@ -27,7 +27,7 @@ class RealmTextBookmarkDAO: TextBookmarkDAO {
     }
     
     func getAll() -> [BookmarkDTOTextBookmarkDTO] {
-        let result = realm?.objects(RealmTextBookmarkDTO.self)//.filter("")
+        let result = realm?.objects(RealmTextBookmarkDTO.self)
         return result?.map { $0 } ?? []
     }
 }
