@@ -195,7 +195,7 @@
 		1BA773D92441E9660060EC1D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1BA773DC2441E9660060EC1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BA773DE2441E9660060EC1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1BA773E32441E9670060EC1D /* RememberTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RememberTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BA773E32441E9670060EC1D /* ios_app_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_app_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773E72441E9670060EC1D /* RememberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RememberTests.swift; sourceTree = "<group>"; };
 		1BA773E92441E9670060EC1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BA773EE2441E9670060EC1D /* RememberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RememberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,7 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				1BA773CF2441E9600060EC1D /* ios_app */,
-				1BA773E62441E9670060EC1D /* RememberTests */,
+				1BA773E62441E9670060EC1D /* ios_app_tests */,
 				1BA773F12441E9670060EC1D /* RememberUITests */,
 				1B7597BD244B495E009D5837 /* ios_feature_hub */,
 				1B72E0EE2444905C0042EBD7 /* ios_feature_preview */,
@@ -345,7 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				1BA773CD2441E9600060EC1D /* ios_app.app */,
-				1BA773E32441E9670060EC1D /* RememberTests.xctest */,
+				1BA773E32441E9670060EC1D /* ios_app_tests.xctest */,
 				1BA773EE2441E9670060EC1D /* RememberUITests.xctest */,
 				1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */,
 				1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */,
@@ -376,13 +376,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1BA773E62441E9670060EC1D /* RememberTests */ = {
+		1BA773E62441E9670060EC1D /* ios_app_tests */ = {
 			isa = PBXGroup;
 			children = (
 				1BA773E72441E9670060EC1D /* RememberTests.swift */,
 				1BA773E92441E9670060EC1D /* Info.plist */,
 			);
-			path = RememberTests;
+			path = ios_app_tests;
 			sourceTree = "<group>";
 		};
 		1BA773F12441E9670060EC1D /* RememberUITests */ = {
@@ -569,9 +569,9 @@
 			productReference = 1BA773CD2441E9600060EC1D /* ios_app.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1BA773E22441E9670060EC1D /* RememberTests */ = {
+		1BA773E22441E9670060EC1D /* ios_app_tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1BA773FA2441E9670060EC1D /* Build configuration list for PBXNativeTarget "RememberTests" */;
+			buildConfigurationList = 1BA773FA2441E9670060EC1D /* Build configuration list for PBXNativeTarget "ios_app_tests" */;
 			buildPhases = (
 				257FD3EB8A800324F17740E1 /* [CP] Check Pods Manifest.lock */,
 				1BA773DF2441E9670060EC1D /* Sources */,
@@ -583,9 +583,9 @@
 			dependencies = (
 				1BA773E52441E9670060EC1D /* PBXTargetDependency */,
 			);
-			name = RememberTests;
+			name = ios_app_tests;
 			productName = RememberTests;
-			productReference = 1BA773E32441E9670060EC1D /* RememberTests.xctest */;
+			productReference = 1BA773E32441E9670060EC1D /* ios_app_tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		1BA773ED2441E9670060EC1D /* RememberUITests */ = {
@@ -676,7 +676,7 @@
 			projectRoot = "";
 			targets = (
 				1BA773CC2441E9600060EC1D /* ios_app */,
-				1BA773E22441E9670060EC1D /* RememberTests */,
+				1BA773E22441E9670060EC1D /* ios_app_tests */,
 				1BA773ED2441E9670060EC1D /* RememberUITests */,
 				1B72E0EC2444905C0042EBD7 /* ios_feature_preview */,
 				1BC2B05A2446464300E73BB6 /* ios_dependencies */,
@@ -1314,7 +1314,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RememberTests/Info.plist;
+				INFOPLIST_FILE = ios_app_tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1325,7 +1325,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Remember.app/Remember";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios_app.app/ios_app";
 			};
 			name = Debug;
 		};
@@ -1336,7 +1336,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RememberTests/Info.plist;
+				INFOPLIST_FILE = ios_app_tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1347,7 +1347,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Remember.app/Remember";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios_app.app/ios_app";
 			};
 			name = Release;
 		};
@@ -1499,7 +1499,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1BA773FA2441E9670060EC1D /* Build configuration list for PBXNativeTarget "RememberTests" */ = {
+		1BA773FA2441E9670060EC1D /* Build configuration list for PBXNativeTarget "ios_app_tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1BA773FB2441E9670060EC1D /* Debug */,

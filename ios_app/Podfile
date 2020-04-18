@@ -7,7 +7,7 @@ target 'ios_app' do
   
   # Pods for Remember
 
-  target 'RememberTests' do
+  target 'ios_app_tests' do
     inherit! :search_paths
     # Pods for testing
   end
