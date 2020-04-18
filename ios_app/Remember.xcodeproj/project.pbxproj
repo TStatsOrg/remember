@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0DD3472DC85281A17A693D50 /* Pods_RememberUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69873F0B76C33CEB7C5AA587 /* Pods_RememberUITests.framework */; };
 		1B1826432444D67C002F1361 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B1826422444D67B002F1361 /* MainInterface.storyboard */; };
-		1B72E0F72444905D0042EBD7 /* SharePreview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* SharePreview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B72E0F72444905D0042EBD7 /* ios_feature_preview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B7597B6244B314A009D5837 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7597B5244B314A009D5837 /* PreviewViewController.swift */; };
 		1B7597C0244B495E009D5837 /* ios_feature_hub.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B7597BE244B495E009D5837 /* ios_feature_hub.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B7597C3244B495E009D5837 /* ios_feature_hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7597BC244B495E009D5837 /* ios_feature_hub.framework */; };
@@ -115,7 +115,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1B72E0F72444905D0042EBD7 /* SharePreview.appex in Embed App Extensions */,
+				1B72E0F72444905D0042EBD7 /* ios_feature_preview.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,7 +175,7 @@
 		087A15752769E7DE7CA1A578 /* Pods-ios_feature_hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_feature_hub.debug.xcconfig"; path = "Target Support Files/Pods-ios_feature_hub/Pods-ios_feature_hub.debug.xcconfig"; sourceTree = "<group>"; };
 		1B1826422444D67B002F1361 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		1B1826442444D6AD002F1361 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B72E0ED2444905C0042EBD7 /* SharePreview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharePreview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ios_feature_preview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B72E0FC244494C00042EBD7 /* Remember.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Remember.entitlements; sourceTree = "<group>"; };
 		1B7597B5244B314A009D5837 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		1B7597BC244B495E009D5837 /* ios_feature_hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_feature_hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,7 +211,7 @@
 		1BC2B07924464C1900E73BB6 /* RealmTextBookmarkDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTextBookmarkDAO.swift; sourceTree = "<group>"; };
 		1BC2B07B24464C9700E73BB6 /* RealmLinkBookmarkDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLinkBookmarkDAO.swift; sourceTree = "<group>"; };
 		1BC2B07E24464D1B00E73BB6 /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
-		1BC2B087244797BB00E73BB6 /* SharePreview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SharePreview.entitlements; sourceTree = "<group>"; };
+		1BC2B087244797BB00E73BB6 /* preview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = preview.entitlements; sourceTree = "<group>"; };
 		209B88ADE76F864D3F1BB738 /* Pods-Remember.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remember.release.xcconfig"; path = "Target Support Files/Pods-Remember/Pods-Remember.release.xcconfig"; sourceTree = "<group>"; };
 		2163C0AF5857DB3E3F1885A4 /* Pods-RememberTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RememberTests.release.xcconfig"; path = "Target Support Files/Pods-RememberTests/Pods-RememberTests.release.xcconfig"; sourceTree = "<group>"; };
 		42BF821B877C970F9A4899AE /* Pods_ios_feature_hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_feature_hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,15 +290,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1B72E0EE2444905C0042EBD7 /* SharePreview */ = {
+		1B72E0EE2444905C0042EBD7 /* ios_feature_preview */ = {
 			isa = PBXGroup;
 			children = (
 				1B7597B5244B314A009D5837 /* PreviewViewController.swift */,
-				1BC2B087244797BB00E73BB6 /* SharePreview.entitlements */,
+				1BC2B087244797BB00E73BB6 /* preview.entitlements */,
 				1B1826442444D6AD002F1361 /* Info.plist */,
 				1B1826422444D67B002F1361 /* MainInterface.storyboard */,
 			);
-			path = SharePreview;
+			path = ios_feature_preview;
 			sourceTree = "<group>";
 		};
 		1B7597BD244B495E009D5837 /* ios_feature_hub */ = {
@@ -329,7 +329,7 @@
 				1BA773E62441E9670060EC1D /* RememberTests */,
 				1BA773F12441E9670060EC1D /* RememberUITests */,
 				1B7597BD244B495E009D5837 /* ios_feature_hub */,
-				1B72E0EE2444905C0042EBD7 /* SharePreview */,
+				1B72E0EE2444905C0042EBD7 /* ios_feature_preview */,
 				1BC2B05C2446464300E73BB6 /* ios_dependencies */,
 				1BA773CE2441E9600060EC1D /* Products */,
 				1BA774012441ED240060EC1D /* Frameworks */,
@@ -343,7 +343,7 @@
 				1BA773CD2441E9600060EC1D /* Remember.app */,
 				1BA773E32441E9670060EC1D /* RememberTests.xctest */,
 				1BA773EE2441E9670060EC1D /* RememberUITests.xctest */,
-				1B72E0ED2444905C0042EBD7 /* SharePreview.appex */,
+				1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */,
 				1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */,
 				1B7597BC244B495E009D5837 /* ios_feature_hub.framework */,
 			);
@@ -495,9 +495,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1B72E0EC2444905C0042EBD7 /* SharePreview */ = {
+		1B72E0EC2444905C0042EBD7 /* ios_feature_preview */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1B72E0F82444905D0042EBD7 /* Build configuration list for PBXNativeTarget "SharePreview" */;
+			buildConfigurationList = 1B72E0F82444905D0042EBD7 /* Build configuration list for PBXNativeTarget "ios_feature_preview" */;
 			buildPhases = (
 				917C2C75CF8FC0D5477BC029 /* [CP] Check Pods Manifest.lock */,
 				1B72E0E92444905C0042EBD7 /* Sources */,
@@ -510,9 +510,9 @@
 			dependencies = (
 				1BC2B083244781F700E73BB6 /* PBXTargetDependency */,
 			);
-			name = SharePreview;
+			name = ios_feature_preview;
 			productName = SharePreview;
-			productReference = 1B72E0ED2444905C0042EBD7 /* SharePreview.appex */;
+			productReference = 1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		1B7597BB244B495E009D5837 /* ios_feature_hub */ = {
@@ -670,7 +670,7 @@
 				1BA773CC2441E9600060EC1D /* Remember */,
 				1BA773E22441E9670060EC1D /* RememberTests */,
 				1BA773ED2441E9670060EC1D /* RememberUITests */,
-				1B72E0EC2444905C0042EBD7 /* SharePreview */,
+				1B72E0EC2444905C0042EBD7 /* ios_feature_preview */,
 				1BC2B05A2446464300E73BB6 /* ios_dependencies */,
 				1B7597BB244B495E009D5837 /* ios_feature_hub */,
 			);
@@ -961,7 +961,7 @@
 /* Begin PBXTargetDependency section */
 		1B72E0F62444905D0042EBD7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1B72E0EC2444905C0042EBD7 /* SharePreview */;
+			target = 1B72E0EC2444905C0042EBD7 /* ios_feature_preview */;
 			targetProxy = 1B72E0F52444905D0042EBD7 /* PBXContainerItemProxy */;
 		};
 		1B7597C2244B495E009D5837 /* PBXTargetDependency */ = {
@@ -1013,7 +1013,7 @@
 			baseConfigurationReference = BBFD73E7EFF9936586D9BC15 /* Pods-SharePreview.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = SharePreview/SharePreview.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ios_feature_preview/preview.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1023,7 +1023,7 @@
 					"${inherited}",
 					"$SRCROOT/../shared/build/xcode-frameworks",
 				);
-				INFOPLIST_FILE = SharePreview/Info.plist;
+				INFOPLIST_FILE = ios_feature_preview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1043,7 +1043,7 @@
 			baseConfigurationReference = 066A574D3C74827974F81853 /* Pods-SharePreview.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = SharePreview/SharePreview.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ios_feature_preview/preview.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					./gradlew,
@@ -1052,7 +1052,7 @@
 					"${inherited}",
 					"$SRCROOT/../shared/build/xcode-frameworks",
 				);
-				INFOPLIST_FILE = SharePreview/Info.plist;
+				INFOPLIST_FILE = ios_feature_preview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1455,7 +1455,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1B72E0F82444905D0042EBD7 /* Build configuration list for PBXNativeTarget "SharePreview" */ = {
+		1B72E0F82444905D0042EBD7 /* Build configuration list for PBXNativeTarget "ios_feature_preview" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B72E0F92444905D0042EBD7 /* Debug */,
