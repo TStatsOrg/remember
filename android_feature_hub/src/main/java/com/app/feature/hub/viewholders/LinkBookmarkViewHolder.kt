@@ -15,5 +15,6 @@ class LinkBookmarkViewHolder(
         binding.bookmarkSaveDate.text = date
         binding.bookmarkTitle.text = title
         binding.bookmarkCaption.text = caption
+        binding.bookmarkCaption.visibility = captionVisibility
     }
 }

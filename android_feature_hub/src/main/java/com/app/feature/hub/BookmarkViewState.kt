@@ -41,7 +41,14 @@ sealed class BookmarkViewState(private val bookmark: BookmarkState) {
         val iconVisibility: Int
             get() {
                 val isNotNull = icon != null
-                val isNotEmpty = icon?.toString()?.isNotEmpty() ?: true
+                val isNotEmpty = icon?.toString()?.isNotEmpty() ?: false
+                return if (isNotNull && isNotEmpty) View.VISIBLE else View.GONE
+            }
+
+        val captionVisibility: Int
+            get() {
+                val isNotNull = caption != null
+                val isNotEmpty = caption?.isNotEmpty() ?: false
                 return if (isNotNull && isNotEmpty) View.VISIBLE else View.GONE
             }
     }
