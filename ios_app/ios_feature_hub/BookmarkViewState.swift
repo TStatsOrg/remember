@@ -21,16 +21,77 @@ struct BookmarkViewState: Identifiable {
         return state.id
     }
     
-    var content: String {
+    var viewState: BookmarkViewStateType? {
         switch state {
-        case let link as BookmarkStateLink:
-            return link.url
         case let text as BookmarkStateText:
-            return text.text
+            return BookmarkTextViewState(state: text)
         case let image as BookmarkStateImage:
-            return image.url
+            return BookmarkImageViewState(state: image)
+        case let link as BookmarkStateLink:
+            return BookmarkLinkViewState(state: link)
         default:
-            return "N/A"
+            return nil
+        }
+    }
+}
+
+protocol BookmarkViewStateType {
+    var state: BookmarkState { get }
+}
+
+extension BookmarkViewStateType {
+    
+    var id: Int32 {
+        return state.id
+    }
+    
+    var date: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        let date = Date(timeIntervalSince1970: TimeInterval(state.date))
+        return formatter.string(from: date)
+    }
+}
+
+struct BookmarkTextViewState: BookmarkViewStateType {
+    internal let state: BookmarkState
+    
+    let text: String
+    
+    init(state: BookmarkStateText) {
+        self.state = state
+        text = state.text
+    }
+}
+
+struct BookmarkImageViewState: BookmarkViewStateType {
+    internal let state: BookmarkState
+    
+    let url: URL?
+    
+    init(state: BookmarkStateImage) {
+        self.state = state
+        url = URL(string: state.url)
+    }
+}
+
+struct BookmarkLinkViewState: BookmarkViewStateType {
+    internal let state: BookmarkState
+    
+    let title: String?
+    let caption: String?
+    let icon: URL?
+    
+    init(state: BookmarkStateLink) {
+        self.state = state
+        
+        title = state.title
+        caption = state.caption
+        
+        if let iconUrl = state.icon {
+            icon = URL(string: iconUrl)
+        } else {
+            icon = nil
         }
     }
 }

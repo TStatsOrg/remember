@@ -40,7 +40,7 @@ fun BookmarkDTO.toState(): BookmarkState {
             date = this.date,
             url = this.url,
             title = this.title,
-            description = this.caption,
+            caption = this.caption,
             icon = this.icon
         )
         is BookmarkDTO.ImageBookmarkDTO -> BookmarkState.Image(

@@ -28,7 +28,7 @@ sealed class BookmarkViewState(private val bookmark: BookmarkState) {
     data class Link(private val bookmark: BookmarkState.Link): BookmarkViewState(bookmark) {
         val title: String? = bookmark.title
 
-        val caption: String? = bookmark.description
+        val caption: String? = bookmark.caption
 
         val icon: Uri? = bookmark.icon?.let {
             try {

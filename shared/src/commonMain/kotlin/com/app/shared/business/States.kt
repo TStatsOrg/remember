@@ -18,7 +18,7 @@ interface BookmarkState: State {
         override val date: Long,
         val url: String,
         val title: String?,
-        val description: String?,
+        val caption: String?,
         val icon: String?
     ): BookmarkState
 
