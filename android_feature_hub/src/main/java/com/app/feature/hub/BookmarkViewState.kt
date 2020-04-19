@@ -1,6 +1,7 @@
 package com.app.feature.hub
 
 import android.net.Uri
+import android.view.View
 import com.app.shared.business.BookmarkState
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,7 +27,22 @@ sealed class BookmarkViewState(private val bookmark: BookmarkState) {
 
     data class Link(private val bookmark: BookmarkState.Link): BookmarkViewState(bookmark) {
         val title: String? = bookmark.title
+
         val caption: String? = bookmark.description
-        val icon: Uri? = try { Uri.parse(bookmark.icon) } catch (e: Throwable) { null }
+
+        val icon: Uri? = bookmark.icon?.let {
+            try {
+                Uri.parse(it)
+            } catch (e: Throwable) {
+                null
+            }
+        }
+
+        val iconVisibility: Int
+            get() {
+                val isNotNull = icon != null
+                val isNotEmpty = icon?.toString()?.isNotEmpty() ?: true
+                return if (isNotNull && isNotEmpty) View.VISIBLE else View.GONE
+            }
     }
 }

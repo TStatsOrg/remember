@@ -36,7 +36,7 @@ class DependencyProvider(private val appContext: Context) {
         // utils
         single<CalendarUtils> { SystemCalendarUtils() }
         single<RawDataCapture<Intent>> { IntentDataCapture() }
-        single<RawDataProcess> { AndroidDataProcess() }
+        single<RawDataProcess> { AndroidDataProcess(context = appContext) }
         single<AndroidImageLoader> { GlideImageLoader() }
 
         // repos

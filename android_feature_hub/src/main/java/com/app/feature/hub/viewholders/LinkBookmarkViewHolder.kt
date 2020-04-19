@@ -11,6 +11,7 @@ class LinkBookmarkViewHolder(
 
     override fun redraw(viewState: BookmarkViewState.Link) = with(viewState) {
         loader.load(icon, binding.bookmarkIcon)
+        binding.bookmarkIcon.visibility = iconVisibility
         binding.bookmarkSaveDate.text = date
         binding.bookmarkTitle.text = title
         binding.bookmarkCaption.text = caption

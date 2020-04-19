@@ -1,8 +1,14 @@
 package com.app.shared.data.capture
 
+import android.content.ContentValues
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.provider.MediaStore
 import org.jsoup.Jsoup
 
-class AndroidDataProcess: RawDataProcess {
+class AndroidDataProcess(private val context: Context): RawDataProcess {
 
     override fun process(capture: String?): RawDataProcess.Item {
         // if null, it's unknown
@@ -15,9 +21,40 @@ class AndroidDataProcess: RawDataProcess {
             return RawDataProcess.Item.Text(text = capture)
         }
 
-        // if it's image, leave it at that
+        // if it's image
         if (capture.isImage()) {
-            return RawDataProcess.Item.Image(url = capture)
+            // it's an image from the network
+            if (capture.isUrlImage()) {
+                return RawDataProcess.Item.Image(url = capture)
+            }
+
+            // it's a new content type image that must be read from disk
+            if (capture.isContentImage()) {
+                try {
+                    val uri = Uri.parse(capture)
+                    val resolver = context.contentResolver
+                    val inputStream = resolver.openInputStream(uri)
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+
+                    val values = ContentValues(1)
+                    values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+
+                    val outputUrl = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+
+                    val outputStream = resolver.openOutputStream(outputUrl!!)
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 95, outputStream)
+
+                    inputStream?.close()
+                    outputStream?.close()
+
+                    return RawDataProcess.Item.Image(url = outputUrl!!.toString())
+                } catch (e: Throwable) {
+                    return RawDataProcess.Item.Unknown
+                }
+            }
+
+            // not a known image type
+            return RawDataProcess.Item.Unknown
         }
 
         // else, is a link, so get details
@@ -41,6 +78,14 @@ class AndroidDataProcess: RawDataProcess {
 
     private fun String.isUrl(): Boolean {
         return this.startsWith("http://") || this.startsWith("https://") || this.startsWith("content://")
+    }
+
+    private fun String.isUrlImage(): Boolean {
+        return this.startsWith("http://") || this.startsWith("https://")
+    }
+
+    private fun String.isContentImage(): Boolean {
+        return this.startsWith("content://")
     }
 
     private fun String.isImage(): Boolean {
