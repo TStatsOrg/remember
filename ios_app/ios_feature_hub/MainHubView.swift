@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 import ios_dependencies
 import RememberShared
+import SDWebImageSwiftUI
 
 public struct MainHubView: View {
     
@@ -32,6 +33,7 @@ public struct MainHubView: View {
             }
         }
     }
+
     
     private func getCellType(state: BookmarkViewState) -> AnyView {
         guard let viewState = state.viewState else {
@@ -56,7 +58,11 @@ struct TextBookmarkView: View {
     let viewState: BookmarkTextViewState
     
     var body: some View {
-        Text(viewState.text)
+        VStack {
+            Text(viewState.text)
+            .padding()
+        }
+        .background(Color(UIColor.lightGray))
     }
 }
 
@@ -65,7 +71,14 @@ struct ImageBookmarkView: View {
     let viewState: BookmarkImageViewState
     
     var body: some View {
-        Text(viewState.url?.absoluteString ?? "N/A Image")
+        WebImage(url: viewState.url)
+            .placeholder {
+                Rectangle().foregroundColor(.gray)
+            }
+            .indicator(.activity) // Activity Indicator
+            .animation(.easeInOut(duration: 0.5)) // Animation Duration
+            .transition(.fade) // Fade Transition
+            .scaledToFit()
     }
 }
 
@@ -74,9 +87,12 @@ struct LinkBookmarkView: View {
     let viewState: BookmarkLinkViewState
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text(viewState.title ?? "")
+                .fontWeight(.bold)
             Text(viewState.caption ?? "")
+            Text(viewState.date)
+                .fontWeight(.light)
         }
     }
 }
