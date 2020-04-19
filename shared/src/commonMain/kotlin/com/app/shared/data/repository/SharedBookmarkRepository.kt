@@ -29,7 +29,7 @@ class SharedBookmarkRepository(
             val links = linkBookmarkDAO.getAll()
             val images = imageBookmarkDAO.getAll()
 
-            return@withContext (texts + links + images).sortedBy { it.date }
+            return@withContext (texts + links + images).sortedByDescending { it.date }
         }
     }
 }

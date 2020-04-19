@@ -27,12 +27,13 @@ class AndroidDataProcess: RawDataProcess {
             val description = document.head().select("meta[name=description]").first()?.attr("content")
             val firstImageSrc = document.head().select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
             val secondImageSrc = document.head().select("meta[itemprop=image]").first()?.attr("itemprop")
+            val thirdImageSrc = document.getElementsByTag("img")?.first()?.attr("href")
 
             RawDataProcess.Item.Link(
                 url = capture,
                 title = title,
                 description = description,
-                icon = firstImageSrc ?: secondImageSrc)
+                icon = firstImageSrc ?: secondImageSrc ?: thirdImageSrc)
         } catch (e: Throwable) {
             RawDataProcess.Item.Unknown
         }

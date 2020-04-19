@@ -8,7 +8,6 @@ import com.app.shared.data.capture.RawDataCapture
 import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 
 class PreviewActivity: AppCompatActivity() {
 
@@ -25,7 +24,23 @@ class PreviewActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.observePreviewState {
-            redraw(viewState = PreviewViewState(content = it))
+            val viewState = PreviewViewState(content = it)
+            redraw(viewState = viewState)
+
+//            val url: String? = viewState.resource as? String
+//
+//            val values = ContentValues(2)
+//            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+//            values.put(MediaStore.Images.Media.DATA, url)
+//            val contentUriFile: Uri? = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+//            MLogger.log("Content is $contentUriFile")
+//
+////            val abc: String = Environment.getExternalStorageDirectory().path
+//
+////            val file = contentUriFile?.toFile()
+//
+//            val file = Uri.fromFile(File(contentUriFile?.path))
+//            Glide.with(this).load(file).into(binding.linkImage)
         }
         viewModel.observeBookmarkSaved {
             navigator.seeMainHub(context = this)

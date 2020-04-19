@@ -9,6 +9,6 @@ class TextBookmarkViewHolder(
 
     override fun redraw(viewState: BookmarkViewState.Text) = with(viewState) {
         binding.bookmarkText.text = text
-        binding.bookmarkSaveDate.text = date
+//        binding.bookmarkSaveDate.text = date
     }
 }
