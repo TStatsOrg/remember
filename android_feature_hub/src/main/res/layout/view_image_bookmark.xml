@@ -8,14 +8,13 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bookmark_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        tools:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
-        android:background="@color/red_200"
         tools:background="@color/red_200"/>
 
     <androidx.appcompat.widget.AppCompatTextView
