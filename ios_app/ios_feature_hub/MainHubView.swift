@@ -48,7 +48,7 @@ public struct MainHubView: View {
         case let link as BookmarkLinkViewState:
             return AnyView(LinkBookmarkView(viewState: link))
         default:
-            return AnyView(Text("M/A"))
+            return AnyView(Text("N/A"))
         }
     }
 }

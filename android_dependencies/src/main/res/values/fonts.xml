@@ -38,7 +38,7 @@
     </style>
 
     <style name="TextAppearance.Remember.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
-        <!--Your custom type style here-->
+        <item name="fontFamily">@font/merriweather_lightitalic</item>
     </style>
 
     <style name="TextAppearance.Remember.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
@@ -50,7 +50,7 @@
     </style>
 
     <style name="TextAppearance.Remember.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
-        <!--Your custom type style here-->
+        <item name="fontFamily">@font/merriweather_bold</item>
     </style>
 
     <style name="TextAppearance.Remember.Body1" parent="TextAppearance.MaterialComponents.Body1">
@@ -66,10 +66,10 @@
     </style>
 
     <style name="TextAppearance.Remember.Caption" parent="TextAppearance.MaterialComponents.Caption">
-        <!--Your custom type style here-->
+        <item name="fontFamily">@font/merriweather_light</item>
     </style>
 
     <style name="TextAppearance.Remember.Overline" parent="TextAppearance.MaterialComponents.Overline">
-        <!--Your custom type style here-->
+        <item name="fontFamily">@font/merriweather_light</item>
     </style>
 </resources>
