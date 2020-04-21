@@ -71,14 +71,12 @@ struct ImageBookmarkView: View {
     let viewState: BookmarkImageViewState
     
     var body: some View {
-        WebImage(url: viewState.url)
-            .placeholder {
-                Rectangle().foregroundColor(.gray)
-            }
-            .indicator(.activity) // Activity Indicator
-            .animation(.easeInOut(duration: 0.5)) // Animation Duration
-            .transition(.fade) // Fade Transition
-            .scaledToFit()
+        VStack {
+            WebImage(url: self.viewState.url)
+                .resizable()
+                .frame(height: 300)
+                .clipped()
+        }
     }
 }
 
