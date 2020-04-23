@@ -21,8 +21,8 @@ target 'ios_app' do
   target 'ios_feature_preview' do
     inherit! :search_paths
 
-    # dependencies
-    pod 'SwiftSoup', '2.3.1'
+#    # dependencies
+#    pod 'SwiftSoup', '2.3.1'
   end
   
   target 'ios_feature_hub' do

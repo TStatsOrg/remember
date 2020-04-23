@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textAppearance="?attr/textAppearanceHeadline6"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
 
 <!--    <androidx.appcompat.widget.AppCompatTextView-->
