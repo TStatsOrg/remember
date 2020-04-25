@@ -15,6 +15,10 @@ import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dao.Database
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.SharedBookmarkRepository
+import com.app.shared.data.repository.SharedTopicsRepository
+import com.app.shared.data.repository.TopicsRepository
+import com.app.shared.feature.addtopic.AddTopicViewModel
+import com.app.shared.feature.addtopic.SharedAddTopicViewModel
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.feature.mainhub.SharedMainHubViewModel
 import com.app.shared.feature.preview.PreviewViewModel
@@ -47,6 +51,11 @@ class DependencyProvider(private val appContext: Context) {
                 textBookmarkDAO = (get() as Database).getTextBookmarkDAO()
             )
         }
+        single<TopicsRepository> {
+            SharedTopicsRepository(
+                topicDAO = (get() as Database).getTopicDAO()
+            )
+        }
 
         // view models
         factory<PreviewViewModel> {
@@ -62,6 +71,12 @@ class DependencyProvider(private val appContext: Context) {
                 store = get(),
                 calendar = get(),
                 bookmarkRepository = get())
+        }
+
+        factory<AddTopicViewModel> {
+            SharedAddTopicViewModel(
+                topicsRepository = get()
+            )
         }
 
         // adapters

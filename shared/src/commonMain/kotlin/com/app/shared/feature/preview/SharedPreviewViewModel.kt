@@ -58,7 +58,6 @@ class SharedPreviewViewModel(
         scope.launch(context = MainDispatcher) {
             temporaryDTO?.let {
                 bookmarkRepository.save(dto = it)
-                MLogger.log("GABBOX SAVE $it")
                 bookmarkSaved?.invoke()
             }
         }
