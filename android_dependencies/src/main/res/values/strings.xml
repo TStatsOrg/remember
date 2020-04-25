@@ -11,4 +11,9 @@
     <!-- topics feature -->
     <string name="topics_title">Topics</string>
     <string name="topics_add">Add</string>
+
+    <!-- add topic feature -->
+    <string name="topic_add_title">New topic</string>
+    <string name="topic_add_save">Save</string>
+    <string name="topic_input_placeholder">New topic name</string>
 </resources>

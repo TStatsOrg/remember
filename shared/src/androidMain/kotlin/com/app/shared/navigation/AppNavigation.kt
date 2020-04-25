@@ -5,4 +5,5 @@ import android.content.Context
 interface AppNavigation {
     fun seeMainHub(context: Context)
     fun seeTopicsList(context: Context)
+    fun seeAddTopic(context: Context)
 }

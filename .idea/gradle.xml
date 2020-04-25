@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/android_dependencies" />
             <option value="$PROJECT_DIR$/android_feature_hub" />
             <option value="$PROJECT_DIR$/android_feature_preview" />
+            <option value="$PROJECT_DIR$/android_feature_topic_add" />
             <option value="$PROJECT_DIR$/android_feature_topics" />
             <option value="$PROJECT_DIR$/shared" />
           </set>
