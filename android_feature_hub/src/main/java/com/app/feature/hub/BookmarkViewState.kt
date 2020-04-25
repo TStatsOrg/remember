@@ -1,7 +1,6 @@
 package com.app.feature.hub
 
 import android.net.Uri
-import android.view.View
 import com.app.shared.business.BookmarkState
 import java.text.SimpleDateFormat
 import java.util.*
@@ -19,37 +18,34 @@ sealed class BookmarkViewState(private val bookmark: BookmarkState) {
 
     data class Image(private val bookmark: BookmarkState.Image): BookmarkViewState(bookmark) {
         val url: Uri? = try { Uri.parse(bookmark.url) } catch (e: Throwable) { null }
+        val source: String = "Image"
+        val topic: String = "All topics"
     }
 
     data class Text(private val bookmark: BookmarkState.Text): BookmarkViewState(bookmark) {
         val text: String = bookmark.text
+        val source: String = "Clipped text"
+        val topic: String = "All topics"
     }
 
     data class Link(private val bookmark: BookmarkState.Link): BookmarkViewState(bookmark) {
         val title: String? = bookmark.title
 
-        val caption: String? = bookmark.caption
+        val source: String?
+            get() {
+                val url = try {
+                    Uri.parse(bookmark.url)
+                } catch (e: Throwable) {
+                    null
+                }
 
-        val icon: Uri? = bookmark.icon?.let {
-            try {
-                Uri.parse(it)
-            } catch (e: Throwable) {
-                null
+                return url?.host?.replaceProtocol()
             }
+
+        val topic: String = "All topics"
+
+        private fun String.replaceProtocol(): String {
+            return this.replace("http://", "").replace("https://", "")
         }
-
-        val iconVisibility: Int
-            get() {
-                val isNotNull = icon != null
-                val isNotEmpty = icon?.toString()?.isNotEmpty() ?: false
-                return if (isNotNull && isNotEmpty) View.VISIBLE else View.GONE
-            }
-
-        val captionVisibility: Int
-            get() {
-                val isNotNull = caption != null
-                val isNotEmpty = caption?.isNotEmpty() ?: false
-                return if (isNotNull && isNotEmpty) View.VISIBLE else View.GONE
-            }
     }
 }

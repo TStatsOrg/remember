@@ -11,9 +11,9 @@ import RememberShared
 import Realm
 import RealmSwift
 
-public class RealmLinkBookmarkDAO: LinkBookmarkDAO {
+public class RealmLinkBookmarkDAO: RealmDAO, LinkBookmarkDAO {
     
-    private let realm: Realm?
+    let realm: Realm?
     
     public init(realm: Realm?){
         self.realm = realm

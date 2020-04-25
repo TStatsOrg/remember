@@ -2,7 +2,9 @@ package com.app.feature.preview
 
 import com.app.shared.business.BookmarkState
 
-class PreviewViewState(content: BookmarkState) {
+class PreviewViewState(content: BookmarkState?) {
+
+    val isButtonEnabled = content != null
 
     val resource = when(content) {
         is BookmarkState.Text -> content.text

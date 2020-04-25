@@ -49,6 +49,9 @@
 		1BC2B081244781F700E73BB6 /* ios_dependencies.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BC2B0852447879200E73BB6 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; };
 		1BC2B0862447879200E73BB6 /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1BE01D3124520503000FC4AF /* RealmTopicDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D3024520503000FC4AF /* RealmTopicDTO.swift */; };
+		1BE01D33245205CD000FC4AF /* RealmTopicDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D32245205CD000FC4AF /* RealmTopicDAO.swift */; };
+		1BE01D3524520608000FC4AF /* RealmDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D3424520608000FC4AF /* RealmDAO.swift */; };
 		24209344639E693CE5F95890 /* Pods_ios_feature_hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BF821B877C970F9A4899AE /* Pods_ios_feature_hub.framework */; };
 		3889C007EC75333962CD00BB /* Pods_ios_app_tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A140D3B6C44D5A7C2D5C536 /* Pods_ios_app_tests.framework */; };
 		A50BC53D350C131955AEAC79 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A029FB2870657FBCF68C43 /* Pods_ios_app.framework */; };
@@ -215,6 +218,9 @@
 		1BC2B07B24464C9700E73BB6 /* RealmLinkBookmarkDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLinkBookmarkDAO.swift; sourceTree = "<group>"; };
 		1BC2B07E24464D1B00E73BB6 /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
 		1BC2B087244797BB00E73BB6 /* preview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = preview.entitlements; sourceTree = "<group>"; };
+		1BE01D3024520503000FC4AF /* RealmTopicDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTopicDTO.swift; sourceTree = "<group>"; };
+		1BE01D32245205CD000FC4AF /* RealmTopicDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTopicDAO.swift; sourceTree = "<group>"; };
+		1BE01D3424520608000FC4AF /* RealmDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDAO.swift; sourceTree = "<group>"; };
 		1CEAAA64881149E1EB6A6DF2 /* Pods-ios_app_uitests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_app_uitests.release.xcconfig"; path = "Target Support Files/Pods-ios_app_uitests/Pods-ios_app_uitests.release.xcconfig"; sourceTree = "<group>"; };
 		209B88ADE76F864D3F1BB738 /* Pods-Remember.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remember.release.xcconfig"; path = "Target Support Files/Pods-Remember/Pods-Remember.release.xcconfig"; sourceTree = "<group>"; };
 		2163C0AF5857DB3E3F1885A4 /* Pods-RememberTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RememberTests.release.xcconfig"; path = "Target Support Files/Pods-RememberTests/Pods-RememberTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -439,6 +445,7 @@
 				1BC2B0712446480B00E73BB6 /* RealmImageBookmarkDTO.swift */,
 				1BC2B0752446482000E73BB6 /* RealmTextBookmarkDTO.swift */,
 				1BC2B0732446481600E73BB6 /* RealmLinkBookmarkDTO.swift */,
+				1BE01D3024520503000FC4AF /* RealmTopicDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -446,10 +453,12 @@
 		1BC2B070244647F900E73BB6 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				1B874FB9244B2611001E3543 /* RealmDatabase.swift */,
+				1BE01D3424520608000FC4AF /* RealmDAO.swift */,
 				1BC2B077244649BB00E73BB6 /* RealmImageBookmarkDAO.swift */,
 				1BC2B07924464C1900E73BB6 /* RealmTextBookmarkDAO.swift */,
 				1BC2B07B24464C9700E73BB6 /* RealmLinkBookmarkDAO.swift */,
-				1B874FB9244B2611001E3543 /* RealmDatabase.swift */,
+				1BE01D32245205CD000FC4AF /* RealmTopicDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -962,12 +971,15 @@
 				1B874FBA244B2611001E3543 /* RealmDatabase.swift in Sources */,
 				1BC2B078244649BB00E73BB6 /* RealmImageBookmarkDAO.swift in Sources */,
 				1BC2B06A2446465D00E73BB6 /* ExtensionContextDataCapture.swift in Sources */,
+				1BE01D3124520503000FC4AF /* RealmTopicDTO.swift in Sources */,
 				1BC2B0742446481600E73BB6 /* RealmLinkBookmarkDTO.swift in Sources */,
 				1BC2B0722446480B00E73BB6 /* RealmImageBookmarkDTO.swift in Sources */,
 				1BC2B0762446482000E73BB6 /* RealmTextBookmarkDTO.swift in Sources */,
 				1BC2B0692446465D00E73BB6 /* iOSDataProcess.swift in Sources */,
 				1BC2B07F24464D1B00E73BB6 /* DependencyProvider.swift in Sources */,
 				1BC2B07C24464C9700E73BB6 /* RealmLinkBookmarkDAO.swift in Sources */,
+				1BE01D3524520608000FC4AF /* RealmDAO.swift in Sources */,
+				1BE01D33245205CD000FC4AF /* RealmTopicDAO.swift in Sources */,
 				1BC2B07A24464C1900E73BB6 /* RealmTextBookmarkDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

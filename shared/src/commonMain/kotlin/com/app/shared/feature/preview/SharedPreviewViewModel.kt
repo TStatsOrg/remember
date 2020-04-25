@@ -12,6 +12,7 @@ import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
 import com.app.shared.utils.CalendarUtils
+import com.app.shared.utils.MLogger
 import com.app.shared.utils.toDTO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
@@ -57,6 +58,7 @@ class SharedPreviewViewModel(
         scope.launch(context = MainDispatcher) {
             temporaryDTO?.let {
                 bookmarkRepository.save(dto = it)
+                MLogger.log("GABBOX SAVE $it")
                 bookmarkSaved?.invoke()
             }
         }

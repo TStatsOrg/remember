@@ -3,9 +3,8 @@ package com.app.dependencies.data.dao
 import com.app.dependencies.data.dto.RealmLinkBookmarkDTO
 import com.app.shared.data.dao.LinkBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
-import io.realm.Realm
 
-class RealmLinkBookmarkDAO(private val instance: () -> Realm): LinkBookmarkDAO {
+class RealmLinkBookmarkDAO(override val instance: RealmProvider): RealmDAO, LinkBookmarkDAO {
 
     override fun getAll(): List<BookmarkDTO.LinkBookmarkDTO> {
         val realm = instance()

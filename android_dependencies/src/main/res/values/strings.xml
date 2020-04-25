@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- general app -->
+    <string name="app_name">Remember</string>
+
+    <!-- main hub title -->
+    <string name="main_hub_title">Remember</string>
+    <string name="main_hub_edit">Edit</string>
+</resources>

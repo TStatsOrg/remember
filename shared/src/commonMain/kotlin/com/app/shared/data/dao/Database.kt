@@ -4,4 +4,5 @@ interface Database {
     fun getImageBookmarkDAO(): ImageBookmarkDAO
     fun getLinkBookmarkDAO(): LinkBookmarkDAO
     fun getTextBookmarkDAO(): TextBookmarkDAO
+    fun getTopicDAO(): TopicDAO
 }

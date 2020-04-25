@@ -10,4 +10,8 @@ class MainAppNavigation: AppNavigation {
         val intent = Intent(context, MainHubActivity::class.java)
         context.startActivity(intent)
     }
+
+    override fun seeTopicsList(context: Context) {
+
+    }
 }

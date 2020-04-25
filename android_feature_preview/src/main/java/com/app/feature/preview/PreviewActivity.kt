@@ -43,5 +43,6 @@ class PreviewActivity: AppCompatActivity() {
 
     private fun redraw(viewState: PreviewViewState) = with(viewState) {
         binding.textContent.text = "$resource"
+        binding.saveContentButton.isEnabled = isButtonEnabled
     }
 }
