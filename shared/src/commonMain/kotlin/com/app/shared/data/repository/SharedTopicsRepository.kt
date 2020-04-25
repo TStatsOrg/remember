@@ -17,7 +17,12 @@ class SharedTopicsRepository(
 
     override suspend fun load(): List<TopicDTO> {
         return withContext(context = IODispatcher) {
-            return@withContext topicDAO.getAll().sortedBy { it.name }
+            val userTopics = topicDAO.getAll().sortedBy { it.name }
+            val defaultTopic = getDefaultTopics()
+
+            return@withContext (defaultTopic + userTopics)
         }
     }
+
+    private fun getDefaultTopics() = listOf(TopicDTO.GeneralTopic())
 }
