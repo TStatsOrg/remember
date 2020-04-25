@@ -4,5 +4,6 @@
         android:id="@+id/edit_topics"
         android:title="@string/main_hub_edit"
         android:contentDescription="@string/main_hub_edit"
+        android:icon="@drawable/ic_baseline_edit_24"
         app:showAsAction="ifRoom" />
 </menu>
