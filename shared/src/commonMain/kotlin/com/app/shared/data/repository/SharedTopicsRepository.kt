@@ -3,6 +3,7 @@ package com.app.shared.data.repository
 import com.app.shared.coroutines.IODispatcher
 import com.app.shared.data.dao.TopicDAO
 import com.app.shared.data.dto.TopicDTO
+import com.app.shared.utils.MLogger
 import kotlinx.coroutines.withContext
 
 class SharedTopicsRepository(
@@ -20,7 +21,7 @@ class SharedTopicsRepository(
             val userTopics = topicDAO.getAll().sortedBy { it.name }
             val defaultTopic = getDefaultTopics()
 
-            return@withContext (defaultTopic + userTopics)
+            return@withContext (defaultTopic + userTopics).distinctBy { it.id }
         }
     }
 

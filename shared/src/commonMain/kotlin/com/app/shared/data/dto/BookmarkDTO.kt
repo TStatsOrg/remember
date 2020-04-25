@@ -3,6 +3,7 @@ package com.app.shared.data.dto
 interface BookmarkDTO {
     val id: Int
     val date: Long
+    val topic: TopicDTO?
 
     interface TextBookmarkDTO: BookmarkDTO {
         val text: String

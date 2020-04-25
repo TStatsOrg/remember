@@ -6,16 +6,19 @@ interface BookmarkState: State {
 
     val id: Int
     val date: Long
+    val topic: TopicState?
 
     data class Text(
         override val id: Int,
         override val date: Long,
+        override val topic: TopicState?,
         val text: String
     ) : BookmarkState
 
     data class Link(
         override val id: Int,
         override val date: Long,
+        override val topic: TopicState?,
         val url: String,
         val title: String?,
         val caption: String?,
@@ -25,12 +28,14 @@ interface BookmarkState: State {
     data class Image(
         override val id: Int,
         override val date: Long,
+        override val topic: TopicState?,
         val url: String
     ): BookmarkState
 
     data class Unsupported(
         override val id: Int,
-        override val date: Long
+        override val date: Long,
+        override val topic: TopicState?
     ): BookmarkState
 }
 

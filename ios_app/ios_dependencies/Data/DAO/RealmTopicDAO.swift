@@ -19,14 +19,13 @@ class RealmTopicDAO: RealmDAO, TopicDAO {
     }
     
     func insert(dto___ dto: TopicDTO) {
-        let model = RealmTopicDTO(id: dto.id, name: dto.name)
         try? realm?.write {
-            realm?.add(model)
+            realm?.add(dto.toObject())
         }
     }
     
     func getAll() -> [TopicDTO] {
-        let result = realm?.objects(RealmTopicDTO.self)
-        return result?.map { $0 } ?? []
+        let result = realm?.objects(RealmTopicObject.self)
+        return result?.map { $0 }.map { $0.toDTO() } ?? []
     }
 }

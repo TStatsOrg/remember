@@ -8,6 +8,7 @@ import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
@@ -44,7 +45,7 @@ class SharedPreviewViewModel(
             }
 
             // transform to DTO
-            val dto = data.toDTO(date = calendar.getTime())
+            val dto = data.toDTO(date = calendar.getTime(), topic = TopicDTO.GeneralTopic())
 
             // send action
             if (dto != null) {

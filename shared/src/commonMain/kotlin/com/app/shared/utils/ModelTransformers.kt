@@ -6,12 +6,13 @@ import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.dto.TopicDTO
 
-fun RawDataProcess.Item.toDTO(date: Long): BookmarkDTO? {
+fun RawDataProcess.Item.toDTO(date: Long, topic: TopicDTO? = null): BookmarkDTO? {
     return when(this) {
         is RawDataProcess.Item.Text -> object : BookmarkDTO.TextBookmarkDTO {
             override val text: String = this@toDTO.text
             override val id: Int = this@toDTO.hashCode()
             override val date: Long = date
+            override val topic: TopicDTO? = topic
         }
         is RawDataProcess.Item.Link -> object : BookmarkDTO.LinkBookmarkDTO {
             override val url: String = this@toDTO.url
@@ -20,11 +21,13 @@ fun RawDataProcess.Item.toDTO(date: Long): BookmarkDTO? {
             override val icon: String? = this@toDTO.icon
             override val id: Int = this@toDTO.url.hashCode()
             override val date: Long = date
+            override val topic: TopicDTO? = topic
         }
         is RawDataProcess.Item.Image -> object : BookmarkDTO.ImageBookmarkDTO {
             override val url: String = this@toDTO.url
             override val id: Int = this@toDTO.url.hashCode()
             override val date: Long = date
+            override val topic: TopicDTO? = topic
         }
         RawDataProcess.Item.Unknown -> null
     }
@@ -35,7 +38,8 @@ fun BookmarkDTO.toState(): BookmarkState {
         is BookmarkDTO.TextBookmarkDTO -> BookmarkState.Text(
             id = id,
             date = date,
-            text = text
+            text = text,
+            topic = topic?.toState()
         )
         is BookmarkDTO.LinkBookmarkDTO -> BookmarkState.Link(
             id = id,
@@ -43,16 +47,19 @@ fun BookmarkDTO.toState(): BookmarkState {
             url = url,
             title = title,
             caption = caption,
-            icon = icon
+            icon = icon,
+            topic = topic?.toState()
         )
         is BookmarkDTO.ImageBookmarkDTO -> BookmarkState.Image(
             id = id,
             date = date,
-            url = url
+            url = url,
+            topic = topic?.toState()
         )
         else -> BookmarkState.Unsupported(
             id = id,
-            date = date
+            date = date,
+            topic = topic?.toState()
         )
     }
 }

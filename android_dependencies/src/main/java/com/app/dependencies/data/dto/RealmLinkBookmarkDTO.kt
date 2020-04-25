@@ -11,5 +11,6 @@ open class RealmLinkBookmarkDTO(
     override var url: String = "",
     override var title: String? = null,
     override var caption: String? = null,
-    override var icon: String? = null
+    override var icon: String? = null,
+    override var topic: RealmTopicDTO? = null
 ) : RealmObject(), BookmarkDTO.LinkBookmarkDTO

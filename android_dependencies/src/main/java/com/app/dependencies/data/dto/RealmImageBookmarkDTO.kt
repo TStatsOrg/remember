@@ -8,5 +8,6 @@ open class RealmImageBookmarkDTO(
     @PrimaryKey
     override var id: Int = 0,
     override var date: Long = 0L,
-    override var url: String = ""
+    override var url: String = "",
+    override var topic: RealmTopicDTO? = null
 ) : RealmObject(), BookmarkDTO.ImageBookmarkDTO
