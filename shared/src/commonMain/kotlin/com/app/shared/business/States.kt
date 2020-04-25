@@ -40,7 +40,20 @@ data class SavedBookmarksState(
     val error: Throwable? = null
 ): State
 
+data class TopicState(
+    val id: Int,
+    val name: String
+): State
+
+data class TopicsState(
+    val date: Long = 0L,
+    val isLoading: Boolean = false,
+    val error: Throwable? = null,
+    val topics: List<TopicState> = listOf()
+)
+
 data class AppState(
     val bookmarks: SavedBookmarksState = SavedBookmarksState(),
-    val preview: BookmarkState? = null
+    val preview: BookmarkState? = null,
+    val topics: TopicsState = TopicsState()
 ): State

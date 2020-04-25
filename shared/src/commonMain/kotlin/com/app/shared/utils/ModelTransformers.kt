@@ -1,8 +1,10 @@
 package com.app.shared.utils
 
 import com.app.shared.business.BookmarkState
+import com.app.shared.business.TopicState
 import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.TopicDTO
 
 fun RawDataProcess.Item.toDTO(date: Long): BookmarkDTO? {
     return when(this) {
@@ -31,28 +33,32 @@ fun RawDataProcess.Item.toDTO(date: Long): BookmarkDTO? {
 fun BookmarkDTO.toState(): BookmarkState {
     return when(this) {
         is BookmarkDTO.TextBookmarkDTO -> BookmarkState.Text(
-            id = this.id,
-            date = this.date,
-            text = this.text
+            id = id,
+            date = date,
+            text = text
         )
         is BookmarkDTO.LinkBookmarkDTO -> BookmarkState.Link(
-            id = this.id,
-            date = this.date,
-            url = this.url,
-            title = this.title,
-            caption = this.caption,
-            icon = this.icon
+            id = id,
+            date = date,
+            url = url,
+            title = title,
+            caption = caption,
+            icon = icon
         )
         is BookmarkDTO.ImageBookmarkDTO -> BookmarkState.Image(
-            id = this.id,
-            date = this.date,
-            url = this.url
+            id = id,
+            date = date,
+            url = url
         )
         else -> BookmarkState.Unsupported(
-            id = this.id,
-            date = this.date
+            id = id,
+            date = date
         )
     }
 }
 
-fun List<BookmarkDTO>.toState(): List<BookmarkState> = this.map { it.toState() }
+fun List<BookmarkDTO>.toBookmarkState(): List<BookmarkState> = this.map { it.toState() }
+
+fun TopicDTO.toState(): TopicState = TopicState(id = id, name = name)
+
+fun List<TopicDTO>.toTopicState(): List<TopicState> = this.map { it.toState() }

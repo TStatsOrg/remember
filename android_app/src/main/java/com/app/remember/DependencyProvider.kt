@@ -6,6 +6,7 @@ import com.app.dependencies.data.dao.RealmDatabase
 import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.dependencies.data.utils.GlideImageLoader
 import com.app.feature.hub.BookmarksAdapter
+import com.app.feature.topics.TopicsAdapter
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
 import com.app.shared.data.capture.AndroidDataProcess
@@ -23,6 +24,8 @@ import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.feature.mainhub.SharedMainHubViewModel
 import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.feature.preview.SharedPreviewViewModel
+import com.app.shared.feature.topics.SharedTopicsViewModel
+import com.app.shared.feature.topics.TopicsViewModel
 import com.app.shared.navigation.AppNavigation
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
@@ -79,7 +82,16 @@ class DependencyProvider(private val appContext: Context) {
             )
         }
 
+        factory<TopicsViewModel> {
+            SharedTopicsViewModel(
+                store = get(),
+                calendar = get(),
+                topicsRepository = get()
+            )
+        }
+
         // adapters
-        single { BookmarksAdapter(imageLoader = get()) }
+        factory { BookmarksAdapter(imageLoader = get()) }
+        factory { TopicsAdapter() }
     }
 }

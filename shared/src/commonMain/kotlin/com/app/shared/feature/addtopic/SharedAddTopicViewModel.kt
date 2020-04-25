@@ -32,7 +32,7 @@ class SharedAddTopicViewModel(
         }
     }
 
-    override fun observeTopicsSaved(callback: () -> Unit) {
+    override fun observeTopicSaved(callback: () -> Unit) {
         observer = callback
     }
 }

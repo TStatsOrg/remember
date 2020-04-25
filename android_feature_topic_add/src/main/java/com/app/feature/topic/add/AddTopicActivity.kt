@@ -17,7 +17,7 @@ class AddTopicActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        viewModel.observeTopicsSaved {
+        viewModel.observeTopicSaved {
             finish()
         }
 
