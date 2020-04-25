@@ -7,6 +7,7 @@
     <!-- main hub feature -->
     <string name="main_hub_title">Remember</string>
     <string name="main_hub_edit">Edit</string>
+    <string name="main_hub_edit_done">Done</string>
 
     <!-- topics feature -->
     <string name="topics_title">Topics</string>

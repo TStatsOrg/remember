@@ -15,6 +15,8 @@ import com.app.feature.hub.viewholders.TextBookmarkViewHolder
 
 class BookmarksAdapter(private val imageLoader: AndroidImageLoader): RecyclerView.Adapter<BookmarkViewHolder<*>>() {
 
+    var listener: BookmarkViewHolder.Listener? = null
+
     private var viewState: List<BookmarkViewState> = listOf()
         set(value) {
             val result = DiffUtil.calculateDiff(BookmarkDif(field, value))
@@ -43,6 +45,12 @@ class BookmarksAdapter(private val imageLoader: AndroidImageLoader): RecyclerVie
 
     override fun onBindViewHolder(holder: BookmarkViewHolder<*>, position: Int) {
         (holder as? BookmarkViewHolder<BookmarkViewState>)?.redraw(viewState[position])
+        (holder as? BookmarkViewHolder<BookmarkViewState>)?.listener = listener
+    }
+
+    override fun onViewDetachedFromWindow(holder: BookmarkViewHolder<*>) {
+        super.onViewDetachedFromWindow(holder)
+        (holder as? BookmarkViewHolder<BookmarkViewState>)?.listener = null
     }
 
     fun redraw(viewState: BookmarksViewState) {

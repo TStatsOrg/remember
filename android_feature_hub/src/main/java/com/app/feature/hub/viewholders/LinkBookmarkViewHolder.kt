@@ -3,6 +3,7 @@ package com.app.feature.hub.viewholders
 import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.feature.hub.BookmarkViewState
 import com.app.feature.hub.databinding.ViewLinkBookmarkBinding
+import com.app.shared.utils.MLogger
 
 class LinkBookmarkViewHolder(
     private val binding: ViewLinkBookmarkBinding,
@@ -14,5 +15,14 @@ class LinkBookmarkViewHolder(
         binding.bookmarkTitle.text = title
         binding.bookmarkSource.text = source
         binding.bookmarkTopic.text = topic
+
+        binding.root.setOnClickListener {
+            listener?.onClick(viewState = viewState)
+        }
+
+        binding.root.setOnLongClickListener {
+            listener?.onLongClick(viewState = viewState)
+            true
+        }
     }
 }

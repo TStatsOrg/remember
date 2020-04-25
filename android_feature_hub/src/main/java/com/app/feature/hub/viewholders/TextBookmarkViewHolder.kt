@@ -12,5 +12,14 @@ class TextBookmarkViewHolder(
         binding.bookmarkSaveDate.text = date
         binding.bookmarkSource.text = source
         binding.bookmarkTopic.text = topic
+
+        binding.root.setOnClickListener {
+            listener?.onClick(viewState = viewState)
+        }
+
+        binding.root.setOnLongClickListener {
+            listener?.onLongClick(viewState = viewState)
+            true
+        }
     }
 }

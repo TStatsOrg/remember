@@ -1,12 +1,17 @@
 package com.app.feature.hub
 
 import android.os.Bundle
+import android.view.ActionMode
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.feature.hub.databinding.ViewMainhubBinding
+import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.navigation.AppNavigation
+import com.app.shared.utils.MLogger
 import org.koin.android.ext.android.inject
 
 class MainHubActivity: AppCompatActivity() {
@@ -28,6 +33,32 @@ class MainHubActivity: AppCompatActivity() {
         binding.bookmarksRecyclerView.adapter = adapter
         binding.bookmarksRecyclerView.layoutManager = layoutManager
         binding.bookmarksRecyclerView.itemAnimator = animator
+
+        adapter.listener = object : BookmarkViewHolder.Listener {
+            override fun onClick(viewState: BookmarkViewState) {
+                // navigate to view resource
+            }
+
+            override fun onLongClick(viewState: BookmarkViewState) {
+                startActionMode(object : ActionMode.Callback {
+                    override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+                        return false
+                    }
+
+                    override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+                        val inflater = mode?.menuInflater
+                        inflater?.inflate(R.menu.app_bar_edit_hub, menu)
+                        return true
+                    }
+
+                    override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
+
+                    override fun onDestroyActionMode(mode: ActionMode?) {
+
+                    }
+                })
+            }
+        }
 
         binding.topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
