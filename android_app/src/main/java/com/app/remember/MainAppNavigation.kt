@@ -3,6 +3,7 @@ package com.app.remember
 import android.content.Context
 import android.content.Intent
 import com.app.feature.hub.MainHubActivity
+import com.app.feature.topics.TopicsActivity
 import com.app.shared.navigation.AppNavigation
 
 class MainAppNavigation: AppNavigation {
@@ -12,6 +13,7 @@ class MainAppNavigation: AppNavigation {
     }
 
     override fun seeTopicsList(context: Context) {
-
+        val intent = Intent(context, TopicsActivity::class.java)
+        context.startActivity(intent)
     }
 }

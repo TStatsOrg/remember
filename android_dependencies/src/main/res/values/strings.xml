@@ -4,7 +4,11 @@
     <!-- general app -->
     <string name="app_name">Remember</string>
 
-    <!-- main hub title -->
+    <!-- main hub feature -->
     <string name="main_hub_title">Remember</string>
     <string name="main_hub_edit">Edit</string>
+
+    <!-- topics feature -->
+    <string name="topics_title">Topics</string>
+    <string name="topics_add">Add</string>
 </resources>
