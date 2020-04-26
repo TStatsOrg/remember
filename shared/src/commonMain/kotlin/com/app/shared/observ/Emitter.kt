@@ -46,3 +46,14 @@ fun <T, U> Observer<T>.map(func: (T) -> U): Observer<U> {
         }
     }
 }
+
+fun <T> Observer<T?>.filterNotNull(): Observer<T> {
+    return object : Observer<T> {
+        override fun observe(value: T) = Unit
+        override fun collect(callback: (T) -> Unit) {
+            this@filterNotNull.collect {
+                it?.let { callback(it) }
+            }
+        }
+    }
+}

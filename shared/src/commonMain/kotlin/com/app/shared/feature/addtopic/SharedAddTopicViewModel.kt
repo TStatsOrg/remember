@@ -6,6 +6,7 @@ import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.TopicsRepository
+import com.app.shared.observ.ObservableEmitter
 import com.app.shared.redux.Store
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -16,8 +17,7 @@ class SharedAddTopicViewModel(
 ): AddTopicViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
-
-    private var observer: (() -> Unit)? = null
+    private val emitter = ObservableEmitter<Boolean>()
 
     override fun addTopic(name: String) {
         scope.launch(context = MainDispatcher) {
@@ -33,11 +33,11 @@ class SharedAddTopicViewModel(
             store.dispatch(action = Actions.Topics.Add(topic = dto))
 
             // all done
-            observer?.invoke()
+            emitter.emit(value = true)
         }
     }
 
-    override fun observeTopicSaved(callback: () -> Unit) {
-        observer = callback
+    override fun observeTopicSaved(callback: (Boolean) -> Unit) {
+        emitter.observer().collect(callback = callback)
     }
 }

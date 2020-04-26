@@ -3,21 +3,19 @@ package com.app.shared.feature.editbookmark
 import com.app.shared.business.Actions
 import com.app.shared.business.AppState
 import com.app.shared.business.EditBookmarkState
-import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.TopicsRepository
+import com.app.shared.observ.ObservableEmitter
+import com.app.shared.observ.filterNotNull
+import com.app.shared.observ.map
 import com.app.shared.redux.Store
-import com.app.shared.redux.asFlow
+import com.app.shared.redux.toEmitter
 import com.app.shared.utils.CalendarUtils
 import com.app.shared.utils.copy
 import com.app.shared.utils.toDTO
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class SharedEditBookmarkViewModel(
@@ -28,8 +26,7 @@ class SharedEditBookmarkViewModel(
 ): EditBookmarkViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
-
-    private var callback: (() -> Unit)? = null
+    private val emitter = ObservableEmitter<Boolean>()
 
     override fun loadEditableBookmark(forId: Int) {
         scope.launch(context = MainDispatcher) {
@@ -65,24 +62,22 @@ class SharedEditBookmarkViewModel(
 
             newDTO?.let {
                 bookmarkRepository.save(dto = newDTO)
-                callback?.invoke()
+                emitter.emit(value = true)
             }
         }
     }
 
     override fun observeEditBookmarkState(callback: (EditBookmarkState) -> Unit) {
-        scope.launch(context = MainDispatcher) {
-            store.asFlow()
-                .flowOn(DefaultDispatcher)
-                .map { it.editBookmark }
-                .filterNotNull()
-                .collect {
-                    callback(it)
-                }
-        }
+        store.toEmitter()
+            .observer()
+            .map { it.editBookmark }
+            .filterNotNull()
+            .collect {
+                callback(it)
+            }
     }
 
-    override fun observeBookmarkSaved(callback: () -> Unit) {
-        this.callback = callback
+    override fun observeBookmarkSaved(callback: (Boolean) -> Unit) {
+        emitter.observer().collect(callback)
     }
 }
