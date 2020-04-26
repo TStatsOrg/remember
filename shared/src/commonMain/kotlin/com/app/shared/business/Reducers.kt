@@ -43,7 +43,8 @@ val AppStateReducer: Reducer<AppState> = { old, action ->
             val newTopic = listOf(action.topic.toState())
             val newTopics = (newTopic + existingTopics).distinctBy { it.id }
 
-            old.copy(topics = TopicsState(topics = newTopics))
+            old.copy(topics = TopicsState(topics = newTopics),
+                editBookmark = old.editBookmark?.copy(topics = newTopics))
         }
         else -> old
     }
