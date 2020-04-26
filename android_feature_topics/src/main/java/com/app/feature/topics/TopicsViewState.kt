@@ -7,4 +7,9 @@ class TopicsViewState(state: TopicsState) {
     private val isEditing = state.mode is TopicsState.Mode.Editing
 
     val topics: List<TopicViewState> = state.topics.map { TopicViewState(state = it, isEditing = isEditing) }
+
+    val editedBookmarkId = when(val mode = state.mode) {
+        is TopicsState.Mode.Editing -> mode.bookmarkId
+        else -> null
+    }
 }

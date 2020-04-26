@@ -45,6 +45,10 @@ class BookmarksAdapter(private val imageLoader: AndroidImageLoader): RecyclerVie
 
     override fun onBindViewHolder(holder: BookmarkViewHolder<*>, position: Int) {
         (holder as? BookmarkViewHolder<BookmarkViewState>)?.redraw(viewState[position])
+    }
+
+    override fun onViewAttachedToWindow(holder: BookmarkViewHolder<*>) {
+        super.onViewAttachedToWindow(holder)
         (holder as? BookmarkViewHolder<BookmarkViewState>)?.listener = listener
     }
 

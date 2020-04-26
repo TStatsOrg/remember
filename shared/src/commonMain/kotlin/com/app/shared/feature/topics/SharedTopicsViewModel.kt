@@ -48,6 +48,14 @@ class SharedTopicsViewModel(
         }
     }
 
+    override fun update(bookmark: Int, withTopic: Int) {
+        scope.launch(context = MainDispatcher) {
+            val newTopicForBookmark = store.state.topics.topics.firstOrNull { it.id == withTopic }
+            val currentBookmark = store.state.bookmarks.bookmarks.firstOrNull { it.id == bookmark }
+
+        }
+    }
+
     override fun observeTopicState(callback: (TopicsState) -> Unit) {
         scope.launch(context = MainDispatcher) {
             store.asFlow()
