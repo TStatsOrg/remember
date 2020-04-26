@@ -10,15 +10,14 @@ import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.BookmarkRepository
+import com.app.shared.observ.ObservableEmitter
+import com.app.shared.observ.filterNotNull
+import com.app.shared.observ.map
 import com.app.shared.redux.Store
-import com.app.shared.redux.asFlow
+import com.app.shared.redux.toEmitter
 import com.app.shared.utils.CalendarUtils
-import com.app.shared.utils.MLogger
 import com.app.shared.utils.toDTO
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -29,10 +28,10 @@ class SharedPreviewViewModel(
     private val processor: RawDataProcess
 ): PreviewViewModel {
 
-    private var bookmarkSaved: ((Int) -> Unit)? = null
     private var temporaryDTO: BookmarkDTO? = null
 
     private val scope: CoroutineScope = provideViewModelScope()
+    private val emitter = ObservableEmitter<Int>()
 
     override fun clear() = store.dispatch(action = Actions.Bookmark.Preview.Reset)
 
@@ -59,23 +58,20 @@ class SharedPreviewViewModel(
         scope.launch(context = MainDispatcher) {
             temporaryDTO?.let {
                 bookmarkRepository.save(dto = it)
-                bookmarkSaved?.invoke(it.id)
+                emitter.emit(value = it.id)
             }
         }
     }
 
     override fun observePreviewState(callback: (BookmarkState) -> Unit) {
-        scope.launch(context = MainDispatcher) {
-            store.asFlow()
-                .flowOn(context = DefaultDispatcher)
-                .mapNotNull { it.preview }
-                .collect {
-                    callback(it)
-                }
-        }
+        store.toEmitter()
+            .observer()
+            .map { it.preview }
+            .filterNotNull()
+            .collect(callback)
     }
 
     override fun observeBookmarkSaved(callback: (Int) -> Unit) {
-        bookmarkSaved = callback
+        emitter.observer().collect(callback)
     }
 }

@@ -42,6 +42,16 @@ class EditBookmarkActivity: AppCompatActivity() {
             viewModel.save()
         }
 
+        binding.topAppBar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.topics -> {
+                    navigator.seeTopicsList(context = this)
+                    true
+                }
+                else -> false
+            }
+        }
+
         binding.topicsRecyclerView.adapter = adapter
         binding.topicsRecyclerView.layoutManager = layoutManager
         binding.topicsRecyclerView.itemAnimator = animator

@@ -1,9 +1,6 @@
 package com.app.feature.hub
 
 import android.os.Bundle
-import android.view.ActionMode
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,27 +33,30 @@ class MainHubActivity: AppCompatActivity() {
         adapter.listener = object : BookmarkViewHolder.Listener {
 
             override fun onTopicClick(viewState: BookmarkViewState) {
-                navigation.seeEditBookmark(context = this@MainHubActivity, forEditingBookmark = viewState.id)
+                navigation.seeEditBookmark(
+                    context = this@MainHubActivity,
+                    forEditingBookmark = viewState.id
+                )
             }
 
             override fun onLongClick(viewState: BookmarkViewState) {
-                startActionMode(object : ActionMode.Callback {
-                    override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-                        return false
-                    }
-
-                    override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-                        val inflater = mode?.menuInflater
-                        inflater?.inflate(R.menu.app_bar_edit_hub, menu)
-                        return true
-                    }
-
-                    override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
-
-                    override fun onDestroyActionMode(mode: ActionMode?) {
-
-                    }
-                })
+//                startActionMode(object : ActionMode.Callback {
+//                    override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+//                        return false
+//                    }
+//
+//                    override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+//                        val inflater = mode?.menuInflater
+//                        inflater?.inflate(R.menu.app_bar_edit_hub, menu)
+//                        return true
+//                    }
+//
+//                    override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
+//
+//                    override fun onDestroyActionMode(mode: ActionMode?) {
+//
+//                    }
+//                })
             }
         }
 
@@ -73,7 +73,10 @@ class MainHubActivity: AppCompatActivity() {
         viewModel.observeBookmarkState {
             adapter.redraw(viewState = BookmarksViewState(state = it))
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         viewModel.loadBookmarks()
     }
 }

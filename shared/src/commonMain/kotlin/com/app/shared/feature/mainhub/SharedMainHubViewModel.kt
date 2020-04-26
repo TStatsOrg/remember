@@ -3,16 +3,13 @@ package com.app.shared.feature.mainhub
 import com.app.shared.business.Actions
 import com.app.shared.business.AppState
 import com.app.shared.business.BookmarkState
-import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.repository.BookmarkRepository
+import com.app.shared.observ.map
 import com.app.shared.redux.Store
-import com.app.shared.redux.asFlow
+import com.app.shared.redux.toEmitter
 import com.app.shared.utils.CalendarUtils
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class SharedMainHubViewModel(
@@ -35,13 +32,9 @@ class SharedMainHubViewModel(
     }
 
     override fun observeBookmarkState(callback: (List<BookmarkState>) -> Unit) {
-        scope.launch(context = MainDispatcher) {
-            store.asFlow()
-                .flowOn(DefaultDispatcher)
-                .map { it.bookmarks.bookmarks }
-                .collect {
-                    callback(it)
-                }
-        }
+        store.toEmitter().observer()
+            .map { it.bookmarks }
+            .map { it.bookmarks }
+            .collect(callback)
     }
 }

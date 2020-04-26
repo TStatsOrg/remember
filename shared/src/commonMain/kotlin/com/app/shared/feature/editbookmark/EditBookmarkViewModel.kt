@@ -8,5 +8,5 @@ interface EditBookmarkViewModel {
     fun update(bookmark: Int, withTopic: Int)
     fun save()
     fun observeEditBookmarkState(callback: (EditBookmarkState) -> Unit)
-    fun observeBookmarkSaved(callback: () -> Unit)
+    fun observeBookmarkSaved(callback: (Boolean) -> Unit)
 }

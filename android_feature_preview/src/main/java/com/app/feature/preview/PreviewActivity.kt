@@ -30,6 +30,7 @@ class PreviewActivity: AppCompatActivity() {
 
         viewModel.observeBookmarkSaved {
             navigator.seeEditBookmark(context = this, forEditingBookmark = it)
+            finish()
         }
 
         binding.saveContentButton.setOnClickListener {
