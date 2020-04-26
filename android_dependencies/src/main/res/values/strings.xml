@@ -20,4 +20,5 @@
 
     <!-- edit bookmark -->
     <string name="bookmark_edit_title">Edit bookmark</string>
+    <string name="bookmark_edit_topics">Topics</string>
 </resources>
