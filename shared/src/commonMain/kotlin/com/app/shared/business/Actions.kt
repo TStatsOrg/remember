@@ -23,7 +23,12 @@ sealed class Actions: Action {
 
         sealed class Load: Topics() {
             data class Start(val time: Long): Load()
-            data class Success(val time: Long, val topics: List<TopicDTO>): Load()
+            sealed class Success: Load() {
+                data class ForViewing(val time: Long, val topics: List<TopicDTO>): Success()
+                data class ForEditing(val time: Long, val topics: List<TopicDTO>, val bookmarkId: Int): Success()
+            }
+
+//            data class Success(val time: Long, val topics: List<TopicDTO>): Load()
             data class Error(val time: Long, val error: Throwable): Load()
         }
     }

@@ -4,5 +4,7 @@ import com.app.shared.business.TopicsState
 
 class TopicsViewState(state: TopicsState) {
 
-    val topics: List<TopicViewState> = state.topics.map { TopicViewState(state = it) }
+    private val isEditing = state.mode is TopicsState.Mode.Editing
+
+    val topics: List<TopicViewState> = state.topics.map { TopicViewState(state = it, isEditing = isEditing) }
 }

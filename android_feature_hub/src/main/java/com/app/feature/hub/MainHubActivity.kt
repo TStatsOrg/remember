@@ -11,7 +11,6 @@ import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.navigation.AppNavigation
-import com.app.shared.utils.MLogger
 import org.koin.android.ext.android.inject
 
 class MainHubActivity: AppCompatActivity() {
@@ -35,8 +34,9 @@ class MainHubActivity: AppCompatActivity() {
         binding.bookmarksRecyclerView.itemAnimator = animator
 
         adapter.listener = object : BookmarkViewHolder.Listener {
-            override fun onClick(viewState: BookmarkViewState) {
-                // navigate to view resource
+
+            override fun onTopicClick(viewState: BookmarkViewState) {
+                navigation.seeTopicsList(context = this@MainHubActivity, forEditingBookmark = viewState.id)
             }
 
             override fun onLongClick(viewState: BookmarkViewState) {

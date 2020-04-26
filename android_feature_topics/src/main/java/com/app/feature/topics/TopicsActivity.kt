@@ -16,8 +16,13 @@ class TopicsActivity: AppCompatActivity() {
     private val adapter: TopicsAdapter by inject()
     private val layoutManager = LinearLayoutManager(this)
     private val animator = DefaultItemAnimator()
+
     private val binding by lazy {
         ViewTopicsBinding.inflate(layoutInflater)
+    }
+
+    private val bookmarkId by lazy {
+        intent.extras?.getInt(AppNavigation.BOOKMARK_ID)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +48,6 @@ class TopicsActivity: AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadTopics()
+        viewModel.loadTopics(forBookmarkId = bookmarkId)
     }
 }

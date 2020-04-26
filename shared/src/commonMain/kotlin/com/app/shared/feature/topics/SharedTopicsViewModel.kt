@@ -24,7 +24,7 @@ class SharedTopicsViewModel(
 
     private val scope: CoroutineScope = provideViewModelScope()
 
-    override fun loadTopics() {
+    override fun loadTopics(forBookmarkId: Int?) {
         scope.launch(context = MainDispatcher) {
 
             // start load
@@ -34,7 +34,17 @@ class SharedTopicsViewModel(
             val dtos = topicsRepository.load()
 
             // send to store
-            store.dispatch(action = Actions.Topics.Load.Success(time = calendar.getTime(), topics = dtos))
+            when (forBookmarkId) {
+                is Int -> store.dispatch(action = Actions.Topics.Load.Success.ForEditing(
+                    time = calendar.getTime(),
+                    topics = dtos,
+                    bookmarkId = forBookmarkId
+                ))
+                else -> store.dispatch(action = Actions.Topics.Load.Success.ForViewing(
+                    time = calendar.getTime(),
+                    topics = dtos
+                ))
+            }
         }
     }
 

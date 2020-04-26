@@ -11,7 +11,7 @@ abstract class BookmarkViewHolder<ViewState: BookmarkViewState>(initialView: Vie
     abstract fun redraw(viewState: ViewState)
 
     interface Listener {
-        fun onClick(viewState: BookmarkViewState)
+        fun onTopicClick(viewState: BookmarkViewState)
         fun onLongClick(viewState: BookmarkViewState)
     }
 }

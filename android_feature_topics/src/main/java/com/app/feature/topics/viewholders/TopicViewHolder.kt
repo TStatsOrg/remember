@@ -10,5 +10,6 @@ class TopicViewHolder(
 
     fun redraw(viewState: TopicViewState) = with(viewState) {
         binding.topicName.text = name
+        binding.topicCheckMark.visibility = checkMarkVisibility
     }
 }

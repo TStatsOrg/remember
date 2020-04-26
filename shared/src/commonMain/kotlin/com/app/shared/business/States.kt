@@ -47,15 +47,22 @@ data class SavedBookmarksState(
 
 data class TopicState(
     val id: Int,
-    val name: String
+    val name: String,
+    val isSelected: Boolean = false
 ): State
 
 data class TopicsState(
     val date: Long = 0L,
     val isLoading: Boolean = false,
     val error: Throwable? = null,
-    val topics: List<TopicState> = listOf()
-)
+    val topics: List<TopicState> = listOf(),
+    val mode: Mode = Mode.Viewing
+) {
+    sealed class Mode {
+        object Viewing: Mode()
+        data class Editing(val bookmarkId: Int): Mode()
+    }
+}
 
 data class AppState(
     val bookmarks: SavedBookmarksState = SavedBookmarksState(),

@@ -15,8 +15,8 @@ class ImageBookmarkViewHolder(
         binding.bookmarkSource.text = source
         binding.bookmarkTopic.text = topic
 
-        binding.root.setOnClickListener {
-            listener?.onClick(viewState = viewState)
+        binding.bookmarkTopic.setOnClickListener {
+            listener?.onTopicClick(viewState = viewState)
         }
 
         binding.root.setOnLongClickListener {
