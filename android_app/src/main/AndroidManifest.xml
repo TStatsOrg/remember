@@ -14,13 +14,21 @@
         android:supportsRtl="true"
         android:name=".MyApplication"
         android:theme="@style/Theme.Remember">
-        <activity android:name="com.app.feature.hub.MainHubActivity">
+
+        <activity android:name="com.app.feature.hub.MainHubActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.app.feature.preview.PreviewActivity">
+
+        <activity android:name="com.app.feature.topics.TopicsActivity"/>
+        <activity android:name="com.app.feature.topic.add.AddTopicActivity"/>
+        <activity android:name="com.app.feature.bookmark.edit.EditBookmarkActivity"/>
+
+        <activity android:name="com.app.feature.preview.PreviewActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
                 <category android:name="android.intent.category.DEFAULT"/>

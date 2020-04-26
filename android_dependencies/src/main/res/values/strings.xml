@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- general app -->
+    <string name="app_name">Remember</string>
+
+    <!-- main hub feature -->
+    <string name="main_hub_title">Remember</string>
+    <string name="main_hub_edit">Edit</string>
+    <string name="main_hub_edit_done">Done</string>
+
+    <!-- topics feature -->
+    <string name="topics_title">Topics</string>
+    <string name="topics_add">Add</string>
+
+    <!-- add topic feature -->
+    <string name="topic_add_title">New topic</string>
+    <string name="topic_add_save">Save</string>
+    <string name="topic_input_placeholder">New topic name</string>
+
+    <!-- edit bookmark -->
+    <string name="bookmark_edit_title">Edit bookmark</string>
+</resources>

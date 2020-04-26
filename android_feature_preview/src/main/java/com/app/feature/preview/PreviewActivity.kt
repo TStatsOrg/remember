@@ -29,7 +29,7 @@ class PreviewActivity: AppCompatActivity() {
         }
 
         viewModel.observeBookmarkSaved {
-            navigator.seeMainHub(context = this)
+            navigator.seeEditBookmark(context = this, forEditingBookmark = it)
         }
 
         binding.saveContentButton.setOnClickListener {
@@ -43,5 +43,6 @@ class PreviewActivity: AppCompatActivity() {
 
     private fun redraw(viewState: PreviewViewState) = with(viewState) {
         binding.textContent.text = "$resource"
+        binding.saveContentButton.isEnabled = isButtonEnabled
     }
 }

@@ -1,11 +1,11 @@
 package com.app.dependencies.data.dao
 
 import com.app.dependencies.data.dto.RealmImageBookmarkDTO
+import com.app.dependencies.data.dto.RealmTopicDTO
 import com.app.shared.data.dao.ImageBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
-import io.realm.Realm
 
-class RealmImageBookmarkDAO(private val instance: () -> Realm): ImageBookmarkDAO {
+class RealmImageBookmarkDAO(override val instance: RealmProvider): RealmDAO, ImageBookmarkDAO {
 
     override fun getAll(): List<BookmarkDTO.ImageBookmarkDTO> {
         val realm = instance()
@@ -15,7 +15,13 @@ class RealmImageBookmarkDAO(private val instance: () -> Realm): ImageBookmarkDAO
 
     override fun insert(dto: BookmarkDTO.ImageBookmarkDTO) {
         val realm = instance()
-        val roomDTO = RealmImageBookmarkDTO(id = dto.id, date = dto.date, url = dto.url)
+
+        val topicDTO = dto.topic?.let {
+            RealmTopicDTO(id = it.id, name = it.name)
+        }
+
+        val roomDTO = RealmImageBookmarkDTO(id = dto.id, date = dto.date, url = dto.url, topic = topicDTO)
+
         realm.beginTransaction()
         realm.insertOrUpdate(roomDTO)
         realm.commitTransaction()

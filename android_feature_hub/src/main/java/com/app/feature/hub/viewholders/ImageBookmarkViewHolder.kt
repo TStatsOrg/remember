@@ -12,5 +12,16 @@ class ImageBookmarkViewHolder(
     override fun redraw(viewState: BookmarkViewState.Image) = with(viewState) {
         loader.load(url, binding.bookmarkImage)
         binding.bookmarkSaveDate.text = date
+        binding.bookmarkSource.text = source
+        binding.bookmarkTopic.text = topic
+
+        binding.bookmarkTopic.setOnClickListener {
+            listener?.onTopicClick(viewState = viewState)
+        }
+
+        binding.root.setOnLongClickListener {
+            listener?.onLongClick(viewState = viewState)
+            true
+        }
     }
 }

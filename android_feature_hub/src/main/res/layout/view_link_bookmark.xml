@@ -7,30 +7,41 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/bookmark_topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/green_500"
+        tools:text="My bookmarks"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/bookmark_source"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        app:layout_constraintStart_toEndOf="@id/bookmark_topic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bookmark_title"
+        android:textAppearance="?attr/textAppearanceCaption"
+        tools:text="medium.com"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/bookmark_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="6dp"
         android:maxLines="3"
         android:ellipsize="end"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/bookmark_icon"
-        android:textAppearance="?attr/textAppearanceSubtitle2"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/bookmark_caption"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="6dp"
-        android:maxLines="2"
-        android:ellipsize="end"
-        app:layout_constraintTop_toBottomOf="@id/bookmark_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/bookmark_icon"
-        android:textAppearance="?attr/textAppearanceCaption"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_topic"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -40,17 +51,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="6dp"
         android:textAppearance="?attr/textAppearanceOverline"
-        app:layout_constraintTop_toBottomOf="@id/bookmark_caption"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Apr 2020"/>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/bookmark_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/red_200"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

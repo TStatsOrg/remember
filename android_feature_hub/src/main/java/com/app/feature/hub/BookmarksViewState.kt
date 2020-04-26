@@ -2,7 +2,7 @@ package com.app.feature.hub
 
 import com.app.shared.business.BookmarkState
 
-class BookmarksViewState(state: List<BookmarkState>) {
+data class BookmarksViewState(val state: List<BookmarkState>) {
 
     val title: String = "You have ${state.size} bookmarks"
 

@@ -11,23 +11,22 @@ import RememberShared
 import Realm
 import RealmSwift
 
-public class RealmLinkBookmarkDAO: LinkBookmarkDAO {
+public class RealmLinkBookmarkDAO: RealmDAO, LinkBookmarkDAO {
     
-    private let realm: Realm?
+    let realm: Realm?
     
     public init(realm: Realm?){
         self.realm = realm
     }
     
     public func insert(dto_ dto: BookmarkDTOLinkBookmarkDTO) {
-        let model = RealmLinkBookmarkDTO(id: dto.id, date: dto.date, url: dto.url, title: dto.title, icon: dto.icon, caption: dto.caption)
         try? realm?.write {
-            realm?.add(model)
+            realm?.add(dto.toObject())
         }
     }
     
     public func getAll() -> [BookmarkDTOLinkBookmarkDTO] {
-        let result = realm?.objects(RealmLinkBookmarkDTO.self)
-        return result?.map { $0 } ?? []
+        let result = realm?.objects(RealmLinkBookmarkObject.self)
+        return result?.map { $0 }.map { $0.toDTO() } ?? []
     }
 }

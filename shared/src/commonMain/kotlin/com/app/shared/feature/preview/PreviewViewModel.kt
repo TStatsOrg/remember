@@ -9,5 +9,5 @@ interface PreviewViewModel {
     fun save()
 
     fun observePreviewState(callback: (BookmarkState) -> Unit)
-    fun observeBookmarkSaved(callback: () -> Unit)
+    fun observeBookmarkSaved(callback: (Int) -> Unit)
 }
