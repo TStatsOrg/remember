@@ -24,9 +24,7 @@ class SharedTopicsViewModel(
 
     private val scope: CoroutineScope = provideViewModelScope()
 
-//    private var observer: (() -> Unit)? = null
-
-    override fun loadTopics(forBookmarkId: Int?) {
+    override fun loadTopics() {
         scope.launch(context = MainDispatcher) {
 
             // start load
@@ -66,8 +64,4 @@ class SharedTopicsViewModel(
                 }
         }
     }
-
-//    override fun observeBookmarkUpdated(callback: () -> Unit) {
-//        observer = callback
-//    }
 }

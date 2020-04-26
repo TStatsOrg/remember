@@ -19,9 +19,8 @@ sealed class Actions: Action {
             data class Error(val time: Long, val error: Throwable): Load()
         }
 
-        sealed class Update : Bookmark() {
-            data class Topic(val bookmarkId: Int, val topicId: Int): Update()
-        }
+        data class Edit(val bookmarkId: Int): Bookmark()
+        data class Update(val state: BookmarkState): Bookmark()
     }
 
     sealed class Topics: Actions() {

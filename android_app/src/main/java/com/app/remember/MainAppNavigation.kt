@@ -2,6 +2,7 @@ package com.app.remember
 
 import android.content.Context
 import android.content.Intent
+import com.app.feature.bookmark.edit.EditBookmarkActivity
 import com.app.feature.hub.MainHubActivity
 import com.app.feature.topic.add.AddTopicActivity
 import com.app.feature.topics.TopicsActivity
@@ -20,8 +21,8 @@ class MainAppNavigation: AppNavigation {
         context.startActivity(intent)
     }
 
-    override fun seeTopicsList(context: Context, forEditingBookmark: Int) {
-        val intent = Intent(context, TopicsActivity::class.java).apply {
+    override fun seeEditBookmark(context: Context, forEditingBookmark: Int) {
+        val intent = Intent(context, EditBookmarkActivity::class.java).apply {
             putExtra(BOOKMARK_ID, forEditingBookmark)
         }
         context.startActivity(intent)

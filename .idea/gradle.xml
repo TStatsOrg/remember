@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android_app" />
             <option value="$PROJECT_DIR$/android_dependencies" />
+            <option value="$PROJECT_DIR$/android_feature_bookmark_edit" />
             <option value="$PROJECT_DIR$/android_feature_hub" />
             <option value="$PROJECT_DIR$/android_feature_preview" />
             <option value="$PROJECT_DIR$/android_feature_topic_add" />

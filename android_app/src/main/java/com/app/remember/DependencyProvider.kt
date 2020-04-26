@@ -5,6 +5,7 @@ import android.content.Intent
 import com.app.dependencies.data.dao.RealmDatabase
 import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.dependencies.data.utils.GlideImageLoader
+import com.app.feature.bookmark.edit.EditBookmarksAdapter
 import com.app.feature.hub.BookmarksAdapter
 import com.app.feature.topics.TopicsAdapter
 import com.app.shared.business.AppState
@@ -20,6 +21,8 @@ import com.app.shared.data.repository.SharedTopicsRepository
 import com.app.shared.data.repository.TopicsRepository
 import com.app.shared.feature.addtopic.AddTopicViewModel
 import com.app.shared.feature.addtopic.SharedAddTopicViewModel
+import com.app.shared.feature.editbookmark.EditBookmarkViewModel
+import com.app.shared.feature.editbookmark.SharedEditBookmarkViewModel
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.feature.mainhub.SharedMainHubViewModel
 import com.app.shared.feature.preview.PreviewViewModel
@@ -91,8 +94,18 @@ class DependencyProvider(private val appContext: Context) {
             )
         }
 
+        factory<EditBookmarkViewModel> {
+            SharedEditBookmarkViewModel(
+                store = get(),
+                calendar = get(),
+                bookmarkRepository = get(),
+                topicsRepository = get()
+            )
+        }
+
         // adapters
         factory { BookmarksAdapter(imageLoader = get()) }
         factory { TopicsAdapter() }
+        factory { EditBookmarksAdapter() }
     }
 }

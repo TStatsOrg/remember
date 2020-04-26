@@ -21,10 +21,6 @@ class TopicsActivity: AppCompatActivity() {
         ViewTopicsBinding.inflate(layoutInflater)
     }
 
-    private val bookmarkId by lazy {
-        intent.extras?.getInt(AppNavigation.BOOKMARK_ID)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -41,7 +37,7 @@ class TopicsActivity: AppCompatActivity() {
         binding.topicsRecyclerView.layoutManager = layoutManager
         binding.topicsRecyclerView.itemAnimator = animator
 
-        viewModel.loadTopics(forBookmarkId = bookmarkId)
+        viewModel.loadTopics()
     }
 
     private fun redraw(viewState: TopicsViewState) {

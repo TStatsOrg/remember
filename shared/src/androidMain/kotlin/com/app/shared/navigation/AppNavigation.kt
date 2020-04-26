@@ -10,6 +10,6 @@ interface AppNavigation {
 
     fun seeMainHub(context: Context)
     fun seeTopicsList(context: Context)
-    fun seeTopicsList(context: Context, forEditingBookmark: Int)
+    fun seeEditBookmark(context: Context, forEditingBookmark: Int)
     fun seeAddTopic(context: Context)
 }

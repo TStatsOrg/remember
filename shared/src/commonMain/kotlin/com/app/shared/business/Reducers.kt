@@ -16,17 +16,22 @@ val AppStateReducer: Reducer<AppState> = { old, action ->
         is Actions.Bookmark.Load.Success -> old.copy(bookmarks = BookmarksState(date = action.time, bookmarks = action.bookmarks.toBookmarkState()))
         is Actions.Bookmark.Load.Error -> old.copy(bookmarks = old.bookmarks.copy(error = action.error))
         // bookmark/update
-        is Actions.Bookmark.Update.Topic -> {
-            val newTopic = old.topics.topics.firstOrNull { it.id == action.topicId }
-            val newBookmarks = old.bookmarks.bookmarks.map {
-                if (it.id == action.bookmarkId) {
-                    it.copy(withTopic = newTopic)
-                } else {
-                    it
-                }
+        is Actions.Bookmark.Update -> {
+
+            val newBookmarks = old.bookmarks.bookmarks.map { if (it.id == action.state.id) action.state else it }
+
+            old.copy(bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
+                editBookmark = old.editBookmark?.copy(bookmark = action.state))
+        }
+        // bookmark/edit
+        is Actions.Bookmark.Edit -> {
+            val selectedBookmark = old.bookmarks.bookmarks.firstOrNull { it.id == action.bookmarkId }
+            val allTopics = old.topics.topics
+            val newEditBookmarkState = selectedBookmark?.let {
+                EditBookmarkState(bookmark = it, topics = allTopics)
             }
 
-            old.copy(bookmarks = old.bookmarks.copy(bookmarks = newBookmarks))
+            old.copy(editBookmark = newEditBookmarkState)
         }
         // topics/present
         is Actions.Topics.Load.Start -> old.copy(topics = TopicsState(date = action.time, isLoading = true))

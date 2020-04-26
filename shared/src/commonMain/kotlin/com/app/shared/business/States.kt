@@ -59,7 +59,7 @@ data class TopicsState(
 
 data class EditBookmarkState(
     val bookmark: BookmarkState,
-    val topics: List<TopicsState> = listOf()
+    val topics: List<TopicState> = listOf()
 )
 
 data class AppState(
