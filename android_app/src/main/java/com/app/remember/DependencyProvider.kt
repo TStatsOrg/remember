@@ -86,7 +86,8 @@ class DependencyProvider(private val appContext: Context) {
             SharedTopicsViewModel(
                 store = get(),
                 calendar = get(),
-                topicsRepository = get()
+                topicsRepository = get(),
+                bookmarkRepository = get()
             )
         }
 

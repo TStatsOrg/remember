@@ -34,6 +34,10 @@ class TopicsActivity: AppCompatActivity() {
             redraw(viewState = TopicsViewState(state = it))
         }
 
+        viewModel.observeBookmarkUpdated {
+            finish()
+        }
+
         binding.addTopicButton.setOnClickListener {
             navigator.seeAddTopic(context = this)
         }

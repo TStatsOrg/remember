@@ -8,4 +8,6 @@ interface TopicsViewModel {
     fun update(bookmark: Int, withTopic: Int)
 
     fun observeTopicState(callback: (TopicsState) -> Unit)
+
+    fun observeBookmarkUpdated(callback: () -> Unit)
 }

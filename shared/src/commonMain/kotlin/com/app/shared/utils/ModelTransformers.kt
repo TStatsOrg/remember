@@ -64,8 +64,49 @@ fun BookmarkDTO.toState(): BookmarkState {
     }
 }
 
+fun BookmarkState.toDTO(withTopic: TopicState? = null): BookmarkDTO? {
+    return when (this) {
+        is BookmarkState.Image -> object : BookmarkDTO.ImageBookmarkDTO {
+            override val url: String = this@toDTO.url
+            override val id: Int = this@toDTO.id
+            override val date: Long = this@toDTO.date
+            override val topic: TopicDTO? = withTopic?.toDTO() ?: this@toDTO.topic?.toDTO()
+        }
+        is BookmarkState.Text -> object : BookmarkDTO.TextBookmarkDTO {
+            override val text: String = this@toDTO.text
+            override val id: Int = this@toDTO.id
+            override val date: Long = this@toDTO.date
+            override val topic: TopicDTO? = withTopic?.toDTO() ?: this@toDTO.topic?.toDTO()
+        }
+        is BookmarkState.Link -> object : BookmarkDTO.LinkBookmarkDTO {
+            override val url: String = this@toDTO.url
+            override val title: String? = this@toDTO.title
+            override val caption: String? = this@toDTO.caption
+            override val icon: String? = this@toDTO.icon
+            override val id: Int = this@toDTO.id
+            override val date: Long = this@toDTO.date
+            override val topic: TopicDTO? = withTopic?.toDTO() ?: this@toDTO.topic?.toDTO()
+        }
+        else -> null
+    }
+}
+
+fun BookmarkState.copy(withTopic: TopicState?): BookmarkState {
+    return when (this) {
+        is BookmarkState.Image -> BookmarkState.Image(id = id, date = date, url = url, topic = withTopic)
+        is BookmarkState.Link -> BookmarkState.Link(id = id, url = url, title = title, caption = caption, icon = icon, date = date, topic = withTopic)
+        is BookmarkState.Text -> BookmarkState.Text(id = id, text = text, date = date, topic = withTopic)
+        else -> BookmarkState.Unsupported(id = id, date = date, topic = withTopic)
+    }
+}
+
 fun List<BookmarkDTO>.toBookmarkState(): List<BookmarkState> = this.map { it.toState() }
 
 fun TopicDTO.toState(): TopicState = TopicState(id = id, name = name)
+
+fun TopicState.toDTO(): TopicDTO = object : TopicDTO {
+    override val id: Int = this@toDTO.id
+    override val name: String = this@toDTO.name
+}
 
 fun List<TopicDTO>.toTopicState(): List<TopicState> = this.map { it.toState() }

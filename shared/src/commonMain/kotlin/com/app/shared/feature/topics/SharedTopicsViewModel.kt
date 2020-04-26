@@ -6,10 +6,12 @@ import com.app.shared.business.TopicsState
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
+import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.TopicsRepository
 import com.app.shared.redux.Store
 import com.app.shared.redux.asFlow
 import com.app.shared.utils.CalendarUtils
+import com.app.shared.utils.toDTO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
@@ -19,10 +21,13 @@ import kotlinx.coroutines.launch
 class SharedTopicsViewModel(
     private val store: Store<AppState>,
     private val calendar: CalendarUtils,
-    private val topicsRepository: TopicsRepository
+    private val topicsRepository: TopicsRepository,
+    private val bookmarkRepository: BookmarkRepository
 ): TopicsViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
+
+    private var observer: (() -> Unit)? = null
 
     override fun loadTopics(forBookmarkId: Int?) {
         scope.launch(context = MainDispatcher) {
@@ -51,8 +56,16 @@ class SharedTopicsViewModel(
     override fun update(bookmark: Int, withTopic: Int) {
         scope.launch(context = MainDispatcher) {
             val newTopicForBookmark = store.state.topics.topics.firstOrNull { it.id == withTopic }
+
             val currentBookmark = store.state.bookmarks.bookmarks.firstOrNull { it.id == bookmark }
 
+            val newBookmarkDTO = currentBookmark?.toDTO(withTopic = newTopicForBookmark)
+
+            newBookmarkDTO?.let {
+                store.dispatch(action = Actions.Bookmark.Update.Topic(bookmarkId = bookmark, topicId = withTopic))
+                bookmarkRepository.save(dto = newBookmarkDTO)
+                observer?.invoke()
+            }
         }
     }
 
@@ -65,5 +78,9 @@ class SharedTopicsViewModel(
                     callback(it)
                 }
         }
+    }
+
+    override fun observeBookmarkUpdated(callback: () -> Unit) {
+        observer = callback
     }
 }
