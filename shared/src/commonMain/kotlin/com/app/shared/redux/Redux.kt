@@ -2,6 +2,7 @@ package com.app.shared.redux
 
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
+import com.app.shared.observ.ObservableEmitter
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
@@ -26,6 +27,18 @@ class Store<S: State> (initialState: S, private val reducer: Reducer<S>) {
     }
 
     fun register(forResult: StoreResult<S>) = results.add(forResult)
+}
+
+/**
+ * Transform our normal store to an Emitter
+ */
+fun <S: State> Store<S>.toEmitter(): ObservableEmitter<S> {
+    val emitter = ObservableEmitter<S>()
+    this.register {
+        emitter.emit(value = it)
+    }
+
+    return emitter
 }
 
 /**
