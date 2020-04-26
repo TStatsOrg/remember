@@ -1,7 +1,6 @@
 package com.app.shared.business
 
 import com.app.shared.redux.Reducer
-import com.app.shared.utils.copy
 import com.app.shared.utils.toState
 import com.app.shared.utils.toTopicState
 import com.app.shared.utils.toBookmarkState
@@ -25,7 +24,9 @@ val AppStateReducer: Reducer<AppState> = { old, action ->
         }
         // bookmark/edit
         is Actions.Bookmark.Edit -> {
-            val selectedBookmark = old.bookmarks.bookmarks.firstOrNull { it.id == action.bookmarkId }
+            val selectedBookmarkFromExisting = old.bookmarks.bookmarks.firstOrNull { it.id == action.bookmarkId }
+            val selectedBookmarkFromPreview = old.preview
+            val selectedBookmark = selectedBookmarkFromExisting ?: selectedBookmarkFromPreview
             val allTopics = old.topics.topics
             val newEditBookmarkState = selectedBookmark?.let {
                 EditBookmarkState(bookmark = it, topics = allTopics)

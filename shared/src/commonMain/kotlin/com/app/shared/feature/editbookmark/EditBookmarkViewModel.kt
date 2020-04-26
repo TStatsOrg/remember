@@ -6,6 +6,7 @@ interface EditBookmarkViewModel {
 
     fun loadEditableBookmark(forId: Int)
     fun update(bookmark: Int, withTopic: Int)
+    fun save()
     fun observeEditBookmarkState(callback: (EditBookmarkState) -> Unit)
-    fun observeBookmarkUpdated(callback: () -> Unit)
+    fun observeBookmarkSaved(callback: () -> Unit)
 }

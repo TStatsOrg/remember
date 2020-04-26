@@ -13,7 +13,6 @@ import com.app.shared.redux.asFlow
 import com.app.shared.utils.CalendarUtils
 import com.app.shared.utils.copy
 import com.app.shared.utils.toDTO
-import io.ktor.client.features.cookies.AcceptAllCookiesStorage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filterNotNull
@@ -49,14 +48,23 @@ class SharedEditBookmarkViewModel(
     override fun update(bookmark: Int, withTopic: Int) {
         scope.launch(context = MainDispatcher) {
 
-            val bookmarkToEdit = store.state.bookmarks.bookmarks.first { it.id == bookmark }
+            val bookmarkToEdit = store.state.editBookmark?.bookmark
             val newTopic = store.state.topics.topics.first { it.id == withTopic }
-            val newState = bookmarkToEdit.copy(withTopic = newTopic)
-            val newDto = newState.toDTO()
+            val newState = bookmarkToEdit?.copy(withTopic = newTopic)
 
-            newDto?.let {
-                bookmarkRepository.save(dto = newDto)
+            newState?.let {
                 store.dispatch(action = Actions.Bookmark.Update(state = newState))
+            }
+        }
+    }
+
+    override fun save() {
+        scope.launch(context = MainDispatcher) {
+            val bookmarkToSave = store.state.editBookmark?.bookmark
+            val newDTO = bookmarkToSave?.toDTO()
+
+            newDTO?.let {
+                bookmarkRepository.save(dto = newDTO)
                 callback?.invoke()
             }
         }
@@ -74,7 +82,7 @@ class SharedEditBookmarkViewModel(
         }
     }
 
-    override fun observeBookmarkUpdated(callback: () -> Unit) {
+    override fun observeBookmarkSaved(callback: () -> Unit) {
         this.callback = callback
     }
 }

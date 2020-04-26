@@ -24,7 +24,7 @@ class PreviewViewController: UIViewController {
             print("State is \(state)")
         }
         
-        viewModel.observeBookmarkSaved {
+        viewModel.observeBookmarkSaved { bookmarkId in
             self.extensionContext?.completeRequest(returningItems: [])
         }
 

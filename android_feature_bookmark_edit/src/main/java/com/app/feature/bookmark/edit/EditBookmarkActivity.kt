@@ -34,12 +34,12 @@ class EditBookmarkActivity: AppCompatActivity() {
             redraw(viewState = EditBookmarkViewState(state = it))
         }
 
-        viewModel.observeBookmarkUpdated {
+        viewModel.observeBookmarkSaved {
             finish()
         }
 
-        binding.addTopicButton.setOnClickListener {
-            navigator.seeAddTopic(context = this)
+        binding.saveBookmark.setOnClickListener {
+            viewModel.save()
         }
 
         binding.topicsRecyclerView.adapter = adapter
