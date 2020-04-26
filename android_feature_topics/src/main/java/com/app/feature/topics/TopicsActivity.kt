@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.feature.topics.databinding.ViewTopicsBinding
-import com.app.feature.topics.viewholders.TopicViewHolder
 import com.app.shared.feature.topics.TopicsViewModel
 import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
@@ -34,10 +33,6 @@ class TopicsActivity: AppCompatActivity() {
             redraw(viewState = TopicsViewState(state = it))
         }
 
-        viewModel.observeBookmarkUpdated {
-            finish()
-        }
-
         binding.addTopicButton.setOnClickListener {
             navigator.seeAddTopic(context = this)
         }
@@ -45,22 +40,11 @@ class TopicsActivity: AppCompatActivity() {
         binding.topicsRecyclerView.adapter = adapter
         binding.topicsRecyclerView.layoutManager = layoutManager
         binding.topicsRecyclerView.itemAnimator = animator
+
+        viewModel.loadTopics(forBookmarkId = bookmarkId)
     }
 
     private fun redraw(viewState: TopicsViewState) {
         adapter.redraw(viewState = viewState.topics)
-
-        adapter.listener = object : TopicViewHolder.Listener {
-            override fun onTopicClick(id: Int) {
-                when (viewState.editedBookmarkId) {
-                    is Int -> viewModel.update(bookmark = viewState.editedBookmarkId, withTopic = id)
-                }
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadTopics(forBookmarkId = bookmarkId)
     }
 }
