@@ -39,6 +39,7 @@ dependencies {
 
     // local libraries
     implementation project(":shared")
+    implementation project(":android_dependencies")
 
     // glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
