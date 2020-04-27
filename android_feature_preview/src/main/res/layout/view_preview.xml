@@ -19,11 +19,19 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bookmarks_recycler_view"
+        android:id="@+id/previews_recycler_view"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/view_link_preview"
         tools:itemCount="1"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/save_content_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="end|bottom"
+        app:srcCompat="@drawable/ic_baseline_favorite_24"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
