@@ -4,8 +4,6 @@ import com.app.shared.business.BookmarkState
 
 data class BookmarksViewState(val state: List<BookmarkState>) {
 
-    val title: String = "You have ${state.size} bookmarks"
-
     val viewStates: List<BookmarkViewState> = state.mapNotNull {
         when (it) {
             is BookmarkState.Link -> BookmarkViewState.Link(bookmark = it)
