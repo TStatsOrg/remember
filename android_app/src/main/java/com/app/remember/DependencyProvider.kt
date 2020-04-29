@@ -5,6 +5,7 @@ import android.content.Intent
 import com.app.dependencies.data.dao.RealmDatabase
 import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.dependencies.data.utils.GlideImageLoader
+import com.app.dependencies.navigation.AppNavigation
 import com.app.feature.bookmark.edit.EditBookmarksAdapter
 import com.app.feature.hub.BookmarksAdapter
 import com.app.feature.preview.PreviewsAdapter
@@ -30,7 +31,6 @@ import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.feature.preview.SharedPreviewViewModel
 import com.app.shared.feature.topics.SharedTopicsViewModel
 import com.app.shared.feature.topics.TopicsViewModel
-import com.app.shared.navigation.AppNavigation
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
 import com.app.shared.utils.SystemCalendarUtils

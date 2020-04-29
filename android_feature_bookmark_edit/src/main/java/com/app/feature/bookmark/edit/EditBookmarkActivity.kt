@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.dependencies.navigation.AppNavigation
 import com.app.feature.bookmark.edit.databinding.ViewEditBookmarkBinding
 import com.app.feature.bookmark.edit.viewholders.SelectTopicViewHolder
 import com.app.shared.feature.editbookmark.EditBookmarkViewModel
-import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
 
 class EditBookmarkActivity: AppCompatActivity() {

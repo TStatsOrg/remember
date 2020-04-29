@@ -26,7 +26,8 @@ public struct MainHubView: View {
     public var body: some View {
         NavigationView {
             List(state.viewStates, rowContent: self.getCellType)
-            .navigationBarTitle(state.title)
+            .navigationBarTitle(Text(state.title), displayMode: NavigationBarItem.TitleDisplayMode.inline)
+            .navigationBarItems(trailing: Button("TOPICS", action: {}))
             .onAppear {
                 self.viewModel.observeBookmarkState(callback: self.update)
                 self.viewModel.loadBookmarks()

@@ -1,4 +1,4 @@
-package com.app.shared.navigation
+package com.app.dependencies.navigation
 
 import android.content.Context
 

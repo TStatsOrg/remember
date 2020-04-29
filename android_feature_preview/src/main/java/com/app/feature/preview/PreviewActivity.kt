@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.dependencies.navigation.AppNavigation
 import com.app.feature.preview.databinding.ViewPreviewBinding
 import com.app.shared.data.capture.RawDataCapture
 import com.app.shared.feature.preview.PreviewViewModel
-import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
 
 class PreviewActivity: AppCompatActivity() {

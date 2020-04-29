@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.dependencies.navigation.AppNavigation
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.shared.feature.mainhub.MainHubViewModel
-import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
 
 class MainHubActivity: AppCompatActivity() {
