@@ -9,11 +9,10 @@
 import Foundation
 import SwiftUI
 import ios_dependencies
+import ios_feature_topics
 
 class AppNavigation: Navigation {
-
-    
-//    override func seeTopicsList() -> some View {
-//        
-//    }
+    func seeTopicsList() -> AnyView {
+        return AnyView(TopicsView())
+    }
 }

@@ -15,6 +15,7 @@ import SDWebImageSwiftUI
 public struct MainHubView: View {
     
     @Injected var viewModel: MainHubViewModel
+    @Injected var navigation: Navigation
     @SwiftUI.State var state: BookmarksViewState = BookmarksViewState()
     
     public init() {}
@@ -27,7 +28,9 @@ public struct MainHubView: View {
         NavigationView {
             List(state.viewStates, rowContent: self.getCellType)
             .navigationBarTitle(Text(state.title), displayMode: NavigationBarItem.TitleDisplayMode.inline)
-            .navigationBarItems(trailing: Button("TOPICS", action: {}))
+            .navigationBarItems(trailing: NavigationLink(destination: navigation.seeTopicsList(), label: {
+                Text("Topics")
+            }))
             .onAppear {
                 self.viewModel.observeBookmarkState(callback: self.update)
                 self.viewModel.loadBookmarks()

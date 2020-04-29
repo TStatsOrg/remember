@@ -9,10 +9,6 @@
 import Foundation
 import SwiftUI
 
-open class Navigation {
-    
-    open func seeTopicsList() -> some View {
-        fatalError("Don't use this")
-        return Text("N/")
-    }
+public protocol Navigation {
+    func seeTopicsList() -> AnyView
 }
