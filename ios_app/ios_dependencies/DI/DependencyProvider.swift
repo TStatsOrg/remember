@@ -43,22 +43,4 @@ public class DependencyProvider {
         
         return component
     }
-    
-    private init() {
-        register { SystemCalendarUtils() as CalendarUtils }
-        register { ExtensionContextDataCapture() as RawDataCapture }
-        register { iOSDataProcess() as RawDataProcess }
-        register { ReduxKt.store }
-        register { RealmDatabase() as Database }
-        register { SharedBookmarkRepository(imageBookmarkDAO: (self.resolve() as Database).getImageBookmarkDAO(),
-                                            textBookmarkDAO: (self.resolve() as Database).getTextBookmarkDAO(),
-                                            linkBookmarkDAO: (self.resolve() as Database).getLinkBookmarkDAO()) as BookmarkRepository }
-        register { SharedPreviewViewModel(store: self.resolve(),
-                                          bookmarkRepository: self.resolve(),
-                                          calendar: self.resolve(),
-                                          processor: self.resolve()) as PreviewViewModel }
-        register { SharedMainHubViewModel(store: self.resolve(),
-                                          calendar: self.resolve(),
-                                          bookmarkRepository: self.resolve()) as MainHubViewModel }
-    }
 }
