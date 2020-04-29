@@ -7,6 +7,7 @@ import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.dependencies.data.utils.GlideImageLoader
 import com.app.feature.bookmark.edit.EditBookmarksAdapter
 import com.app.feature.hub.BookmarksAdapter
+import com.app.feature.preview.PreviewsAdapter
 import com.app.feature.topics.TopicsAdapter
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
@@ -105,6 +106,7 @@ class DependencyProvider(private val appContext: Context) {
 
         // adapters
         factory { BookmarksAdapter(imageLoader = get()) }
+        factory { PreviewsAdapter(imageLoader = get()) }
         factory { TopicsAdapter() }
         factory { EditBookmarksAdapter() }
     }
