@@ -4,15 +4,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.dependencies.navigation.Navigation
 import com.app.feature.topics.databinding.ViewTopicsBinding
 import com.app.shared.feature.topics.TopicsViewModel
-import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
 
 class TopicsActivity: AppCompatActivity() {
 
     private val viewModel: TopicsViewModel by inject()
-    private val navigator: AppNavigation by inject()
+    private val navigator: Navigation by inject()
     private val adapter: TopicsAdapter by inject()
     private val layoutManager = LinearLayoutManager(this)
     private val animator = DefaultItemAnimator()

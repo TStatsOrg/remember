@@ -10,7 +10,7 @@ import Foundation
 import RememberShared
 import RealmSwift
 
-class RealmDatabase: NSObject {
+public class RealmDatabase: NSObject {
     
     private static let GROUP_ID = "group.app.remember"
     private static let PATH_COMPONENT = "db.realm"
@@ -34,19 +34,19 @@ class RealmDatabase: NSObject {
 
 extension RealmDatabase: Database {
     
-    func getImageBookmarkDAO() -> ImageBookmarkDAO {
+    public func getImageBookmarkDAO() -> ImageBookmarkDAO {
         return RealmImageBookmarkDAO(realm: database)
     }
     
-    func getLinkBookmarkDAO() -> LinkBookmarkDAO {
+    public func getLinkBookmarkDAO() -> LinkBookmarkDAO {
         return RealmLinkBookmarkDAO(realm: database)
     }
     
-    func getTextBookmarkDAO() -> TextBookmarkDAO {
+    public func getTextBookmarkDAO() -> TextBookmarkDAO {
         return RealmTextBookmarkDAO(realm: database)
     }
     
-    func getTopicDAO() -> TopicDAO {
+    public func getTopicDAO() -> TopicDAO {
         return RealmTopicDAO(realm: database)
     }
 }

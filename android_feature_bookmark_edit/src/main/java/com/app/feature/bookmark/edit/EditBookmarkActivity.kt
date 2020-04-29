@@ -4,15 +4,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.dependencies.navigation.Navigation
 import com.app.feature.bookmark.edit.databinding.ViewEditBookmarkBinding
 import com.app.feature.bookmark.edit.viewholders.SelectTopicViewHolder
 import com.app.shared.feature.editbookmark.EditBookmarkViewModel
-import com.app.shared.navigation.AppNavigation
 import org.koin.android.ext.android.inject
 
 class EditBookmarkActivity: AppCompatActivity() {
 
-    private val navigator: AppNavigation by inject()
+    private val navigator: Navigation by inject()
     private val viewModel: EditBookmarkViewModel by inject()
     private val adapter: EditBookmarksAdapter by inject()
     private val layoutManager = LinearLayoutManager(this)
@@ -23,7 +23,7 @@ class EditBookmarkActivity: AppCompatActivity() {
     }
 
     private val bookmarkId by lazy {
-        intent.getIntExtra(AppNavigation.BOOKMARK_ID, -1)
+        intent.getIntExtra(Navigation.BOOKMARK_ID, -1)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
