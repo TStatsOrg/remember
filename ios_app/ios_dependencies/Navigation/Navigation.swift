@@ -11,4 +11,5 @@ import SwiftUI
 
 public protocol Navigation {
     func seeTopicsList() -> AnyView
+    func seeAddTopic() -> AnyView
 }

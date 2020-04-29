@@ -2,14 +2,14 @@ package com.app.remember
 
 import android.content.Context
 import android.content.Intent
-import com.app.dependencies.navigation.AppNavigation
-import com.app.dependencies.navigation.AppNavigation.Companion.BOOKMARK_ID
+import com.app.dependencies.navigation.Navigation
+import com.app.dependencies.navigation.Navigation.Companion.BOOKMARK_ID
 import com.app.feature.bookmark.edit.EditBookmarkActivity
 import com.app.feature.hub.MainHubActivity
 import com.app.feature.topic.add.AddTopicActivity
 import com.app.feature.topics.TopicsActivity
 
-class MainAppNavigation: AppNavigation {
+class AppNavigation: Navigation {
 
     override fun seeMainHub(context: Context) {
         val intent = Intent(context, MainHubActivity::class.java)

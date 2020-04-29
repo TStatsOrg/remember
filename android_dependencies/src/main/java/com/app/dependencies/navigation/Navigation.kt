@@ -2,7 +2,7 @@ package com.app.dependencies.navigation
 
 import android.content.Context
 
-interface AppNavigation {
+interface Navigation {
 
     companion object {
         const val BOOKMARK_ID = "bookmark_id"

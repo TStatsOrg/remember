@@ -7,7 +7,7 @@ import org.koin.core.context.startKoin
 class MyApplication: Application() {
 
     private val provider by lazy {
-        DependencyProvider(appContext = this)
+        AppDependencyProvider(appContext = this)
     }
 
     override fun onCreate() {

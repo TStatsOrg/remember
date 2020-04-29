@@ -24,7 +24,9 @@ public struct TopicsView: View {
             Text("\(content.name)")
         })
         .navigationBarTitle(Text("Topics"))
-        .navigationBarItems(trailing: Text("Add"))
+        .navigationBarItems(trailing: NavigationLink(destination: navigation.seeAddTopic(), label: {
+            Text("Add")
+        }))
         .onAppear {
             self.viewModel.observeTopicState(callback: self.update)
             self.viewModel.loadTopics()

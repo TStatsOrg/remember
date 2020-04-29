@@ -55,5 +55,10 @@ extension DependencyProvider {
                                   calendar: self.resolve(),
                                   topicsRepository: self.resolve()) as TopicsViewModel
         }
+        
+        register {
+            SharedAddTopicViewModel(store: self.resolve(),
+                                    topicsRepository: self.resolve()) as AddTopicViewModel
+        }
     }
 }

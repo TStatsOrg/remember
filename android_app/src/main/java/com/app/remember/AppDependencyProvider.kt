@@ -5,7 +5,7 @@ import android.content.Intent
 import com.app.dependencies.data.dao.RealmDatabase
 import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.dependencies.data.utils.GlideImageLoader
-import com.app.dependencies.navigation.AppNavigation
+import com.app.dependencies.navigation.Navigation
 import com.app.feature.bookmark.edit.EditBookmarksAdapter
 import com.app.feature.hub.BookmarksAdapter
 import com.app.feature.preview.PreviewsAdapter
@@ -36,13 +36,13 @@ import com.app.shared.utils.CalendarUtils
 import com.app.shared.utils.SystemCalendarUtils
 import org.koin.dsl.module
 
-class DependencyProvider(private val appContext: Context) {
+class AppDependencyProvider(private val appContext: Context) {
 
     val module = module {
         // general
         single { Store(initialState = AppState(), reducer = AppStateReducer) }
         single<Database> { RealmDatabase(context = appContext) }
-        single<AppNavigation> { MainAppNavigation() }
+        single<Navigation> { AppNavigation() }
 
         // utils
         single<CalendarUtils> { SystemCalendarUtils() }

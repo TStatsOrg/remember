@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.dependencies.navigation.AppNavigation
+import com.app.dependencies.navigation.Navigation
 import com.app.feature.preview.databinding.ViewPreviewBinding
 import com.app.shared.data.capture.RawDataCapture
 import com.app.shared.feature.preview.PreviewViewModel
@@ -17,7 +17,7 @@ class PreviewActivity: AppCompatActivity() {
     private val layoutManager = LinearLayoutManager(this)
     private val animator = DefaultItemAnimator()
     private val viewModel: PreviewViewModel by inject()
-    private val navigator: AppNavigation by inject()
+    private val navigator: Navigation by inject()
     private val capture: RawDataCapture<Intent> by inject()
 
     private val binding: ViewPreviewBinding by lazy {

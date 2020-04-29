@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.dependencies.navigation.AppNavigation
+import com.app.dependencies.navigation.Navigation
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.shared.feature.mainhub.MainHubViewModel
@@ -14,7 +14,7 @@ class MainHubActivity: AppCompatActivity() {
 
     private val viewModel: MainHubViewModel by inject()
     private val adapter: BookmarksAdapter by inject()
-    private val navigation: AppNavigation by inject()
+    private val navigation: Navigation by inject()
     private val layoutManager = LinearLayoutManager(this)
     private val animator = DefaultItemAnimator()
 
