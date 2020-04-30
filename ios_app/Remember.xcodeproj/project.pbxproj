@@ -54,7 +54,6 @@
 		1BE01D3B2454B075000FC4AF /* RealmTopicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D3A2454B074000FC4AF /* RealmTopicObject.swift */; };
 		1BE01D552459F2B3000FC4AF /* AppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D542459F2B3000FC4AF /* AppNavigation.swift */; };
 		1BE01D582459F3C4000FC4AF /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D572459F3C4000FC4AF /* Navigation.swift */; };
-		1BE01D5A2459F3EF000FC4AF /* AppDependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D592459F3EF000FC4AF /* AppDependencyProvider.swift */; };
 		1BE01D642459F639000FC4AF /* ios_feature_topics.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE01D622459F639000FC4AF /* ios_feature_topics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BE01D672459F639000FC4AF /* ios_feature_topics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE01D602459F639000FC4AF /* ios_feature_topics.framework */; };
 		1BE01D682459F639000FC4AF /* ios_feature_topics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE01D602459F639000FC4AF /* ios_feature_topics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -300,7 +299,6 @@
 		1BE01D3A2454B074000FC4AF /* RealmTopicObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmTopicObject.swift; sourceTree = "<group>"; };
 		1BE01D542459F2B3000FC4AF /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
 		1BE01D572459F3C4000FC4AF /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
-		1BE01D592459F3EF000FC4AF /* AppDependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyProvider.swift; sourceTree = "<group>"; };
 		1BE01D602459F639000FC4AF /* ios_feature_topics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_feature_topics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE01D622459F639000FC4AF /* ios_feature_topics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_feature_topics.h; sourceTree = "<group>"; };
 		1BE01D632459F639000FC4AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -606,7 +604,6 @@
 		1BE01D562459F372000FC4AF /* App */ = {
 			isa = PBXGroup;
 			children = (
-				1BE01D592459F3EF000FC4AF /* AppDependencyProvider.swift */,
 				1BE01D542459F2B3000FC4AF /* AppNavigation.swift */,
 				1BA773D02441E9600060EC1D /* AppDelegate.swift */,
 				1BA773D22441E9600060EC1D /* SceneDelegate.swift */,
@@ -1241,7 +1238,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BE01D552459F2B3000FC4AF /* AppNavigation.swift in Sources */,
-				1BE01D5A2459F3EF000FC4AF /* AppDependencyProvider.swift in Sources */,
 				1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */,
 				1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */,
 			);

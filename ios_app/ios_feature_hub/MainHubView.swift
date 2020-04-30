@@ -62,11 +62,13 @@ struct TextBookmarkView: View {
     let viewState: BookmarkTextViewState
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            BookmarkTopicView(viewState: viewState)
             Text(viewState.text)
-            .padding()
+                .fontWeight(.bold)
+            Text(viewState.date)
+                .fontWeight(.light)
         }
-        .background(Color(UIColor.lightGray))
     }
 }
 
@@ -75,11 +77,14 @@ struct ImageBookmarkView: View {
     let viewState: BookmarkImageViewState
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            BookmarkTopicView(viewState: viewState)
             WebImage(url: self.viewState.url)
                 .resizable()
                 .frame(height: 300)
                 .clipped()
+            Text(viewState.date)
+                .fontWeight(.light)
         }
     }
 }
@@ -90,11 +95,23 @@ struct LinkBookmarkView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            BookmarkTopicView(viewState: viewState)
             Text(viewState.title ?? "")
                 .fontWeight(.bold)
-            Text(viewState.caption ?? "")
             Text(viewState.date)
                 .fontWeight(.light)
+        }
+    }
+}
+
+struct BookmarkTopicView: View {
+    
+    let viewState: BookmarkViewStateType
+    
+    var body: some View {
+        HStack {
+            Text(viewState.topic).background(Color(UIColor.magenta))
+            Text(viewState.source)
         }
     }
 }

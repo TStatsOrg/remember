@@ -26,7 +26,7 @@
         <!--Preview View Controller-->
         <scene sceneID="f0O-NR-lQM">
             <objects>
-                <viewController id="L3E-ha-eeG" customClass="PreviewViewController" customModule="SharePreview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="L3E-ha-eeG" customClass="PreviewViewController" customModule="ios_feature_preview" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IG0-kw-okG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

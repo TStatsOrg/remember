@@ -37,6 +37,7 @@ struct BookmarkViewState: Identifiable {
 
 protocol BookmarkViewStateType {
     var state: BookmarkState { get }
+    var source: String { get }
 }
 
 extension BookmarkViewStateType {
@@ -47,9 +48,13 @@ extension BookmarkViewStateType {
     
     var date: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy"
+        formatter.dateFormat = "yyyy-MM-dd"
         let date = Date(timeIntervalSince1970: TimeInterval(state.date))
         return formatter.string(from: date)
+    }
+    
+    var topic: String {
+        return state.topic?.name ?? ""
     }
 }
 
@@ -57,6 +62,8 @@ struct BookmarkTextViewState: BookmarkViewStateType {
     internal let state: BookmarkState
     
     let text: String
+    
+    let source: String = "Clipped text"
     
     init(state: BookmarkStateText) {
         self.state = state
@@ -68,6 +75,8 @@ struct BookmarkImageViewState: BookmarkViewStateType {
     internal let state: BookmarkState
     
     let url: URL?
+    
+    let source: String = "Image"
     
     init(state: BookmarkStateImage) {
         self.state = state
@@ -81,6 +90,7 @@ struct BookmarkLinkViewState: BookmarkViewStateType {
     let title: String?
     let caption: String?
     let icon: URL?
+    let source: String
     
     init(state: BookmarkStateLink) {
         self.state = state
@@ -90,8 +100,10 @@ struct BookmarkLinkViewState: BookmarkViewStateType {
         
         if let iconUrl = state.icon {
             icon = URL(string: iconUrl)
+            source = icon?.baseURL?.absoluteString ?? "N/A"
         } else {
             icon = nil
+            source = "N/A"
         }
     }
 }
