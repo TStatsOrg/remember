@@ -48,8 +48,9 @@ extension BookmarkViewStateType {
     
     var date: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let date = Date(timeIntervalSince1970: TimeInterval(state.date))
+        let iosTimestamp = state.date / 1000
+        formatter.dateFormat = "MM/dd/yyyy"
+        let date = Date(timeIntervalSince1970: TimeInterval(iosTimestamp))
         return formatter.string(from: date)
     }
     
@@ -100,7 +101,7 @@ struct BookmarkLinkViewState: BookmarkViewStateType {
         
         if let iconUrl = state.icon {
             icon = URL(string: iconUrl)
-            source = icon?.baseURL?.absoluteString ?? "N/A"
+            source = icon?.host ?? "N/A"
         } else {
             icon = nil
             source = "N/A"
