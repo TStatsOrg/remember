@@ -11,6 +11,7 @@ import SwiftUI
 import ios_dependencies
 import ios_feature_topics
 import ios_feature_topic_add
+import ios_feature_bookmark_edit
 
 class AppNavigation: Navigation {
     
@@ -20,5 +21,9 @@ class AppNavigation: Navigation {
     
     func seeTopicsList() -> AnyView {
         return AnyView(TopicsView())
+    }
+    
+    func seeEditBookmark(forBookmarkId id: Int32) -> AnyView {
+        return AnyView(EditBookmarkView(bookmarkId: id))
     }
 }
