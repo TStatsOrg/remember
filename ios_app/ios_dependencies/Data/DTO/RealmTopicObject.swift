@@ -21,6 +21,10 @@ class RealmTopicObject: Object {
     
     required init() {}
     
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    
     internal class DTO: TopicDTO {
         let id: Int32
         let name: String

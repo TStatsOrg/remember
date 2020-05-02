@@ -21,7 +21,7 @@ class RealmTextBookmarkDAO: RealmDAO, TextBookmarkDAO {
     
     func insert(dto__ dto: BookmarkDTOTextBookmarkDTO) {
         try? realm?.write {
-            realm?.add(dto.toObject())
+            realm?.add(dto.toObject(), update: Realm.UpdatePolicy.all)
         }
     }
     

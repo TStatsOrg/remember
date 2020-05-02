@@ -31,6 +31,8 @@
 		1BA773F32441E9670060EC1D /* RememberUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773F22441E9670060EC1D /* RememberUITests.swift */; };
 		1BA774072441EDC60060EC1D /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; };
 		1BA774082441EDC60060EC1D /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1BAEDA31245DCBC4002A9D9B /* EditBookmarkViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA30245DCBC4002A9D9B /* EditBookmarkViewState.swift */; };
+		1BAEDA33245DCC13002A9D9B /* SelectedTopicViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA32245DCC13002A9D9B /* SelectedTopicViewState.swift */; };
 		1BC2B05F2446464300E73BB6 /* ios_dependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BC2B05D2446464300E73BB6 /* ios_dependencies.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BC2B0622446464300E73BB6 /* ios_dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */; };
 		1BC2B0632446464300E73BB6 /* ios_dependencies.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -320,6 +322,8 @@
 		1BA773F22441E9670060EC1D /* RememberUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RememberUITests.swift; sourceTree = "<group>"; };
 		1BA773F42441E9670060EC1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BA774062441EDC60060EC1D /* RememberShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RememberShared.framework; path = "../shared/build/xcode-frameworks/RememberShared.framework"; sourceTree = "<group>"; };
+		1BAEDA30245DCBC4002A9D9B /* EditBookmarkViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBookmarkViewState.swift; sourceTree = "<group>"; };
+		1BAEDA32245DCC13002A9D9B /* SelectedTopicViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTopicViewState.swift; sourceTree = "<group>"; };
 		1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_dependencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BC2B05D2446464300E73BB6 /* ios_dependencies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_dependencies.h; sourceTree = "<group>"; };
 		1BC2B05E2446464300E73BB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -725,6 +729,8 @@
 		1BE01DC1245B549A000FC4AF /* ViewStates */ = {
 			isa = PBXGroup;
 			children = (
+				1BAEDA30245DCBC4002A9D9B /* EditBookmarkViewState.swift */,
+				1BAEDA32245DCC13002A9D9B /* SelectedTopicViewState.swift */,
 			);
 			path = ViewStates;
 			sourceTree = "<group>";
@@ -1476,6 +1482,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BAEDA33245DCC13002A9D9B /* SelectedTopicViewState.swift in Sources */,
+				1BAEDA31245DCBC4002A9D9B /* EditBookmarkViewState.swift in Sources */,
 				1BE01DC7245B5504000FC4AF /* EditBookmarkView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

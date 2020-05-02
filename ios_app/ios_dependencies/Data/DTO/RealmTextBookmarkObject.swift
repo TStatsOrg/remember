@@ -11,8 +11,8 @@ import RememberShared
 import RealmSwift
 
 class RealmTextBookmarkObject: Object {
-    @objc dynamic var text: String = ""
     @objc dynamic var id: Int32 = 0
+    @objc dynamic var text: String = ""
     @objc dynamic var date: Int64 = 0
     @objc dynamic var topic: RealmTopicObject? = nil
     
@@ -24,6 +24,10 @@ class RealmTextBookmarkObject: Object {
     }
     
     required init() {}
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
     internal class DTO: BookmarkDTOTextBookmarkDTO {
         let text: String
