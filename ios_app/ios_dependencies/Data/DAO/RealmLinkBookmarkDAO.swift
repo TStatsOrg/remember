@@ -21,7 +21,7 @@ public class RealmLinkBookmarkDAO: RealmDAO, LinkBookmarkDAO {
     
     public func insert(dto_ dto: BookmarkDTOLinkBookmarkDTO) {
         try? realm?.write {
-            realm?.add(dto.toObject())
+            realm?.add(dto.toObject(), update: Realm.UpdatePolicy.all)
         }
     }
     

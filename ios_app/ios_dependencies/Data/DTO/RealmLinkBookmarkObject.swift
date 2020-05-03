@@ -11,10 +11,10 @@ import RememberShared
 import RealmSwift
 
 class RealmLinkBookmarkObject: Object {
+    @objc dynamic var id: Int32 = 0
     @objc dynamic var url: String = ""
     @objc dynamic var title: String? = nil
     @objc dynamic var icon: String? = nil
-    @objc dynamic var id: Int32 = 0
     @objc dynamic var date: Int64 = 0
     @objc dynamic var caption: String? = nil
     @objc dynamic var topic: RealmTopicObject? = nil
@@ -30,6 +30,10 @@ class RealmLinkBookmarkObject: Object {
     }
 
     required init() {}
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
     internal class DTO: BookmarkDTOLinkBookmarkDTO {
         let url: String

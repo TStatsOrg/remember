@@ -11,8 +11,8 @@ import RememberShared
 import RealmSwift
 
 class RealmImageBookmarkObject: Object {
-    @objc dynamic var url: String = ""
     @objc dynamic var id: Int32 = 0
+    @objc dynamic var url: String = ""
     @objc dynamic var date: Int64 = 0
     @objc dynamic var topic: RealmTopicObject? = nil
     
@@ -24,6 +24,10 @@ class RealmImageBookmarkObject: Object {
     }
     
     required init() {}
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
     internal class DTO: BookmarkDTOImageBookmarkDTO {
         let url: String

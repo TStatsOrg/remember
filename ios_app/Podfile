@@ -20,6 +20,8 @@ target 'ios_app' do
 
   target 'ios_feature_preview' do
     inherit! :search_paths
+    
+    pod 'SDWebImage', '~> 5.0'
   end
   
   target 'ios_feature_hub' do

@@ -20,7 +20,7 @@ class RealmTopicDAO: RealmDAO, TopicDAO {
     
     func insert(dto___ dto: TopicDTO) {
         try? realm?.write {
-            realm?.add(dto.toObject())
+            realm?.add(dto.toObject(), update: Realm.UpdatePolicy.all)
         }
     }
     

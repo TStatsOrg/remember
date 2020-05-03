@@ -14,14 +14,20 @@ import RememberShared
 
 class PreviewViewController: UIViewController {
     
+    private let dataSource = PreviewDataSource()
     @Injected var viewModel: PreviewViewModel
     @Injected var capture: RawDataCapture
+    @IBOutlet weak var mainTableView: UITableView!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        mainTableView.dataSource = dataSource
+        mainTableView.delegate = dataSource
+        
         viewModel.observePreviewState { (state) in
-            print("State is \(state)")
+            self.dataSource.redraw(viewState: PreviewsViewState(state: state))
+            self.mainTableView.reloadData()
         }
         
         viewModel.observeBookmarkSaved { bookmarkId in

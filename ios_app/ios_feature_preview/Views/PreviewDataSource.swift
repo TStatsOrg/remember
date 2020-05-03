@@ -1,0 +1,54 @@
+//
+//  PreviewDataSource.swift
+//  ios_feature_preview
+//
+//  Created by Gabriel Coman on 03/05/2020.
+//  Copyright © 2020 Gabriel Coman. All rights reserved.
+//
+
+import UIKit
+import SharePreview
+import ios_dependencies
+
+class PreviewDataSource: NSObject {
+    
+    private var viewState: PreviewsViewState?
+    
+    func redraw(viewState: PreviewsViewState) {
+        self.viewState = viewState
+    }
+}
+
+extension PreviewDataSource: UITableViewDelegate {
+    // N/A
+}
+
+extension PreviewDataSource: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewState?.viewStates.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let viewState = viewState?.viewStates.first?.viewState else {
+            return UITableViewCell()
+        }
+        
+        switch viewState {
+        case let link as PreviewLinkViewState:
+            let cell = tableView.dequeueReusableCell(withIdentifier: LinkPreviewCell.identifier, for: indexPath) as! LinkPreviewCell
+            cell.redraw(viewState: link)
+            return cell
+        case let text as PreviewTextViewState:
+            let cell = tableView.dequeueReusableCell(withIdentifier: TextPreviewCell.identifier, for: indexPath) as! TextPreviewCell
+            cell.redraw(viewState: text)
+            return cell
+        case let image as PreviewImageViewState:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImagePreviewCell.identifier, for: indexPath) as! ImagePreviewCell
+            cell.redraw(viewState: image)
+            return cell
+        default:
+            return UITableViewCell()
+        }
+    }
+}

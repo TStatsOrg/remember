@@ -21,7 +21,7 @@ class RealmImageBookmarkDAO: RealmDAO, ImageBookmarkDAO {
     
     func insert(dto: BookmarkDTOImageBookmarkDTO) {
         try? realm?.write {
-            realm?.add(dto.toObject())
+            realm?.add(dto.toObject(), update: Realm.UpdatePolicy.all)
         }
     }
     

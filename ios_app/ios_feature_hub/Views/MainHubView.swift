@@ -37,7 +37,6 @@ public struct MainHubView: View {
             }
         }
     }
-
     
     private func getCellType(state: BookmarkViewState) -> AnyView {
         guard let viewState = state.viewState else {
@@ -53,65 +52,6 @@ public struct MainHubView: View {
             return AnyView(LinkBookmarkView(viewState: link))
         default:
             return AnyView(Text("N/A"))
-        }
-    }
-}
-
-struct TextBookmarkView: View {
-    
-    let viewState: BookmarkTextViewState
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            BookmarkTopicView(viewState: viewState)
-            Text(viewState.text)
-                .fontWeight(.bold)
-            Text(viewState.date)
-                .fontWeight(.light)
-        }
-    }
-}
-
-struct ImageBookmarkView: View {
-    
-    let viewState: BookmarkImageViewState
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            BookmarkTopicView(viewState: viewState)
-            WebImage(url: self.viewState.url)
-                .resizable()
-                .frame(height: 300)
-                .clipped()
-            Text(viewState.date)
-                .fontWeight(.light)
-        }
-    }
-}
-
-struct LinkBookmarkView: View {
-    
-    let viewState: BookmarkLinkViewState
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            BookmarkTopicView(viewState: viewState)
-            Text(viewState.title ?? "")
-                .fontWeight(.bold)
-            Text(viewState.date)
-                .fontWeight(.light)
-        }
-    }
-}
-
-struct BookmarkTopicView: View {
-    
-    let viewState: BookmarkViewStateType
-    
-    var body: some View {
-        HStack {
-            Text(viewState.topic).background(Color(UIColor.magenta))
-            Text(viewState.source)
         }
     }
 }
