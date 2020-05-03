@@ -35,6 +35,17 @@ class SharedTopicsViewModel(
         }
     }
 
+    override fun filter(byName: String) {
+        scope.launch(context = MainDispatcher) {
+            // start
+            val dtos = topicsRepository.load()
+            val filtered = dtos.filter { it.name.contains(byName, ignoreCase = true) }
+
+            // send to store
+            store.dispatch(action = Actions.Topics.Load.Success(time = calendar.getTime(), topics = filtered))
+        }
+    }
+
     override fun observeTopicState(callback: (TopicsState) -> Unit) {
         store.toEmitter()
             .observer()

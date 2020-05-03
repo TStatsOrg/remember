@@ -8,6 +8,7 @@ import android.widget.AutoCompleteTextView
 import androidx.appcompat.widget.SearchView
 import com.app.shared.observ.ObservableEmitter
 import com.app.views.R
+import com.app.views.utils.hideKeyboard
 
 class ManagedSearchView: SearchView {
 
@@ -15,6 +16,7 @@ class ManagedSearchView: SearchView {
     private val closeSearchEmitter = ObservableEmitter<Boolean>()
     private val suggestionClickedEmitter = ObservableEmitter<String>()
     private val searchChangedEmitter = ObservableEmitter<String>()
+    private val searchSubmittedEmitter = ObservableEmitter<String>()
 
     constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -40,6 +42,7 @@ class ManagedSearchView: SearchView {
             override fun onSuggestionClick(position: Int): Boolean {
                 val cursor = suggestionsAdapter.getItem(position) as Cursor
                 val selection = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1))
+                context.hideKeyboard(view = this@ManagedSearchView)
                 suggestionClickedEmitter.emit(value = selection)
                 return true
             }
@@ -47,6 +50,10 @@ class ManagedSearchView: SearchView {
 
         setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    context.hideKeyboard(view = this@ManagedSearchView)
+                    searchSubmittedEmitter.emit(value = it)
+                }
                 return true
             }
 
@@ -66,4 +73,6 @@ class ManagedSearchView: SearchView {
     fun observeSuggestionClicked(callback: (String) -> Unit) = suggestionClickedEmitter.observer().collect(callback)
 
     fun observeSearchChanged(callback: (String) -> Unit) = searchChangedEmitter.observer().collect(callback)
+
+    fun observeSearchSubmitted(callback: (String) -> Unit) = searchSubmittedEmitter.observer().collect(callback)
 }

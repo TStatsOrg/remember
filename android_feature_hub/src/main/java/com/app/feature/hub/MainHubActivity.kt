@@ -46,15 +46,19 @@ class MainHubActivity: AppCompatActivity() {
         }
 
         binding.searchInput.observeSuggestionClicked {
-            MLogger.log("GABBOX selected $it")
+            viewModel.filter(byTopic = it)
         }
 
         binding.searchInput.observeSearchChanged {
-            MLogger.log("GABBOX Search is now $it")
+            suggestionViewModel.filter(byName = it)
+        }
+
+        binding.searchInput.observeSearchSubmitted {
+            viewModel.search(byName = it)
         }
 
         binding.searchInput.observeSearchClosed {
-            MLogger.log("GABBOX search closed")
+            viewModel.loadBookmarks()
         }
 
         adapter.listener = object : BookmarkViewHolder.Listener {
@@ -104,10 +108,7 @@ class MainHubActivity: AppCompatActivity() {
         viewModel.observeBookmarkState {
             adapter.redraw(viewState = BookmarksViewState(state = it))
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
         viewModel.loadBookmarks()
     }
 }
