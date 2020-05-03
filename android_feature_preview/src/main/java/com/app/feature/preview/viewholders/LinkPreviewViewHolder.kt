@@ -13,5 +13,7 @@ class LinkPreviewViewHolder(
         binding.bookmarkSaveDate.text = date
         binding.bookmarkTitle.text = title
         binding.bookmarkSource.text = source
+        loader.load(icon, binding.previewIcon)
+        binding.previewIcon.visibility = iconVisibility
     }
 }

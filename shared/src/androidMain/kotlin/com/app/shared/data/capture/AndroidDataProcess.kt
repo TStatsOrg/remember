@@ -61,16 +61,32 @@ class AndroidDataProcess(private val context: Context): RawDataProcess {
         return try {
             val document = Jsoup.connect(capture).get()
             val title = document.title()
-            val description = document.head().select("meta[name=description]").first()?.attr("content")
-            val firstImageSrc = document.head().select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
-            val secondImageSrc = document.head().select("meta[itemprop=image]").first()?.attr("itemprop")
-            val thirdImageSrc = document.getElementsByTag("img")?.first()?.attr("href")
+            val description = try {
+                document.head().select("meta[name=description]").first()?.attr("content")
+            } catch (e: Throwable) {
+                null
+            }
+            val iconImageSrc = try {
+                document.head().select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
+            } catch (e: Throwable) {
+                null
+            }
+            val thumbnail1Src = try {
+                document.body().select("link[rel=\"image_src\"]").first()?.attr("href")
+            } catch (e: Throwable) {
+                null
+            }
+            val thumbnail2Src = try {
+                document.head().select("meta[property=og:image]").first()?.attr("content")
+            } catch (e: Throwable) {
+                null
+            }
 
             RawDataProcess.Item.Link(
                 url = capture,
                 title = title,
                 description = description,
-                icon = firstImageSrc ?: secondImageSrc ?: thirdImageSrc)
+                icon = thumbnail2Src ?: thumbnail1Src ?: iconImageSrc)
         } catch (e: Throwable) {
             RawDataProcess.Item.Unknown
         }

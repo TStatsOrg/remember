@@ -10,7 +10,6 @@
         android:id="@+id/bookmark_source"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bookmark_title"
@@ -27,7 +26,7 @@
         android:layout_marginTop="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bookmark_source"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/preview_icon"
         android:textAppearance="?attr/textAppearanceSubtitle2"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
 
@@ -42,5 +41,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Apr 2020"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/preview_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/red_600"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

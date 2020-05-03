@@ -92,6 +92,7 @@ struct BookmarkLinkViewState: BookmarkViewStateType {
     let caption: String?
     let icon: URL?
     let source: String
+    let isIconHidden: Bool
     
     init(state: BookmarkStateLink) {
         self.state = state
@@ -99,12 +100,18 @@ struct BookmarkLinkViewState: BookmarkViewStateType {
         title = state.title
         caption = state.caption
         
-        if let iconUrl = state.icon {
+        if let url = URL(string: state.url) {
+            source = url.host ?? "N/A"
+        } else {
+            source = "N/A"
+        }
+        
+        if let iconUrl = state.icon, iconUrl != "" {
             icon = URL(string: iconUrl)
-            source = icon?.host ?? "N/A"
+            isIconHidden = false
         } else {
             icon = nil
-            source = "N/A"
+            isIconHidden = true
         }
     }
 }
