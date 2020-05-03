@@ -16,7 +16,7 @@
             app:menu="@menu/app_bar_hub"
             style="@style/Widget.MaterialComponents.Toolbar.Primary">
 
-            <androidx.appcompat.widget.SearchView
+            <com.app.views.views.ManagedSearchView
                 android:id="@+id/search_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

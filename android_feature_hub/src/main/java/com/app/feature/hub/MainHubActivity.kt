@@ -1,11 +1,7 @@
 package com.app.feature.hub
 
-import android.app.SearchManager
-import android.database.Cursor
 import android.os.Bundle
-import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dependencies.navigation.Navigation
@@ -44,41 +40,22 @@ class MainHubActivity: AppCompatActivity() {
         binding.bookmarksRecyclerView.itemAnimator = animator
 
         binding.searchInput.suggestionsAdapter = suggestionsAdapter
-        binding.searchInput.findViewById<AutoCompleteTextView>(R.id.search_src_text).threshold = 0
 
-        binding.searchInput.setOnSuggestionListener(object : SearchView.OnSuggestionListener {
-            override fun onSuggestionSelect(position: Int): Boolean {
-                return true
-            }
-
-            override fun onSuggestionClick(position: Int): Boolean {
-                val cursor = suggestionsAdapter.getItem(position) as Cursor
-                val selection = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1))
-                MLogger.log("GABBOX Selected topic $selection")
-                return true
-            }
-        })
-
-        binding.searchInput.setOnSearchClickListener {
+        binding.searchInput.observeSearchOpened {
             suggestionViewModel.loadTopics()
         }
 
-        binding.searchInput.setOnCloseListener {
-            MLogger.log("GABBOX Close Search")
-            return@setOnCloseListener false
+        binding.searchInput.observeSuggestionClicked {
+            MLogger.log("GABBOX selected $it")
         }
 
-        binding.searchInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                MLogger.log("GABBOX Submitted query is $query")
-                return true
-            }
+        binding.searchInput.observeSearchChanged {
+            MLogger.log("GABBOX Search is now $it")
+        }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                MLogger.log("GABBOX New text $newText")
-                return true
-            }
-        })
+        binding.searchInput.observeSearchClosed {
+            MLogger.log("GABBOX search closed")
+        }
 
         adapter.listener = object : BookmarkViewHolder.Listener {
 
