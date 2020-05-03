@@ -12,10 +12,11 @@ import com.app.feature.preview.viewholders.ImagePreviewViewHolder
 import com.app.feature.preview.viewholders.LinkPreviewViewHolder
 import com.app.feature.preview.viewholders.PreviewViewHolder
 import com.app.feature.preview.viewholders.TextPreviewViewHolder
+import com.app.views.viewstate.BookmarkViewState
 
 class PreviewsAdapter(private val imageLoader: AndroidImageLoader): RecyclerView.Adapter<PreviewViewHolder<*>>() {
 
-    private var viewState: List<PreviewViewState> = listOf()
+    private var viewState: List<BookmarkViewState> = listOf()
         set(value) {
             val result = DiffUtil.calculateDiff(BookmarkDif(field, value))
             result.dispatchUpdatesTo(this)
@@ -24,9 +25,9 @@ class PreviewsAdapter(private val imageLoader: AndroidImageLoader): RecyclerView
 
     override fun getItemViewType(position: Int): Int {
         return when (viewState[position]) {
-            is PreviewViewState.Text -> 0
-            is PreviewViewState.Image -> 1
-            is PreviewViewState.Link -> 2
+            is BookmarkViewState.Text -> 0
+            is BookmarkViewState.Image -> 1
+            is BookmarkViewState.Link -> 2
         }
     }
 
@@ -42,7 +43,7 @@ class PreviewsAdapter(private val imageLoader: AndroidImageLoader): RecyclerView
     override fun getItemCount(): Int = viewState.size
 
     override fun onBindViewHolder(holder: PreviewViewHolder<*>, position: Int) {
-        (holder as? PreviewViewHolder<PreviewViewState>)?.redraw(viewState[position])
+        (holder as? PreviewViewHolder<BookmarkViewState>)?.redraw(viewState[position])
     }
 
     fun redraw(viewState: PreviewsViewState) {
@@ -50,8 +51,8 @@ class PreviewsAdapter(private val imageLoader: AndroidImageLoader): RecyclerView
     }
 
     internal class BookmarkDif(
-        private val oldContent: List<PreviewViewState>,
-        private val newContent: List<PreviewViewState>
+        private val oldContent: List<BookmarkViewState>,
+        private val newContent: List<BookmarkViewState>
     ): DiffUtil.Callback() {
 
         override fun getOldListSize(): Int = oldContent.size

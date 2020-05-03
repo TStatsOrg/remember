@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dependencies.navigation.Navigation
 import com.app.feature.hub.adapters.BookmarksAdapter
-import com.app.feature.hub.adapters.TopicSuggestionAdapter
+import com.app.feature.hub.adapters.SuggestionAdapter
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
-import com.app.feature.hub.viewstates.BookmarkViewState
 import com.app.feature.hub.viewstates.BookmarksViewState
-import com.app.feature.hub.viewstates.TopicSuggestionsViewState
+import com.app.feature.hub.viewstates.SuggestionsViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.feature.topics.TopicsViewModel
 import com.app.shared.utils.MLogger
+import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
 
 class MainHubActivity: AppCompatActivity() {
@@ -29,7 +29,7 @@ class MainHubActivity: AppCompatActivity() {
     private val navigation: Navigation by inject()
     private val layoutManager = LinearLayoutManager(this)
     private val animator = DefaultItemAnimator()
-    private val suggestionsAdapter by lazy { TopicSuggestionAdapter(context = this) }
+    private val suggestionsAdapter by lazy { SuggestionAdapter(context = this) }
 
     private val binding by lazy {
         ViewMainhubBinding.inflate(layoutInflater)
@@ -121,7 +121,7 @@ class MainHubActivity: AppCompatActivity() {
         }
 
         suggestionViewModel.observeTopicState {
-            suggestionsAdapter.redraw(viewState = TopicSuggestionsViewState(state = it))
+            suggestionsAdapter.redraw(viewState = SuggestionsViewState(state = it))
         }
 
         viewModel.observeBookmarkState {

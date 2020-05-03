@@ -1,8 +1,8 @@
 package com.app.feature.hub.viewholders
 
 import com.app.dependencies.data.utils.AndroidImageLoader
-import com.app.feature.hub.viewstates.BookmarkViewState
 import com.app.feature.hub.databinding.ViewImageBookmarkBinding
+import com.app.views.viewstate.BookmarkViewState
 
 class ImageBookmarkViewHolder(
     private val binding: ViewImageBookmarkBinding,

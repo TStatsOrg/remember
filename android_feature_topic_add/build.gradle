@@ -39,6 +39,7 @@ dependencies {
     // local libraries
     implementation project(":shared")
     implementation project(":android_dependencies")
+    implementation project(":android_views")
 
     // Android X
     implementation "androidx.core:core-ktx:$androidXVersion"

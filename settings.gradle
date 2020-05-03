@@ -1,3 +1,4 @@
+include ':android_views'
 include ':android_feature_bookmark_edit'
 include ':android_feature_topic_add'
 include ':android_feature_topics'

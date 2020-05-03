@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.feature.topics.databinding.ViewTopicBinding
 import com.app.feature.topics.viewholders.TopicViewHolder
+import com.app.views.viewstate.TopicViewState
 
 class TopicsAdapter: RecyclerView.Adapter<TopicViewHolder>() {
 

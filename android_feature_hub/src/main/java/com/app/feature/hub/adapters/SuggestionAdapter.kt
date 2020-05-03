@@ -7,9 +7,9 @@ import android.provider.BaseColumns
 import androidx.cursoradapter.widget.CursorAdapter
 import androidx.cursoradapter.widget.SimpleCursorAdapter
 import com.app.feature.hub.R
-import com.app.feature.hub.viewstates.TopicSuggestionsViewState
+import com.app.feature.hub.viewstates.SuggestionsViewState
 
-class TopicSuggestionAdapter(context: Context): SimpleCursorAdapter(
+class SuggestionAdapter(context: Context): SimpleCursorAdapter(
     context,
     R.layout.view_topic_suggestion,
     null,
@@ -17,7 +17,7 @@ class TopicSuggestionAdapter(context: Context): SimpleCursorAdapter(
     intArrayOf(R.id.topic_suggestion),
     CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER) {
 
-    fun redraw(viewState: TopicSuggestionsViewState) {
+    fun redraw(viewState: SuggestionsViewState) {
         val cursor = MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1))
         viewState.suggestions.forEachIndexed { index, s ->
             cursor.addRow(arrayOf(index, s.name))

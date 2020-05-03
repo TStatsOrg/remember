@@ -1,7 +1,7 @@
 package com.app.feature.hub.viewholders
 
-import com.app.feature.hub.viewstates.BookmarkViewState
 import com.app.feature.hub.databinding.ViewTextBookmarkBinding
+import com.app.views.viewstate.BookmarkViewState
 
 class TextBookmarkViewHolder(
     private val binding: ViewTextBookmarkBinding
