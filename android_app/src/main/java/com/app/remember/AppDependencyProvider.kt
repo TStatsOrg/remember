@@ -7,7 +7,7 @@ import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.dependencies.data.utils.GlideImageLoader
 import com.app.dependencies.navigation.Navigation
 import com.app.feature.bookmark.edit.EditBookmarksAdapter
-import com.app.feature.hub.BookmarksAdapter
+import com.app.feature.hub.adapters.BookmarksAdapter
 import com.app.feature.preview.PreviewsAdapter
 import com.app.feature.topics.TopicsAdapter
 import com.app.shared.business.AppState

@@ -1,4 +1,4 @@
-package com.app.feature.hub
+package com.app.feature.hub.viewstates
 
 import android.net.Uri
 import android.view.View
