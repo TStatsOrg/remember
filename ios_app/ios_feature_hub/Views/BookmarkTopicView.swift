@@ -20,10 +20,13 @@ struct BookmarkTopicView: View {
     
     var body: some View {
         HStack {
-            NavigationLink(destination: navigation.seeEditBookmark(forBookmarkId: viewState.id)) {
+            ZStack {
                 Text(viewState.topic)
                     .background(Color(UIColor.magenta))
             }
+            .background(NavigationLink(destination: navigation.seeEditBookmark(forBookmarkId: viewState.id), label: {
+                EmptyView()
+            }))
             Text(viewState.source)
         }
     }
