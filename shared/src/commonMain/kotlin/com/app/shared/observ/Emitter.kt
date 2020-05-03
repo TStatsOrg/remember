@@ -11,7 +11,7 @@ open class InfiniteEmitter <T> (protected open val observer: Observer<T>) : Emit
     }
 }
 
-class ObservableEmitter <T>(): InfiniteEmitter<T> (observer = SimpleObserver<T>()) {
+class ObservableEmitter <T>: InfiniteEmitter<T> (observer = SimpleObserver<T>()) {
     fun observer(): Observer<T> {
         return this.observer
     }

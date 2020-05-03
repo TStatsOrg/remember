@@ -1,6 +1,7 @@
-package com.app.feature.hub
+package com.app.feature.hub.viewstates
 
 import com.app.shared.business.BookmarkState
+import com.app.views.viewstate.BookmarkViewState
 
 data class BookmarksViewState(val state: List<BookmarkState>) {
 

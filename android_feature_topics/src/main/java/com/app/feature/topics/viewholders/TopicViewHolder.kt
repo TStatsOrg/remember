@@ -1,8 +1,8 @@
 package com.app.feature.topics.viewholders
 
 import androidx.recyclerview.widget.RecyclerView
-import com.app.feature.topics.TopicViewState
 import com.app.feature.topics.databinding.ViewTopicBinding
+import com.app.views.viewstate.TopicViewState
 
 class TopicViewHolder(
     private val binding: ViewTopicBinding

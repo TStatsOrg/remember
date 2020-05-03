@@ -1,8 +1,8 @@
 package com.app.feature.bookmark.edit.viewholders
 
 import androidx.recyclerview.widget.RecyclerView
-import com.app.feature.bookmark.edit.SelectTopicViewState
 import com.app.feature.bookmark.edit.databinding.ViewSelectableTopicBinding
+import com.app.views.viewstate.TopicViewState
 
 class SelectTopicViewHolder(
     private val binding: ViewSelectableTopicBinding
@@ -10,7 +10,7 @@ class SelectTopicViewHolder(
 
     var listener: Listener? = null
 
-    fun redraw(state: SelectTopicViewState) = with(state) {
+    fun redraw(state: TopicViewState.Selectable) = with(state) {
         binding.topicName.text = name
         binding.topicSelectedCheck.visibility = checkMarkVisibility
 

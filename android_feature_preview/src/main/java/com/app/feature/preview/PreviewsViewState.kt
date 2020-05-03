@@ -1,15 +1,16 @@
 package com.app.feature.preview
 
 import com.app.shared.business.BookmarkState
+import com.app.views.viewstate.BookmarkViewState
 
 data class PreviewsViewState(val state: BookmarkState) {
 
-    val viewStates: List<PreviewViewState>
+    val viewStates: List<BookmarkViewState>
         get() {
             val viewState = when (state) {
-                is BookmarkState.Link -> PreviewViewState.Link(bookmark = state)
-                is BookmarkState.Text -> PreviewViewState.Text(bookmark = state)
-                is BookmarkState.Image -> PreviewViewState.Image(bookmark = state)
+                is BookmarkState.Link -> BookmarkViewState.Link(bookmark = state)
+                is BookmarkState.Text -> BookmarkViewState.Text(bookmark = state)
+                is BookmarkState.Image -> BookmarkViewState.Image(bookmark = state)
                 else -> null
             }
 

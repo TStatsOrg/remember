@@ -44,6 +44,7 @@ dependencies {
     // local libraries
     implementation project(":shared")
     implementation project(":android_dependencies")
+    implementation project(":android_views")
     implementation project(":android_feature_preview")
     implementation project(":android_feature_bookmark_edit")
     implementation project(":android_feature_hub")

@@ -6,12 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.feature.bookmark.edit.databinding.ViewSelectableTopicBinding
 import com.app.feature.bookmark.edit.viewholders.SelectTopicViewHolder
+import com.app.views.viewstate.TopicViewState
 
 class EditBookmarksAdapter: RecyclerView.Adapter<SelectTopicViewHolder>() {
 
     var listener: SelectTopicViewHolder.Listener? = null
 
-    private var viewState: List<SelectTopicViewState> = listOf()
+    private var viewState: List<TopicViewState.Selectable> = listOf()
         set(value) {
             val result = DiffUtil.calculateDiff(TopicsDiff(field, value))
             result.dispatchUpdatesTo(this)
@@ -39,13 +40,13 @@ class EditBookmarksAdapter: RecyclerView.Adapter<SelectTopicViewHolder>() {
         holder.listener = null
     }
 
-    fun redraw(viewState: List<SelectTopicViewState>) {
+    fun redraw(viewState: List<TopicViewState.Selectable>) {
         this.viewState = viewState
     }
 
     internal class TopicsDiff(
-        private val oldContent: List<SelectTopicViewState>,
-        private val newContent: List<SelectTopicViewState>
+        private val oldContent: List<TopicViewState.Selectable>,
+        private val newContent: List<TopicViewState.Selectable>
     ): DiffUtil.Callback() {
 
         override fun getOldListSize(): Int = oldContent.size

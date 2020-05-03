@@ -5,6 +5,7 @@ import com.app.shared.business.AppState
 import com.app.shared.business.BookmarkState
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
+import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
@@ -28,6 +29,33 @@ class SharedMainHubViewModel(
             val dtos = bookmarkRepository.load()
 
             store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = dtos))
+        }
+    }
+
+    override fun filter(byTopic: String) {
+        scope.launch(context = MainDispatcher) {
+            val dtos = bookmarkRepository.load()
+
+            val filtered = dtos.filter { it.topic?.name.equals(byTopic) }
+
+            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = filtered))
+        }
+    }
+
+    override fun search(byName: String) {
+        scope.launch(context = MainDispatcher) {
+            val dtos = bookmarkRepository.load()
+
+            val searched = dtos.filter {
+                return@filter when (it) {
+                    is BookmarkDTO.LinkBookmarkDTO -> it.title?.contains(byName, ignoreCase = true) ?: false
+                    is BookmarkDTO.TextBookmarkDTO -> it.text.contains(byName, ignoreCase = true)
+                    is BookmarkDTO.ImageBookmarkDTO -> it.topic?.name?.contains(byName, ignoreCase = true) ?: false
+                    else -> false
+                }
+            }
+
+            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = searched))
         }
     }
 

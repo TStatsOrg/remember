@@ -1,10 +1,11 @@
-package com.app.feature.hub
+package com.app.feature.hub.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.dependencies.data.utils.AndroidImageLoader
+import com.app.feature.hub.viewstates.BookmarksViewState
 import com.app.feature.hub.databinding.ViewImageBookmarkBinding
 import com.app.feature.hub.databinding.ViewLinkBookmarkBinding
 import com.app.feature.hub.databinding.ViewTextBookmarkBinding
@@ -12,6 +13,7 @@ import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewholders.ImageBookmarkViewHolder
 import com.app.feature.hub.viewholders.LinkBookmarkViewHolder
 import com.app.feature.hub.viewholders.TextBookmarkViewHolder
+import com.app.views.viewstate.BookmarkViewState
 
 class BookmarksAdapter(private val imageLoader: AndroidImageLoader): RecyclerView.Adapter<BookmarkViewHolder<*>>() {
 
@@ -19,7 +21,12 @@ class BookmarksAdapter(private val imageLoader: AndroidImageLoader): RecyclerVie
 
     private var viewState: List<BookmarkViewState> = listOf()
         set(value) {
-            val result = DiffUtil.calculateDiff(BookmarkDif(field, value))
+            val result = DiffUtil.calculateDiff(
+                BookmarkDif(
+                    field,
+                    value
+                )
+            )
             result.dispatchUpdatesTo(this)
             field = value
         }
