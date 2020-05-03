@@ -14,6 +14,8 @@ class LinkBookmarkViewHolder(
         binding.bookmarkTitle.text = title
         binding.bookmarkSource.text = source
         binding.bookmarkTopic.text = topic
+        loader.load(icon, binding.bookmarkIcon)
+        binding.bookmarkIcon.visibility = iconVisibility
 
         binding.bookmarkTopic.setOnClickListener {
             listener?.onTopicClick(viewState = viewState)

@@ -42,14 +42,14 @@ public class iOSDataProcess: NSObject, RawDataProcess {
             let document: Document = try SwiftSoup.parse(contents)
             let title = try? document.title()
             let description = try? document.head()?.select("meta[name=description]").first()?.attr("content")
-            let firstImage = try? document.head()?.select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
-            let secondImage = try? document.head()?.select("meta[itemprop=image]").first()?.attr("itemprop")
-            let thirdImage = try? document.select("img").first()?.attr("href")
-
+            let iconImage = try? document.head()?.select("link[href~=.*\\.(ico|png)]").first()?.attr("href")
+            let thumbnail1Image = try? document.body()?.select("link[rel=\"image_src\"]").first()?.attr("href")
+            let thumbnial2Image = try? document.head()?.select("meta[property=og:image]").first()?.attr("content")
+            
             return RawDataProcessItem.Link(url: content,
                                            title: title,
                                            description: description,
-                                           icon: firstImage ?? secondImage ?? thirdImage)
+                                           icon: thumbnial2Image ?? thumbnail1Image ?? iconImage)
         } catch {
             return RawDataProcessItem.Unknown()
         }

@@ -19,8 +19,18 @@ struct LinkBookmarkView: View {
     var body: some View {
         VStack(alignment: .leading) {
             BookmarkTopicView(viewState: viewState)
-            Text(viewState.title ?? "")
-                .fontWeight(.bold)
+            HStack(alignment: .top) {
+                Text(viewState.title ?? "")
+                    .fontWeight(.bold)
+                    .lineLimit(nil)
+                if !self.viewState.isIconHidden {
+                    WebImage(url: self.viewState.icon)
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .clipped()
+                }
+                
+            }
             Text(viewState.date)
                 .fontWeight(.light)
         }

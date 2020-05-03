@@ -8,16 +8,20 @@
 
 import UIKit
 import ios_dependencies
+import SDWebImage
 
 class LinkPreviewCell: UITableViewCell, GenericIdentifiable {
     
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var iconImage: UIImageView!
     
     func redraw(viewState: PreviewLinkViewState) {
         sourceLabel.text = viewState.source
         titleLabel.text = viewState.title
         dateLabel.text = viewState.date
+        iconImage.sd_setImage(with: viewState.icon)
+        iconImage.isHidden = viewState.isIconHidden
     }
 }
