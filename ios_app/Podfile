@@ -43,6 +43,10 @@ target 'ios_app' do
     pod 'SwiftSoup', '2.3.1'
     pod 'RealmSwift', '4.4.0'
   end
+  
+  target 'ios_views' do
+    inherit! :search_paths
+  end
 end
 
 

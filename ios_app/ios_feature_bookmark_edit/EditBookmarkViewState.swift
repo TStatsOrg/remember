@@ -8,6 +8,7 @@
 
 import Foundation
 import RememberShared
+import ios_views
 
 struct EditBookmarkViewState {
     
@@ -21,7 +22,7 @@ struct EditBookmarkViewState {
         return state?.bookmark.id ?? 0
     }
     
-    var viewStates: [SelectedTopicViewState] {
-        return state?.topics.map { SelectedTopicViewState(state: $0, isSelected: $0.id == state?.bookmark.topic?.id) } ?? []
+    var viewStates: [TopicViewState.Selectable] {
+        return state?.topics.map { TopicViewState.Selectable(state: $0, isSelected: $0.id == state?.bookmark.topic?.id) } ?? []
     }
 }

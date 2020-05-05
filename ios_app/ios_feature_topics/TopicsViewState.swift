@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ios_views
 import RememberShared
 
 struct TopicsViewState {
@@ -16,7 +17,7 @@ struct TopicsViewState {
         self.state = state
     }
     
-    var viewStates: [TopicViewState] {
-        return state.map { TopicViewState(state: $0) }
+    var viewStates: [TopicViewState.Normal] {
+        return state.map { TopicViewState.Normal(state: $0) }
     }
 }
