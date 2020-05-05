@@ -52,6 +52,7 @@
 		1BAEDA682461D380002A9D9B /* ios_views.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BAEDA4B2461D091002A9D9B /* ios_views.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BAEDA6B2461D4C9002A9D9B /* ios_views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BAEDA4B2461D091002A9D9B /* ios_views.framework */; };
 		1BAEDA6C2461D4C9002A9D9B /* ios_views.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BAEDA4B2461D091002A9D9B /* ios_views.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1BAEDA712461D621002A9D9B /* ManagedSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA702461D621002A9D9B /* ManagedSearchView.swift */; };
 		1BC2B05F2446464300E73BB6 /* ios_dependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BC2B05D2446464300E73BB6 /* ios_dependencies.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BC2B0622446464300E73BB6 /* ios_dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */; };
 		1BC2B0632446464300E73BB6 /* ios_dependencies.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -403,6 +404,7 @@
 		1BAEDA4E2461D091002A9D9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BAEDA5F2461D17C002A9D9B /* TopicViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewState.swift; sourceTree = "<group>"; };
 		1BAEDA612461D186002A9D9B /* BookmarkViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewState.swift; sourceTree = "<group>"; };
+		1BAEDA702461D621002A9D9B /* ManagedSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedSearchView.swift; sourceTree = "<group>"; };
 		1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_dependencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BC2B05D2446464300E73BB6 /* ios_dependencies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_dependencies.h; sourceTree = "<group>"; };
 		1BC2B05E2446464300E73BB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -739,6 +741,7 @@
 		1BAEDA4C2461D091002A9D9B /* ios_views */ = {
 			isa = PBXGroup;
 			children = (
+				1BAEDA6F2461D60F002A9D9B /* Views */,
 				1BAEDA5E2461D16D002A9D9B /* ViewStates */,
 				1BAEDA4D2461D091002A9D9B /* ios_views.h */,
 				1BAEDA4E2461D091002A9D9B /* Info.plist */,
@@ -753,6 +756,14 @@
 				1BAEDA612461D186002A9D9B /* BookmarkViewState.swift */,
 			);
 			path = ViewStates;
+			sourceTree = "<group>";
+		};
+		1BAEDA6F2461D60F002A9D9B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1BAEDA702461D621002A9D9B /* ManagedSearchView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1BC2B05C2446464300E73BB6 /* ios_dependencies */ = {
@@ -1637,6 +1648,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BAEDA622461D186002A9D9B /* BookmarkViewState.swift in Sources */,
+				1BAEDA712461D621002A9D9B /* ManagedSearchView.swift in Sources */,
 				1BAEDA602461D17C002A9D9B /* TopicViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
