@@ -77,7 +77,8 @@ class AppDependencyProvider(private val appContext: Context) {
             SharedMainHubViewModel(
                 store = get(),
                 calendar = get(),
-                bookmarkRepository = get())
+                bookmarkRepository = get(),
+                topicsRepository = get())
         }
 
         factory<AddTopicViewModel> {

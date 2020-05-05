@@ -10,17 +10,13 @@ import com.app.feature.hub.adapters.SuggestionAdapter
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
-import com.app.feature.hub.viewstates.SuggestionsViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
-import com.app.shared.feature.topics.TopicsViewModel
-import com.app.shared.utils.MLogger
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
 
 class MainHubActivity: AppCompatActivity() {
 
     private val viewModel: MainHubViewModel by inject()
-    private val suggestionViewModel: TopicsViewModel by inject()
     private val adapter: BookmarksAdapter by inject()
     private val navigation: Navigation by inject()
     private val layoutManager = LinearLayoutManager(this)
@@ -42,7 +38,7 @@ class MainHubActivity: AppCompatActivity() {
         binding.searchInput.suggestionsAdapter = suggestionsAdapter
 
         binding.searchInput.observeSearchOpened {
-            suggestionViewModel.loadTopics()
+            viewModel.loadSuggestions()
         }
 
         binding.searchInput.observeSuggestionClicked {
@@ -50,7 +46,8 @@ class MainHubActivity: AppCompatActivity() {
         }
 
         binding.searchInput.observeSearchChanged {
-            suggestionViewModel.filter(byName = it)
+            viewModel.filterSuggestions(byName = it)
+            viewModel.search(byName = it)
         }
 
         binding.searchInput.observeSearchSubmitted {
@@ -101,12 +98,10 @@ class MainHubActivity: AppCompatActivity() {
             }
         }
 
-        suggestionViewModel.observeTopicState {
-            suggestionsAdapter.redraw(viewState = SuggestionsViewState(state = it))
-        }
-
         viewModel.observeBookmarkState {
-            adapter.redraw(viewState = BookmarksViewState(state = it))
+            val viewState = BookmarksViewState(state = it)
+            adapter.redraw(viewState = viewState)
+            suggestionsAdapter.redraw(viewState = viewState)
         }
 
         viewModel.loadBookmarks()

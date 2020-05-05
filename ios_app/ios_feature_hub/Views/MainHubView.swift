@@ -15,14 +15,15 @@ import ios_views
 
 public struct MainHubView: View {
     
-    @Injected var viewModel: MainHubViewModel
+    @Injected var bookmarksViewModel: MainHubViewModel
     @Injected var navigation: Navigation
-    @SwiftUI.State var state: BookmarksViewState = BookmarksViewState()
+    
+    @SwiftUI.State private var state: BookmarksViewState = BookmarksViewState()
     @SwiftUI.State private var searchText : String = ""
     
     public init() {}
     
-    private func update(state: [BookmarkState]) {
+    private func update(state: BookmarksState) {
         self.state = BookmarksViewState(state: state)
     }
     
@@ -30,15 +31,23 @@ public struct MainHubView: View {
         NavigationView {
             VStack {
                 ManagedSearchView(text: $searchText)
-                List(state.viewStates, rowContent: self.getCellType)
+                    .observeSearchOpened {
+                        self.bookmarksViewModel.loadSuggestions()
+                    }
+                List {
+                    ForEach(state.suggestionsViewState) { suggestion in
+                        Text("\(suggestion.name)")
+                    }
+                    ForEach(state.bookmarksViewState, content: self.getCellType)
+                }
             }
             .navigationBarTitle(Text(state.title), displayMode: NavigationBarItem.TitleDisplayMode.inline)
             .navigationBarItems(trailing: NavigationLink(destination: navigation.seeTopicsList(), label: {
                 Text("Topics")
             }))
             .onAppear {
-                self.viewModel.observeBookmarkState(callback: self.update)
-                self.viewModel.loadBookmarks()
+                self.bookmarksViewModel.observeBookmarkState(callback: self.update)
+                self.bookmarksViewModel.loadBookmarks()
             }
         }
     }

@@ -65,7 +65,7 @@ class BookmarksAdapter(private val imageLoader: AndroidImageLoader): RecyclerVie
     }
 
     fun redraw(viewState: BookmarksViewState) {
-        this.viewState = viewState.viewStates
+        this.viewState = viewState.bookmarksViewState
     }
 
     internal class BookmarkDif(

@@ -11,17 +11,30 @@ import RememberShared
 import ios_views
 
 struct BookmarksViewState {
-    private let state: [BookmarkState]
     
-    init(state: [BookmarkState] = []) {
+    private let state: BookmarksState?
+    
+    init(state: BookmarksState? = nil) {
         self.state = state
     }
     
-    var title: String {
-        return "You have \(state.count) bookmarks"
+    private var bookmarks: [BookmarkState] {
+        return state?.bookmarks ?? []
     }
     
-    var viewStates: [BookmarkViewState] {
-        return state.map { BookmarkViewState(state: $0) }
+    private var suggestions: [TopicState] {
+        return state?.suggestions ?? []
+    }
+    
+    var title: String {
+        return "You have \(bookmarks.count) bookmarks"
+    }
+    
+    var bookmarksViewState: [BookmarkViewState] {
+        return bookmarks.map(BookmarkViewState.init)
+    }
+    
+    var suggestionsViewState: [TopicViewState.Normal] {
+        return suggestions.map(TopicViewState.Normal.init)
     }
 }

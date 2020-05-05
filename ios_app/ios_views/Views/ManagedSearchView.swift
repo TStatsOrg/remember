@@ -7,11 +7,13 @@
 //
 
 import SwiftUI
+import RememberShared
 
 public struct ManagedSearchView: UIViewRepresentable {
     
     @Binding private var text: String
-    private let delegate = Delegate()
+    
+    private let obs = ObservableEmitter()
     
     public init(text: Binding<String>) {
         self._text = text
@@ -19,12 +21,18 @@ public struct ManagedSearchView: UIViewRepresentable {
     
     public class Delegate: NSObject, UISearchBarDelegate {
         
+        private let obs: ObservableEmitter
+        
+        init(obs: ObservableEmitter) {
+            self.obs = obs
+        }
+        
         public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             print("GABBOX => Search button clicked")
         }
         
         public func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-            print("GABBOX => Search bar up")
+            obs.emit(value: nil)
             return true
         }
         
@@ -32,10 +40,14 @@ public struct ManagedSearchView: UIViewRepresentable {
             print("GABBOX => Search bar down")
             return true
         }
+        
+        public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            print("GABBOX => Search bar \(searchText)")
+        }
     }
     
     public func makeCoordinator() -> Delegate {
-        return Delegate()
+        return Delegate(obs: obs)
     }
     
     public func makeUIView(context: UIViewRepresentableContext<ManagedSearchView>) -> UISearchBar {
@@ -47,5 +59,17 @@ public struct ManagedSearchView: UIViewRepresentable {
     
     public func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<ManagedSearchView>) {
         uiView.text = text
+    }
+}
+
+extension ManagedSearchView {
+    
+    @discardableResult
+    public func observeSearchOpened(callback: @escaping () -> Void) -> ManagedSearchView {
+        obs.observer().collect { _ in
+            callback()
+        }
+
+        return self
     }
 }
