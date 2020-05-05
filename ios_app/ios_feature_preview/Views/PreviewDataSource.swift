@@ -9,6 +9,7 @@
 import UIKit
 import SharePreview
 import ios_dependencies
+import ios_views
 
 class PreviewDataSource: NSObject {
     
@@ -35,15 +36,15 @@ extension PreviewDataSource: UITableViewDataSource {
         }
         
         switch viewState {
-        case let link as PreviewLinkViewState:
+        case let link as BookmarkLinkViewState:
             let cell = tableView.dequeueReusableCell(withIdentifier: LinkPreviewCell.identifier, for: indexPath) as! LinkPreviewCell
             cell.redraw(viewState: link)
             return cell
-        case let text as PreviewTextViewState:
+        case let text as BookmarkTextViewState:
             let cell = tableView.dequeueReusableCell(withIdentifier: TextPreviewCell.identifier, for: indexPath) as! TextPreviewCell
             cell.redraw(viewState: text)
             return cell
-        case let image as PreviewImageViewState:
+        case let image as BookmarkImageViewState:
             let cell = tableView.dequeueReusableCell(withIdentifier: ImagePreviewCell.identifier, for: indexPath) as! ImagePreviewCell
             cell.redraw(viewState: image)
             return cell

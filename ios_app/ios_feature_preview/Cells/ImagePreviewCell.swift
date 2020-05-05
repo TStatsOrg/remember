@@ -8,6 +8,7 @@
 
 import UIKit
 import ios_dependencies
+import ios_views
 import SDWebImage
 
 class ImagePreviewCell: UITableViewCell, GenericIdentifiable {
@@ -15,7 +16,7 @@ class ImagePreviewCell: UITableViewCell, GenericIdentifiable {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var previewImage: UIImageView!
     
-    func redraw(viewState: PreviewImageViewState) {
+    func redraw(viewState: BookmarkImageViewState) {
         sourceLabel.text = viewState.source
         dateLabel.text = viewState.date
         previewImage.sd_setImage(with: viewState.url)

@@ -8,6 +8,7 @@
 
 import Foundation
 import RememberShared
+import ios_views
 
 struct BookmarksViewState {
     private let state: [BookmarkState]

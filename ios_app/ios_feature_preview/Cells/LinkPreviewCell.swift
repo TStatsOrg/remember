@@ -8,6 +8,7 @@
 
 import UIKit
 import ios_dependencies
+import ios_views
 import SDWebImage
 
 class LinkPreviewCell: UITableViewCell, GenericIdentifiable {
@@ -17,7 +18,7 @@ class LinkPreviewCell: UITableViewCell, GenericIdentifiable {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
     
-    func redraw(viewState: PreviewLinkViewState) {
+    func redraw(viewState: BookmarkLinkViewState) {
         sourceLabel.text = viewState.source
         titleLabel.text = viewState.title
         dateLabel.text = viewState.date

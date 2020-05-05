@@ -8,6 +8,7 @@
 
 import RememberShared
 import Foundation
+import ios_views
 
 struct PreviewsViewState {
     
@@ -17,7 +18,7 @@ struct PreviewsViewState {
         self.state = state
     }
     
-    var viewStates: [PreviewViewState] {
-        return [PreviewViewState(state: state)]
+    var viewStates: [BookmarkViewState] {
+        return [BookmarkViewState(state: state)]
     }
 }

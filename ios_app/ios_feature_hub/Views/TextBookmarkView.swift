@@ -11,6 +11,7 @@ import SwiftUI
 import ios_dependencies
 import RememberShared
 import SDWebImageSwiftUI
+import ios_views
 
 struct TextBookmarkView: View {
     
