@@ -32,4 +32,10 @@ class SharedBookmarkRepository(
             return@withContext (texts + links + images).sortedByDescending { it.date }
         }
     }
+
+    override suspend fun loadLink(id: Int): BookmarkDTO.LinkBookmarkDTO? {
+        return withContext(context = IODispatcher) {
+            return@withContext linkBookmarkDAO.getAll().firstOrNull { it.id == id }
+        }
+    }
 }

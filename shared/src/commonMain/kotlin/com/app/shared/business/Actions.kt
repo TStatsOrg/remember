@@ -26,6 +26,10 @@ sealed class Actions: Action {
 
         data class Edit(val bookmarkId: Int): Bookmark()
         data class Update(val state: BookmarkState): Bookmark()
+
+        sealed class Display: Bookmark() {
+            data class Link(val dto: BookmarkDTO.LinkBookmarkDTO): Display()
+        }
     }
 
     sealed class Topics: Actions() {

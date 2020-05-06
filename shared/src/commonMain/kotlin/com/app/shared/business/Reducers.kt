@@ -17,6 +17,8 @@ val AppStateReducer: Reducer<AppState> = { old, action ->
         // bookmark/suggestions
         is Actions.Bookmark.Suggestions.Load -> old.copy(bookmarks = old.bookmarks.copy(suggestions = action.suggestions.toTopicState()))
         is Actions.Bookmark.Suggestions.Clear -> old.copy(bookmarks = old.bookmarks.copy(suggestions = listOf()))
+        // bookmarks/display
+        is Actions.Bookmark.Display.Link -> old.copy(display = DisplayBookmarkState(link = action.dto.toState()))
         // bookmark/update
         is Actions.Bookmark.Update -> {
 

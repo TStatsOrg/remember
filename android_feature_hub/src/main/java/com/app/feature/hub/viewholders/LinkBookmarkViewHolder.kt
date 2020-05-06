@@ -21,6 +21,10 @@ class LinkBookmarkViewHolder(
             listener?.onTopicClick(viewState = viewState)
         }
 
+        binding.root.setOnClickListener {
+            listener?.onLinkClick(viewState = viewState)
+        }
+
         binding.root.setOnLongClickListener {
             listener?.onLongClick(viewState = viewState)
             true

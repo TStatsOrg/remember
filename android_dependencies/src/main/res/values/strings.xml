@@ -25,4 +25,7 @@
 
     <!-- preview -->
     <string name="preview_title">Add bookmark</string>
+
+    <!-- ddisplay -->
+    <string name="display_link_title">View bookmark</string>
 </resources>

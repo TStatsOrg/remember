@@ -64,6 +64,17 @@ fun BookmarkDTO.toState(): BookmarkState {
     }
 }
 
+fun BookmarkDTO.LinkBookmarkDTO.toState(): BookmarkState.Link =
+    BookmarkState.Link(
+        id = id,
+        date = date,
+        url = url,
+        title = title,
+        caption = caption,
+        icon = icon,
+        topic = topic?.toState()
+    )
+
 fun BookmarkState.toDTO(withTopic: TopicState? = null): BookmarkDTO? {
     return when (this) {
         is BookmarkState.Image -> object : BookmarkDTO.ImageBookmarkDTO {

@@ -12,4 +12,5 @@ interface Navigation {
     fun seeTopicsList(context: Context)
     fun seeEditBookmark(context: Context, forEditingBookmark: Int)
     fun seeAddTopic(context: Context)
+    fun seeLink(context: Context, forDisplayingBookmark: Int)
 }

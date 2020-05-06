@@ -23,6 +23,8 @@ import com.app.shared.data.repository.SharedTopicsRepository
 import com.app.shared.data.repository.TopicsRepository
 import com.app.shared.feature.addtopic.AddTopicViewModel
 import com.app.shared.feature.addtopic.SharedAddTopicViewModel
+import com.app.shared.feature.display.DisplayViewModel
+import com.app.shared.feature.display.SharedDisplayViewModel
 import com.app.shared.feature.editbookmark.EditBookmarkViewModel
 import com.app.shared.feature.editbookmark.SharedEditBookmarkViewModel
 import com.app.shared.feature.mainhub.MainHubViewModel
@@ -102,6 +104,13 @@ class AppDependencyProvider(private val appContext: Context) {
                 calendar = get(),
                 bookmarkRepository = get(),
                 topicsRepository = get()
+            )
+        }
+
+        factory<DisplayViewModel> {
+            SharedDisplayViewModel(
+                store = get(),
+                bookmarksRepository = get()
             )
         }
 

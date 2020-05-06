@@ -64,10 +64,11 @@ class MainHubActivity: AppCompatActivity() {
         adapter.listener = object : BookmarkViewHolder.Listener {
 
             override fun onTopicClick(viewState: BookmarkViewState) {
-                navigation.seeEditBookmark(
-                    context = this@MainHubActivity,
-                    forEditingBookmark = viewState.id
-                )
+                navigation.seeEditBookmark(context = this@MainHubActivity, forEditingBookmark = viewState.id)
+            }
+
+            override fun onLinkClick(viewState: BookmarkViewState.Link) {
+                navigation.seeLink(context = this@MainHubActivity, forDisplayingBookmark = viewState.id)
             }
 
             override fun onLongClick(viewState: BookmarkViewState) {

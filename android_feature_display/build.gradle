@@ -1,18 +1,13 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion compileVersion
 
     defaultConfig {
-        applicationId "com.app.remember"
         minSdkVersion minVersion
         targetSdkVersion targetVersion
-        versionCode 1
-        versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,21 +40,12 @@ dependencies {
     implementation project(":shared")
     implementation project(":android_dependencies")
     implementation project(":android_views")
-    implementation project(":android_feature_preview")
-    implementation project(":android_feature_bookmark_edit")
-    implementation project(":android_feature_hub")
-    implementation project(":android_feature_topics")
-    implementation project(":android_feature_topic_add")
-    implementation project(":android_feature_display")
 
-    // coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
-    
     // Android X
     implementation "androidx.core:core-ktx:$androidXVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 
     // Material Design Components
     implementation "com.google.android.material:material:$materialDesignVersion"
@@ -74,5 +60,4 @@ dependencies {
     // UI Tests
     androidTestImplementation "androidx.test.ext:junit:$jUnitInstrVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-
 }

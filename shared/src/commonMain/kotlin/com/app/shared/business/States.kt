@@ -63,10 +63,15 @@ data class EditBookmarkState(
     val topics: List<TopicState> = listOf()
 )
 
+data class DisplayBookmarkState(
+    val link: BookmarkState.Link? = null
+)
+
 data class AppState(
     val bookmarks: BookmarksState = BookmarksState(),
     val topics: TopicsState = TopicsState(),
     val preview: BookmarkState? = null,
+    val display: DisplayBookmarkState = DisplayBookmarkState(),
     val editBookmark: EditBookmarkState? = null
 ): State
 

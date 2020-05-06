@@ -13,5 +13,7 @@ abstract class BookmarkViewHolder<ViewState: BookmarkViewState>(initialView: Vie
     interface Listener {
         fun onTopicClick(viewState: BookmarkViewState)
         fun onLongClick(viewState: BookmarkViewState)
+
+        fun onLinkClick(viewState: BookmarkViewState.Link)
     }
 }
