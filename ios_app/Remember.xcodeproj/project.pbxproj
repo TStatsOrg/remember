@@ -70,6 +70,7 @@
 		1BC2B081244781F700E73BB6 /* ios_dependencies.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BC2B0852447879200E73BB6 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; };
 		1BC2B0862447879200E73BB6 /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1BD96CB2246327A80080A6EF /* KeyboardUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD96CB1246327A80080A6EF /* KeyboardUtils.swift */; };
 		1BE01D33245205CD000FC4AF /* RealmTopicDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D32245205CD000FC4AF /* RealmTopicDAO.swift */; };
 		1BE01D3524520608000FC4AF /* RealmDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D3424520608000FC4AF /* RealmDAO.swift */; };
 		1BE01D372454AB08000FC4AF /* RealmImageBookmarkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D362454AB07000FC4AF /* RealmImageBookmarkObject.swift */; };
@@ -417,6 +418,7 @@
 		1BC2B07B24464C9700E73BB6 /* RealmLinkBookmarkDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLinkBookmarkDAO.swift; sourceTree = "<group>"; };
 		1BC2B07E24464D1B00E73BB6 /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
 		1BC2B087244797BB00E73BB6 /* preview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = preview.entitlements; sourceTree = "<group>"; };
+		1BD96CB1246327A80080A6EF /* KeyboardUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtils.swift; sourceTree = "<group>"; };
 		1BE01D32245205CD000FC4AF /* RealmTopicDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTopicDAO.swift; sourceTree = "<group>"; };
 		1BE01D3424520608000FC4AF /* RealmDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDAO.swift; sourceTree = "<group>"; };
 		1BE01D362454AB07000FC4AF /* RealmImageBookmarkObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmImageBookmarkObject.swift; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 		1BAEDA4C2461D091002A9D9B /* ios_views */ = {
 			isa = PBXGroup;
 			children = (
+				1BD96CB0246327950080A6EF /* Utils */,
 				1BAEDA6F2461D60F002A9D9B /* Views */,
 				1BAEDA5E2461D16D002A9D9B /* ViewStates */,
 				1BAEDA4D2461D091002A9D9B /* ios_views.h */,
@@ -819,6 +822,14 @@
 				1BC2B07E24464D1B00E73BB6 /* DependencyProvider.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		1BD96CB0246327950080A6EF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1BD96CB1246327A80080A6EF /* KeyboardUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		1BE01D512459F124000FC4AF /* Navigation */ = {
@@ -1647,6 +1658,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BD96CB2246327A80080A6EF /* KeyboardUtils.swift in Sources */,
 				1BAEDA622461D186002A9D9B /* BookmarkViewState.swift in Sources */,
 				1BAEDA712461D621002A9D9B /* ManagedSearchView.swift in Sources */,
 				1BAEDA602461D17C002A9D9B /* TopicViewState.swift in Sources */,

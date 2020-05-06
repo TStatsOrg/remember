@@ -11,43 +11,58 @@ import RememberShared
 
 public struct ManagedSearchView: UIViewRepresentable {
     
-    @Binding private var text: String
+    private let openSearchEmitter = ObservableEmitter()
+    private let searchChangedEmitter = ObservableEmitter()
+    private let closeSearchEmitter = ObservableEmitter()
+    private let cancelSearchEmitter = ObservableEmitter()
     
-    private let obs = ObservableEmitter()
-    
-    public init(text: Binding<String>) {
-        self._text = text
-    }
+    public init() {}
     
     public class Delegate: NSObject, UISearchBarDelegate {
         
-        private let obs: ObservableEmitter
+        private let openSearchEmitter: ObservableEmitter
+        private let searchChangedEmitter: ObservableEmitter
+        private let closeSearchEmitter: ObservableEmitter
+        private let cancelSearchEmitter: ObservableEmitter
         
-        init(obs: ObservableEmitter) {
-            self.obs = obs
+        init(openSearchEmitter: ObservableEmitter,
+             searchChangedEmitter: ObservableEmitter,
+             closeSearchEmitter: ObservableEmitter,
+             cancelSearchEmitter: ObservableEmitter) {
+            self.openSearchEmitter = openSearchEmitter
+            self.searchChangedEmitter = searchChangedEmitter
+            self.closeSearchEmitter = closeSearchEmitter
+            self.cancelSearchEmitter = cancelSearchEmitter
         }
         
         public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            print("GABBOX => Search button clicked")
+            
         }
         
         public func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-            obs.emit(value: nil)
+            openSearchEmitter.emit(value: nil)
             return true
         }
         
         public func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-            print("GABBOX => Search bar down")
+            closeSearchEmitter.emit(value: nil)
             return true
         }
         
         public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            print("GABBOX => Search bar \(searchText)")
+            if searchText.isEmpty {
+                cancelSearchEmitter.emit(value: nil)
+            } else {
+                searchChangedEmitter.emit(value: searchText)
+            }
         }
     }
     
     public func makeCoordinator() -> Delegate {
-        return Delegate(obs: obs)
+        return Delegate(openSearchEmitter: openSearchEmitter,
+                        searchChangedEmitter: searchChangedEmitter,
+                        closeSearchEmitter: closeSearchEmitter,
+                        cancelSearchEmitter: cancelSearchEmitter)
     }
     
     public func makeUIView(context: UIViewRepresentableContext<ManagedSearchView>) -> UISearchBar {
@@ -58,7 +73,7 @@ public struct ManagedSearchView: UIViewRepresentable {
     }
     
     public func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<ManagedSearchView>) {
-        uiView.text = text
+        // N/A
     }
 }
 
@@ -66,10 +81,40 @@ extension ManagedSearchView {
     
     @discardableResult
     public func observeSearchOpened(callback: @escaping () -> Void) -> ManagedSearchView {
-        obs.observer().collect { _ in
+        openSearchEmitter.observer().collect { _ in
             callback()
         }
 
+        return self
+    }
+    
+    @discardableResult
+    public func observeSearchChanged(callback: @escaping (String) -> Void) -> ManagedSearchView {
+        searchChangedEmitter.observer().collect { searchTerm in
+            
+            if let term = searchTerm as? String {
+                callback(term)
+            }
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    public func observeSearchClosed(callback: @escaping () -> Void) -> ManagedSearchView {
+        closeSearchEmitter.observer().collect { _ in
+            callback()
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    public func observeCancelSearch(callback: @escaping () -> Void) -> ManagedSearchView {
+        cancelSearchEmitter.observer().collect { _ in
+            callback()
+        }
+        
         return self
     }
 }

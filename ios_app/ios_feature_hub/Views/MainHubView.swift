@@ -19,7 +19,6 @@ public struct MainHubView: View {
     @Injected var navigation: Navigation
     
     @SwiftUI.State private var state: BookmarksViewState = BookmarksViewState()
-    @SwiftUI.State private var searchText : String = ""
     
     public init() {}
     
@@ -30,13 +29,36 @@ public struct MainHubView: View {
     public var body: some View {
         NavigationView {
             VStack {
-                ManagedSearchView(text: $searchText)
-                    .observeSearchOpened {
-                        self.bookmarksViewModel.loadSuggestions()
+                HStack {
+                    ManagedSearchView()
+                        .observeSearchOpened {
+                            self.bookmarksViewModel.loadSuggestions()
+                        }
+                        .observeSearchChanged { term in
+                            self.bookmarksViewModel.filterSuggestions(byName: term)
+                            self.bookmarksViewModel.search(byName: term)
+                        }
+                        .observeCancelSearch {
+                            self.bookmarksViewModel.loadSuggestions()
+                        }
+                        
+                    Button(action: {
+                        self.dismissKeyboard()
+                        self.bookmarksViewModel.loadBookmarks()
+                    }) {
+                        Text("Clear")
                     }
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 12))
+                }
                 List {
                     ForEach(state.suggestionsViewState) { suggestion in
-                        Text("\(suggestion.name)")
+                        Button(action: {
+                            self.dismissKeyboard()
+                            self.bookmarksViewModel.filter(byTopic: suggestion.name)
+                            self.bookmarksViewModel.clearSuggestions()
+                        }) {
+                            Text("\(suggestion.name)")
+                        }
                     }
                     ForEach(state.bookmarksViewState, content: self.getCellType)
                 }
