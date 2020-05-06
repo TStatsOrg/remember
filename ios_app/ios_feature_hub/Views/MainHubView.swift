@@ -29,27 +29,7 @@ public struct MainHubView: View {
     public var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    ManagedSearchView()
-                        .observeSearchOpened {
-                            self.bookmarksViewModel.loadSuggestions()
-                        }
-                        .observeSearchChanged { term in
-                            self.bookmarksViewModel.filterSuggestions(byName: term)
-                            self.bookmarksViewModel.search(byName: term)
-                        }
-                        .observeCancelSearch {
-                            self.bookmarksViewModel.loadSuggestions()
-                        }
-                        
-                    Button(action: {
-                        self.dismissKeyboard()
-                        self.bookmarksViewModel.loadBookmarks()
-                    }) {
-                        Text("Clear")
-                    }
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 12))
-                }
+                SearchView(viewModel: self.bookmarksViewModel)
                 List {
                     ForEach(state.suggestionsViewState) { suggestion in
                         Button(action: {
@@ -88,6 +68,46 @@ public struct MainHubView: View {
             return AnyView(LinkBookmarkView(viewState: link))
         default:
             return AnyView(Text("N/A"))
+        }
+    }
+}
+
+public struct SearchView: View {
+    
+    var bookmarksViewModel: MainHubViewModel
+    @SwiftUI.State private var isClearButton: Bool = false
+    
+    public init(viewModel: MainHubViewModel) {
+        bookmarksViewModel = viewModel
+    }
+    
+    public var body: some View {
+        HStack {
+            ManagedSearchView()
+                .observeSearchOpened {
+                    self.bookmarksViewModel.loadSuggestions()
+                    self.isClearButton = true
+                }
+                .observeSearchChanged { term in
+                    self.bookmarksViewModel.filterSuggestions(byName: term)
+                    self.bookmarksViewModel.search(byName: term)
+                }
+                .observeCancelSearch {
+                    self.bookmarksViewModel.loadSuggestions()
+                }
+                .observeSearchClosed {
+                    self.isClearButton = false
+                }
+            
+            if self.isClearButton {
+                Button(action: {
+                    self.dismissKeyboard()
+                    self.bookmarksViewModel.loadBookmarks()
+                }) {
+                    Text("Clear")
+                }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 12))
+            }
         }
     }
 }
