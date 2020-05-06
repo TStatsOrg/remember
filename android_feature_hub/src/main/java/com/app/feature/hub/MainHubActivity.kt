@@ -11,6 +11,7 @@ import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
+import com.app.views.utils.hideKeyboard
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
 
@@ -36,13 +37,15 @@ class MainHubActivity: AppCompatActivity() {
         binding.bookmarksRecyclerView.itemAnimator = animator
 
         binding.searchInput.suggestionsAdapter = suggestionsAdapter
+        binding.searchInput.setOnSuggestionListener(suggestionsAdapter)
+
+        suggestionsAdapter.observeSuggestionClicked {
+            viewModel.filter(byTopic = it)
+            hideKeyboard(view = binding.root)
+        }
 
         binding.searchInput.observeSearchOpened {
             viewModel.loadSuggestions()
-        }
-
-        binding.searchInput.observeSuggestionClicked {
-            viewModel.filter(byTopic = it)
         }
 
         binding.searchInput.observeSearchChanged {

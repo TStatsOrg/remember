@@ -1,8 +1,6 @@
 package com.app.views.views
 
-import android.app.SearchManager
 import android.content.Context
-import android.database.Cursor
 import android.util.AttributeSet
 import android.widget.AutoCompleteTextView
 import androidx.appcompat.widget.SearchView
@@ -14,7 +12,6 @@ class ManagedSearchView: SearchView {
 
     private val openSearchEmitter = ObservableEmitter<Boolean>()
     private val closeSearchEmitter = ObservableEmitter<Boolean>()
-    private val suggestionClickedEmitter = ObservableEmitter<String>()
     private val searchChangedEmitter = ObservableEmitter<String>()
     private val searchSubmittedEmitter = ObservableEmitter<String>()
 
@@ -35,18 +32,6 @@ class ManagedSearchView: SearchView {
             closeSearchEmitter.emit(value = true)
             return@setOnCloseListener false
         }
-
-        setOnSuggestionListener(object : OnSuggestionListener {
-            override fun onSuggestionSelect(position: Int): Boolean = true
-
-            override fun onSuggestionClick(position: Int): Boolean {
-                val cursor = suggestionsAdapter.getItem(position) as Cursor
-                val selection = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1))
-                context.hideKeyboard(view = this@ManagedSearchView)
-                suggestionClickedEmitter.emit(value = selection)
-                return true
-            }
-        })
 
         setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -69,8 +54,6 @@ class ManagedSearchView: SearchView {
     fun observeSearchOpened(callback: (Boolean) -> Unit) = openSearchEmitter.observer().collect(callback)
 
     fun observeSearchClosed(callback: (Boolean) -> Unit) = closeSearchEmitter.observer().collect(callback)
-
-    fun observeSuggestionClicked(callback: (String) -> Unit) = suggestionClickedEmitter.observer().collect(callback)
 
     fun observeSearchChanged(callback: (String) -> Unit) = searchChangedEmitter.observer().collect(callback)
 
