@@ -8,14 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dependencies.navigation.Navigation
 import com.app.feature.hub.adapters.BookmarksAdapter
 import com.app.feature.hub.adapters.SuggestionAdapter
-import com.app.feature.hub.databinding.DialogEditBookmarkBinding
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.views.utils.hideKeyboard
-import com.app.views.views.BottomDialog
-import com.app.views.views.show
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
 
@@ -72,23 +69,12 @@ class MainHubActivity: AppCompatActivity() {
             }
 
             override fun onLongClick(viewState: BookmarkViewState) {
-
-                BottomDialog.create(this@MainHubActivity)
-                    .show(DialogEditBookmarkBinding.inflate(layoutInflater)) { binding, dialog ->
-                        binding.editBookmarkButton.setOnClickListener {
-                            navigation.seeEditBookmark(
-                                context = this@MainHubActivity,
-                                forEditingBookmark = viewState.id
-                            )
-                            dialog.cancel()
-                        }
-                        binding.deleteBookmarkButton.setOnClickListener {
-                            dialog.cancel()
-                        }
-                        binding.cancelButton.setOnClickListener {
-                            dialog.cancel()
-                        }
+                BottomDialogEditBookmark(
+                    context = this@MainHubActivity,
+                    editAction = {
+                        navigation.seeEditBookmark(context = this@MainHubActivity, forEditingBookmark = viewState.id)
                     }
+                )
             }
         }
 

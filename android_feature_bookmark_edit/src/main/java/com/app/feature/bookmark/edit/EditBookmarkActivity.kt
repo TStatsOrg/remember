@@ -38,10 +38,6 @@ class EditBookmarkActivity: AppCompatActivity() {
             finish()
         }
 
-        binding.saveBookmark.setOnClickListener {
-            viewModel.save()
-        }
-
         binding.topAppBar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.topics -> {
@@ -65,6 +61,7 @@ class EditBookmarkActivity: AppCompatActivity() {
         adapter.listener = object : SelectTopicViewHolder.Listener {
             override fun onClickTopic(id: Int) {
                 viewModel.update(bookmark = viewState.bookmarkId, withTopic = id)
+                viewModel.save()
             }
         }
     }
