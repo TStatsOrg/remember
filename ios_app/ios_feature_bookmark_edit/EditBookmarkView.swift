@@ -17,6 +17,7 @@ public struct EditBookmarkView: View {
     @Injected var navigation: Navigation
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @SwiftUI.State var state: EditBookmarkViewState = EditBookmarkViewState()
+    @SwiftUI.State private var isShowingTopics: Bool = false
     
     private let bookmarkId: Int32
     
@@ -25,27 +26,30 @@ public struct EditBookmarkView: View {
     }
     
     public var body: some View {
-        NavigationView {
-            List(state.viewStates, rowContent: { content in
-                Button(action: {
-                    self.viewModel.update(bookmark: self.bookmarkId, withTopic: content.id)
-                    self.viewModel.save()
-                }) {
-                    Text("\(content.name)")
-                    .background(Color(content.isSelected ? .green : .clear))
-                }
-            })
-            .onAppear {
-                self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
-                self.viewModel.observeBookmarkSaved { (success) in
-                    self.mode.wrappedValue.dismiss()
-                }
-                self.viewModel.observeEditBookmarkState(callback: self.update)
+        List(state.viewStates, rowContent: { content in
+            Button(action: {
+                self.viewModel.update(bookmark: self.bookmarkId, withTopic: content.id)
+                self.viewModel.save()
+            }) {
+                Text("\(content.name)")
+                .background(Color(content.isSelected ? .green : .clear))
             }
-            .navigationBarTitle("Edit bookmark", displayMode: NavigationBarItem.TitleDisplayMode.inline)
-            .navigationBarItems(trailing: NavigationLink(destination: navigation.seeTopicsList(), label: {
-                Text("Topics")
-            }))
+        })
+        .onAppear {
+            self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
+            self.viewModel.observeBookmarkSaved { (success) in
+                self.mode.wrappedValue.dismiss()
+            }
+            self.viewModel.observeEditBookmarkState(callback: self.update)
+        }
+        .navigationBarTitle("Edit bookmark", displayMode: NavigationBarItem.TitleDisplayMode.inline)
+        .navigationBarItems(trailing: Button(action: {
+            self.isShowingTopics = true
+        }, label: {
+            Text("Topics")
+        }))
+        .sheet(isPresented: $isShowingTopics) {
+            self.navigation.seeTopicsList()
         }
     }
     

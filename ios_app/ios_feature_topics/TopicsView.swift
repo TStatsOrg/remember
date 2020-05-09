@@ -13,9 +13,10 @@ import ios_dependencies
 
 public struct TopicsView: View {
     
-    @Injected var viewModel: TopicsViewModel
-    @Injected var navigation: Navigation
-    @SwiftUI.State var state: TopicsViewState = TopicsViewState()
+    @Injected private var viewModel: TopicsViewModel
+    @Injected private var navigation: Navigation
+    @SwiftUI.State private var state: TopicsViewState = TopicsViewState()
+    @SwiftUI.State private var isShowingAdd: Bool = false
     
     public init() {}
     
@@ -24,12 +25,17 @@ public struct TopicsView: View {
             Text("\(content.name)")
         })
         .navigationBarTitle(Text("Topics"))
-        .navigationBarItems(trailing: NavigationLink(destination: navigation.seeAddTopic(), label: {
+        .navigationBarItems(trailing: Button(action: {
+            self.isShowingAdd = true
+        }, label: {
             Text("Add")
         }))
         .onAppear {
             self.viewModel.observeTopicState(callback: self.update)
             self.viewModel.loadTopics()
+        }
+        .sheet(isPresented: $isShowingAdd) {
+            self.navigation.seeAddTopic()
         }
     }
     

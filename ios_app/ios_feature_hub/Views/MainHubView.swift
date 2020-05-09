@@ -19,6 +19,7 @@ public struct MainHubView: View {
     @Injected var navigation: Navigation
     
     @SwiftUI.State private var state: BookmarksViewState = BookmarksViewState()
+    @SwiftUI.State private var isShowingTopics: Bool = false
     
     public init() {}
     
@@ -44,12 +45,17 @@ public struct MainHubView: View {
                 }
             }
             .navigationBarTitle(Text(state.title), displayMode: .inline)
-            .navigationBarItems(trailing: NavigationLink(destination: navigation.seeTopicsList(), label: {
+            .navigationBarItems(trailing: Button(action: {
+                self.isShowingTopics = true
+            }, label: {
                 Text("Topics")
             }))
             .onAppear {
                 self.bookmarksViewModel.observeBookmarkState(callback: self.update)
                 self.bookmarksViewModel.loadBookmarks()
+            }
+            .sheet(isPresented: $isShowingTopics) {
+                self.navigation.seeTopicsList()
             }
         }
     }

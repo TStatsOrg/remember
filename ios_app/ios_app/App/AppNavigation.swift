@@ -16,15 +16,15 @@ import ios_feature_bookmark_edit
 class AppNavigation: Navigation {
     
     func seeAddTopic() -> AnyView {
-        return AnyView(AddTopicView())
+        return AnyView(NavigationView { AddTopicView() })
     }
     
     func seeTopicsList() -> AnyView {
-        return AnyView(TopicsView())
+        return AnyView(NavigationView { TopicsView() })
     }
     
     func seeEditBookmark(forBookmarkId id: Int32) -> AnyView {
-        return AnyView(EditBookmarkView(bookmarkId: id))
+        return AnyView(NavigationView { EditBookmarkView(bookmarkId: id) })
     }
     
     func seeUrlDestination(url: URL?) {
