@@ -8,13 +8,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dependencies.navigation.Navigation
 import com.app.feature.hub.adapters.BookmarksAdapter
 import com.app.feature.hub.adapters.SuggestionAdapter
+import com.app.feature.hub.databinding.DialogEditBookmarkBinding
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.views.utils.hideKeyboard
+import com.app.views.views.BottomDialog
+import com.app.views.views.show
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
+
 
 class MainHubActivity: AppCompatActivity() {
 
@@ -64,32 +68,28 @@ class MainHubActivity: AppCompatActivity() {
 
         adapter.listener = object : BookmarkViewHolder.Listener {
 
-            override fun onTopicClick(viewState: BookmarkViewState) {
-                navigation.seeEditBookmark(context = this@MainHubActivity, forEditingBookmark = viewState.id)
-            }
-
             override fun onLinkClick(url: Uri?) {
                 navigation.seeUrlDestination(context = this@MainHubActivity, uri = url)
             }
 
             override fun onLongClick(viewState: BookmarkViewState) {
-//                startActionMode(object : ActionMode.Callback {
-//                    override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-//                        return false
-//                    }
-//
-//                    override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-//                        val inflater = mode?.menuInflater
-//                        inflater?.inflate(R.menu.app_bar_edit_hub, menu)
-//                        return true
-//                    }
-//
-//                    override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
-//
-//                    override fun onDestroyActionMode(mode: ActionMode?) {
-//
-//                    }
-//                })
+
+                BottomDialog.create(this@MainHubActivity)
+                    .show(DialogEditBookmarkBinding.inflate(layoutInflater)) { binding, dialog ->
+                        binding.editBookmarkButton.setOnClickListener {
+                            navigation.seeEditBookmark(
+                                context = this@MainHubActivity,
+                                forEditingBookmark = viewState.id
+                            )
+                            dialog.cancel()
+                        }
+                        binding.deleteBookmarkButton.setOnClickListener {
+                            dialog.cancel()
+                        }
+                        binding.cancelButton.setOnClickListener {
+                            dialog.cancel()
+                        }
+                    }
             }
         }
 

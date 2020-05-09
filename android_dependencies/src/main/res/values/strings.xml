@@ -10,6 +10,11 @@
     <string name="main_hub_edit_done">Done</string>
     <string name="main_hub_search_hint">Search</string>
 
+    <!-- main hub edit bookmark dialog -->
+    <string name="main_hub_dialog_edit_button">Edit Bookmark</string>
+    <string name="main_hub_dialog_delete_button">Delete Bookmark</string>
+    <string name="main_hub_dialog_cancel">Cancel</string>
+
     <!-- topics feature -->
     <string name="topics_title">Topics</string>
     <string name="topics_add">Add</string>

@@ -19,12 +19,7 @@ class LinkBookmarkViewHolder(
         binding.bookmarkIcon.visibility = iconVisibility
 
         binding.root.setOnClickListener {
-            MLogger.log("View State $viewState")
             listener?.onLinkClick(url = viewState.destinationUrl)
-        }
-
-        binding.bookmarkTopic.setOnClickListener {
-            listener?.onTopicClick(viewState = viewState)
         }
 
         binding.root.setOnLongClickListener {

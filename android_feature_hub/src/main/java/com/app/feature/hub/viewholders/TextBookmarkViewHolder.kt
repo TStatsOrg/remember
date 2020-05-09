@@ -13,10 +13,6 @@ class TextBookmarkViewHolder(
         binding.bookmarkSource.text = source
         binding.bookmarkTopic.text = topic
 
-        binding.bookmarkTopic.setOnClickListener {
-            listener?.onTopicClick(viewState = viewState)
-        }
-
         binding.root.setOnLongClickListener {
             listener?.onLongClick(viewState = viewState)
             true

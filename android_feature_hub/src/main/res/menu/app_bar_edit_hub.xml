@@ -1,9 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/submit_edit"
-        android:title="@string/main_hub_edit_done"
-        android:contentDescription="@string/main_hub_edit_done"
-        android:icon="@drawable/ic_baseline_check_24"
-        app:showAsAction="ifRoom" />
-</menu>
