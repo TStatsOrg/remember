@@ -1,6 +1,7 @@
 package com.app.dependencies.navigation
 
 import android.content.Context
+import android.net.Uri
 
 interface Navigation {
 
@@ -12,4 +13,5 @@ interface Navigation {
     fun seeTopicsList(context: Context)
     fun seeEditBookmark(context: Context, forEditingBookmark: Int)
     fun seeAddTopic(context: Context)
+    fun seeUrlDestination(context: Context, uri: Uri)
 }

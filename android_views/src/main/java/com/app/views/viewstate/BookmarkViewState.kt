@@ -32,6 +32,15 @@ sealed class BookmarkViewState(private val bookmark: BookmarkState) {
     data class Link(private val bookmark: BookmarkState.Link): BookmarkViewState(bookmark) {
         val title: String? = bookmark.title
 
+        val destinationUrl: Uri?
+            get() {
+                return try {
+                    Uri.parse(bookmark.url)
+                } catch (e: Throwable) {
+                    null
+                }
+            }
+
         val icon: Uri?
             get() {
                 return try {

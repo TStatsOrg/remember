@@ -1,5 +1,6 @@
 package com.app.feature.hub.viewholders
 
+import android.net.Uri
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.app.views.viewstate.BookmarkViewState
@@ -11,6 +12,7 @@ abstract class BookmarkViewHolder<ViewState: BookmarkViewState>(initialView: Vie
     abstract fun redraw(viewState: ViewState)
 
     interface Listener {
+        fun onLinkClick(url: Uri)
         fun onTopicClick(viewState: BookmarkViewState)
         fun onLongClick(viewState: BookmarkViewState)
     }

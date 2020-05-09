@@ -17,6 +17,12 @@ class LinkBookmarkViewHolder(
         loader.load(icon, binding.bookmarkIcon)
         binding.bookmarkIcon.visibility = iconVisibility
 
+        binding.root.setOnClickListener {
+            viewState.destinationUrl?.let {
+                listener?.onLinkClick(url = it)
+            }
+        }
+
         binding.bookmarkTopic.setOnClickListener {
             listener?.onTopicClick(viewState = viewState)
         }

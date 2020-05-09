@@ -1,5 +1,6 @@
 package com.app.feature.hub
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -64,10 +65,11 @@ class MainHubActivity: AppCompatActivity() {
         adapter.listener = object : BookmarkViewHolder.Listener {
 
             override fun onTopicClick(viewState: BookmarkViewState) {
-                navigation.seeEditBookmark(
-                    context = this@MainHubActivity,
-                    forEditingBookmark = viewState.id
-                )
+                navigation.seeEditBookmark(context = this@MainHubActivity, forEditingBookmark = viewState.id)
+            }
+
+            override fun onLinkClick(url: Uri) {
+                navigation.seeUrlDestination(context = this@MainHubActivity, uri = url)
             }
 
             override fun onLongClick(viewState: BookmarkViewState) {
