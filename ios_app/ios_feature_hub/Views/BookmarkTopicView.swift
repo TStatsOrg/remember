@@ -25,9 +25,6 @@ struct BookmarkTopicView: View {
                 Text(viewState.topic)
                     .background(Color(UIColor.magenta))
             }
-            .background(NavigationLink(destination: navigation.seeEditBookmark(forBookmarkId: viewState.id), label: {
-                EmptyView()
-            }))
             Text(viewState.source)
         }
     }

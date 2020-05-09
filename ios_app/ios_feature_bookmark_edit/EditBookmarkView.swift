@@ -25,26 +25,28 @@ public struct EditBookmarkView: View {
     }
     
     public var body: some View {
-        List(state.viewStates, rowContent: { content in
-            Button(action: {
-                self.viewModel.update(bookmark: self.bookmarkId, withTopic: content.id)
-                self.viewModel.save()
-            }) {
-                Text("\(content.name)")
-                .background(Color(content.isSelected ? .green : .clear))
+        NavigationView {
+            List(state.viewStates, rowContent: { content in
+                Button(action: {
+                    self.viewModel.update(bookmark: self.bookmarkId, withTopic: content.id)
+                    self.viewModel.save()
+                }) {
+                    Text("\(content.name)")
+                    .background(Color(content.isSelected ? .green : .clear))
+                }
+            })
+            .onAppear {
+                self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
+                self.viewModel.observeBookmarkSaved { (success) in
+                    self.mode.wrappedValue.dismiss()
+                }
+                self.viewModel.observeEditBookmarkState(callback: self.update)
             }
-        })
-        .onAppear {
-            self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
-            self.viewModel.observeBookmarkSaved { (success) in
-                self.mode.wrappedValue.dismiss()
-            }
-            self.viewModel.observeEditBookmarkState(callback: self.update)
+            .navigationBarTitle("Edit bookmark", displayMode: NavigationBarItem.TitleDisplayMode.inline)
+            .navigationBarItems(trailing: NavigationLink(destination: navigation.seeTopicsList(), label: {
+                Text("Topics")
+            }))
         }
-        .navigationBarTitle("Edit bookmark", displayMode: NavigationBarItem.TitleDisplayMode.inline)
-        .navigationBarItems(trailing: NavigationLink(destination: navigation.seeTopicsList(), label: {
-            Text("Topics")
-        }))
     }
     
     private func update(state: EditBookmarkState) {

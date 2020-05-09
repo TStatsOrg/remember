@@ -19,7 +19,6 @@ public struct MainHubView: View {
     @Injected var navigation: Navigation
     
     @SwiftUI.State private var state: BookmarksViewState = BookmarksViewState()
-    @SwiftUI.State private var editMode = EditMode.inactive
     
     public init() {}
     
@@ -42,16 +41,12 @@ public struct MainHubView: View {
                         }
                     }
                     ForEach(state.bookmarksViewState, content: self.getCellType)
-                        .onDelete { (indexSet) in
-                            print("Index set \(indexSet)")
-                        }
                 }
             }
             .navigationBarTitle(Text(state.title), displayMode: NavigationBarItem.TitleDisplayMode.inline)
-            .navigationBarItems(leading: EditButton(), trailing: NavigationLink(destination: navigation.seeTopicsList(), label: {
+            .navigationBarItems(trailing: NavigationLink(destination: navigation.seeTopicsList(), label: {
                 Text("Topics")
             }))
-            .environment(\.editMode, $editMode)
             .onAppear {
                 self.bookmarksViewModel.observeBookmarkState(callback: self.update)
                 self.bookmarksViewModel.loadBookmarks()

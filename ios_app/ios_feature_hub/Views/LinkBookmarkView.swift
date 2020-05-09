@@ -17,6 +17,8 @@ struct LinkBookmarkView: View {
     
     @Injected var navigation: Navigation
     let viewState: BookmarkLinkViewState
+    @SwiftUI.State private var showingSheet = false
+    @SwiftUI.State var isPresented: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -33,11 +35,31 @@ struct LinkBookmarkView: View {
                         .clipped()
                 }
             }
-            .background(Button(action: {
-                self.navigation.seeUrlDestination(url: self.viewState.destinationUrl)
-            }, label: { EmptyView() }))
             Text(viewState.date)
                 .fontWeight(.light)
         }
+        .onTapGesture {
+            self.navigation.seeUrlDestination(url: self.viewState.destinationUrl)
+        }
+        .onLongPressGesture {
+            self.showingSheet = true
+        }
+        .actionSheet(isPresented: $showingSheet) {
+            ActionSheet(title: Text("Editing"),
+                        message: Text("options"),
+                        buttons: [
+                            .default(Text("Edit"), action: {
+                                self.isPresented = true
+                            }),
+                            .destructive(Text("Delete"), action: {
+                                
+                            }),
+                            .cancel()
+                        ])
+        }
+        .sheet(isPresented: $isPresented, content: {
+            self.navigation.seeEditBookmark(forBookmarkId: self.viewState.id)
+            
+        })
     }
 }
