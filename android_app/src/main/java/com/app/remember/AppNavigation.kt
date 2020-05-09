@@ -35,8 +35,10 @@ class AppNavigation: Navigation {
         context.startActivity(intent)
     }
 
-    override fun seeUrlDestination(context: Context, uri: Uri) {
-        val browserIntent = Intent(Intent.ACTION_VIEW, uri)
-        context.startActivity(browserIntent)
+    override fun seeUrlDestination(context: Context, uri: Uri?) {
+        uri?.let {
+            val browserIntent = Intent(Intent.ACTION_VIEW, uri)
+            context.startActivity(browserIntent)
+        }
     }
 }

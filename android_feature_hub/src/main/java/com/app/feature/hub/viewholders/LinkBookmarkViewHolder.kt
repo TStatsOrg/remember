@@ -2,6 +2,7 @@ package com.app.feature.hub.viewholders
 
 import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.feature.hub.databinding.ViewLinkBookmarkBinding
+import com.app.shared.utils.MLogger
 import com.app.views.viewstate.BookmarkViewState
 
 class LinkBookmarkViewHolder(
@@ -18,9 +19,8 @@ class LinkBookmarkViewHolder(
         binding.bookmarkIcon.visibility = iconVisibility
 
         binding.root.setOnClickListener {
-            viewState.destinationUrl?.let {
-                listener?.onLinkClick(url = it)
-            }
+            MLogger.log("View State $viewState")
+            listener?.onLinkClick(url = viewState.destinationUrl)
         }
 
         binding.bookmarkTopic.setOnClickListener {

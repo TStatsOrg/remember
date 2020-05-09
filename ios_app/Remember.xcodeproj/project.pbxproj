@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0BCC32B2684BC4B1D21AE22E /* Pods_ios_app_uitests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3704D4FE118B2556AC403688 /* Pods_ios_app_uitests.framework */; };
 		1B1826432444D67C002F1361 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B1826422444D67B002F1361 /* MainInterface.storyboard */; };
+		1B22A8F92466D5FB00C215C0 /* GenericIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA44245EDBD2002A9D9B /* GenericIdentifiable.swift */; };
 		1B72E0F72444905D0042EBD7 /* ios_feature_preview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B7597B6244B314A009D5837 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7597B5244B314A009D5837 /* PreviewViewController.swift */; };
 		1B7597C0244B495E009D5837 /* ios_feature_hub.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B7597BE244B495E009D5837 /* ios_feature_hub.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,7 +37,6 @@
 		1BAEDA3A245ED2A1002A9D9B /* ImagePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA39245ED2A1002A9D9B /* ImagePreviewCell.swift */; };
 		1BAEDA3E245ED3D2002A9D9B /* PreviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA3D245ED3D2002A9D9B /* PreviewDataSource.swift */; };
 		1BAEDA42245ED83D002A9D9B /* PreviewsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA41245ED83D002A9D9B /* PreviewsViewState.swift */; };
-		1BAEDA45245EDBD2002A9D9B /* GenericIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA44245EDBD2002A9D9B /* GenericIdentifiable.swift */; };
 		1BAEDA4F2461D091002A9D9B /* ios_views.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BAEDA4D2461D091002A9D9B /* ios_views.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BAEDA522461D091002A9D9B /* ios_views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BAEDA4B2461D091002A9D9B /* ios_views.framework */; };
 		1BAEDA532461D091002A9D9B /* ios_views.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BAEDA4B2461D091002A9D9B /* ios_views.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -732,14 +732,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		1BAEDA43245EDBC4002A9D9B /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				1BAEDA44245EDBD2002A9D9B /* GenericIdentifiable.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		1BAEDA4C2461D091002A9D9B /* ios_views */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,7 +764,6 @@
 		1BC2B05C2446464300E73BB6 /* ios_dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				1BAEDA43245EDBC4002A9D9B /* Utils */,
 				1BE01D512459F124000FC4AF /* Navigation */,
 				1BC2B07D24464D0600E73BB6 /* DI */,
 				1BC2B06E244647F000E73BB6 /* Data */,
@@ -827,6 +818,7 @@
 		1BD96CB0246327950080A6EF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1BAEDA44245EDBD2002A9D9B /* GenericIdentifiable.swift */,
 				1BD96CB1246327A80080A6EF /* KeyboardUtils.swift */,
 			);
 			path = Utils;
@@ -1661,6 +1653,7 @@
 				1BD96CB2246327A80080A6EF /* KeyboardUtils.swift in Sources */,
 				1BAEDA622461D186002A9D9B /* BookmarkViewState.swift in Sources */,
 				1BAEDA712461D621002A9D9B /* ManagedSearchView.swift in Sources */,
+				1B22A8F92466D5FB00C215C0 /* GenericIdentifiable.swift in Sources */,
 				1BAEDA602461D17C002A9D9B /* TopicViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1672,7 +1665,6 @@
 				1B874FBA244B2611001E3543 /* RealmDatabase.swift in Sources */,
 				1BE01D3B2454B075000FC4AF /* RealmTopicObject.swift in Sources */,
 				1BE01D372454AB08000FC4AF /* RealmImageBookmarkObject.swift in Sources */,
-				1BAEDA45245EDBD2002A9D9B /* GenericIdentifiable.swift in Sources */,
 				1BC2B078244649BB00E73BB6 /* RealmImageBookmarkDAO.swift in Sources */,
 				1BC2B06A2446465D00E73BB6 /* ExtensionContextDataCapture.swift in Sources */,
 				1BC2B0742446481600E73BB6 /* RealmLinkBookmarkObject.swift in Sources */,

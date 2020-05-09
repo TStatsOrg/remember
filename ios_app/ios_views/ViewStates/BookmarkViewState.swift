@@ -91,6 +91,7 @@ public struct BookmarkLinkViewState: BookmarkViewStateType {
     public let icon: URL?
     public let source: String
     public let isIconHidden: Bool
+    public let destinationUrl: URL?
     
     public init(state: BookmarkStateLink) {
         self.state = state
@@ -100,8 +101,10 @@ public struct BookmarkLinkViewState: BookmarkViewStateType {
         
         if let url = URL(string: state.url) {
             source = url.host ?? "N/A"
+            destinationUrl = url
         } else {
             source = "N/A"
+            destinationUrl = nil
         }
         
         if let iconUrl = state.icon, iconUrl != "" {

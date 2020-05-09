@@ -68,7 +68,7 @@ class MainHubActivity: AppCompatActivity() {
                 navigation.seeEditBookmark(context = this@MainHubActivity, forEditingBookmark = viewState.id)
             }
 
-            override fun onLinkClick(url: Uri) {
+            override fun onLinkClick(url: Uri?) {
                 navigation.seeUrlDestination(context = this@MainHubActivity, uri = url)
             }
 

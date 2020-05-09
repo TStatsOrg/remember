@@ -15,6 +15,7 @@ import ios_views
 
 struct LinkBookmarkView: View {
     
+    @Injected var navigation: Navigation
     let viewState: BookmarkLinkViewState
     
     var body: some View {
@@ -28,10 +29,13 @@ struct LinkBookmarkView: View {
                     WebImage(url: self.viewState.icon)
                         .resizable()
                         .frame(width: 60, height: 60)
+                        .scaledToFit()
                         .clipped()
                 }
-                
             }
+            .background(Button(action: {
+                self.navigation.seeUrlDestination(url: self.viewState.destinationUrl)
+            }, label: { EmptyView() }))
             Text(viewState.date)
                 .fontWeight(.light)
         }

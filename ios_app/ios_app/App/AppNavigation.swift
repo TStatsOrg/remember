@@ -26,4 +26,10 @@ class AppNavigation: Navigation {
     func seeEditBookmark(forBookmarkId id: Int32) -> AnyView {
         return AnyView(EditBookmarkView(bookmarkId: id))
     }
+    
+    func seeUrlDestination(url: URL?) {
+        if let url = url {
+            UIApplication.shared.open(url)
+        }
+    }
 }
