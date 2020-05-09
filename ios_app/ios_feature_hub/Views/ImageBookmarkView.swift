@@ -27,5 +27,8 @@ struct ImageBookmarkView: View {
             Text(viewState.date)
                 .fontWeight(.light)
         }
+        .onTapGesture {
+            /* N/A */
+        }
     }
 }

@@ -41,7 +41,10 @@ public struct MainHubView: View {
                             Text("\(suggestion.name)")
                         }
                     }
-                    ForEach(state.bookmarksViewState, content: self.getCellType)
+                    ForEach(state.bookmarksViewState, content: { state in
+                        self.getCellType(state: state)
+                             .actionSheetModifier(viewState: state.viewState)
+                    })
                 }
             }
             .navigationBarTitle(Text(state.title), displayMode: .inline)
