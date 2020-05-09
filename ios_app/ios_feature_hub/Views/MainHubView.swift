@@ -43,7 +43,7 @@ public struct MainHubView: View {
                     ForEach(state.bookmarksViewState, content: self.getCellType)
                 }
             }
-            .navigationBarTitle(Text(state.title), displayMode: NavigationBarItem.TitleDisplayMode.inline)
+            .navigationBarTitle(Text(state.title), displayMode: .inline)
             .navigationBarItems(trailing: NavigationLink(destination: navigation.seeTopicsList(), label: {
                 Text("Topics")
             }))

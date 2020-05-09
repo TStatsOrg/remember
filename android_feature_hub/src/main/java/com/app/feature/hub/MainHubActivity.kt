@@ -19,7 +19,6 @@ import com.app.views.views.show
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
 
-
 class MainHubActivity: AppCompatActivity() {
 
     private val viewModel: MainHubViewModel by inject()
