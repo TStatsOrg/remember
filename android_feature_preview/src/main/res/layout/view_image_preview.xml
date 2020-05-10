@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bookmark_image"
-        android:textAppearance="@style/Theme.Remember.Text.Caption"
+        android:textAppearance="?attr/textAppearanceCaption"
         tools:text="Image"/>
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -33,7 +33,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:textAppearance="@style/Theme.Remember.Text.Overline"
+        android:textAppearance="?attr/textAppearanceOverline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bookmark_image"
         tools:text="Apr 2020"/>

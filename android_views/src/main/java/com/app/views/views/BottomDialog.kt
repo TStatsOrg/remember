@@ -8,7 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 object BottomDialog {
 
     fun create(context: Context): BottomSheetDialog {
-        return BottomSheetDialog(context, R.style.SheetDialog)
+        return BottomSheetDialog(context)//, R.style.SheetDialog)
     }
 }
 

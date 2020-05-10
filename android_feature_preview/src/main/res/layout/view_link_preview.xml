@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bookmark_title"
-        android:textAppearance="@style/Theme.Remember.Text.Caption"
+        android:textAppearance="?attr/textAppearanceCaption"
         tools:text="medium.com"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bookmark_source"
         app:layout_constraintEnd_toStartOf="@id/preview_icon"
-        android:textAppearance="@style/Theme.Remember.Text.Subtitle"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="6dp"
-        android:textAppearance="@style/Theme.Remember.Text.Overline"
+        android:textAppearance="?attr/textAppearanceOverline"
         app:layout_constraintTop_toBottomOf="@id/bookmark_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

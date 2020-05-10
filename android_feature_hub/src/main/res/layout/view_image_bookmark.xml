@@ -15,7 +15,7 @@
         android:paddingBottom="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textAppearance="@style/Theme.Remember.Text.Accent"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
         tools:text="Images"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toEndOf="@id/bookmark_topic"
         app:layout_constraintTop_toTopOf="@id/bookmark_topic"
         app:layout_constraintBottom_toBottomOf="@id/bookmark_topic"
-        android:textAppearance="@style/Theme.Remember.Text.Caption"
+        android:textAppearance="?attr/textAppearanceCaption"
         tools:text="Image"/>
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -47,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:textAppearance="@style/Theme.Remember.Text.Overline"
+        android:textAppearance="?attr/textAppearanceOverline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bookmark_image"
         tools:text="Apr 2020"/>

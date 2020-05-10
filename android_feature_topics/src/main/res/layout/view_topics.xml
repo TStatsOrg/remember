@@ -14,8 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/topics_title"
-            app:menu="@menu/app_bar_topics"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+            app:menu="@menu/app_bar_topics"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
