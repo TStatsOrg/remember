@@ -13,22 +13,21 @@
         android:layout_height="wrap_content"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
-        android:paddingStart="6dp"
-        android:paddingEnd="6dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/green_500"
-        tools:text="My bookmarks"/>
+        android:textAppearance="@style/Theme.Remember.Text.Accent"
+        tools:text="Images"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/bookmark_source"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="6dp"
+        android:gravity="center"
         app:layout_constraintStart_toEndOf="@id/bookmark_topic"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bookmark_image"
-        android:textAppearance="?attr/textAppearanceCaption"
+        app:layout_constraintTop_toTopOf="@id/bookmark_topic"
+        app:layout_constraintBottom_toBottomOf="@id/bookmark_topic"
+        android:textAppearance="@style/Theme.Remember.Text.Caption"
         tools:text="Image"/>
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -41,14 +40,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bookmark_topic"
         android:scaleType="centerCrop"
-        tools:background="@color/red_200"/>
+        tools:background="@color/color_gray"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/bookmark_save_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:textAppearance="?attr/textAppearanceOverline"
+        android:textAppearance="@style/Theme.Remember.Text.Overline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bookmark_image"
         tools:text="Apr 2020"/>

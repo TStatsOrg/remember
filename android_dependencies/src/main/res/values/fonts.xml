@@ -51,9 +51,11 @@
 <!--        <item name="android:textSize">20sp</item>-->
     </style>
 
-    <style name="TextAppearance.Remember.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+    <style name="TextAppearance.Remember.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle2">
 <!--        <item name="fontFamily">@font/regular</item>-->
 <!--        <item name="android:textSize">16sp</item>-->
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="TextAppearance.Remember.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
@@ -79,6 +81,7 @@
     <style name="TextAppearance.Remember.Caption" parent="TextAppearance.MaterialComponents.Caption">
 <!--        <item name="fontFamily">@font/regular</item>-->
 <!--        <item name="android:textSize">12sp</item>-->
+<!--        <item name="android:textColor">?attr/colorPrimaryDark</item>-->
     </style>
 
     <style name="TextAppearance.Remember.Overline" parent="TextAppearance.MaterialComponents.Overline">

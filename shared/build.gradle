@@ -1,16 +1,25 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'kotlinx-serialization'
+//apply plugin: 'jacoco'
 
 def RememberFramework = "RememberShared"
 
 kotlin {
     targets {
         final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") ? presets.iosArm64 : presets.iosX64
+        def buildForDevice = project.findProperty("device")?.toBoolean() ?: false
 
         fromPreset(iOSTarget, 'iOS') {
             binaries {
-                framework(RememberFramework)
+                framework(RememberFramework) {
+//                    transitiveExport = true
+//
+//                    // Disable bitcode embedding for the simulator build.
+//                    if (!buildForDevice) {
+//                        embedBitcode("disable")
+//                    }
+                }
             }
         }
 
@@ -58,6 +67,12 @@ kotlin {
             api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
         }
 
+        androidTest {
+            dependsOn androidMain
+            dependencies {
+            }
+        }
+
         iOSMain {
             dependsOn commonMain
             dependencies {
@@ -72,6 +87,13 @@ kotlin {
 
                 // serialisation
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serializationVersion"
+            }
+        }
+
+        iOSTest {
+            dependsOn iOSMain
+            dependencies {
+
             }
         }
     }
@@ -107,6 +129,24 @@ configurations {
     compileClasspath
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Setup Packing for XCode
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//task iosTest {
+//    def device = project.findProperty("iosDevice")?.toString() ?: "iPhone XR"
+//    dependsOn 'linkTestDebugExecutableIOS'
+//    group = JavaBasePlugin.VERIFICATION_GROUP
+//    description = "Runs tests for target 'ios' on an iOS simulator"
+//
+//    doLast {
+//        def binary = kotlin.targets.iOS.binaries.getExecutable('test', 'DEBUG').outputFile
+//        exec {
+//            commandLine 'xcrun', 'simctl', 'spawn', device, binary.absolutePath
+//        }
+//    }
+//}
+
 task packForXCode(type: Sync) {
     final File frameworkDir = new File(buildDir, "xcode-frameworks")
     final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
@@ -125,4 +165,49 @@ task packForXCode(type: Sync) {
         }
     }
 }
+
 tasks.build.dependsOn packForXCode
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//// Setup JaCoCo
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//jacoco {
+//    toolVersion = "0.8.5"
+//    reportsDir = file("$buildDir/reports")
+//}
+//
+//tasks.withType(Test) {
+//    jacoco.includeNoLocationClasses = true
+//    jacoco.excludes = ['jdk.internal.*']
+//}
+//
+//task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+//    group = "Reporting"
+//    description = "Generate Jacoco coverage reports for Debug build"
+//
+//    reports {
+//        xml.enabled = true
+//        html.enabled = true
+//    }
+//
+//    def excludes = [
+//            '**/R.class',
+//            '**/R$*.class',
+//            '**/*$ViewInjector*.*',
+//            '**/BuildConfig.*',
+//            '**/Manifest*.*',
+//            '**/*Test*.*',
+//            'android/**/*.*',
+//            '**/*Fragment.*',
+//            '**/*Activity.*'
+//    ]
+//    def intermediateExcludes = fileTree(dir: "$buildDir/intermediates/classes/debug", excludes: excludes)
+//    def kotlinExcludes = fileTree(dir: "$buildDir/tmp/kotlin-classes/debug", excludes: excludes)
+//
+//
+//
+////    classDirectories = intermediateExcludes + kotlinExcludes
+////    sourceDirectories = files([android.sourceSets.main.java.srcDirs, "src/main/java"])
+////    executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
+//}

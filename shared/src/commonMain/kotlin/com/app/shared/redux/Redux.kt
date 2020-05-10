@@ -27,6 +27,8 @@ class Store<S: State> (initialState: S, private val reducer: Reducer<S>) {
     }
 
     fun register(forResult: StoreResult<S>) = results.add(forResult)
+
+    fun unregister(forResult: StoreResult<S>) = results.remove(forResult)
 }
 
 /**
