@@ -22,8 +22,9 @@ struct TextBookmarkView: View {
             BookmarkTopicView(viewState: viewState)
             Text(viewState.text)
                 .fontWeight(.bold)
-            Text(viewState.date)
-                .fontWeight(.light)
+            Text("\(viewState.source) - \(viewState.date)")
+                .font(.caption)
+                .foregroundColor(.secondary)
         }
         .onTapGesture {
             /* N/A */

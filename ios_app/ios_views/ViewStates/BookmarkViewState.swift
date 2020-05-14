@@ -49,13 +49,15 @@ public extension BookmarkViewStateType {
     var date: String {
         let formatter = DateFormatter()
         let iosTimestamp = state.date / 1000
-        formatter.dateFormat = "MM/dd/yyyy"
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.locale = Locale(identifier: "en_US")
         let date = Date(timeIntervalSince1970: TimeInterval(iosTimestamp))
         return formatter.string(from: date)
     }
     
     var topic: String {
-        return state.topic?.name ?? ""
+        return state.topic?.name.uppercased() ?? ""
     }
 }
 

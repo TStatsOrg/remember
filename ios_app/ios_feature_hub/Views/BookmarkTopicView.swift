@@ -20,12 +20,9 @@ struct BookmarkTopicView: View {
     let viewState: BookmarkViewStateType
     
     var body: some View {
-        HStack {
-            ZStack {
-                Text(viewState.topic)
-                    .background(Color(UIColor.magenta))
-            }
-            Text(viewState.source)
-        }
+        Text(viewState.topic)
+            .font(.callout)
+            .fontWeight(.semibold)
+            .foregroundColor(.accentColor)
     }
 }

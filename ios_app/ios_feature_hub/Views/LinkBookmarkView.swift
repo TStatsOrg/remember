@@ -24,6 +24,7 @@ struct LinkBookmarkView: View {
             BookmarkTopicView(viewState: viewState)
             HStack(alignment: .top) {
                 Text(viewState.title ?? "")
+                    .font(.body)
                     .fontWeight(.bold)
                     .lineLimit(nil)
                 if !self.viewState.isIconHidden {
@@ -34,8 +35,9 @@ struct LinkBookmarkView: View {
                         .clipped()
                 }
             }
-            Text(viewState.date)
-                .fontWeight(.light)
+            Text("\(viewState.source) - \(viewState.date)")
+                .font(.caption)
+                .foregroundColor(.secondary)
         }
         .onTapGesture {
             self.navigation.seeUrlDestination(url: self.viewState.destinationUrl)

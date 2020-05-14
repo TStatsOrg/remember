@@ -36,7 +36,7 @@
     <style name="Theme.Remember.Text.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="fontFamily">@font/regular</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">?attr/colorPrimaryDark</item>
+        <item name="android:textColor">@color/color_dark_gray</item>
     </style>
 
     <style name="Theme.Remember.Text.Overline" parent="TextAppearance.MaterialComponents.Overline">
@@ -54,9 +54,9 @@
     <!--Base custom theme which will be shared between both light and dark theme variants-->
     <style name="Base.Theme.Remember" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- primary colors -->
-        <item name="colorPrimary">#344955</item>
-        <item name="colorPrimaryVariant">#5f7481</item>
-        <item name="colorPrimaryDark">#0b222c</item>
+        <item name="colorPrimary">@color/color_light_black</item>
+        <item name="colorPrimaryVariant">@color/color_black</item>
+        <item name="colorPrimaryDark">@color/color_black</item>
         <item name="colorOnPrimary">@color/color_white</item>
 
         <!-- secondary colors -->

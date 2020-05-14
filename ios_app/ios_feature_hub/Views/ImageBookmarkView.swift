@@ -24,8 +24,9 @@ struct ImageBookmarkView: View {
                 .resizable()
                 .frame(height: 300)
                 .clipped()
-            Text(viewState.date)
-                .fontWeight(.light)
+            Text("\(viewState.source) - \(viewState.date)")
+                .font(.caption)
+                .foregroundColor(.secondary)
         }
         .onTapGesture {
             /* N/A */
