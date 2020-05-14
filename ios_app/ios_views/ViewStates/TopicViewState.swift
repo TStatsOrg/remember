@@ -20,7 +20,7 @@ public extension TopicViewStateType {
     }
     
     var name: String {
-        return topic.name
+        return topic.name.uppercased()
     }
 }
 

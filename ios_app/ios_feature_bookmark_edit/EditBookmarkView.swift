@@ -31,8 +31,10 @@ public struct EditBookmarkView: View {
                 self.viewModel.update(bookmark: self.bookmarkId, withTopic: content.id)
                 self.viewModel.save()
             }) {
-                Text("\(content.name)")
-                .background(Color(content.isSelected ? .green : .clear))
+                Text(content.name)
+                    .ActionButton()
+                    .foregroundColor(content.isSelected ? Color.secondary : Color.primary)
+                    .background(Color(content.isSelected ? .green : .clear))
             }
         })
         .onAppear {

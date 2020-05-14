@@ -21,6 +21,6 @@ struct BookmarkInfoView: View {
         Text("\(viewState.source) - \(viewState.date)")
             .font(.caption)
             .foregroundColor(.secondary)
-            .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
+            .padding(EdgeInsets(top: 8, leading: 0, bottom: 16, trailing: 0))
     }
 }

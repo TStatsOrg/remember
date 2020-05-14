@@ -39,6 +39,7 @@ struct LinkBookmarkView: View {
                 }
             }
             BookmarkInfoView(viewState: viewState)
+            Divider()
         }
         .onTapGesture {
             self.navigation.seeUrlDestination(url: self.viewState.destinationUrl)

@@ -18,11 +18,12 @@ struct TextBookmarkView: View {
     let viewState: BookmarkTextViewState
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             BookmarkTopicView(viewState: viewState)
             Text(viewState.text)
                 .fontWeight(.bold)
             BookmarkInfoView(viewState: viewState)
+            Divider()
         }
         .onTapGesture {
             /* N/A */

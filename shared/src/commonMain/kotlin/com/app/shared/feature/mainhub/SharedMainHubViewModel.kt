@@ -61,7 +61,7 @@ class SharedMainHubViewModel(
         scope.launch(context = MainDispatcher) {
             val dtos = bookmarkRepository.load()
 
-            val filtered = dtos.filter { it.topic?.name.equals(byTopic) }
+            val filtered = dtos.filter { it.topic?.name.equals(byTopic, ignoreCase = true) }
 
             store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = filtered))
         }

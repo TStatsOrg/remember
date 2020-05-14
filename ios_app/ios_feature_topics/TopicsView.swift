@@ -22,7 +22,7 @@ public struct TopicsView: View {
     
     public var body: some View {
         List(state.viewStates, rowContent: { content in
-            Text("\(content.name)")
+            Text(content.name).ActionButton()
         })
         .navigationBarTitle(Text("Topics"))
         .navigationBarItems(trailing: Button(action: {

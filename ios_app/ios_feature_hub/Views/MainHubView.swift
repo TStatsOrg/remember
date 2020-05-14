@@ -38,13 +38,12 @@ public struct MainHubView: View {
                             self.bookmarksViewModel.filter(byTopic: suggestion.name)
                             self.bookmarksViewModel.clearSuggestions()
                         }) {
-                            Text("\(suggestion.name)")
+                            Text(suggestion.name).ActionButton()
                         }
                     }
                     ForEach(state.bookmarksViewState, content: { state in
                         self.getCellType(state: state)
                             .actionSheetModifier(viewState: state.viewState)
-                            .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
                     })
                 }
             }

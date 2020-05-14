@@ -26,6 +26,7 @@ struct ImageBookmarkView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .clipped()
             BookmarkInfoView(viewState: viewState)
+            Divider()
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         .onTapGesture {
