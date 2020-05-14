@@ -11,6 +11,7 @@
 		1B1826432444D67C002F1361 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B1826422444D67B002F1361 /* MainInterface.storyboard */; };
 		1B22A8F92466D5FB00C215C0 /* GenericIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA44245EDBD2002A9D9B /* GenericIdentifiable.swift */; };
 		1B22A8FB2467175200C215C0 /* ActionSheetEditBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22A8FA2467175200C215C0 /* ActionSheetEditBookmark.swift */; };
+		1B33F622246DC840001DEC4F /* BookmarkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B33F621246DC840001DEC4F /* BookmarkInfoView.swift */; };
 		1B72E0F72444905D0042EBD7 /* ios_feature_preview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B7597B6244B314A009D5837 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7597B5244B314A009D5837 /* PreviewViewController.swift */; };
 		1B7597C0244B495E009D5837 /* ios_feature_hub.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B7597BE244B495E009D5837 /* ios_feature_hub.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -372,6 +373,7 @@
 		1B1826422444D67B002F1361 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		1B1826442444D6AD002F1361 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B22A8FA2467175200C215C0 /* ActionSheetEditBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetEditBookmark.swift; sourceTree = "<group>"; };
+		1B33F621246DC840001DEC4F /* BookmarkInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkInfoView.swift; sourceTree = "<group>"; };
 		1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ios_feature_preview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B72E0FC244494C00042EBD7 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		1B7597B5244B314A009D5837 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
@@ -892,6 +894,7 @@
 				1BE01DBB245B5453000FC4AF /* ImageBookmarkView.swift */,
 				1BE01DBD245B546C000FC4AF /* LinkBookmarkView.swift */,
 				1BE01DBF245B5476000FC4AF /* BookmarkTopicView.swift */,
+				1B33F621246DC840001DEC4F /* BookmarkInfoView.swift */,
 				1B22A8FA2467175200C215C0 /* ActionSheetEditBookmark.swift */,
 			);
 			path = Views;
@@ -1620,6 +1623,7 @@
 				1B7597D6244B4AC8009D5837 /* MainHubView.swift in Sources */,
 				1B22A8FB2467175200C215C0 /* ActionSheetEditBookmark.swift in Sources */,
 				1BE01DBC245B5453000FC4AF /* ImageBookmarkView.swift in Sources */,
+				1B33F622246DC840001DEC4F /* BookmarkInfoView.swift in Sources */,
 				1BE01DBA245B5436000FC4AF /* TextBookmarkView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

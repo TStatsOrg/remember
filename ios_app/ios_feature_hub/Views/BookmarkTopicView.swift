@@ -21,8 +21,9 @@ struct BookmarkTopicView: View {
     
     var body: some View {
         Text(viewState.topic)
-            .font(.callout)
-            .fontWeight(.semibold)
+            .font(.footnote)
+            .fontWeight(.bold)
             .foregroundColor(.accentColor)
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
     }
 }

@@ -43,7 +43,8 @@ public struct MainHubView: View {
                     }
                     ForEach(state.bookmarksViewState, content: { state in
                         self.getCellType(state: state)
-                             .actionSheetModifier(viewState: state.viewState)
+                            .actionSheetModifier(viewState: state.viewState)
+                            .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
                     })
                 }
             }

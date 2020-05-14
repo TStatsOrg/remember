@@ -20,14 +20,17 @@ struct LinkBookmarkView: View {
     let viewState: BookmarkLinkViewState
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             BookmarkTopicView(viewState: viewState)
-            HStack(alignment: .top) {
+            HStack(alignment: .top, spacing: 0) {
+                
                 Text(viewState.title ?? "")
                     .font(.body)
                     .fontWeight(.bold)
                     .lineLimit(nil)
+                
                 if !self.viewState.isIconHidden {
+                    Spacer()
                     WebImage(url: self.viewState.icon)
                         .resizable()
                         .frame(width: 60, height: 60)
@@ -35,9 +38,7 @@ struct LinkBookmarkView: View {
                         .clipped()
                 }
             }
-            Text("\(viewState.source) - \(viewState.date)")
-                .font(.caption)
-                .foregroundColor(.secondary)
+            BookmarkInfoView(viewState: viewState)
         }
         .onTapGesture {
             self.navigation.seeUrlDestination(url: self.viewState.destinationUrl)
