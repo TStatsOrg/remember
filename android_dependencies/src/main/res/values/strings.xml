@@ -14,6 +14,7 @@
     <string name="main_hub_dialog_edit_button">Edit Bookmark</string>
     <string name="main_hub_dialog_delete_button">Delete Bookmark</string>
     <string name="main_hub_dialog_cancel">Cancel</string>
+    <string name="main_hub_no_search_results">No results found</string>
 
     <!-- topics feature -->
     <string name="topics_title">Topics</string>

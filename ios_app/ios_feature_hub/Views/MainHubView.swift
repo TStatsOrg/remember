@@ -39,7 +39,7 @@ public struct MainHubView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 80, height: 80)
                         .padding(top: 20)
-                    Text("No search results")
+                    Text("No results found")
                         .foregroundColor(.secondary)
                     Spacer()
                 }

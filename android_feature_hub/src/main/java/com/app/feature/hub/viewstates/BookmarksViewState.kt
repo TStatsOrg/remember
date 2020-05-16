@@ -1,5 +1,6 @@
 package com.app.feature.hub.viewstates
 
+import android.view.View
 import com.app.shared.business.BookmarkState
 import com.app.shared.business.BookmarksState
 import com.app.shared.business.TopicState
@@ -20,6 +21,10 @@ data class BookmarksViewState(val state: BookmarksState? = null) {
             else -> null
         }
     }
+
+    private val noSearchResults = (state?.bookmarks?.isEmpty() ?: true) && (state?.suggestions?.isEmpty() ?: true)
+
+    val noResultsVisibility = if (noSearchResults) View.VISIBLE else View.GONE
 
     val suggestionsViewState: List<TopicViewState.Normal> = suggestions.map {
         TopicViewState.Normal(state = it)
