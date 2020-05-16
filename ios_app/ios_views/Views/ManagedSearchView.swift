@@ -35,6 +35,10 @@ public struct ManagedSearchView: UIViewRepresentable {
             self.cancelSearchEmitter = cancelSearchEmitter
         }
         
+        public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            cancelSearchEmitter.emit(value: nil)
+        }
+        
         public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             
         }
@@ -50,9 +54,7 @@ public struct ManagedSearchView: UIViewRepresentable {
         }
         
         public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            if searchText.isEmpty {
-                cancelSearchEmitter.emit(value: nil)
-            } else {
+            if !searchText.isEmpty {
                 searchChangedEmitter.emit(value: searchText)
             }
         }
@@ -69,6 +71,7 @@ public struct ManagedSearchView: UIViewRepresentable {
         let searchBar = UISearchBar(frame: .zero)
         searchBar.searchBarStyle = .minimal
         searchBar.delegate = context.coordinator
+        searchBar.showsCancelButton = true
         return searchBar
     }
     

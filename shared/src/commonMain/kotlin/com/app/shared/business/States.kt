@@ -41,7 +41,6 @@ interface BookmarkState: State {
 
 data class BookmarksState(
     val bookmarks: List<BookmarkState> = listOf(),
-    val suggestions: List<TopicState> = listOf(),
     val date: Long = 0L,
     val error: Throwable? = null
 ): State

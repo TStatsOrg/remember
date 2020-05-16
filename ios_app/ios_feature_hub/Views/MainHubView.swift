@@ -31,42 +31,8 @@ public struct MainHubView: View {
         NavigationView {
             VStack {
                 SearchView(viewModel: self.bookmarksViewModel)
-                
-                if (self.state.noSearchResults) {
-                    Image(systemName: "nosign")
-                        .resizable()
-                        .colorMultiply(.secondary)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 80, height: 80)
-                        .padding(top: 20)
-                    Text("No results found")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }
+                NoSearchView(state: $state)
                 List {
-                    if (self.state.isSearching) {
-                        HStack {
-                            Image(systemName: "folder.fill")
-                            Text("Topics")
-                                .font(.headline)
-                        }
-                    }
-                    ForEach(state.suggestionsViewState) { suggestion in
-                        Button(action: {
-                            self.dismissKeyboard()
-                            self.bookmarksViewModel.filter(byTopic: suggestion.name)
-                            self.bookmarksViewModel.clearSuggestions()
-                        }) {
-                            Text(suggestion.name).ActionButton()
-                        }
-                    }
-                    if (self.state.isSearching) {
-                        HStack {
-                            Image(systemName: "book.fill")
-                            Text("Bookmarks")
-                                .font(.headline)
-                        }
-                    }
                     ForEach(state.bookmarksViewState, content: { state in
                         self.getCellType(state: state)
                             .actionSheetModifier(viewState: state.viewState)
@@ -107,10 +73,32 @@ public struct MainHubView: View {
     }
 }
 
+public struct NoSearchView: View {
+    
+    @Binding var state: BookmarksViewState
+    
+    public var body: some View {
+        VStack {
+            if state.noSearchResults {
+                Image(systemName: "nosign")
+                    .resizable()
+                    .colorMultiply(.secondary)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 80, height: 80)
+                    .padding(top: 20)
+                Text("No results found")
+                    .foregroundColor(.secondary)
+                Spacer()
+            } else {
+                EmptyView()
+            }
+        }
+    }
+}
+
 public struct SearchView: View {
     
     var bookmarksViewModel: MainHubViewModel
-    @SwiftUI.State private var isClearButton: Bool = false
     
     public init(viewModel: MainHubViewModel) {
         bookmarksViewModel = viewModel
@@ -119,30 +107,13 @@ public struct SearchView: View {
     public var body: some View {
         HStack {
             ManagedSearchView()
-                .observeSearchOpened {
-                    self.bookmarksViewModel.loadSuggestions()
-                    self.isClearButton = true
-                }
                 .observeSearchChanged { term in
-                    self.bookmarksViewModel.filterSuggestions(byName: term)
                     self.bookmarksViewModel.search(byName: term)
                 }
                 .observeCancelSearch {
-                    self.bookmarksViewModel.loadSuggestions()
-                }
-                .observeSearchClosed {
-                    self.isClearButton = false
-                }
-            
-            if self.isClearButton {
-                Button(action: {
-                    self.dismissKeyboard()
                     self.bookmarksViewModel.loadBookmarks()
-                }) {
-                    Text("Clear")
+                    self.dismissKeyboard()
                 }
-                .padding(trailing: 12)
-            }
         }
     }
 }

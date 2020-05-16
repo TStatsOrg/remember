@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dependencies.navigation.Navigation
 import com.app.feature.topics.databinding.ViewTopicsBinding
 import com.app.feature.topics.viewholders.TopicViewHolder
-import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.shared.feature.topics.TopicsViewModel
 import com.app.views.viewstate.TopicViewState
 import org.koin.android.ext.android.inject
@@ -15,7 +14,6 @@ import org.koin.android.ext.android.inject
 class TopicsActivity: AppCompatActivity() {
 
     private val viewModel: TopicsViewModel by inject()
-    private val mainHubViewModel: MainHubViewModel by inject()
     private val navigator: Navigation by inject()
     private val adapter: TopicsAdapter by inject()
     private val layoutManager = LinearLayoutManager(this)
@@ -35,7 +33,7 @@ class TopicsActivity: AppCompatActivity() {
 
         adapter.listener = object : TopicViewHolder.Listener {
             override fun onClickTopic(state: TopicViewState) {
-                mainHubViewModel.filter(byTopic = state.name)
+                viewModel.filter(byTopic = state.name)
                 finish()
             }
         }

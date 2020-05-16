@@ -14,7 +14,6 @@ import ios_dependencies
 public struct TopicsView: View {
     
     @Injected private var viewModel: TopicsViewModel
-    @Injected private var mainHubViewModel: MainHubViewModel
     @Injected private var navigation: Navigation
     @SwiftUI.State private var state: TopicsViewState = TopicsViewState()
     @SwiftUI.State private var isShowingAdd: Bool = false
@@ -25,7 +24,7 @@ public struct TopicsView: View {
     public var body: some View {
         List(state.viewStates, rowContent: { content in
             Button(action: {
-                self.mainHubViewModel.filter(byTopic: content.name)
+                self.viewModel.filter(byTopic: content.name)
                 self.dismiss()
             }) {
                 Text(content.name).ActionButton()

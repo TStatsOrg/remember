@@ -22,16 +22,8 @@ struct BookmarksViewState {
         return state?.bookmarks ?? []
     }
     
-    private var suggestions: [TopicState] {
-        return state?.suggestions ?? []
-    }
-    
-    var isSearching: Bool {
-        return !suggestions.isEmpty
-    }
-    
     var noSearchResults: Bool {
-        return suggestions.isEmpty && bookmarks.isEmpty
+        return bookmarks.isEmpty
     }
     
     var title: String {
@@ -40,9 +32,5 @@ struct BookmarksViewState {
     
     var bookmarksViewState: [BookmarkViewState] {
         return bookmarks.map(BookmarkViewState.init)
-    }
-    
-    var suggestionsViewState: [TopicViewState.Normal] {
-        return suggestions.map(TopicViewState.Normal.init)
     }
 }

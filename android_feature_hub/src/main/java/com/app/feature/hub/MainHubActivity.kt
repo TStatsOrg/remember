@@ -7,12 +7,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dependencies.navigation.Navigation
 import com.app.feature.hub.adapters.BookmarksAdapter
-import com.app.feature.hub.adapters.SuggestionAdapter
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
-import com.app.views.utils.hideKeyboard
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
 
@@ -23,7 +21,6 @@ class MainHubActivity: AppCompatActivity() {
     private val navigation: Navigation by inject()
     private val layoutManager = LinearLayoutManager(this)
     private val animator = DefaultItemAnimator()
-    private val suggestionsAdapter by lazy { SuggestionAdapter(context = this) }
 
     private val binding by lazy {
         ViewMainhubBinding.inflate(layoutInflater)
@@ -37,20 +34,7 @@ class MainHubActivity: AppCompatActivity() {
         binding.bookmarksRecyclerView.layoutManager = layoutManager
         binding.bookmarksRecyclerView.itemAnimator = animator
 
-        binding.searchInput.suggestionsAdapter = suggestionsAdapter
-        binding.searchInput.setOnSuggestionListener(suggestionsAdapter)
-
-        suggestionsAdapter.observeSuggestionClicked {
-            viewModel.filter(byTopic = it)
-            hideKeyboard(view = binding.root)
-        }
-
-        binding.searchInput.observeSearchOpened {
-            viewModel.loadSuggestions()
-        }
-
         binding.searchInput.observeSearchChanged {
-            viewModel.filterSuggestions(byName = it)
             viewModel.search(byName = it)
         }
 
@@ -91,7 +75,6 @@ class MainHubActivity: AppCompatActivity() {
         viewModel.observeBookmarkState {
             val viewState = BookmarksViewState(state = it)
             adapter.redraw(viewState = viewState)
-            suggestionsAdapter.redraw(viewState = viewState)
             binding.noResultsView.redraw(viewState = viewState)
         }
 
