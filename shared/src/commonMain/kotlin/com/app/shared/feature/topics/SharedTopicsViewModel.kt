@@ -2,6 +2,7 @@ package com.app.shared.feature.topics
 
 import com.app.shared.business.Actions
 import com.app.shared.business.AppState
+import com.app.shared.business.TopicState
 import com.app.shared.business.TopicsState
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
@@ -37,13 +38,16 @@ class SharedTopicsViewModel(
         }
     }
 
-    override fun filter(byTopic: String) {
+    override fun filter(byTopic: TopicState) {
         scope.launch(context = MainDispatcher) {
             val dtos = bookmarkRepository.load()
 
-            val filtered = dtos.filter { it.topic?.name.equals(byTopic, ignoreCase = true) }
+            val filtered = dtos.filter { it.topic?.id == byTopic.id }
 
-            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = filtered))
+            store.dispatch(
+                action = Actions.Bookmark.Filter(
+                    bookmarks = filtered,
+                    topic = byTopic))
         }
     }
 

@@ -16,6 +16,10 @@ struct BookmarksViewState {
     
     init(state: BookmarksState? = nil) {
         self.state = state
+        
+        if let filterTopic = state?.filterByTopic?.name {
+            searchText = "in: \(filterTopic)"
+        }
     }
     
     private var bookmarks: [BookmarkState] {
@@ -25,6 +29,8 @@ struct BookmarksViewState {
     var noSearchResults: Bool {
         return bookmarks.isEmpty
     }
+    
+    var searchText: String = ""
     
     var title: String {
         return "You have \(bookmarks.count) bookmarks"

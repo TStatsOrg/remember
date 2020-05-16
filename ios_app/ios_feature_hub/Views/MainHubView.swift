@@ -30,7 +30,15 @@ public struct MainHubView: View {
     public var body: some View {
         NavigationView {
             VStack {
-                SearchView(viewModel: self.bookmarksViewModel)
+                ManagedSearchView(binding: $state.searchText)
+                    .observeSearchChanged { term in
+                        self.bookmarksViewModel.search(byName: term)
+                    }
+                    .observeCancelSearch {
+                        self.bookmarksViewModel.loadBookmarks()
+                        self.dismissKeyboard()
+                    }
+//                SearchView(viewModel: self.bookmarksViewModel)
                 NoSearchView(state: $state)
                 List {
                     ForEach(state.bookmarksViewState, content: { state in
@@ -96,24 +104,24 @@ public struct NoSearchView: View {
     }
 }
 
-public struct SearchView: View {
-    
-    var bookmarksViewModel: MainHubViewModel
-    
-    public init(viewModel: MainHubViewModel) {
-        bookmarksViewModel = viewModel
-    }
-    
-    public var body: some View {
-        HStack {
-            ManagedSearchView()
-                .observeSearchChanged { term in
-                    self.bookmarksViewModel.search(byName: term)
-                }
-                .observeCancelSearch {
-                    self.bookmarksViewModel.loadBookmarks()
-                    self.dismissKeyboard()
-                }
-        }
-    }
-}
+//public struct SearchView: View {
+//
+//    var bookmarksViewModel: MainHubViewModel
+//
+//    public init(viewModel: MainHubViewModel) {
+//        bookmarksViewModel = viewModel
+//    }
+//
+//    public var body: some View {
+//        HStack {
+//            ManagedSearchView()
+//                .observeSearchChanged { term in
+//                    self.bookmarksViewModel.search(byName: term)
+//                }
+//                .observeCancelSearch {
+//                    self.bookmarksViewModel.loadBookmarks()
+//                    self.dismissKeyboard()
+//                }
+//        }
+//    }
+//}

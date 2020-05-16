@@ -24,10 +24,19 @@ public struct TopicsView: View {
     public var body: some View {
         List(state.viewStates, rowContent: { content in
             Button(action: {
-                self.viewModel.filter(byTopic: content.name)
+                self.viewModel.filter(byTopic: content.topic)
                 self.dismiss()
             }) {
-                Text(content.name).ActionButton()
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(content.name)
+                        .ActionButton()
+                        .padding(bottom: 4.0)
+                    
+                    Text("12 bookmarks")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                .padding(bottom: 4.0)
             }
         })
         .navigationBarTitle(Text("Topics"))

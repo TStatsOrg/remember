@@ -33,7 +33,7 @@ class TopicsActivity: AppCompatActivity() {
 
         adapter.listener = object : TopicViewHolder.Listener {
             override fun onClickTopic(state: TopicViewState) {
-                viewModel.filter(byTopic = state.name)
+                viewModel.filter(byTopic = state.topicState)
                 finish()
             }
         }

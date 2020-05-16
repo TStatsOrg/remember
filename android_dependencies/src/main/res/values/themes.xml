@@ -82,6 +82,9 @@
 <!--        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>-->
         <item name="windowActionModeOverlay">true</item>
 
+<!--        <item name="android:editTextColor">@color/color_white</item>-->
+<!--        <item name="android:textColorHint">@color/color_gray</item>-->
+
         <!--Material type attributes-->
         <item name="textAppearanceHeadline1">@style/Theme.Remember.Text.Title</item>
         <item name="textAppearanceHeadline2">@style/Theme.Remember.Text.Title</item>

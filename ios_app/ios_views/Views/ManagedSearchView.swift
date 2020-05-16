@@ -11,12 +11,16 @@ import RememberShared
 
 public struct ManagedSearchView: UIViewRepresentable {
     
+    @Binding var searchText: String
+    
     private let openSearchEmitter = ObservableEmitter()
     private let searchChangedEmitter = ObservableEmitter()
     private let closeSearchEmitter = ObservableEmitter()
     private let cancelSearchEmitter = ObservableEmitter()
     
-    public init() {}
+    public init(binding: Binding<String>) {
+        _searchText = binding
+    }
     
     public class Delegate: NSObject, UISearchBarDelegate {
         
@@ -54,6 +58,7 @@ public struct ManagedSearchView: UIViewRepresentable {
         }
         
         public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//            self.searchText = searchText
             if !searchText.isEmpty {
                 searchChangedEmitter.emit(value: searchText)
             }
@@ -72,11 +77,19 @@ public struct ManagedSearchView: UIViewRepresentable {
         searchBar.searchBarStyle = .minimal
         searchBar.delegate = context.coordinator
         searchBar.showsCancelButton = true
+//        searchBar.placeholder = "in: News"
         return searchBar
     }
     
     public func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<ManagedSearchView>) {
-        // N/A
+//        uiView.delegate = nil
+//        uiView.text = searchText
+//        uiView.delegate = context.coordinator
+        uiView.placeholder = searchText
+    }
+    
+    public func updateText(text: String) {
+        
     }
 }
 
