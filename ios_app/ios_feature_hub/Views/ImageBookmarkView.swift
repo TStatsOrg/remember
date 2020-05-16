@@ -22,13 +22,12 @@ struct ImageBookmarkView: View {
             BookmarkTopicView(viewState: viewState)
             WebImage(url: self.viewState.url)
                 .resizable()
-                .frame(height: 300)
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .clipped()
+                .aspectRatio(contentMode: .fill)
+                .paddingZero()
             BookmarkInfoView(viewState: viewState)
             Divider()
         }
-        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+        .paddingZero()
         .onTapGesture {
             /* N/A */
         }

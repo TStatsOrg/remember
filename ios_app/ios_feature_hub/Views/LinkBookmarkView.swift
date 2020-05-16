@@ -35,8 +35,8 @@ struct LinkBookmarkView: View {
                     Spacer()
                     WebImage(url: self.viewState.icon)
                         .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: 60, height: 60)
-                        .scaledToFit()
                         .clipped()
                 }
             }

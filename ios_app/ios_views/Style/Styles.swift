@@ -21,6 +21,10 @@ public extension Text {
 
 public extension View {
     
+    func paddingZero() -> some View {
+        return self.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+    }
+    
     func padding(leading: CGFloat) -> some View {
         return self.padding(EdgeInsets(top: 0, leading: leading, bottom: 0, trailing: 0))
     }
