@@ -26,7 +26,7 @@
 
     <!-- edit bookmark -->
     <string name="bookmark_edit_title">Edit bookmark</string>
-    <string name="bookmark_edit_topics">Topics</string>
+    <string name="bookmark_edit_add_topics">New topic</string>
 
     <!-- preview -->
     <string name="preview_title">Add bookmark</string>

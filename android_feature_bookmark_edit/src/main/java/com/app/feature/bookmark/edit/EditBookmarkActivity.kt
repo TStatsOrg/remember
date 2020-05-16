@@ -41,7 +41,7 @@ class EditBookmarkActivity: AppCompatActivity() {
         binding.topAppBar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.topics -> {
-                    navigator.seeTopicsList(context = this)
+                    navigator.seeAddTopic(context = this)
                     true
                 }
                 else -> false

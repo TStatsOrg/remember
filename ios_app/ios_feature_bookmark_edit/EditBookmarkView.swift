@@ -17,7 +17,7 @@ public struct EditBookmarkView: View {
     @Injected var navigation: Navigation
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @SwiftUI.State var state: EditBookmarkViewState = EditBookmarkViewState()
-    @SwiftUI.State private var isShowingTopics: Bool = false
+    @SwiftUI.State private var isShowingAddTopic: Bool = false
     
     private let bookmarkId: Int32
     
@@ -31,10 +31,21 @@ public struct EditBookmarkView: View {
                 self.viewModel.update(bookmark: self.bookmarkId, withTopic: content.id)
                 self.viewModel.save()
             }) {
-                Text(content.name)
-                    .ActionButton()
-                    .foregroundColor(content.isSelected ? Color.secondary : Color.primary)
-                    .background(Color(content.isSelected ? .green : .clear))
+                HStack {
+                    if content.isSelected {
+                        Image(systemName: "checkmark")
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20, height: 20)
+                    } else {
+                        Color(UIColor.white)
+                            .frame(width: 20.0, height: 20.0)
+                    }
+                    Text(content.name)
+                        .ActionButton()
+                }
+                
             }
         })
         .onAppear {
@@ -46,12 +57,12 @@ public struct EditBookmarkView: View {
         }
         .navigationBarTitle("Edit bookmark", displayMode: NavigationBarItem.TitleDisplayMode.inline)
         .navigationBarItems(trailing: Button(action: {
-            self.isShowingTopics = true
+            self.isShowingAddTopic = true
         }, label: {
-            Text("Topics")
+            Text("Add topic")
         }))
-        .sheet(isPresented: $isShowingTopics) {
-            self.navigation.seeTopicsList()
+        .sheet(isPresented: $isShowingAddTopic) {
+            self.navigation.seeAddTopic()
         }
     }
     

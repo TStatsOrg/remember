@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/topics"
-        android:title="@string/bookmark_edit_topics"
-        android:contentDescription="@string/bookmark_edit_topics"
+        android:title="@string/bookmark_edit_add_topics"
+        android:contentDescription="@string/bookmark_edit_add_topics"
         app:showAsAction="ifRoom" />
 </menu>
