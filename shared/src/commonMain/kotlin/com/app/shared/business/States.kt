@@ -69,14 +69,3 @@ data class AppState(
     val preview: BookmarkState? = null,
     val editBookmark: EditBookmarkState? = null
 ): State
-
-/**
- * BookmarkState { Text, Image, Link, Unknown }
- * BookmarksState { bookmarks, data, error }
- *
- * TopicState { id, name }
- * TopicsState { (all)topics, date, isLoading, error }
- *
- * PreviewBookmark { bookmark }
- * EditBookmark { bookmark, (all)topics }
- */

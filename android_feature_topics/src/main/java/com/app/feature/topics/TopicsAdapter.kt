@@ -10,6 +10,8 @@ import com.app.views.viewstate.TopicViewState
 
 class TopicsAdapter: RecyclerView.Adapter<TopicViewHolder>() {
 
+    var listener: TopicViewHolder.Listener? = null
+
     private var viewState: List<TopicViewState> = listOf()
         set(value) {
             val result = DiffUtil.calculateDiff(TopicsDiff(field, value))
@@ -26,6 +28,16 @@ class TopicsAdapter: RecyclerView.Adapter<TopicViewHolder>() {
 
     override fun onBindViewHolder(holder: TopicViewHolder, position: Int) {
         holder.redraw(viewState = viewState[position])
+    }
+
+    override fun onViewAttachedToWindow(holder: TopicViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.listener = listener
+    }
+
+    override fun onViewDetachedFromWindow(holder: TopicViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.listener = null
     }
 
     fun redraw(viewState: List<TopicViewState>) {

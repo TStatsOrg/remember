@@ -14,15 +14,22 @@ import ios_dependencies
 public struct TopicsView: View {
     
     @Injected private var viewModel: TopicsViewModel
+    @Injected private var mainHubViewModel: MainHubViewModel
     @Injected private var navigation: Navigation
     @SwiftUI.State private var state: TopicsViewState = TopicsViewState()
     @SwiftUI.State private var isShowingAdd: Bool = false
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     public init() {}
     
     public var body: some View {
         List(state.viewStates, rowContent: { content in
-            Text(content.name).ActionButton()
+            Button(action: {
+                self.mainHubViewModel.filter(byTopic: content.name)
+                self.dismiss()
+            }) {
+                Text(content.name).ActionButton()
+            }
         })
         .navigationBarTitle(Text("Topics"))
         .navigationBarItems(trailing: Button(action: {
@@ -41,5 +48,9 @@ public struct TopicsView: View {
     
     private func update(state: TopicsState) {
         self.state = TopicsViewState(state: state.topics)
+    }
+    
+    private func dismiss() {
+        mode.wrappedValue.dismiss()
     }
 }

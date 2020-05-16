@@ -8,7 +8,16 @@ class TopicViewHolder(
     private val binding: ViewTopicBinding
 ): RecyclerView.ViewHolder(binding.root) {
 
+    var listener: Listener? = null
+
     fun redraw(viewState: TopicViewState) = with(viewState) {
         binding.topicName.text = name
+        binding.root.setOnClickListener {
+            listener?.onClickTopic(state = viewState)
+        }
+    }
+
+    interface Listener {
+        fun onClickTopic(state: TopicViewState)
     }
 }
