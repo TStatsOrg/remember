@@ -24,10 +24,12 @@ struct LinkBookmarkView: View {
             BookmarkTopicView(viewState: viewState)
             HStack(alignment: .top, spacing: 0) {
                 
-                Text(viewState.title ?? "")
+                Text(viewState.title)
                     .font(.body)
                     .fontWeight(.bold)
                     .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 if !self.viewState.isIconHidden {
                     Spacer()

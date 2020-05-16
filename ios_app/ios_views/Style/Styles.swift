@@ -14,6 +14,7 @@ public extension Text {
         return self
             .font(.footnote)
             .fontWeight(.bold)
+            .lineLimit(1)
             .foregroundColor(.accentColor)
     }
 }

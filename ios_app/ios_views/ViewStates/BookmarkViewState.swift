@@ -88,7 +88,7 @@ public struct BookmarkImageViewState: BookmarkViewStateType {
 public struct BookmarkLinkViewState: BookmarkViewStateType {
     public let state: BookmarkState
     
-    public let title: String?
+    public let title: String
     public let caption: String?
     public let icon: URL?
     public let source: String
@@ -98,7 +98,7 @@ public struct BookmarkLinkViewState: BookmarkViewStateType {
     public init(state: BookmarkStateLink) {
         self.state = state
         
-        title = state.title
+        title = state.title ?? "N/A"
         caption = state.caption
         
         if let url = URL(string: state.url) {
