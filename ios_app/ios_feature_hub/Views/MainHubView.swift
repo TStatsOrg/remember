@@ -30,15 +30,7 @@ public struct MainHubView: View {
     public var body: some View {
         NavigationView {
             VStack {
-                ManagedSearchView(binding: $state.searchText)
-                    .observeSearchChanged { term in
-                        self.bookmarksViewModel.search(byName: term)
-                    }
-                    .observeCancelSearch {
-                        self.bookmarksViewModel.loadBookmarks()
-                        self.dismissKeyboard()
-                    }
-//                SearchView(viewModel: self.bookmarksViewModel)
+                SearchView(viewModel: bookmarksViewModel, binding: $state.searchText)
                 NoSearchView(state: $state)
                 List {
                     ForEach(state.bookmarksViewState, content: { state in
@@ -104,24 +96,29 @@ public struct NoSearchView: View {
     }
 }
 
-//public struct SearchView: View {
-//
-//    var bookmarksViewModel: MainHubViewModel
-//
-//    public init(viewModel: MainHubViewModel) {
-//        bookmarksViewModel = viewModel
-//    }
-//
-//    public var body: some View {
-//        HStack {
-//            ManagedSearchView()
-//                .observeSearchChanged { term in
-//                    self.bookmarksViewModel.search(byName: term)
-//                }
-//                .observeCancelSearch {
-//                    self.bookmarksViewModel.loadBookmarks()
-//                    self.dismissKeyboard()
-//                }
-//        }
-//    }
-//}
+public struct SearchView: View {
+
+    var bookmarksViewModel: MainHubViewModel
+    @Binding var searchText: String
+
+    public init(viewModel: MainHubViewModel, binding: Binding<String>) {
+        bookmarksViewModel = viewModel
+        _searchText = binding
+    }
+
+    public var body: some View {
+        HStack {
+            ManagedSearchView(binding: $searchText)
+                .observeSearchChanged { term in
+                    self.bookmarksViewModel.search(byName: term)
+                }
+            Button(action: {
+                self.bookmarksViewModel.loadBookmarks()
+                self.dismissKeyboard()
+            }) {
+                Text("Clear")
+            }
+            .padding(trailing: 12)
+        }
+    }
+}

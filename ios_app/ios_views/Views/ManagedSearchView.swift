@@ -76,8 +76,6 @@ public struct ManagedSearchView: UIViewRepresentable {
         let searchBar = UISearchBar(frame: .zero)
         searchBar.searchBarStyle = .minimal
         searchBar.delegate = context.coordinator
-        searchBar.showsCancelButton = true
-//        searchBar.placeholder = "in: News"
         return searchBar
     }
     

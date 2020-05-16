@@ -9,6 +9,8 @@ data class BookmarksViewState(val state: BookmarksState? = null) {
 
     private val bookmarks: List<BookmarkState> = state?.bookmarks ?: listOf()
 
+    val searchText: String = state?.filterByTopic?.name?.let { "in: $it" } ?: ""
+
     val bookmarksViewState: List<BookmarkViewState> = bookmarks.mapNotNull {
         when (it) {
             is BookmarkState.Link -> BookmarkViewState.Link(bookmark = it)
