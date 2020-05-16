@@ -26,6 +26,10 @@ struct BookmarksViewState {
         return state?.suggestions ?? []
     }
     
+    var isSearching: Bool {
+        return !suggestions.isEmpty
+    }
+    
     var title: String {
         return "You have \(bookmarks.count) bookmarks"
     }

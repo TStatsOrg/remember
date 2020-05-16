@@ -32,6 +32,13 @@ public struct MainHubView: View {
             VStack {
                 SearchView(viewModel: self.bookmarksViewModel)
                 List {
+                    if (self.state.isSearching) {
+                        HStack {
+                            Image(systemName: "folder.fill")
+                            Text("Topics")
+                                .font(.headline)
+                        }
+                    }
                     ForEach(state.suggestionsViewState) { suggestion in
                         Button(action: {
                             self.dismissKeyboard()
@@ -39,6 +46,13 @@ public struct MainHubView: View {
                             self.bookmarksViewModel.clearSuggestions()
                         }) {
                             Text(suggestion.name).ActionButton()
+                        }
+                    }
+                    if (self.state.isSearching) {
+                        HStack {
+                            Image(systemName: "book.fill")
+                            Text("Bookmarks")
+                                .font(.headline)
                         }
                     }
                     ForEach(state.bookmarksViewState, content: { state in
@@ -115,7 +129,7 @@ public struct SearchView: View {
                 }) {
                     Text("Clear")
                 }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 12))
+                .padding(trailing: 12)
             }
         }
     }
