@@ -31,6 +31,18 @@ public struct MainHubView: View {
         NavigationView {
             VStack {
                 SearchView(viewModel: self.bookmarksViewModel)
+                
+                if (self.state.noSearchResults) {
+                    Image(systemName: "nosign")
+                        .resizable()
+                        .colorMultiply(.secondary)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 80, height: 80)
+                        .padding(top: 20)
+                    Text("No search results")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                }
                 List {
                     if (self.state.isSearching) {
                         HStack {

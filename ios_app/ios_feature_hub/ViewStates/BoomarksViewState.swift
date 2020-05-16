@@ -30,6 +30,10 @@ struct BookmarksViewState {
         return !suggestions.isEmpty
     }
     
+    var noSearchResults: Bool {
+        return suggestions.isEmpty && bookmarks.isEmpty
+    }
+    
     var title: String {
         return "You have \(bookmarks.count) bookmarks"
     }
