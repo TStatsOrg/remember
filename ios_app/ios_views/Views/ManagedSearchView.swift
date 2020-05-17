@@ -24,15 +24,19 @@ public struct ManagedSearchView: UIViewRepresentable {
     
     public class Delegate: NSObject, UISearchBarDelegate {
         
+        @Binding var searchText: String
+        
         private let openSearchEmitter: ObservableEmitter
         private let searchChangedEmitter: ObservableEmitter
         private let closeSearchEmitter: ObservableEmitter
         private let cancelSearchEmitter: ObservableEmitter
         
-        init(openSearchEmitter: ObservableEmitter,
+        init(binding: Binding<String>,
+             openSearchEmitter: ObservableEmitter,
              searchChangedEmitter: ObservableEmitter,
              closeSearchEmitter: ObservableEmitter,
              cancelSearchEmitter: ObservableEmitter) {
+            _searchText = binding
             self.openSearchEmitter = openSearchEmitter
             self.searchChangedEmitter = searchChangedEmitter
             self.closeSearchEmitter = closeSearchEmitter
@@ -58,7 +62,7 @@ public struct ManagedSearchView: UIViewRepresentable {
         }
         
         public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//            self.searchText = searchText
+            self.searchText = searchText
             if !searchText.isEmpty {
                 searchChangedEmitter.emit(value: searchText)
             }
@@ -66,7 +70,8 @@ public struct ManagedSearchView: UIViewRepresentable {
     }
     
     public func makeCoordinator() -> Delegate {
-        return Delegate(openSearchEmitter: openSearchEmitter,
+        return Delegate(binding: $searchText,
+                        openSearchEmitter: openSearchEmitter,
                         searchChangedEmitter: searchChangedEmitter,
                         closeSearchEmitter: closeSearchEmitter,
                         cancelSearchEmitter: cancelSearchEmitter)
@@ -80,14 +85,7 @@ public struct ManagedSearchView: UIViewRepresentable {
     }
     
     public func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<ManagedSearchView>) {
-//        uiView.delegate = nil
-//        uiView.text = searchText
-//        uiView.delegate = context.coordinator
-        uiView.placeholder = searchText
-    }
-    
-    public func updateText(text: String) {
-        
+        uiView.text = searchText
     }
 }
 

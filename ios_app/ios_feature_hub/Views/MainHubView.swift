@@ -20,17 +20,22 @@ public struct MainHubView: View {
     
     @SwiftUI.State private var state: BookmarksViewState = BookmarksViewState()
     @SwiftUI.State private var isShowingTopics: Bool = false
+    @SwiftUI.State private var search: String = ""
     
     public init() {}
     
     private func update(state: BookmarksState) {
         self.state = BookmarksViewState(state: state)
+        if let filterTopic = state.filterByTopic?.name {
+            self.search = self.state.topicText(text: filterTopic)
+            self.dismissKeyboard()
+        }
     }
     
     public var body: some View {
         NavigationView {
             VStack {
-                SearchView(viewModel: bookmarksViewModel, binding: $state.searchText)
+                SearchView(viewModel: bookmarksViewModel, binding: $search)
                 NoSearchView(state: $state)
                 List {
                     ForEach(state.bookmarksViewState, content: { state in
@@ -113,6 +118,7 @@ public struct SearchView: View {
                     self.bookmarksViewModel.search(byName: term)
                 }
             Button(action: {
+                self.searchText = ""
                 self.bookmarksViewModel.loadBookmarks()
                 self.dismissKeyboard()
             }) {
