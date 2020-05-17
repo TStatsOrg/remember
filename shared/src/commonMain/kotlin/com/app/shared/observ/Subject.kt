@@ -25,6 +25,19 @@ fun <T, U> Subscriber<T>.map(transform: (T) -> U): Subscriber<U> {
     }
 }
 
+fun <T> Subscriber<T>.filter(transform: (T) -> Boolean): Subscriber<T> {
+    return object : Subscriber<T> {
+        override var function: ((T) -> Unit)? = null
+        override fun collect(callback: (T) -> Unit) {
+            this@filter.collect {
+                if (transform(it)) {
+                    callback(it)
+                }
+            }
+        }
+    }
+}
+
 fun <T> Subscriber<T?>.filterNotNull(): Subscriber<T> {
     return object : Subscriber<T> {
         override var function: ((T) -> Unit)? = null
@@ -49,6 +62,10 @@ class SimpleObserver2<T>(internal val subscriber: Subscriber<T> = SimpleSubscrib
 
 fun <T, U> SimpleObserver2<T>.map(transform: (T) -> U): SimpleObserver2<U> {
     return SimpleObserver2(this.subscriber.map(transform))
+}
+
+fun <T> SimpleObserver2<T>.filter(transform: (T) -> Boolean): SimpleObserver2<T> {
+    return SimpleObserver2(this.subscriber.filter(transform))
 }
 
 fun <T> SimpleObserver2<T?>.filterNotNull(): SimpleObserver2<T> {

@@ -32,7 +32,7 @@ class MyApplication: Application() {
         }
 
         val observer3 = SimpleObserver2<Int?>()
-        observer3.filterNotNull().map { it * 3 }.collect {
+        observer3.filterNotNull().map { it * 3 }.filter { it > 12 }.collect {
             MLogger.log("GABBOX: Observer 3 => $it")
         }
 
