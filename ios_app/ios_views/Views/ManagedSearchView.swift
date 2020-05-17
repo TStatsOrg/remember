@@ -13,10 +13,10 @@ public struct ManagedSearchView: UIViewRepresentable {
     
     @Binding var searchText: String
     
-    private let openSearchEmitter = ObservableEmitter()
-    private let searchChangedEmitter = ObservableEmitter()
-    private let closeSearchEmitter = ObservableEmitter()
-    private let cancelSearchEmitter = ObservableEmitter()
+    private let openSearchEmitter = InfiniteEmitter()
+    private let searchChangedEmitter = InfiniteEmitter()
+    private let closeSearchEmitter = InfiniteEmitter()
+    private let cancelSearchEmitter = InfiniteEmitter()
     
     public init(binding: Binding<String>) {
         _searchText = binding
@@ -26,16 +26,16 @@ public struct ManagedSearchView: UIViewRepresentable {
         
         @Binding var searchText: String
         
-        private let openSearchEmitter: ObservableEmitter
-        private let searchChangedEmitter: ObservableEmitter
-        private let closeSearchEmitter: ObservableEmitter
-        private let cancelSearchEmitter: ObservableEmitter
+        private let openSearchEmitter: InfiniteEmitter
+        private let searchChangedEmitter: InfiniteEmitter
+        private let closeSearchEmitter: InfiniteEmitter
+        private let cancelSearchEmitter: InfiniteEmitter
         
         init(binding: Binding<String>,
-             openSearchEmitter: ObservableEmitter,
-             searchChangedEmitter: ObservableEmitter,
-             closeSearchEmitter: ObservableEmitter,
-             cancelSearchEmitter: ObservableEmitter) {
+             openSearchEmitter: InfiniteEmitter,
+             searchChangedEmitter: InfiniteEmitter,
+             closeSearchEmitter: InfiniteEmitter,
+             cancelSearchEmitter: InfiniteEmitter) {
             _searchText = binding
             self.openSearchEmitter = openSearchEmitter
             self.searchChangedEmitter = searchChangedEmitter
@@ -93,7 +93,7 @@ extension ManagedSearchView {
     
     @discardableResult
     public func observeSearchOpened(callback: @escaping () -> Void) -> ManagedSearchView {
-        openSearchEmitter.observer().collect { _ in
+        openSearchEmitter.observe().collect { _ in
             callback()
         }
 
@@ -102,7 +102,7 @@ extension ManagedSearchView {
     
     @discardableResult
     public func observeSearchChanged(callback: @escaping (String) -> Void) -> ManagedSearchView {
-        searchChangedEmitter.observer().collect { searchTerm in
+        searchChangedEmitter.observe().collect { searchTerm in
             
             if let term = searchTerm as? String {
                 callback(term)
@@ -114,7 +114,7 @@ extension ManagedSearchView {
     
     @discardableResult
     public func observeSearchClosed(callback: @escaping () -> Void) -> ManagedSearchView {
-        closeSearchEmitter.observer().collect { _ in
+        closeSearchEmitter.observe().collect { _ in
             callback()
         }
         
@@ -123,7 +123,7 @@ extension ManagedSearchView {
     
     @discardableResult
     public func observeCancelSearch(callback: @escaping () -> Void) -> ManagedSearchView {
-        cancelSearchEmitter.observer().collect { _ in
+        cancelSearchEmitter.observe().collect { _ in
             callback()
         }
         

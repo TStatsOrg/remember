@@ -63,50 +63,51 @@ fun <T> Subscriber<T?>.filterNotNull(): Subscriber<T> {
     }
 }
 
-interface Observer2<T> {
+interface Observer<T> {
     val subscriber: Subscriber<T>
     fun didChange(value: T)
+    fun collect(function: (T) -> Unit) {
+        this.subscriber.collect(function)
+    }
 }
 
-class SimpleObserver2<T>(override val subscriber: Subscriber<T> = SimpleSubscriber()): Observer2<T> {
+class SimpleObserver<T>(override val subscriber: Subscriber<T> = SimpleSubscriber()): Observer<T> {
 
     override fun didChange(value: T) {
         subscriber.didChange(value)
     }
 }
 
-fun <T, U> Observer2<T>.map(transform: (T) -> U): Observer2<U> {
-    return SimpleObserver2(this.subscriber.map(transform))
+fun <T, U> Observer<T>.map(transform: (T) -> U): Observer<U> {
+    return SimpleObserver(this.subscriber.map(transform))
 }
 
-fun <T> Observer2<T>.filter(transform: (T) -> Boolean): Observer2<T> {
-    return SimpleObserver2(this.subscriber.filter(transform))
+fun <T> Observer<T>.filter(transform: (T) -> Boolean): Observer<T> {
+    return SimpleObserver(this.subscriber.filter(transform))
 }
 
-fun <T> Observer2<T?>.filterNotNull(): Observer2<T> {
-    return SimpleObserver2(this.subscriber.filterNotNull())
+fun <T> Observer<T?>.filterNotNull(): Observer<T> {
+    return SimpleObserver(this.subscriber.filterNotNull())
 }
 
-fun <T> Observer2<T>.collect(function: (T) -> Unit) {
-    this.subscriber.collect(function)
-}
-
-interface Emitter2<T> {
-    fun add(observer: Observer2<T>)
-    fun remove(observer: Observer2<T>)
+interface Emitter<T> {
+    fun add(observer: Observer<T>)
+    fun remove(observer: Observer<T>)
     fun emit(value: T)
-    fun observe(): Observer2<T>
+    fun currentObservers(): List<Observer<T>>
+    fun observe(): Observer<T>
+    fun cleanup()
 }
 
-class InfiniteEmitter2<T>: Emitter2<T> {
+class InfiniteEmitter<T>: Emitter<T> {
 
-    val observers = mutableListOf<Observer2<T>>()
+    private val observers = mutableListOf<Observer<T>>()
 
-    override fun add(observer: Observer2<T>) {
+    override fun add(observer: Observer<T>) {
         observers.add(observer)
     }
 
-    override fun remove(observer: Observer2<T>) {
+    override fun remove(observer: Observer<T>) {
         observers.remove(observer)
     }
 
@@ -114,9 +115,17 @@ class InfiniteEmitter2<T>: Emitter2<T> {
         observers.forEach { it.didChange(value = value) }
     }
 
-    override fun observe(): Observer2<T> {
-        val observer = SimpleObserver2<T>()
+    override fun currentObservers(): List<Observer<T>> {
+        return observers.toList()
+    }
+
+    override fun observe(): Observer<T> {
+        val observer = SimpleObserver<T>()
         add(observer)
         return observer
+    }
+
+    override fun cleanup() {
+        observers.clear()
     }
 }

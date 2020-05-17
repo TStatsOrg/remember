@@ -32,9 +32,12 @@ public struct AddTopicView: View {
                 Text("Add")
             })
         )
-        .onAppear(perform: {
+        .onAppear {
             self.viewModel.observeTopicSaved(callback: self.dismiss)
-        })
+        }
+        .onDisappear {
+            self.viewModel.cleanup()
+        }
         .padding()
     }
     

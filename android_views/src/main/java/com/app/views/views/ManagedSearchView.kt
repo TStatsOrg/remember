@@ -4,16 +4,16 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.AutoCompleteTextView
 import androidx.appcompat.widget.SearchView
-import com.app.shared.observ.ObservableEmitter
+import com.app.shared.observ.InfiniteEmitter
 import com.app.views.R
 import com.app.views.utils.hideKeyboard
 
 class ManagedSearchView: SearchView {
 
-    private val openSearchEmitter = ObservableEmitter<Boolean>()
-    private val closeSearchEmitter = ObservableEmitter<Boolean>()
-    private val searchChangedEmitter = ObservableEmitter<String>()
-    private val searchSubmittedEmitter = ObservableEmitter<String>()
+    private val openSearchEmitter = InfiniteEmitter<Boolean>()
+    private val closeSearchEmitter = InfiniteEmitter<Boolean>()
+    private val searchChangedEmitter = InfiniteEmitter<String>()
+    private val searchSubmittedEmitter = InfiniteEmitter<String>()
 
     constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -51,11 +51,18 @@ class ManagedSearchView: SearchView {
         })
     }
 
-    fun observeSearchOpened(callback: (Boolean) -> Unit) = openSearchEmitter.observer().collect(callback)
+    fun observeSearchOpened(callback: (Boolean) -> Unit) = openSearchEmitter.observe().collect(callback)
 
-    fun observeSearchClosed(callback: (Boolean) -> Unit) = closeSearchEmitter.observer().collect(callback)
+    fun observeSearchClosed(callback: (Boolean) -> Unit) = closeSearchEmitter.observe().collect(callback)
 
-    fun observeSearchChanged(callback: (String) -> Unit) = searchChangedEmitter.observer().collect(callback)
+    fun observeSearchChanged(callback: (String) -> Unit) = searchChangedEmitter.observe().collect(callback)
 
-    fun observeSearchSubmitted(callback: (String) -> Unit) = searchSubmittedEmitter.observer().collect(callback)
+    fun observeSearchSubmitted(callback: (String) -> Unit) = searchSubmittedEmitter.observe().collect(callback)
+
+    fun cleanup() {
+        openSearchEmitter.cleanup()
+        closeSearchEmitter.cleanup()
+        searchChangedEmitter.cleanup()
+        searchSubmittedEmitter.cleanup()
+    }
 }

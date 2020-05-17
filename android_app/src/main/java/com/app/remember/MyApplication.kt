@@ -27,7 +27,7 @@ class MyApplication: Application() {
          * store.removeObserver(storeObserver)
          */
 
-        val emitter = InfiniteEmitter2<Int?>()
+        val emitter = InfiniteEmitter<Int?>()
 
         val observer1 = emitter.observe()
         observer1.collect {
@@ -48,12 +48,12 @@ class MyApplication: Application() {
         emitter.emit(value = null)
         emitter.emit(value = 5)
 
-        MLogger.log("GABBOX: Number of remaining observers ${emitter.observers.size}")
+        MLogger.log("GABBOX: Number of remaining observers ${emitter.currentObservers().size}")
 
         emitter.remove(observer1)
         emitter.remove(observer2)
         emitter.remove(observer3)
 
-        MLogger.log("GABBOX: Number of remaining observers ${emitter.observers.size}")
+        MLogger.log("GABBOX: Number of remaining observers ${emitter.currentObservers().size}")
     }
 }

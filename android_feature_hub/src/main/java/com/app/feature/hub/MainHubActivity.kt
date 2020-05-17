@@ -81,4 +81,10 @@ class MainHubActivity: AppCompatActivity() {
 
         viewModel.loadBookmarks()
     }
+
+    override fun onDestroy() {
+        viewModel.cleanup()
+        binding.searchInput.cleanup()
+        super.onDestroy()
+    }
 }

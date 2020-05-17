@@ -54,4 +54,9 @@ class PreviewActivity: AppCompatActivity() {
         adapter.redraw(viewState = viewState)
         binding.saveContentButton.isEnabled = true
     }
+
+    override fun onDestroy() {
+        viewModel.cleanup()
+        super.onDestroy()
+    }
 }

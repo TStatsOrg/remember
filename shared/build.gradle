@@ -12,6 +12,7 @@ kotlin {
 
         fromPreset(iOSTarget, 'iOS') {
             binaries {
+//                freeCompilerArgs += "-Xobjc-generics"
                 framework(RememberFramework) {
 //                    transitiveExport = true
 //

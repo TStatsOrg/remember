@@ -9,4 +9,5 @@ interface EditBookmarkViewModel {
     fun save()
     fun observeEditBookmarkState(callback: (EditBookmarkState) -> Unit)
     fun observeBookmarkSaved(callback: (Boolean) -> Unit)
+    fun cleanup()
 }

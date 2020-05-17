@@ -52,4 +52,9 @@ class TopicsActivity: AppCompatActivity() {
     private fun redraw(viewState: TopicsViewState) {
         adapter.redraw(viewState = viewState.topics)
     }
+
+    override fun onDestroy() {
+        viewModel.cleanup()
+        super.onDestroy()
+    }
 }

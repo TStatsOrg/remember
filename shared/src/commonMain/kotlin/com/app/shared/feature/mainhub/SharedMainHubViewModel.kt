@@ -9,8 +9,8 @@ import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
-import com.app.shared.redux.toEmitter
 import com.app.shared.utils.CalendarUtils
+import com.app.shared.utils.MLogger
 import kotlinx.coroutines.launch
 
 class SharedMainHubViewModel(
@@ -20,6 +20,11 @@ class SharedMainHubViewModel(
 ): MainHubViewModel {
 
     private val scope = provideViewModelScope()
+    private val storeObserver = store.observe()
+
+    init {
+        MLogger.log("GABBOX2: Main hub observer $storeObserver\n")
+    }
 
     override fun loadBookmarks() {
         scope.launch(context = MainDispatcher) {
@@ -50,8 +55,13 @@ class SharedMainHubViewModel(
     }
 
     override fun observeBookmarkState(callback: (BookmarksState) -> Unit) {
-        store.toEmitter().observer()
+        storeObserver
             .map { it.bookmarks }
             .collect(callback)
+    }
+
+    override fun cleanup() {
+        MLogger.log("GABBOX2: Removing main hub observer $storeObserver\n")
+        store.remove(observer = storeObserver)
     }
 }

@@ -10,11 +10,8 @@ import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.BookmarkRepository
-import com.app.shared.observ.ObservableEmitter
-import com.app.shared.observ.filterNotNull
-import com.app.shared.observ.map
+import com.app.shared.observ.*
 import com.app.shared.redux.Store
-import com.app.shared.redux.toEmitter
 import com.app.shared.utils.CalendarUtils
 import com.app.shared.utils.toDTO
 import kotlinx.coroutines.CoroutineScope
@@ -31,7 +28,8 @@ class SharedPreviewViewModel(
     private var temporaryDTO: BookmarkDTO? = null
 
     private val scope: CoroutineScope = provideViewModelScope()
-    private val emitter = ObservableEmitter<Int>()
+    private val storeObserver = store.observe()
+    private val emitter = InfiniteEmitter<Int>()
 
     override fun clear() = store.dispatch(action = Actions.Bookmark.Preview.Reset)
 
@@ -64,14 +62,18 @@ class SharedPreviewViewModel(
     }
 
     override fun observePreviewState(callback: (BookmarkState) -> Unit) {
-        store.toEmitter()
-            .observer()
+        storeObserver
             .map { it.preview }
             .filterNotNull()
             .collect(callback)
     }
 
     override fun observeBookmarkSaved(callback: (Int) -> Unit) {
-        emitter.observer().collect(callback)
+        emitter.observe().collect(callback)
+    }
+
+    override fun cleanup() {
+        store.remove(observer = storeObserver)
+        emitter.cleanup()
     }
 }

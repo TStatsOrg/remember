@@ -10,7 +10,6 @@ import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.TopicsRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
-import com.app.shared.redux.toEmitter
 import com.app.shared.utils.CalendarUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -23,6 +22,7 @@ class SharedTopicsViewModel(
 ): TopicsViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
+    private val storeObserver = store.observe()
 
     override fun loadTopics() {
         scope.launch(context = MainDispatcher) {
@@ -52,9 +52,12 @@ class SharedTopicsViewModel(
     }
 
     override fun observeTopicState(callback: (TopicsState) -> Unit) {
-        store.toEmitter()
-            .observer()
+        storeObserver
             .map { it.topics }
             .collect(callback)
+    }
+
+    override fun cleanup() {
+        store.remove(observer = storeObserver)
     }
 }

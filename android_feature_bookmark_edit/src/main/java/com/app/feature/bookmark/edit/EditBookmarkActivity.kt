@@ -65,4 +65,9 @@ class EditBookmarkActivity: AppCompatActivity() {
             }
         }
     }
+
+    override fun onDestroy() {
+        viewModel.cleanup()
+        super.onDestroy()
+    }
 }

@@ -8,4 +8,6 @@ interface MainHubViewModel {
     fun search(byName: String)
 
     fun observeBookmarkState(callback: (BookmarksState) -> Unit)
+
+    fun cleanup()
 }

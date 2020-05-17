@@ -15,12 +15,14 @@ import ios_views
 
 public struct MainHubView: View {
     
-    @Injected var bookmarksViewModel: MainHubViewModel
+    @Injected var viewModel: MainHubViewModel
     @Injected var navigation: Navigation
     
     @SwiftUI.State private var state: BookmarksViewState = BookmarksViewState()
     @SwiftUI.State private var isShowingTopics: Bool = false
+    @SwiftUI.State private var isShowingEditBookmark = false
     @SwiftUI.State private var search: String = ""
+    @SwiftUI.State private var selectedBookmark: Int32 = -1
     
     public init() {}
     
@@ -35,12 +37,15 @@ public struct MainHubView: View {
     public var body: some View {
         NavigationView {
             VStack {
-                SearchView(viewModel: bookmarksViewModel, binding: $search)
+                SearchView(viewModel: viewModel, binding: $search)
                 NoSearchView(state: $state)
                 List {
                     ForEach(state.bookmarksViewState, content: { state in
                         self.getCellType(state: state)
-                            .actionSheetModifier(viewState: state.viewState)
+                            .editBookmarkActionSheetModifier {
+                                self.isShowingEditBookmark = true
+                                self.selectedBookmark = state.id
+                            }
                     })
                 }
             }
@@ -51,12 +56,18 @@ public struct MainHubView: View {
                 Text("Topics")
             }))
             .onAppear {
-                self.bookmarksViewModel.observeBookmarkState(callback: self.update)
-                self.bookmarksViewModel.loadBookmarks()
+                self.viewModel.observeBookmarkState(callback: self.update)
+                self.viewModel.loadBookmarks()
+            }
+            .onDisappear {
+                self.viewModel.cleanup()
             }
             .sheet(isPresented: $isShowingTopics) {
                 self.navigation.seeTopicsList()
             }
+            .sheet(isPresented: self.$isShowingEditBookmark, content: {
+                self.navigation.seeEditBookmark(forBookmarkId: self.selectedBookmark)
+            })
         }
     }
     

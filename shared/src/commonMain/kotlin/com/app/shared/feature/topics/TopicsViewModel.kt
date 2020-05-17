@@ -7,4 +7,5 @@ interface TopicsViewModel {
     fun loadTopics()
     fun filter(byTopic: TopicState)
     fun observeTopicState(callback: (TopicsState) -> Unit)
+    fun cleanup()
 }

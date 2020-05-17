@@ -49,6 +49,9 @@ public struct TopicsView: View {
             self.viewModel.observeTopicState(callback: self.update)
             self.viewModel.loadTopics()
         }
+        .onDisappear {
+            self.viewModel.cleanup()
+        }
         .sheet(isPresented: $isShowingAdd) {
             self.navigation.seeAddTopic()
         }

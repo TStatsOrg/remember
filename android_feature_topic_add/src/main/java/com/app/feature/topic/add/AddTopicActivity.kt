@@ -26,4 +26,9 @@ class AddTopicActivity: AppCompatActivity() {
             viewModel.addTopic(name = topicName)
         }
     }
+
+    override fun onDestroy() {
+        viewModel.cleanup()
+        super.onDestroy()
+    }
 }

@@ -23,6 +23,7 @@ public struct EditBookmarkView: View {
     
     public init(bookmarkId: Int32) {
         self.bookmarkId = bookmarkId
+        print("MLogger: GABBOX2: Calling this for \(bookmarkId)")
     }
     
     public var body: some View {
@@ -48,19 +49,22 @@ public struct EditBookmarkView: View {
                 
             }
         })
-        .onAppear {
-            self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
-            self.viewModel.observeBookmarkSaved { (success) in
-                self.mode.wrappedValue.dismiss()
-            }
-            self.viewModel.observeEditBookmarkState(callback: self.update)
-        }
         .navigationBarTitle("Edit bookmark", displayMode: NavigationBarItem.TitleDisplayMode.inline)
         .navigationBarItems(trailing: Button(action: {
             self.isShowingAddTopic = true
         }, label: {
             Text("Add topic")
         }))
+        .onAppear {
+            self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
+            self.viewModel.observeBookmarkSaved { (success) in
+//                self.mode.wrappedValue.dismiss()
+            }
+            self.viewModel.observeEditBookmarkState(callback: self.update)
+        }
+        .onDisappear {
+            self.viewModel.cleanup()
+        }
         .sheet(isPresented: $isShowingAddTopic) {
             self.navigation.seeAddTopic()
         }

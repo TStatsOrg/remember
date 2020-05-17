@@ -39,6 +39,10 @@ class PreviewViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.viewModel.cleanup()
+    }
+    
     @IBAction func didTapCancel(_ sender: Any) {
         extensionContext?.cancelRequest(withError: ShareError())
     }

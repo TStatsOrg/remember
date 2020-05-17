@@ -7,12 +7,10 @@ import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.TopicsRepository
-import com.app.shared.observ.ObservableEmitter
-import com.app.shared.observ.filterNotNull
-import com.app.shared.observ.map
+import com.app.shared.observ.*
 import com.app.shared.redux.Store
-import com.app.shared.redux.toEmitter
 import com.app.shared.utils.CalendarUtils
+import com.app.shared.utils.MLogger
 import com.app.shared.utils.copy
 import com.app.shared.utils.toDTO
 import kotlinx.coroutines.CoroutineScope
@@ -26,7 +24,12 @@ class SharedEditBookmarkViewModel(
 ): EditBookmarkViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
-    private val emitter = ObservableEmitter<Boolean>()
+    private val storeObserver = store.observe()
+    private val emitter = InfiniteEmitter<Boolean>()
+
+    init {
+        MLogger.log("GABBOX2: Shardd edit obserer $storeObserver\n")
+    }
 
     override fun loadEditableBookmark(forId: Int) {
         scope.launch(context = MainDispatcher) {
@@ -68,16 +71,20 @@ class SharedEditBookmarkViewModel(
     }
 
     override fun observeEditBookmarkState(callback: (EditBookmarkState) -> Unit) {
-        store.toEmitter()
-            .observer()
+        storeObserver
             .map { it.editBookmark }
             .filterNotNull()
-            .collect {
-                callback(it)
-            }
+            .collect(callback)
     }
 
     override fun observeBookmarkSaved(callback: (Boolean) -> Unit) {
-        emitter.observer().collect(callback)
+        emitter.observe().collect(callback)
+    }
+
+    override fun cleanup() {
+        MLogger.log("GABBOX2: cleaning up after $storeObserver | ${store.emitter.currentObservers()}\n")
+        store.remove(observer = storeObserver)
+        MLogger.log("GABBOX2: Cleaned up ${store.emitter.currentObservers()}\n")
+        emitter.cleanup()
     }
 }

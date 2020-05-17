@@ -6,7 +6,7 @@ import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.TopicsRepository
-import com.app.shared.observ.ObservableEmitter
+import com.app.shared.observ.InfiniteEmitter
 import com.app.shared.redux.Store
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ class SharedAddTopicViewModel(
 ): AddTopicViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
-    private val emitter = ObservableEmitter<Boolean>()
+    private val emitter = InfiniteEmitter<Boolean>()
 
     override fun addTopic(name: String) {
         scope.launch(context = MainDispatcher) {
@@ -38,6 +38,10 @@ class SharedAddTopicViewModel(
     }
 
     override fun observeTopicSaved(callback: (Boolean) -> Unit) {
-        emitter.observer().collect(callback = callback)
+        emitter.observe().collect(callback)
+    }
+
+    override fun cleanup() {
+        emitter.cleanup()
     }
 }

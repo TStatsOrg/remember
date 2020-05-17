@@ -10,4 +10,5 @@ interface PreviewViewModel {
 
     fun observePreviewState(callback: (BookmarkState) -> Unit)
     fun observeBookmarkSaved(callback: (Int) -> Unit)
+    fun cleanup()
 }
