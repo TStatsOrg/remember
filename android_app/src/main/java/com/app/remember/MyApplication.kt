@@ -20,30 +20,35 @@ class MyApplication: Application() {
             modules(provider.module)
         }
 
-        val emitter = InfiniteEmitter2<Int>()
+        val emitter = InfiniteEmitter2<Int?>()
 
-        val observer1 = SimpleObserver2<Int> { value ->
-            MLogger.log("GABBOX: Observer 1 => $value")
+        val observer1 = SimpleObserver2<Int?>().collect {
+            MLogger.log("GABBOX: Observer 1 => $it")
         }
 
-        val observer2 = SubscribingObserver2<Int>()
-        observer2.subscriber.map {
-            it * 2
-        }.collect { value ->
-            MLogger.log("GABBOX: Observer 2 => $value")
+        val observer2 = SimpleObserver2<Int?>()
+        observer2.filterNotNull().map { it * 2 }.collect {
+            MLogger.log("GABBOX: Observer 2 => $it")
         }
 
-        emitter.add(observer = observer1)
-        emitter.add(observer = observer2)
+        val observer3 = SimpleObserver2<Int?>()
+        observer3.filterNotNull().map { it * 3 }.collect {
+            MLogger.log("GABBOX: Observer 3 => $it")
+        }
+
+        emitter.add(observer1)
+        emitter.add(observer2)
+        emitter.add(observer3)
+
+        emitter.emit(value = 1)
+        emitter.emit(value = null)
+        emitter.emit(value = 5)
 
         MLogger.log("GABBOX: Number of remaining observers ${emitter.observers.size}")
 
-        emitter.emit(value = 1)
-        emitter.emit(value = 2)
-        emitter.emit(value = 5)
-
         emitter.remove(observer1)
         emitter.remove(observer2)
+        emitter.remove(observer3)
 
         MLogger.log("GABBOX: Number of remaining observers ${emitter.observers.size}")
     }

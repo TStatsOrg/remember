@@ -1,12 +1,13 @@
 package com.app.shared.observ
 
 interface Subscriber<T> {
+    var function: ((T) -> Unit)?
     fun collect(callback: (T) -> Unit)
 }
 
 class SimpleSubscriber<T>: Subscriber<T> {
 
-    internal var function: ((T) -> Unit)? = null
+    override var function: ((T) -> Unit)? = null
 
     override fun collect(callback: (T) -> Unit) {
         function = callback
@@ -15,6 +16,7 @@ class SimpleSubscriber<T>: Subscriber<T> {
 
 fun <T, U> Subscriber<T>.map(transform: (T) -> U): Subscriber<U> {
     return object : Subscriber<U> {
+        override var function: ((U) -> Unit)? = null
         override fun collect(callback: (U) -> Unit) {
             this@map.collect {
                 callback(transform(it))
@@ -25,6 +27,7 @@ fun <T, U> Subscriber<T>.map(transform: (T) -> U): Subscriber<U> {
 
 fun <T> Subscriber<T?>.filterNotNull(): Subscriber<T> {
     return object : Subscriber<T> {
+        override var function: ((T) -> Unit)? = null
         override fun collect(callback: (T) -> Unit) {
             this@filterNotNull.collect {
                 it?.let { callback(it) }
@@ -37,26 +40,25 @@ interface Observer2<T> {
     fun didChange(value: T)
 }
 
-class SimpleObserver2<T>(private val func: ((T) -> Unit)? = null): Observer2<T> {
-
-    override fun didChange(value: T) {
-        func?.invoke(value)
-    }
-}
-
-class SubscribingObserver2<T>: Observer2<T> {
-
-    var subscriber: SimpleSubscriber<T> = SimpleSubscriber()
+class SimpleObserver2<T>(internal val subscriber: Subscriber<T> = SimpleSubscriber()): Observer2<T> {
 
     override fun didChange(value: T) {
         subscriber.function?.invoke(value)
     }
 }
 
-//fun <T, U> SubscribingObserver2<T>.map(transform: (T) -> U): SubscribingObserver2<U> {
-//    val newSub = SubscribingObserver2<U>()
-//    newSub.subscriber = this.subscriber.map(transform)
-//}
+fun <T, U> SimpleObserver2<T>.map(transform: (T) -> U): SimpleObserver2<U> {
+    return SimpleObserver2(this.subscriber.map(transform))
+}
+
+fun <T> SimpleObserver2<T?>.filterNotNull(): SimpleObserver2<T> {
+    return SimpleObserver2(this.subscriber.filterNotNull())
+}
+
+fun <T> SimpleObserver2<T>.collect(function: (T) -> Unit): SimpleObserver2<T> {
+    this.subscriber.collect(function)
+    return this
+}
 
 interface Emitter2<T> {
     fun add(observer: Observer2<T>)
