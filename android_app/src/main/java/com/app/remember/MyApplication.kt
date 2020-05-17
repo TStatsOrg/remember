@@ -22,23 +22,19 @@ class MyApplication: Application() {
 
         val emitter = InfiniteEmitter2<Int?>()
 
-        val observer1 = SimpleObserver2<Int?>().collect {
+        val observer1 = emitter.observe().collect {
             MLogger.log("GABBOX: Observer 1 => $it")
         }
 
-        val observer2 = SimpleObserver2<Int?>()
+        val observer2 = emitter.observe()
         observer2.filterNotNull().map { it * 2 }.collect {
             MLogger.log("GABBOX: Observer 2 => $it")
         }
 
-        val observer3 = SimpleObserver2<Int?>()
+        val observer3 = emitter.observe()
         observer3.filterNotNull().map { it * 3 }.filter { it > 12 }.collect {
             MLogger.log("GABBOX: Observer 3 => $it")
         }
-
-        emitter.add(observer1)
-        emitter.add(observer2)
-        emitter.add(observer3)
 
         emitter.emit(value = 1)
         emitter.emit(value = null)
