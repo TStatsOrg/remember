@@ -87,9 +87,8 @@ fun <T> Observer2<T?>.filterNotNull(): Observer2<T> {
     return SimpleObserver2(this.subscriber.filterNotNull())
 }
 
-fun <T> Observer2<T>.collect(function: (T) -> Unit): Observer2<T> {
+fun <T> Observer2<T>.collect(function: (T) -> Unit) {
     this.subscriber.collect(function)
-    return this
 }
 
 interface Emitter2<T> {

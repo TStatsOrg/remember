@@ -3,9 +3,7 @@ package com.app.shared.redux
 import com.app.shared.business.AppState
 import com.app.shared.business.AppStateReducer
 import com.app.shared.observ.ObservableEmitter
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.callbackFlow
+import com.app.shared.utils.MLogger
 
 interface Action
 interface State
@@ -24,6 +22,7 @@ class Store<S: State> (initialState: S, private val reducer: Reducer<S>) {
     fun dispatch(action: Action) {
         state = reducer(state, action)
         results.forEach { it.invoke(state) }
+        MLogger.log("GABBOX2: Store dispatches to ${results.size}")
     }
 
     fun register(forResult: StoreResult<S>) = results.add(forResult)
@@ -41,17 +40,6 @@ fun <S: State> Store<S>.toEmitter(): ObservableEmitter<S> {
     }
 
     return emitter
-}
-
-/**
- * Transforms our normal store into a flow
- */
-fun <S: State> Store<S>.asFlow() = callbackFlow {
-    this@asFlow.register {
-        offer(element = it)
-    }
-
-    awaitClose { cancel() }
 }
 
 /**

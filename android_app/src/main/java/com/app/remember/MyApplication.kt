@@ -20,9 +20,17 @@ class MyApplication: Application() {
             modules(provider.module)
         }
 
+        /**
+         * val storeObserver = store.observe()
+         * storeObserver.filterNotNull().map { it * 2 }.collect(callback)
+         *
+         * store.removeObserver(storeObserver)
+         */
+
         val emitter = InfiniteEmitter2<Int?>()
 
-        val observer1 = emitter.observe().collect {
+        val observer1 = emitter.observe()
+        observer1.collect {
             MLogger.log("GABBOX: Observer 1 => $it")
         }
 
