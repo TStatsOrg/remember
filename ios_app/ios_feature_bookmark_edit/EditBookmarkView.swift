@@ -58,7 +58,7 @@ public struct EditBookmarkView: View {
         .onAppear {
             self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
             self.viewModel.observeBookmarkSaved { (success) in
-//                self.mode.wrappedValue.dismiss()
+                self.mode.wrappedValue.dismiss()
             }
             self.viewModel.observeEditBookmarkState(callback: self.update)
         }
