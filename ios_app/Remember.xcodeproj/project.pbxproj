@@ -13,6 +13,8 @@
 		1B22A8FB2467175200C215C0 /* ActionSheetEditBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22A8FA2467175200C215C0 /* ActionSheetEditBookmark.swift */; };
 		1B33F622246DC840001DEC4F /* BookmarkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B33F621246DC840001DEC4F /* BookmarkInfoView.swift */; };
 		1B33F625246DD511001DEC4F /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B33F624246DD511001DEC4F /* Styles.swift */; };
+		1B682C9324731A9C00658151 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B682C9224731A9C00658151 /* ScreenFactory.swift */; };
+		1B682C9524731AFA00658151 /* AppScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B682C9424731AFA00658151 /* AppScreenFactory.swift */; };
 		1B72E0F72444905D0042EBD7 /* ios_feature_preview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B7597B6244B314A009D5837 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7597B5244B314A009D5837 /* PreviewViewController.swift */; };
 		1B7597C0244B495E009D5837 /* ios_feature_hub.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B7597BE244B495E009D5837 /* ios_feature_hub.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -376,6 +378,8 @@
 		1B22A8FA2467175200C215C0 /* ActionSheetEditBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetEditBookmark.swift; sourceTree = "<group>"; };
 		1B33F621246DC840001DEC4F /* BookmarkInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkInfoView.swift; sourceTree = "<group>"; };
 		1B33F624246DD511001DEC4F /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		1B682C9224731A9C00658151 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
+		1B682C9424731AFA00658151 /* AppScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScreenFactory.swift; sourceTree = "<group>"; };
 		1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ios_feature_preview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B72E0FC244494C00042EBD7 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		1B7597B5244B314A009D5837 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
@@ -594,6 +598,14 @@
 			path = Style;
 			sourceTree = "<group>";
 		};
+		1B682C9124731A8700658151 /* ViewFactories */ = {
+			isa = PBXGroup;
+			children = (
+				1B682C9224731A9C00658151 /* ScreenFactory.swift */,
+			);
+			path = ViewFactories;
+			sourceTree = "<group>";
+		};
 		1B72E0EE2444905C0042EBD7 /* ios_feature_preview */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,6 +761,7 @@
 		1BAEDA4C2461D091002A9D9B /* ios_views */ = {
 			isa = PBXGroup;
 			children = (
+				1B682C9124731A8700658151 /* ViewFactories */,
 				1B33F623246DD4FA001DEC4F /* Style */,
 				1BD96CB0246327950080A6EF /* Utils */,
 				1BAEDA6F2461D60F002A9D9B /* Views */,
@@ -851,6 +864,7 @@
 			isa = PBXGroup;
 			children = (
 				1BE01D542459F2B3000FC4AF /* AppNavigation.swift */,
+				1B682C9424731AFA00658151 /* AppScreenFactory.swift */,
 				1BA773D02441E9600060EC1D /* AppDelegate.swift */,
 				1BA773D22441E9600060EC1D /* SceneDelegate.swift */,
 			);
@@ -1645,6 +1659,7 @@
 			files = (
 				1BE01D552459F2B3000FC4AF /* AppNavigation.swift in Sources */,
 				1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */,
+				1B682C9524731AFA00658151 /* AppScreenFactory.swift in Sources */,
 				1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1671,6 +1686,7 @@
 			files = (
 				1BD96CB2246327A80080A6EF /* KeyboardUtils.swift in Sources */,
 				1BAEDA622461D186002A9D9B /* BookmarkViewState.swift in Sources */,
+				1B682C9324731A9C00658151 /* ScreenFactory.swift in Sources */,
 				1BAEDA712461D621002A9D9B /* ManagedSearchView.swift in Sources */,
 				1B33F625246DD511001DEC4F /* Styles.swift in Sources */,
 				1B22A8F92466D5FB00C215C0 /* GenericIdentifiable.swift in Sources */,

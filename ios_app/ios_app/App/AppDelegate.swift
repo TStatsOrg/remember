@@ -8,6 +8,7 @@
 
 import UIKit
 import ios_dependencies
+import ios_views
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Add DI for app navigation
+        DependencyProvider.shared.register { AppScreenFactory() as ScreenFactory }
         DependencyProvider.shared.register { AppNavigation() as Navigation }
         
         return true

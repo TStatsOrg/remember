@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import ios_views
 import ios_dependencies
 import ios_feature_topics
 import ios_feature_topic_add
@@ -15,18 +16,20 @@ import ios_feature_bookmark_edit
 
 class AppNavigation: Navigation {
     
+    @Injected private var factory: ScreenFactory
+    
     private var destination: NavigationDestination = .None
     
     func showTopicList() {
-        destination = .TopicList(view: seeTopicsList())
+        destination = .TopicList(view: factory.buildTopicsListScreen())
     }
     
     func showEditBookmark(bookmarkId: Int32) {
-        destination = .EditBookmark(view: seeEditBookmark(forBookmarkId: bookmarkId))
+        destination = .EditBookmark(view: factory.buildEditBookmarkScreen(bookmarkId: bookmarkId))
     }
     
     func showAddTopic() {
-        destination = .AddTopic(view: seeAddTopic())
+        destination = .AddTopic(view: factory.buildAddTopicScreen())
     }
     
     func showUrl(url: URL?) {
@@ -46,17 +49,5 @@ class AppNavigation: Navigation {
         default:
             return AnyView(EmptyView())
         }
-    }
-    
-    private func seeAddTopic() -> AnyView {
-        return AnyView(NavigationView { AddTopicView() })
-    }
-    
-    private func seeTopicsList() -> AnyView {
-        return AnyView(NavigationView { TopicsView() })
-    }
-    
-    private func seeEditBookmark(forBookmarkId id: Int32) -> AnyView {
-        return AnyView(NavigationView { EditBookmarkView(bookmarkId: id) })
     }
 }
