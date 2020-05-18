@@ -5,7 +5,7 @@ import com.app.shared.utils.toState
 import com.app.shared.utils.toTopicState
 import com.app.shared.utils.toBookmarkState
 
-val AppStateReducer: Reducer<AppState> = { old, action ->
+val AppStateReducer: Reducer<MainState> = { old, action ->
     when (action) {
         // bookmark/preview
         is Actions.Bookmark.Preview.Reset -> old.copy(preview = null)

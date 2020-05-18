@@ -1,6 +1,6 @@
 package com.app.shared.feature
 
-import com.app.shared.business.AppState
+import com.app.shared.business.MainState
 import com.app.shared.coroutines.runTest
 import com.app.shared.data.repository.TopicsRepository
 import com.app.shared.feature.addtopic.SharedAddTopicViewModel
@@ -11,7 +11,7 @@ import kotlin.test.Test
 
 class SharedAddTopicViewModelTest {
 
-    private val store = mockk<Store<AppState>>(relaxed = true)
+    private val store = mockk<Store<MainState>>(relaxed = true)
     private val repository = mockk<TopicsRepository>(relaxed = true)
 
     @Test

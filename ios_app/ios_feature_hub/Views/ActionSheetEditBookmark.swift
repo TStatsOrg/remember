@@ -29,7 +29,7 @@ struct EditBookmarkActionSheetModifier: ViewModifier {
     
     let editAction: () -> Void
     
-    @SwiftUI.State private var isShowingBottomSheet = false
+    @State private var isShowingBottomSheet = false
     
     func body(content: Content) -> some View {
         content
@@ -47,35 +47,3 @@ extension View {
         return AnyView(self.modifier(EditBookmarkActionSheetModifier(editAction: action)))
     }
 }
-
-//struct ActionSheetModifier: ViewModifier {
-//
-//    @Injected private var navigation: Navigation
-//    @SwiftUI.State private var isShowingBottomSheet = false
-//    @SwiftUI.State private var isShowingEditBookmark = false
-//
-//    let viewState: BookmarkViewStateType
-//
-//    func body(content: Content) -> some View {
-//        content
-//            .onLongPressGesture {
-//                self.isShowingBottomSheet = true
-//            }
-//            .actionSheet(isPresented: $isShowingBottomSheet) {
-//                ActionSheetEditBookmark(editAction: { self.isShowingEditBookmark = true }, deleteAction: {})
-//            }
-//            .sheet(isPresented: $isShowingEditBookmark, content: {
-//                self.navigation.seeEditBookmark(forBookmarkId: self.viewState.id)
-//            })
-//    }
-//}
-//
-//extension View {
-//    func actionSheetModifier(viewState: BookmarkViewStateType?) -> AnyView {
-//        guard let viewState = viewState else {
-//            return AnyView(self)
-//        }
-//
-//        return AnyView(self.modifier(ActionSheetModifier(viewState: viewState)))
-//    }
-//}

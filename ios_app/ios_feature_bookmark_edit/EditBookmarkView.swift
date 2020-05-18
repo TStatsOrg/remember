@@ -15,9 +15,9 @@ public struct EditBookmarkView: View {
     
     @Injected private var viewModel: EditBookmarkViewModel
     @Injected private var navigation: Navigation
+    @State private var state: EditBookmarkViewState = EditBookmarkViewState()
+    @State private var isShowingSheet: Bool = false
     @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
-    @SwiftUI.State private var state: EditBookmarkViewState = EditBookmarkViewState()
-    @SwiftUI.State private var isShowingSheet: Bool = false
     
     private let bookmarkId: Int32
     

@@ -1,7 +1,7 @@
 package com.app.shared.feature.preview
 
 import com.app.shared.business.Actions
-import com.app.shared.business.AppState
+import com.app.shared.business.MainState
 import com.app.shared.business.BookmarkState
 import com.app.shared.coroutines.DefaultDispatcher
 import com.app.shared.coroutines.MainDispatcher
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SharedPreviewViewModel(
-    private val store: Store<AppState>,
+    private val store: Store<MainState>,
     private val bookmarkRepository: BookmarkRepository,
     private val calendar: CalendarUtils,
     private val processor: RawDataProcess

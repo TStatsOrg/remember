@@ -1,7 +1,7 @@
 package com.app.shared.feature.mainhub
 
 import com.app.shared.business.Actions
-import com.app.shared.business.AppState
+import com.app.shared.business.MainState
 import com.app.shared.business.BookmarksState
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
@@ -14,9 +14,9 @@ import com.app.shared.utils.MLogger
 import kotlinx.coroutines.launch
 
 class SharedMainHubViewModel(
-    private val store: Store<AppState>,
-    private val calendar: CalendarUtils,
-    private val bookmarkRepository: BookmarkRepository
+        private val store: Store<MainState>,
+        private val calendar: CalendarUtils,
+        private val bookmarkRepository: BookmarkRepository
 ): MainHubViewModel {
 
     private val scope = provideViewModelScope()

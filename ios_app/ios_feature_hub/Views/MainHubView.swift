@@ -15,12 +15,11 @@ import ios_views
 
 public struct MainHubView: View {
     
-    @Injected var viewModel: MainHubViewModel
-    @Injected var navigation: Navigation
-    
-    @SwiftUI.State private var state: BookmarksViewState = BookmarksViewState()
-    @SwiftUI.State private var isShowingSheet: Bool = false
-    @SwiftUI.State private var search: String = ""
+    @Injected private var viewModel: MainHubViewModel
+    @Injected private var navigation: Navigation
+    @State private var state: BookmarksViewState = BookmarksViewState()
+    @State private var isShowingSheet: Bool = false
+    @State private var search: String = ""
     
     public init() {}
     

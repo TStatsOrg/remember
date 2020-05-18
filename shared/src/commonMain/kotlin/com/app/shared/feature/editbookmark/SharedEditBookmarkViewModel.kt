@@ -1,7 +1,7 @@
 package com.app.shared.feature.editbookmark
 
 import com.app.shared.business.Actions
-import com.app.shared.business.AppState
+import com.app.shared.business.MainState
 import com.app.shared.business.EditBookmarkState
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
@@ -17,10 +17,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class SharedEditBookmarkViewModel(
-    private val store: Store<AppState>,
-    private val calendar: CalendarUtils,
-    private val bookmarkRepository: BookmarkRepository,
-    private val topicsRepository: TopicsRepository
+        private val store: Store<MainState>,
+        private val calendar: CalendarUtils,
+        private val bookmarkRepository: BookmarkRepository,
+        private val topicsRepository: TopicsRepository
 ): EditBookmarkViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
@@ -82,9 +82,7 @@ class SharedEditBookmarkViewModel(
     }
 
     override fun cleanup() {
-        MLogger.log("GABBOX2: cleaning up after $storeObserver | ${store.emitter.currentObservers()}\n")
         store.remove(observer = storeObserver)
-        MLogger.log("GABBOX2: Cleaned up ${store.emitter.currentObservers()}\n")
         emitter.cleanup()
     }
 }

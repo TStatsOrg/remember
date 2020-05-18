@@ -15,9 +15,9 @@ public struct TopicsView: View {
     
     @Injected private var viewModel: TopicsViewModel
     @Injected private var navigation: Navigation
+    @State private var state: TopicsViewState = TopicsViewState()
+    @State private var isShowingSheet: Bool = false
     @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
-    @SwiftUI.State private var state: TopicsViewState = TopicsViewState()
-    @SwiftUI.State private var isShowingSheet: Bool = false
     
     public init() {}
     

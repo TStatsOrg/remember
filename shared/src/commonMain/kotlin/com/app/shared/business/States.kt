@@ -1,8 +1,8 @@
 package com.app.shared.business
 
-import com.app.shared.redux.State
+import com.app.shared.redux.AppState
 
-interface BookmarkState: State {
+interface BookmarkState: AppState {
 
     val id: Int
     val date: Long
@@ -44,12 +44,12 @@ data class BookmarksState(
     val filterByTopic: TopicState? = null,
     val date: Long = 0L,
     val error: Throwable? = null
-): State
+): AppState
 
 data class TopicState(
     val id: Int,
     val name: String
-): State
+): AppState
 
 data class TopicsState(
     val date: Long = 0L,
@@ -63,9 +63,9 @@ data class EditBookmarkState(
     val topics: List<TopicState> = listOf()
 )
 
-data class AppState(
+data class MainState(
     val bookmarks: BookmarksState = BookmarksState(),
     val topics: TopicsState = TopicsState(),
     val preview: BookmarkState? = null,
     val editBookmark: EditBookmarkState? = null
-): State
+): AppState

@@ -1,7 +1,7 @@
 package com.app.shared.feature.addtopic
 
 import com.app.shared.business.Actions
-import com.app.shared.business.AppState
+import com.app.shared.business.MainState
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.TopicDTO
@@ -12,8 +12,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class SharedAddTopicViewModel(
-    private val store: Store<AppState>,
-    private val topicsRepository: TopicsRepository
+        private val store: Store<MainState>,
+        private val topicsRepository: TopicsRepository
 ): AddTopicViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()

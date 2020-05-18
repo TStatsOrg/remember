@@ -10,7 +10,7 @@ import com.app.feature.bookmark.edit.EditBookmarksAdapter
 import com.app.feature.hub.adapters.BookmarksAdapter
 import com.app.feature.preview.PreviewsAdapter
 import com.app.feature.topics.TopicsAdapter
-import com.app.shared.business.AppState
+import com.app.shared.business.MainState
 import com.app.shared.business.AppStateReducer
 import com.app.shared.data.capture.AndroidDataProcess
 import com.app.shared.data.capture.IntentDataCapture
@@ -40,7 +40,7 @@ class AppDependencyProvider(private val appContext: Context) {
 
     val module = module {
         // general
-        single { Store(initialState = AppState(), reducer = AppStateReducer) }
+        single { Store(initialState = MainState(), reducer = AppStateReducer) }
         single<Database> { RealmDatabase(context = appContext) }
         single<Navigation> { AppNavigation() }
 

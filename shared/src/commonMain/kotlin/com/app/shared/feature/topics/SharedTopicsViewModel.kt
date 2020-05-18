@@ -1,7 +1,7 @@
 package com.app.shared.feature.topics
 
 import com.app.shared.business.Actions
-import com.app.shared.business.AppState
+import com.app.shared.business.MainState
 import com.app.shared.business.TopicState
 import com.app.shared.business.TopicsState
 import com.app.shared.coroutines.MainDispatcher
@@ -15,10 +15,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class SharedTopicsViewModel(
-    private val store: Store<AppState>,
-    private val calendar: CalendarUtils,
-    private val topicsRepository: TopicsRepository,
-    private val bookmarkRepository: BookmarkRepository
+        private val store: Store<MainState>,
+        private val calendar: CalendarUtils,
+        private val topicsRepository: TopicsRepository,
+        private val bookmarkRepository: BookmarkRepository
 ): TopicsViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
