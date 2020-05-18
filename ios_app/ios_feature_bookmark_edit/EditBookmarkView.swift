@@ -13,17 +13,16 @@ import RememberShared
 
 public struct EditBookmarkView: View {
     
-    @Injected var viewModel: EditBookmarkViewModel
-    @Injected var navigation: Navigation
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @SwiftUI.State var state: EditBookmarkViewState = EditBookmarkViewState()
-    @SwiftUI.State private var isShowingAddTopic: Bool = false
+    @Injected private var viewModel: EditBookmarkViewModel
+    @Injected private var navigation: Navigation
+    @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
+    @SwiftUI.State private var state: EditBookmarkViewState = EditBookmarkViewState()
+    @SwiftUI.State private var isShowingSheet: Bool = false
     
     private let bookmarkId: Int32
     
     public init(bookmarkId: Int32) {
         self.bookmarkId = bookmarkId
-        print("MLogger: GABBOX2: Calling this for \(bookmarkId)")
     }
     
     public var body: some View {
@@ -51,26 +50,38 @@ public struct EditBookmarkView: View {
         })
         .navigationBarTitle("Edit bookmark", displayMode: NavigationBarItem.TitleDisplayMode.inline)
         .navigationBarItems(trailing: Button(action: {
-            self.isShowingAddTopic = true
+            self.navigation.showAddTopic()
+            self.isShowingSheet = true
         }, label: {
             Text("Add topic")
         }))
         .onAppear {
             self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
             self.viewModel.observeBookmarkSaved { (success) in
-                self.mode.wrappedValue.dismiss()
+                self.dismiss()
             }
             self.viewModel.observeEditBookmarkState(callback: self.update)
         }
         .onDisappear {
             self.viewModel.cleanup()
         }
-        .sheet(isPresented: $isShowingAddTopic) {
-            self.navigation.seeAddTopic()
+        .sheet(isPresented: $isShowingSheet, content: self.navigateTo)
+    }
+    
+    private func navigateTo() -> AnyView {
+        switch self.navigation.destination {
+        case .AddTopic(let view):
+            return view
+        default:
+            return AnyView(EmptyView())
         }
     }
     
     private func update(state: EditBookmarkState) {
         self.state = EditBookmarkViewState(state: state)
+    }
+    
+    private func dismiss() {
+        mode.wrappedValue.dismiss()
     }
 }

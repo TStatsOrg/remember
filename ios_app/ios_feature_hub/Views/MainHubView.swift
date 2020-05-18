@@ -21,15 +21,11 @@ public struct MainHubView: View {
     @SwiftUI.State private var state: BookmarksViewState = BookmarksViewState()
     @SwiftUI.State private var isShowingSheet: Bool = false
     @SwiftUI.State private var search: String = ""
-//    @SwiftUI.State private var selectedBookmark: Int32 = -1
-//    @SwiftUI.State private var activeSheet: Int = 0
     
     public init() {}
     
     private func update(state: BookmarksState) {
-//        if !isShowingSheet {
-            self.state = BookmarksViewState(state: state)
-//        }
+        self.state = BookmarksViewState(state: state)
         if let filterTopic = state.filterByTopic?.name {
             self.search = self.state.topicText(text: filterTopic)
             self.dismissKeyboard()
@@ -47,18 +43,14 @@ public struct MainHubView: View {
                             .editBookmarkActionSheetModifier {
                                 self.navigation.showEditBookmark(bookmarkId: state.id)
                                 self.isShowingSheet = true
-//                                self.activeSheet = 1
-//                                self.selectedBookmark = state.id
                             }
                     })
                 }
-                
             }
             .navigationBarTitle(Text(state.title), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 self.navigation.showTopicList()
                 self.isShowingSheet = true
-//                self.activeSheet = 2
             }, label: {
                 Text("Topics")
             }))
@@ -69,9 +61,7 @@ public struct MainHubView: View {
             .onDisappear {
                 self.viewModel.cleanup()
             }
-            .sheet(isPresented: $isShowingSheet) {
-                self.navigateTo()
-            }
+            .sheet(isPresented: $isShowingSheet, content: self.navigateTo)
         }
     }
     

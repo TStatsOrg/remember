@@ -15,14 +15,15 @@ public struct TopicsView: View {
     
     @Injected private var viewModel: TopicsViewModel
     @Injected private var navigation: Navigation
+    @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
     @SwiftUI.State private var state: TopicsViewState = TopicsViewState()
-    @SwiftUI.State private var isShowingAdd: Bool = false
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @SwiftUI.State private var isShowingSheet: Bool = false
     
     public init() {}
     
     public var body: some View {
         List(state.viewStates, rowContent: { content in
+            EmptyView()
             Button(action: {
                 self.viewModel.filter(byTopic: content.topic)
                 self.dismiss()
@@ -31,7 +32,7 @@ public struct TopicsView: View {
                     Text(content.name)
                         .ActionButton()
                         .padding(bottom: 4.0)
-                    
+
                     Text("12 bookmarks")
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -41,7 +42,8 @@ public struct TopicsView: View {
         })
         .navigationBarTitle(Text("Topics"))
         .navigationBarItems(trailing: Button(action: {
-            self.isShowingAdd = true
+            self.navigation.showAddTopic()
+            self.isShowingSheet = true
         }, label: {
             Text("Add")
         }))
@@ -52,8 +54,15 @@ public struct TopicsView: View {
         .onDisappear {
             self.viewModel.cleanup()
         }
-        .sheet(isPresented: $isShowingAdd) {
-            self.navigation.seeAddTopic()
+        .sheet(isPresented: $isShowingSheet, content: navigateTo)
+    }
+    
+    private func navigateTo() -> AnyView {
+        switch self.navigation.destination {
+        case .AddTopic(let view):
+            return view
+        default:
+            return AnyView(EmptyView())
         }
     }
     

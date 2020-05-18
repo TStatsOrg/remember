@@ -12,7 +12,7 @@ import SwiftUI
 public enum NavigationDestination {
     case None
     case TopicList(view: AnyView)
-    case AddTopic
+    case AddTopic(view: AnyView)
     case EditBookmark(view: AnyView)
     case UrlDestination
 }
@@ -20,13 +20,10 @@ public enum NavigationDestination {
 public protocol Navigation {
     
     var destination: NavigationDestination { get set }
-    var isNavigating: State<Bool> { get }
     
     func showTopicList()
     func showEditBookmark(bookmarkId: Int32)
+    func showAddTopic()
     
-    func seeTopicsList() -> AnyView
-    func seeAddTopic() -> AnyView
-    func seeEditBookmark(forBookmarkId id: Int32) -> AnyView
     func seeUrlDestination(url: URL?)
 }

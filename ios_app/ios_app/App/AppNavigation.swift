@@ -15,33 +15,31 @@ import ios_feature_bookmark_edit
 
 class AppNavigation: Navigation {
     
-    @SwiftUI.State private var isNavigatingState: Bool = false
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var destination: NavigationDestination = .None
     
-    var isNavigating: State<Bool> {
-        return _isNavigatingState
-    }
-    
     func showTopicList() {
-        isNavigatingState = true
         destination = .TopicList(view: seeTopicsList())
     }
     
     func showEditBookmark(bookmarkId: Int32) {
-        isNavigatingState = true
         destination = .EditBookmark(view: seeEditBookmark(forBookmarkId: bookmarkId))
     }
     
-    func seeAddTopic() -> AnyView {
+    func showAddTopic() {
+        destination = .AddTopic(view: seeAddTopic())
+    }
+    
+    private func seeAddTopic() -> AnyView {
         return AnyView(NavigationView { AddTopicView() })
     }
     
-    func seeTopicsList() -> AnyView {
+    private func seeTopicsList() -> AnyView {
         return AnyView(NavigationView { TopicsView() })
     }
     
-    func seeEditBookmark(forBookmarkId id: Int32) -> AnyView {
+    private func seeEditBookmark(forBookmarkId id: Int32) -> AnyView {
         return AnyView(NavigationView { EditBookmarkView(bookmarkId: id) })
     }
     

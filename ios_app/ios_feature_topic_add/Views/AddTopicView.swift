@@ -13,8 +13,9 @@ import ios_dependencies
 
 public struct AddTopicView: View {
     
-    @Injected var viewModel: AddTopicViewModel
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @Injected private var viewModel: AddTopicViewModel
+    @Injected private var navigation: Navigation
+    @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
     @SwiftUI.State var state: String = ""
     
     public init() {}
@@ -42,6 +43,6 @@ public struct AddTopicView: View {
     }
     
     private func dismiss(boolean: KotlinBoolean) {
-        mode.wrappedValue.dismiss()
+        self.mode.wrappedValue.dismiss()
     }
 }
