@@ -54,16 +54,7 @@ public struct TopicsView: View {
         .onDisappear {
             self.viewModel.cleanup()
         }
-        .sheet(isPresented: $isShowingSheet, content: navigateTo)
-    }
-    
-    private func navigateTo() -> AnyView {
-        switch self.navigation.destination {
-        case .AddTopic(let view):
-            return view
-        default:
-            return AnyView(EmptyView())
-        }
+        .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
     
     private func update(state: TopicsState) {

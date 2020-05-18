@@ -44,7 +44,7 @@ struct LinkBookmarkView: View {
             Divider()
         }
         .onTapGesture {
-            self.navigation.seeUrlDestination(url: self.viewState.destinationUrl)
+            self.navigation.showUrl(url: self.viewState.destinationUrl)
         }
     }
 }

@@ -19,11 +19,10 @@ public enum NavigationDestination {
 
 public protocol Navigation {
     
-    var destination: NavigationDestination { get set }
-    
     func showTopicList()
     func showEditBookmark(bookmarkId: Int32)
     func showAddTopic()
+    func showUrl(url: URL?)
     
-    func seeUrlDestination(url: URL?)
+    func content() -> AnyView
 }

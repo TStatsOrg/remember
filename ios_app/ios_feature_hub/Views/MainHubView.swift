@@ -61,18 +61,7 @@ public struct MainHubView: View {
             .onDisappear {
                 self.viewModel.cleanup()
             }
-            .sheet(isPresented: $isShowingSheet, content: self.navigateTo)
-        }
-    }
-    
-    private func navigateTo() -> AnyView {
-        switch self.navigation.destination {
-        case .TopicList(let view):
-            return view
-        case .EditBookmark(let view):
-            return view
-        default:
-            return AnyView(EmptyView())
+            .sheet(isPresented: $isShowingSheet, content: navigation.content)
         }
     }
     

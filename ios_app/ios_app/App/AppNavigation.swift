@@ -15,9 +15,7 @@ import ios_feature_bookmark_edit
 
 class AppNavigation: Navigation {
     
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
-    var destination: NavigationDestination = .None
+    private var destination: NavigationDestination = .None
     
     func showTopicList() {
         destination = .TopicList(view: seeTopicsList())
@@ -31,6 +29,25 @@ class AppNavigation: Navigation {
         destination = .AddTopic(view: seeAddTopic())
     }
     
+    func showUrl(url: URL?) {
+        if let url = url {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    func content() -> AnyView {
+        switch destination {
+        case .TopicList(let view):
+            return view
+        case .EditBookmark(let view):
+            return view
+        case .AddTopic(let view):
+            return view
+        default:
+            return AnyView(EmptyView())
+        }
+    }
+    
     private func seeAddTopic() -> AnyView {
         return AnyView(NavigationView { AddTopicView() })
     }
@@ -41,11 +58,5 @@ class AppNavigation: Navigation {
     
     private func seeEditBookmark(forBookmarkId id: Int32) -> AnyView {
         return AnyView(NavigationView { EditBookmarkView(bookmarkId: id) })
-    }
-    
-    func seeUrlDestination(url: URL?) {
-        if let url = url {
-            UIApplication.shared.open(url)
-        }
     }
 }

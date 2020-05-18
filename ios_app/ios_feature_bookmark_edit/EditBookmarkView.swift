@@ -48,7 +48,7 @@ public struct EditBookmarkView: View {
                 
             }
         })
-        .navigationBarTitle("Edit bookmark", displayMode: NavigationBarItem.TitleDisplayMode.inline)
+        .navigationBarTitle("Edit bookmark", displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             self.navigation.showAddTopic()
             self.isShowingSheet = true
@@ -65,16 +65,7 @@ public struct EditBookmarkView: View {
         .onDisappear {
             self.viewModel.cleanup()
         }
-        .sheet(isPresented: $isShowingSheet, content: self.navigateTo)
-    }
-    
-    private func navigateTo() -> AnyView {
-        switch self.navigation.destination {
-        case .AddTopic(let view):
-            return view
-        default:
-            return AnyView(EmptyView())
-        }
+        .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
     
     private func update(state: EditBookmarkState) {
