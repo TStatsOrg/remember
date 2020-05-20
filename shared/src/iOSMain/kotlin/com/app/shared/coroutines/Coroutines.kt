@@ -1,8 +1,6 @@
 package com.app.shared.coroutines
 
 import kotlinx.coroutines.*
-import platform.darwin.*
-import kotlin.coroutines.CoroutineContext
 
 /**
  * The main app scope, for things that can't be put in a ViewModle scope

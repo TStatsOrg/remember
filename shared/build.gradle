@@ -1,7 +1,7 @@
-apply plugin: 'com.android.library'
 apply plugin: 'kotlin-multiplatform'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlinx-serialization'
-//apply plugin: 'jacoco'
+apply plugin: 'jacoco'
 
 def RememberFramework = "RememberShared"
 
@@ -16,10 +16,10 @@ kotlin {
                 framework(RememberFramework) {
 //                    transitiveExport = true
 //
-//                    // Disable bitcode embedding for the simulator build.
-//                    if (!buildForDevice) {
-//                        embedBitcode("disable")
-//                    }
+                    // Disable bitcode embedding for the simulator build.
+                    if (!buildForDevice) {
+                        embedBitcode("disable")
+                    }
                 }
             }
         }
@@ -122,6 +122,10 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/*.kotlin_module'
+    }
+
     testOptions.unitTests.includeAndroidResources = true
 }
 
@@ -169,46 +173,44 @@ task packForXCode(type: Sync) {
 
 tasks.build.dependsOn packForXCode
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//// Setup JaCoCo
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//jacoco {
-//    toolVersion = "0.8.5"
-//    reportsDir = file("$buildDir/reports")
-//}
-//
-//tasks.withType(Test) {
-//    jacoco.includeNoLocationClasses = true
-//    jacoco.excludes = ['jdk.internal.*']
-//}
-//
-//task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
-//    group = "Reporting"
-//    description = "Generate Jacoco coverage reports for Debug build"
-//
-//    reports {
-//        xml.enabled = true
-//        html.enabled = true
-//    }
-//
-//    def excludes = [
-//            '**/R.class',
-//            '**/R$*.class',
-//            '**/*$ViewInjector*.*',
-//            '**/BuildConfig.*',
-//            '**/Manifest*.*',
-//            '**/*Test*.*',
-//            'android/**/*.*',
-//            '**/*Fragment.*',
-//            '**/*Activity.*'
-//    ]
-//    def intermediateExcludes = fileTree(dir: "$buildDir/intermediates/classes/debug", excludes: excludes)
-//    def kotlinExcludes = fileTree(dir: "$buildDir/tmp/kotlin-classes/debug", excludes: excludes)
-//
-//
-//
-////    classDirectories = intermediateExcludes + kotlinExcludes
-////    sourceDirectories = files([android.sourceSets.main.java.srcDirs, "src/main/java"])
-////    executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
-//}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Setup JaCoCo
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/reports")
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for Debug build"
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def excludes = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/*$ViewInjector*.*',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/*Fragment.*',
+            '**/*Activity.*'
+    ]
+    def intermediateExcludes = fileTree(dir: "$buildDir/intermediates/classes/debug", excludes: excludes)
+    def kotlinExcludes = fileTree(dir: "$buildDir/tmp/kotlin-classes/debug", excludes: excludes)
+
+//    classDirectories = intermediateExcludes + kotlinExcludes
+//    sourceDirectories = files([android.sourceSets.main.java.srcDirs, "src/main/java"])
+//    executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
+}
