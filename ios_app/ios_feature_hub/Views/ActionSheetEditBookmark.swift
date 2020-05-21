@@ -28,6 +28,7 @@ func ActionSheetEditBookmark(
 struct EditBookmarkActionSheetModifier: ViewModifier {
     
     let editAction: () -> Void
+    let deleteAction: () -> Void
     
     @State private var isShowingBottomSheet = false
     
@@ -37,13 +38,16 @@ struct EditBookmarkActionSheetModifier: ViewModifier {
                 self.isShowingBottomSheet = true
             }
             .actionSheet(isPresented: $isShowingBottomSheet) {
-                ActionSheetEditBookmark(editAction: self.editAction, deleteAction: {})
+                ActionSheetEditBookmark(editAction: self.editAction, deleteAction: self.deleteAction)
             }
     }
 }
 
 extension View {
-    func editBookmarkActionSheetModifier(action: @escaping () -> Void) -> AnyView {
-        return AnyView(self.modifier(EditBookmarkActionSheetModifier(editAction: action)))
+    func editBookmarkActionSheetModifier(
+        editAction: @escaping () -> Void,
+        deleteAction: @escaping () -> Void
+    ) -> AnyView {
+        return AnyView(self.modifier(EditBookmarkActionSheetModifier(editAction: editAction, deleteAction: deleteAction)))
     }
 }

@@ -39,10 +39,12 @@ public struct MainHubView: View {
                 List {
                     ForEach(state.bookmarksViewState, content: { state in
                         self.getCellType(state: state)
-                            .editBookmarkActionSheetModifier {
+                            .editBookmarkActionSheetModifier(editAction: {
                                 self.navigation.showEditBookmark(bookmarkId: state.id)
                                 self.isShowingSheet = true
-                            }
+                            }, deleteAction: {
+                                self.viewModel.delete(bookmarkId: state.id)
+                            })
                     })
                 }
             }

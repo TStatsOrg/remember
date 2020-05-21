@@ -9,7 +9,7 @@ class RealmLinkBookmarkDAO(override val instance: RealmProvider): RealmDAO, Link
 
     override fun getAll(): List<BookmarkDTO.LinkBookmarkDTO> {
         val realm = instance()
-        val result = realm.where<RealmLinkBookmarkDTO>(RealmLinkBookmarkDTO::class.java).findAll()
+        val result = realm.where(RealmLinkBookmarkDTO::class.java).findAll()
         return realm.copyFromRealm(result).toList()
     }
 
@@ -32,6 +32,14 @@ class RealmLinkBookmarkDAO(override val instance: RealmProvider): RealmDAO, Link
 
         realm.beginTransaction()
         realm.insertOrUpdate(roomDTO)
+        realm.commitTransaction()
+    }
+
+    override fun delete(bookmarkId: Int) {
+        val realm = instance()
+        val result = realm.where(RealmLinkBookmarkDTO::class.java).equalTo("id", bookmarkId).findAll()
+        realm.beginTransaction()
+        result.deleteAllFromRealm()
         realm.commitTransaction()
     }
 }

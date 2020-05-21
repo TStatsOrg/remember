@@ -29,4 +29,13 @@ public class RealmLinkBookmarkDAO: RealmDAO, LinkBookmarkDAO {
         let result = realm?.objects(RealmLinkBookmarkObject.self)
         return result?.map { $0 }.map { $0.toDTO() } ?? []
     }
+    
+    public func delete(bookmarkId: Int32) {
+        let result = realm?.objects(RealmLinkBookmarkObject.self).filter { $0.id == bookmarkId }.first
+        try? realm?.write {
+            if let dto = result {
+                realm?.delete(dto)
+            }
+        }
+    }
 }

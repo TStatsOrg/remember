@@ -29,4 +29,13 @@ class RealmImageBookmarkDAO: RealmDAO, ImageBookmarkDAO {
         let result = realm?.objects(RealmImageBookmarkObject.self)
         return result?.map { $0 }.map { $0.toDTO() } ?? []
     }
+    
+    func delete(bookmarkId: Int32) {
+        let result = realm?.objects(RealmImageBookmarkObject.self).filter { $0.id == bookmarkId }.first
+        try? realm?.write {
+            if let dto = result {
+                realm?.delete(dto)
+            }
+        }
+    }
 }

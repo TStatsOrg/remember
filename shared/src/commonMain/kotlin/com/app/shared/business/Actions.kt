@@ -23,6 +23,8 @@ sealed class Actions: Action {
         data class Update(val state: BookmarkState): Bookmark()
 
         data class Filter(val topic: TopicState, val bookmarks: List<BookmarkDTO>): Bookmark()
+
+        data class Delete(val bookmarkId: Int): Bookmark()
     }
 
     sealed class Topics: Actions() {

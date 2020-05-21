@@ -57,6 +57,9 @@ class MainHubActivity: AppCompatActivity() {
                     context = this@MainHubActivity,
                     editAction = {
                         navigation.seeEditBookmark(context = this@MainHubActivity, forEditingBookmark = viewState.id)
+                    },
+                    deleteAction = {
+                        viewModel.delete(bookmarkId = viewState.id)
                     }
                 )
             }

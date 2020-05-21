@@ -36,6 +36,12 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
 
             old.copy(editBookmark = newEditBookmarkState)
         }
+        // bookmark/delete
+        is Actions.Bookmark.Delete -> {
+            val newList = old.bookmarks.bookmarks.toMutableList()
+            newList.removeAll { it.id == action.bookmarkId }
+            old.copy(bookmarks = old.bookmarks.copy(bookmarks = newList.toList()))
+        }
         // topics/present
         is Actions.Topics.Load.Start -> old.copy(topics = TopicsState(date = action.time, isLoading = true))
         is Actions.Topics.Load.Success -> old.copy(topics = TopicsState(date = action.time, topics = action.topics.toTopicState()))

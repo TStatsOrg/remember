@@ -32,4 +32,12 @@ class SharedBookmarkRepository(
             return@withContext (texts + links + images).sortedByDescending { it.date }
         }
     }
+
+    override suspend fun delete(bookmarkId: Int) {
+        withContext(context = IODispatcher) {
+            textBookmarkDAO.delete(bookmarkId = bookmarkId)
+            linkBookmarkDAO.delete(bookmarkId = bookmarkId)
+            imageBookmarkDAO.delete(bookmarkId = bookmarkId)
+        }
+    }
 }

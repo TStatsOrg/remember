@@ -32,6 +32,7 @@ public struct AddTopicView: View {
             }, label: {
                 Text("Add")
             })
+            .disabled(state.isEmpty)
         )
         .onAppear {
             self.viewModel.observeTopicSaved(callback: self.dismiss)

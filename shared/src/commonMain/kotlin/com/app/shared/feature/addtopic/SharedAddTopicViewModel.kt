@@ -22,6 +22,10 @@ class SharedAddTopicViewModel(
     override fun addTopic(name: String) {
         scope.launch(context = MainDispatcher) {
 
+            if (name.isEmpty()) {
+                return@launch
+            }
+
             // produce dto
             val dto = object : TopicDTO {
                 override val id: Int = name.hashCode()

@@ -54,6 +54,14 @@ class SharedMainHubViewModel(
         }
     }
 
+    override fun delete(bookmarkId: Int) {
+        scope.launch(context = MainDispatcher) {
+
+            bookmarkRepository.delete(bookmarkId = bookmarkId)
+            store.dispatch(action = Actions.Bookmark.Delete(bookmarkId = bookmarkId))
+        }
+    }
+
     override fun observeBookmarkState(callback: (BookmarksState) -> Unit) {
         storeObserver
             .map { it.bookmarks }

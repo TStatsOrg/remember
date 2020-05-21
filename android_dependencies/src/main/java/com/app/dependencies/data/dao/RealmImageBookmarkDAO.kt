@@ -9,7 +9,7 @@ class RealmImageBookmarkDAO(override val instance: RealmProvider): RealmDAO, Ima
 
     override fun getAll(): List<BookmarkDTO.ImageBookmarkDTO> {
         val realm = instance()
-        val result = realm.where<RealmImageBookmarkDTO>(RealmImageBookmarkDTO::class.java).findAll()
+        val result = realm.where(RealmImageBookmarkDTO::class.java).findAll()
         return realm.copyFromRealm(result).toList()
     }
 
@@ -24,6 +24,14 @@ class RealmImageBookmarkDAO(override val instance: RealmProvider): RealmDAO, Ima
 
         realm.beginTransaction()
         realm.insertOrUpdate(roomDTO)
+        realm.commitTransaction()
+    }
+
+    override fun delete(bookmarkId: Int) {
+        val realm = instance()
+        val result = realm.where(RealmImageBookmarkDTO::class.java).equalTo("id", bookmarkId).findAll()
+        realm.beginTransaction()
+        result.deleteAllFromRealm()
         realm.commitTransaction()
     }
 }
