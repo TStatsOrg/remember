@@ -16,7 +16,15 @@ class RealmTopicDAO(override val instance: RealmProvider) : RealmDAO, TopicDAO {
 
     override fun getAll(): List<TopicDTO> {
         val realm = instance()
-        val result = realm.where<RealmTopicDTO>(RealmTopicDTO::class.java).findAll()
+        val result = realm.where(RealmTopicDTO::class.java).findAll()
         return realm.copyFromRealm(result).toList()
+    }
+
+    override fun delete(topicId: Int) {
+        val realm = instance()
+        val result = realm.where(RealmTopicDTO::class.java).equalTo("id", topicId).findAll()
+        realm.beginTransaction()
+        result.deleteAllFromRealm()
+        realm.commitTransaction()
     }
 }

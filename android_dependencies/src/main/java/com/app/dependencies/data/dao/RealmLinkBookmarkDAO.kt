@@ -4,6 +4,7 @@ import com.app.dependencies.data.dto.RealmLinkBookmarkDTO
 import com.app.dependencies.data.dto.RealmTopicDTO
 import com.app.shared.data.dao.LinkBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.TopicDTO
 
 class RealmLinkBookmarkDAO(override val instance: RealmProvider): RealmDAO, LinkBookmarkDAO {
 
@@ -40,6 +41,21 @@ class RealmLinkBookmarkDAO(override val instance: RealmProvider): RealmDAO, Link
         val result = realm.where(RealmLinkBookmarkDTO::class.java).equalTo("id", bookmarkId).findAll()
         realm.beginTransaction()
         result.deleteAllFromRealm()
+        realm.commitTransaction()
+    }
+
+    override fun replaceTopic(topicId: Int, withTopicDTO: TopicDTO) {
+        val realm = instance()
+
+        val topicResult = realm.where(RealmTopicDTO::class.java).equalTo("id", withTopicDTO.id).findFirst() ?: return
+        val bookmarkResult = realm.where(RealmLinkBookmarkDTO::class.java).equalTo("topic.id", topicId).findAll() ?: return
+
+        realm.beginTransaction()
+
+        bookmarkResult.forEach {
+            it.topic = topicResult
+        }
+
         realm.commitTransaction()
     }
 }
