@@ -12,8 +12,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class SharedAddTopicViewModel(
-        private val store: Store<MainState>,
-        private val topicsRepository: TopicsRepository
+    private val store: Store<MainState>,
+    private val topicsRepository: TopicsRepository
 ): AddTopicViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
