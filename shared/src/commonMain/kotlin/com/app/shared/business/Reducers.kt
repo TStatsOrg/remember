@@ -92,8 +92,17 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
 
             val newTopics = old.topics.topics.map(copyFunc)
             val newSelected = old.editBookmark?.topics?.map(copyFunc) ?: listOf()
+            val selectedTopic = newTopics.firstOrNull { it.id == action.topicId }
+            val newBookmarks = old.bookmarks.bookmarks.map {
+                if (it.topic?.id == selectedTopic?.id) {
+                    it.copy(withTopic = selectedTopic)
+                } else {
+                    it
+                }
+            }
 
             old.copy(
+                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
                 topics = old.topics.copy(topics = newTopics),
                 editBookmark = old.editBookmark?.copy(topics = newSelected)
             )

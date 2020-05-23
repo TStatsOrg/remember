@@ -12,6 +12,7 @@ import ios_feature_topic_add
 import ios_feature_bookmark_edit
 import ios_feature_hub
 import ios_feature_topics
+import ios_feature_topic_edit
 
 struct AppScreenFactory: ScreenFactory {
     
@@ -29,5 +30,9 @@ struct AppScreenFactory: ScreenFactory {
     
     func buildAddTopicScreen() -> AnyView {
         return AnyView(NavigationView { AddTopicView() })
+    }
+    
+    func buildEditTopicScreen(topicId: Int32) -> AnyView {
+        return AnyView(NavigationView { EditTopicView(topicId: topicId) })
     }
 }

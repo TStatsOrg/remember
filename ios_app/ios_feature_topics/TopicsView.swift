@@ -41,7 +41,8 @@ public struct TopicsView: View {
                 .editDeleteActionSheetModifier(
                     title: "Change Topic",
                     editAction: {
-                        print("edit topic \(content.name)")
+                        self.navigation.showEditTopic(topicId: content.id)
+                        self.isShowingSheet = true
                     }, deleteAction: self.viewModel.delete(topicId: content.id))
             }
         })

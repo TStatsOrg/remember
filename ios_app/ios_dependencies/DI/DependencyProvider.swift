@@ -100,5 +100,10 @@ public class DependencyProvider {
                                         bookmarkRepository: self.resolve(),
                                         topicsRepository: self.resolve()) as EditBookmarkViewModel
         }
+        
+        register {
+            SharedEditTopicViewModel(store: self.resolve(),
+                                     topicsRepository: self.resolve()) as EditTopicViewModel
+        }
     }
 }

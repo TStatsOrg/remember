@@ -36,6 +36,10 @@ target 'ios_app' do
     inherit! :search_paths
   end
   
+  target 'ios_feature_topic_edit' do
+    inherit! :search_paths
+  end
+  
   target 'ios_dependencies' do
     inherit! :search_paths
 

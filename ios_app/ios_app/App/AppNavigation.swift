@@ -32,6 +32,10 @@ class AppNavigation: Navigation {
         destination = .AddTopic(view: factory.buildAddTopicScreen())
     }
     
+    func showEditTopic(topicId: Int32) {
+        destination = .EditTopic(view: factory.buildEditTopicScreen(topicId: topicId))
+    }
+    
     func showUrl(url: URL?) {
         if let url = url {
             UIApplication.shared.open(url)
@@ -45,6 +49,8 @@ class AppNavigation: Navigation {
         case .EditBookmark(let view):
             return view
         case .AddTopic(let view):
+            return view
+        case .EditTopic(let view):
             return view
         default:
             return AnyView(EmptyView())

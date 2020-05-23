@@ -14,8 +14,7 @@ import ios_dependencies
 public struct AddTopicView: View {
     
     @Injected private var viewModel: AddTopicViewModel
-    @Injected private var navigation: Navigation
-    @State var state: String = ""
+    @State private var state: String = ""
     @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
     
     public init() {}

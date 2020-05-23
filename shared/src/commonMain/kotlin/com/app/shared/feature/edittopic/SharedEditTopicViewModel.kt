@@ -31,14 +31,14 @@ class SharedEditTopicViewModel(
 
     override fun updateTopic(topicId: Int, name: String) {
         scope.launch(context = MainDispatcher) {
-            store.dispatch(action = Actions.Topics.Update(topicId = topicId, newName = name))
-
             val newDto = object : TopicDTO {
                 override val id: Int = topicId
                 override val name: String = name
             }
 
             topicsRepository.save(dto = newDto)
+
+            store.dispatch(action = Actions.Topics.Update(topicId = topicId, newName = name))
 
             emitter.emit(value = true)
         }

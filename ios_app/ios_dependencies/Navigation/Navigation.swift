@@ -14,6 +14,7 @@ public enum NavigationDestination {
     case TopicList(view: AnyView)
     case AddTopic(view: AnyView)
     case EditBookmark(view: AnyView)
+    case EditTopic(view: AnyView)
     case UrlDestination
 }
 
@@ -23,6 +24,7 @@ public protocol Navigation {
     func showEditBookmark(bookmarkId: Int32)
     func showAddTopic()
     func showUrl(url: URL?)
+    func showEditTopic(topicId: Int32)
     
     func content() -> AnyView
 }
