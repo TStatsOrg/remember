@@ -19,3 +19,26 @@ expect val DefaultDispatcher: CoroutineDispatcher
  * Function that can provide a context
  */
 expect fun provideViewModelScope(): CoroutineScope
+
+object DispatcherFactory {
+
+    private var main: CoroutineDispatcher = MainDispatcher
+    private var io: CoroutineDispatcher = IODispatcher
+    private var default: CoroutineDispatcher = DefaultDispatcher
+
+    fun main(): CoroutineDispatcher = main
+    fun io(): CoroutineDispatcher = io
+    fun default(): CoroutineDispatcher = default
+
+    fun setMain(dispatcher: CoroutineDispatcher) {
+        main = dispatcher
+    }
+
+    fun setIO(dispatcher: CoroutineDispatcher) {
+        io = dispatcher
+    }
+
+    fun setDefault(dispatcher: CoroutineDispatcher) {
+        default = dispatcher
+    }
+}

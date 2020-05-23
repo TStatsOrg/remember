@@ -2,7 +2,7 @@ package com.app.shared.feature.addtopic
 
 import com.app.shared.business.Actions
 import com.app.shared.business.MainState
-import com.app.shared.coroutines.MainDispatcher
+import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.TopicsRepository
@@ -20,7 +20,7 @@ class SharedAddTopicViewModel(
     private val emitter = InfiniteEmitter<Boolean>()
 
     override fun addTopic(name: String) {
-        scope.launch(context = MainDispatcher) {
+        scope.launch(context = DispatcherFactory.main()) {
 
             if (name.isEmpty()) {
                 return@launch
