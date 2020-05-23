@@ -68,8 +68,6 @@ kotlin {
                 implementation "io.ktor:ktor-client-okhttp:$ktorVersion"
                 implementation "io.ktor:ktor-client-json-jvm:$ktorVersion"
 
-                implementation "org.jsoup:jsoup:$jsoupVersion"
-
                 // serialisation
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
             }
@@ -147,20 +145,6 @@ configurations {
 // Setup Packing for XCode
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//task iosTest {
-//    def device = project.findProperty("iosDevice")?.toString() ?: "iPhone XR"
-//    dependsOn 'linkTestDebugExecutableIOS'
-//    group = JavaBasePlugin.VERIFICATION_GROUP
-//    description = "Runs tests for target 'ios' on an iOS simulator"
-//
-//    doLast {
-//        def binary = kotlin.targets.iOS.binaries.getExecutable('test', 'DEBUG').outputFile
-//        exec {
-//            commandLine 'xcrun', 'simctl', 'spawn', device, binary.absolutePath
-//        }
-//    }
-//}
-
 task packForXCode(type: Sync) {
     final File frameworkDir = new File(buildDir, "xcode-frameworks")
     final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
@@ -219,7 +203,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
     def intermediateExcludes = fileTree(dir: "$buildDir/intermediates/classes/debug", excludes: excludes)
     def kotlinExcludes = fileTree(dir: "$buildDir/tmp/kotlin-classes/debug", excludes: excludes)
 
-//    classDirectories = intermediateExcludes + kotlinExcludes
-//    sourceDirectories = files([android.sourceSets.main.java.srcDirs, "src/main/java"])
-//    executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
+    executionData(files("$buildDir/jacoco/testDebugUnitTest.exec"))
+    additionalClassDirs(intermediateExcludes + kotlinExcludes)
+    additionalSourceDirs(files([android.sourceSets.main.java.srcDirs, "src/main/java"]))
 }

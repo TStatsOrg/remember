@@ -2,6 +2,8 @@ package com.app.remember
 
 import android.content.Context
 import android.content.Intent
+import com.app.dependencies.data.capture.AndroidDataProcess
+import com.app.dependencies.data.capture.IntentDataCapture
 import com.app.dependencies.data.dao.RealmDatabase
 import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.dependencies.data.utils.GlideImageLoader
@@ -12,8 +14,6 @@ import com.app.feature.preview.PreviewsAdapter
 import com.app.feature.topics.TopicsAdapter
 import com.app.shared.business.MainState
 import com.app.shared.business.AppStateReducer
-import com.app.shared.data.capture.AndroidDataProcess
-import com.app.shared.data.capture.IntentDataCapture
 import com.app.shared.data.capture.RawDataCapture
 import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dao.Database

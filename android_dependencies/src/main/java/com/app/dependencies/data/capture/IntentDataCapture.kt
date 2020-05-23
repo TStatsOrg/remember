@@ -1,8 +1,9 @@
-package com.app.shared.data.capture
+package com.app.dependencies.data.capture
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Parcelable
+import com.app.shared.data.capture.RawDataCapture
 
 class IntentDataCapture: RawDataCapture<Intent> {
 

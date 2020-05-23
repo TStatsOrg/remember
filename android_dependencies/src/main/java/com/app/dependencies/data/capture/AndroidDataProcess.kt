@@ -1,4 +1,4 @@
-package com.app.shared.data.capture
+package com.app.dependencies.data.capture
 
 import android.content.ContentValues
 import android.content.Context
@@ -6,9 +6,11 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
+import com.app.shared.data.capture.RawDataProcess
 import org.jsoup.Jsoup
 
-class AndroidDataProcess(private val context: Context): RawDataProcess {
+class AndroidDataProcess(private val context: Context):
+    RawDataProcess {
 
     override fun process(capture: String?): RawDataProcess.Item {
         // if null, it's unknown
@@ -47,7 +49,9 @@ class AndroidDataProcess(private val context: Context): RawDataProcess {
                     inputStream?.close()
                     outputStream?.close()
 
-                    return RawDataProcess.Item.Image(url = outputUrl!!.toString())
+                    return RawDataProcess.Item.Image(
+                        url = outputUrl!!.toString()
+                    )
                 } catch (e: Throwable) {
                     return RawDataProcess.Item.Unknown
                 }
@@ -86,7 +90,8 @@ class AndroidDataProcess(private val context: Context): RawDataProcess {
                 url = capture,
                 title = title,
                 description = description,
-                icon = thumbnail2Src ?: thumbnail1Src ?: iconImageSrc)
+                icon = thumbnail2Src ?: thumbnail1Src ?: iconImageSrc
+            )
         } catch (e: Throwable) {
             RawDataProcess.Item.Unknown
         }
