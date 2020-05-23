@@ -25,6 +25,7 @@
 
         <activity android:name="com.app.feature.topics.TopicsActivity"/>
         <activity android:name="com.app.feature.topic.add.AddTopicActivity"/>
+        <activity android:name="com.app.feature.topic.edit.EditTopicActivity"/>
         <activity android:name="com.app.feature.bookmark.edit.EditBookmarkActivity"/>
 
         <activity android:name="com.app.feature.preview.PreviewActivity"

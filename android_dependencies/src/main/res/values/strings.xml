@@ -20,7 +20,11 @@
     <!-- add topic feature -->
     <string name="topic_add_title">New topic</string>
     <string name="topic_add_save">Save</string>
-    <string name="topic_input_placeholder">New topic name</string>
+    <string name="topic_input_placeholder">Topic name</string>
+
+    <!-- edit topic feature -->
+    <string name="topic_edit_title">Edit topic</string>
+    <string name="topic_edit_update">Update</string>
 
     <!-- edit bookmark -->
     <string name="bookmark_edit_title">Edit bookmark</string>

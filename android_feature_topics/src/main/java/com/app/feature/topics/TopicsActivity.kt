@@ -45,7 +45,7 @@ class TopicsActivity: AppCompatActivity() {
                         viewModel.delete(topicId = state.id)
                     },
                     editAction = {
-
+                        navigator.seeEditTopic(context = this@TopicsActivity, forEditingTopic = state.id)
                     }
                 )
             }
