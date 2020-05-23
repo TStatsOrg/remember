@@ -3,9 +3,9 @@ package com.app.remember
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.app.dependencies.navigation.Navigation
-import com.app.dependencies.navigation.Navigation.Companion.BOOKMARK_ID
-import com.app.dependencies.navigation.Navigation.Companion.TOPIC_ID
+import com.app.views.navigation.Navigation
+import com.app.views.navigation.Navigation.Companion.BOOKMARK_ID
+import com.app.views.navigation.Navigation.Companion.TOPIC_ID
 import com.app.feature.bookmark.edit.EditBookmarkActivity
 import com.app.feature.hub.MainHubActivity
 import com.app.feature.topic.add.AddTopicActivity

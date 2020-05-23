@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.dependencies.navigation.Navigation
+import com.app.views.navigation.Navigation
 import com.app.feature.topics.databinding.ViewTopicsBinding
 import com.app.feature.topics.viewholders.TopicViewHolder
 import com.app.shared.feature.topics.TopicsViewModel

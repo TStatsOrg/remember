@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 import RememberShared
 import ios_dependencies
+import ios_views
 
 public struct TopicsView: View {
     
@@ -23,28 +24,27 @@ public struct TopicsView: View {
     
     public var body: some View {
         List(state.viewStates, rowContent: { content in
-            EmptyView()
-            Button(action: {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(content.name)
+                    .ActionButton()
+                    .padding(bottom: 4.0)
+
+                Text("12 bookmarks")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            .padding(bottom: 4.0)
+            .onTapGesture {
                 self.viewModel.filter(byTopic: content.topic)
                 self.dismiss()
-            }) {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(content.name)
-                        .ActionButton()
-                        .padding(bottom: 4.0)
-
-                    Text("12 bookmarks")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                .padding(bottom: 4.0)
-                .editDeleteActionSheetModifier(
-                    title: "Change Topic",
-                    editAction: {
-                        self.navigation.showEditTopic(topicId: content.id)
-                        self.isShowingSheet = true
-                    }, deleteAction: self.viewModel.delete(topicId: content.id))
             }
+            .editDeleteActionSheetModifier(
+                title: "Change Topic",
+                editAction: {
+                    self.navigation.showEditTopic(topicId: content.id)
+                    self.isShowingSheet = true
+                },
+                deleteAction: self.viewModel.delete(topicId: content.id))
         })
         .navigationBarTitle(Text("Topics"))
         .navigationBarItems(trailing: Button(action: {

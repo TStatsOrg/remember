@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import ios_dependencies
+import ios_views
 import RememberShared
 
 public struct EditBookmarkView: View {

@@ -2,7 +2,7 @@ package com.app.feature.topic.edit
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.app.dependencies.navigation.Navigation
+import com.app.views.navigation.Navigation
 import com.app.feature.topic.edit.databinding.ViewEditTopicBinding
 import com.app.shared.feature.edittopic.EditTopicViewModel
 import org.koin.android.ext.android.inject

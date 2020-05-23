@@ -1,4 +1,4 @@
-package com.app.dependencies.navigation
+package com.app.views.navigation
 
 import android.content.Context
 import android.net.Uri
