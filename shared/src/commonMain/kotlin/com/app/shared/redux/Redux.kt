@@ -22,7 +22,6 @@ class Store<S: AppState> (initialState: S, private val reducer: Reducer<S>) {
     fun dispatch(action: Action) {
         state = reducer(state, action)
         emitter.emit(value = state)
-        MLogger.log("GABBOX2: Store dispatches to ${emitter.currentObservers().size}\n")
     }
 
     fun observe(): Observer<S> = emitter.observe()

@@ -22,10 +22,6 @@ class SharedMainHubViewModel(
     private val scope = provideViewModelScope()
     private val storeObserver = store.observe()
 
-    init {
-        MLogger.log("GABBOX2: Main hub observer $storeObserver\n")
-    }
-
     override fun loadBookmarks() {
         scope.launch(context = MainDispatcher) {
 
@@ -69,7 +65,6 @@ class SharedMainHubViewModel(
     }
 
     override fun cleanup() {
-        MLogger.log("GABBOX2: Removing main hub observer $storeObserver\n")
         store.remove(observer = storeObserver)
     }
 }
