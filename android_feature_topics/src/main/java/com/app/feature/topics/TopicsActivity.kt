@@ -8,6 +8,7 @@ import com.app.dependencies.navigation.Navigation
 import com.app.feature.topics.databinding.ViewTopicsBinding
 import com.app.feature.topics.viewholders.TopicViewHolder
 import com.app.shared.feature.topics.TopicsViewModel
+import com.app.views.dialogs.BottomDialogEditDelete
 import com.app.views.viewstate.TopicViewState
 import org.koin.android.ext.android.inject
 
@@ -35,6 +36,18 @@ class TopicsActivity: AppCompatActivity() {
             override fun onClickTopic(state: TopicViewState) {
                 viewModel.filter(byTopic = state.topicState)
                 finish()
+            }
+
+            override fun onLongClickTopic(state: TopicViewState) {
+                BottomDialogEditDelete(
+                    context = this@TopicsActivity,
+                    deleteAction = {
+                        viewModel.delete(topicId = state.id)
+                    },
+                    editAction = {
+
+                    }
+                )
             }
         }
 

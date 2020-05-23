@@ -15,9 +15,14 @@ class TopicViewHolder(
         binding.root.setOnClickListener {
             listener?.onClickTopic(state = viewState)
         }
+        binding.root.setOnLongClickListener {
+            listener?.onLongClickTopic(state = viewState)
+            true
+        }
     }
 
     interface Listener {
         fun onClickTopic(state: TopicViewState)
+        fun onLongClickTopic(state: TopicViewState)
     }
 }
