@@ -12,19 +12,13 @@ import org.koin.android.ext.android.inject
 
 class EditBookmarkActivity: AppCompatActivity() {
 
+    private val bookmarkId by Navigation.getBookmarkId(intent = { intent })
     private val navigator: Navigation by inject()
     private val viewModel: EditBookmarkViewModel by inject()
     private val adapter: EditBookmarksAdapter by inject()
     private val layoutManager = LinearLayoutManager(this)
     private val animator = DefaultItemAnimator()
-
-    private val binding by lazy {
-        ViewEditBookmarkBinding.inflate(layoutInflater)
-    }
-
-    private val bookmarkId by lazy {
-        intent.getIntExtra(Navigation.BOOKMARK_ID, -1)
-    }
+    private val binding by lazy { ViewEditBookmarkBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -9,14 +9,9 @@ import org.koin.android.ext.android.inject
 
 class EditTopicActivity: AppCompatActivity() {
 
+    private val topicId by Navigation.getTopicId(intent = { intent })
     private val viewModel: EditTopicViewModel by inject()
-    private val binding by lazy {
-        ViewEditTopicBinding.inflate(layoutInflater)
-    }
-
-    private val topicId by lazy {
-        intent.getIntExtra(Navigation.TOPIC_ID, -1)
-    }
+    private val binding by lazy { ViewEditTopicBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

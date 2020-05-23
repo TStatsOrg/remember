@@ -19,10 +19,7 @@ class PreviewActivity: AppCompatActivity() {
     private val viewModel: PreviewViewModel by inject()
     private val navigator: Navigation by inject()
     private val capture: RawDataCapture<Intent> by inject()
-
-    private val binding: ViewPreviewBinding by lazy {
-        ViewPreviewBinding.inflate(layoutInflater)
-    }
+    private val binding: ViewPreviewBinding by lazy { ViewPreviewBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

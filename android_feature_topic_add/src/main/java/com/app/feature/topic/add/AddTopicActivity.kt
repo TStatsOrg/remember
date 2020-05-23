@@ -9,9 +9,7 @@ import org.koin.android.ext.android.inject
 class AddTopicActivity: AppCompatActivity() {
 
     private val viewModel: AddTopicViewModel by inject()
-    private val binding by lazy {
-        ViewAddTopicBinding.inflate(layoutInflater)
-    }
+    private val binding by lazy { ViewAddTopicBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

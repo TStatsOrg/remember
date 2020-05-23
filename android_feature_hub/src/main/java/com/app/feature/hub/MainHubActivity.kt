@@ -22,10 +22,7 @@ class MainHubActivity: AppCompatActivity() {
     private val navigation: Navigation by inject()
     private val layoutManager = LinearLayoutManager(this)
     private val animator = DefaultItemAnimator()
-
-    private val binding by lazy {
-        ViewMainhubBinding.inflate(layoutInflater)
-    }
+    private val binding by lazy { ViewMainhubBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
