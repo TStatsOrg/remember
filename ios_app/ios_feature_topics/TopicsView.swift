@@ -40,6 +40,7 @@ public struct TopicsView: View {
             }
             .editDeleteActionSheetModifier(
                 title: "Change Topic",
+                extraShowCondition: content.isEditable,
                 editAction: {
                     self.navigation.showEditTopic(topicId: content.id)
                     self.isShowingSheet = true

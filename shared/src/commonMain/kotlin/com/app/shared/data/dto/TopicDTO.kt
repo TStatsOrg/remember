@@ -7,5 +7,12 @@ interface TopicDTO {
     /**
      * This is the baked general topic that acts as default if no topic is added
      */
-    data class GeneralTopic(override val id: Int = 0, override val name: String = "General") : TopicDTO
+    data class GeneralTopic(
+        override val id: Int = DEFAULT_ID,
+        override val name: String = "General"
+    ): TopicDTO {
+        companion object {
+            const val DEFAULT_ID = 0
+        }
+    }
 }

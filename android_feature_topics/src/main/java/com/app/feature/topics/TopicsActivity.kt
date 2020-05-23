@@ -36,6 +36,11 @@ class TopicsActivity: AppCompatActivity() {
             }
 
             override fun onLongClickTopic(state: TopicViewState) {
+
+                if (!state.isEditable) {
+                    return
+                }
+
                 BottomDialogEditDelete(
                     context = this@TopicsActivity,
                     deleteAction = {

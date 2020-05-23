@@ -31,13 +31,16 @@ struct EditDeleteActionSheetModifier: ViewModifier {
     let title: String
     let editAction: () -> Void
     let deleteAction: () -> Void
+    let extraShowCondition: Bool
     
     @State private var isShowing = false
     
     func body(content: Content) -> some View {
         content
             .onLongPressGesture {
-                self.isShowing = true
+                if self.extraShowCondition {
+                    self.isShowing = true
+                }
             }
             .actionSheet(isPresented: $isShowing) {
                 EditDeleteBottomSheet(title: title,
@@ -51,6 +54,7 @@ public extension View {
     
     func editDeleteActionSheetModifier(
         title: String,
+        extraShowCondition: Bool = true,
         editAction: @escaping () -> Void,
         deleteAction: @autoclosure @escaping () -> Void
     ) -> AnyView {
@@ -58,7 +62,8 @@ public extension View {
             self.modifier(EditDeleteActionSheetModifier(
                 title: title,
                 editAction: editAction,
-                deleteAction: deleteAction))
+                deleteAction: deleteAction,
+                extraShowCondition: extraShowCondition))
         )
     }
     

@@ -48,7 +48,8 @@ data class BookmarksState(
 
 data class TopicState(
     val id: Int,
-    val name: String
+    val name: String,
+    val isEditable: Boolean
 ): AppState
 
 data class TopicsState(

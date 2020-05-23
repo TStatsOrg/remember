@@ -7,6 +7,7 @@ sealed class TopicViewState(state: TopicState) {
     val id: Int = state.id
     val name: String = state.name
     val topicState: TopicState = state
+    val isEditable: Boolean = state.isEditable
 
     data class Normal(val state: TopicState): TopicViewState(state)
 

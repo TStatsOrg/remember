@@ -22,6 +22,10 @@ public extension TopicViewStateType {
     var name: String {
         return topic.name.uppercased()
     }
+    
+    var isEditable: Bool {
+        return topic.isEditable
+    }
 }
 
 public class TopicViewState {

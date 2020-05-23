@@ -102,7 +102,7 @@ fun BookmarkState.copy(withTopic: TopicState?): BookmarkState {
 
 fun List<BookmarkDTO>.toBookmarkState(): List<BookmarkState> = this.map { it.toState() }
 
-fun TopicDTO.toState(): TopicState = TopicState(id = id, name = name)
+fun TopicDTO.toState(): TopicState = TopicState(id = id, name = name, isEditable = id != TopicDTO.GeneralTopic.DEFAULT_ID)
 
 fun TopicState.toDTO(): TopicDTO = object : TopicDTO {
     override val id: Int = this@toDTO.id
