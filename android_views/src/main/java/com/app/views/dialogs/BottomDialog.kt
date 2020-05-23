@@ -1,8 +1,7 @@
-package com.app.views.views
+package com.app.views.dialogs
 
 import android.content.Context
 import androidx.viewbinding.ViewBinding
-import com.app.views.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 object BottomDialog {

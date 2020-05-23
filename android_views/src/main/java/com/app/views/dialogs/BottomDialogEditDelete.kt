@@ -1,22 +1,20 @@
-package com.app.feature.hub
+package com.app.views.dialogs
 
 import android.app.Activity
-import com.app.feature.hub.databinding.DialogEditBookmarkBinding
-import com.app.views.views.BottomDialog
-import com.app.views.views.show
+import com.app.views.databinding.DialogEditBookmarkBinding
 
-fun BottomDialogEditBookmark(
+fun BottomDialogEditDelete(
     context: Activity,
     editAction: (() -> Unit)? = null,
     deleteAction: (() -> Unit)? = null
 ) {
     BottomDialog.create(context)
         .show(DialogEditBookmarkBinding.inflate(context.layoutInflater)) { binding, dialog ->
-            binding.editBookmarkButton.setOnClickListener {
+            binding.editButton.setOnClickListener {
                 editAction?.invoke()
                 dialog.cancel()
             }
-            binding.deleteBookmarkButton.setOnClickListener {
+            binding.deleteButton.setOnClickListener {
                 deleteAction?.invoke()
                 dialog.cancel()
             }

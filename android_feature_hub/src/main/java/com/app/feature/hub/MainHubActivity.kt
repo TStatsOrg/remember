@@ -11,6 +11,7 @@ import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
+import com.app.views.dialogs.BottomDialogEditDelete
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
 
@@ -53,10 +54,13 @@ class MainHubActivity: AppCompatActivity() {
             }
 
             override fun onLongClick(viewState: BookmarkViewState) {
-                BottomDialogEditBookmark(
+                BottomDialogEditDelete(
                     context = this@MainHubActivity,
                     editAction = {
-                        navigation.seeEditBookmark(context = this@MainHubActivity, forEditingBookmark = viewState.id)
+                        navigation.seeEditBookmark(
+                            context = this@MainHubActivity,
+                            forEditingBookmark = viewState.id
+                        )
                     },
                     deleteAction = {
                         viewModel.delete(bookmarkId = viewState.id)

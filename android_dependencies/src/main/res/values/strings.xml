@@ -11,9 +11,6 @@
     <string name="main_hub_search_hint">Search</string>
 
     <!-- main hub edit bookmark dialog -->
-    <string name="main_hub_dialog_edit_button">Edit Bookmark</string>
-    <string name="main_hub_dialog_delete_button">Delete Bookmark</string>
-    <string name="main_hub_dialog_cancel">Cancel</string>
     <string name="main_hub_no_search_results">No results found</string>
 
     <!-- topics feature -->
@@ -31,4 +28,10 @@
 
     <!-- preview -->
     <string name="preview_title">Add bookmark</string>
+
+    <!-- dialogs / edit & delete bottom sheet -->
+    <string name="general_dialog_edit_button_title">Edit</string>
+    <string name="general_dialog_delete_button_title">Delete</string>
+    <string name="general_dialog_cancel_button_title">Cancel</string>
+
 </resources>
