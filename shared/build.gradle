@@ -28,49 +28,58 @@ kotlin {
     }
 
     sourceSets {
-        commonMain.dependencies {
-            // kotlin
-            api 'org.jetbrains.kotlin:kotlin-stdlib-common'
-            // kotlin/coroutines
-            api "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion"
+        commonMain {
+            dependencies {
+                // kotlin
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+                // kotlin/coroutines
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion"
 
-            // ktor
-            api "io.ktor:ktor-client-core:$ktorVersion"
-            api "io.ktor:ktor-client-json:$ktorVersion"
-            api "io.ktor:ktor-client-cio:$ktorVersion"
+                // ktor
+                implementation "io.ktor:ktor-client-core:$ktorVersion"
+                implementation "io.ktor:ktor-client-json:$ktorVersion"
+                implementation "io.ktor:ktor-client-cio:$ktorVersion"
 
-            // serialisation
-            api "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializationVersion"
+                // serialisation
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializationVersion"
+            }
         }
 
-        commonTest.dependencies {
-            implementation "org.jetbrains.kotlin:kotlin-test-common:$kotlinVersion"
-            implementation "org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlinVersion"
-            implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-            implementation "io.mockk:mockk-common:$mockkVersion"
-            implementation "io.mockk:mockk:$mockkVersion"
+        commonTest {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-test-common:$kotlinVersion"
+                implementation "org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlinVersion"
+                implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+                implementation "io.mockk:mockk-common:$mockkVersion"
+                implementation "io.mockk:mockk:$mockkVersion"
+            }
         }
 
-        androidMain.dependencies {
-            // kotlin
-            api 'org.jetbrains.kotlin:kotlin-stdlib'
-            // kotlin/coroutines
-            api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+        androidMain {
+            dependsOn commonMain
+            dependencies {
+                // kotlin
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+                // kotlin/coroutines
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
-            // ktor
-            api "io.ktor:ktor-client-android:$ktorVersion"
-            api "io.ktor:ktor-client-okhttp:$ktorVersion"
-            api "io.ktor:ktor-client-json-jvm:$ktorVersion"
+                // ktor
+                implementation "io.ktor:ktor-client-android:$ktorVersion"
+                implementation "io.ktor:ktor-client-okhttp:$ktorVersion"
+                implementation "io.ktor:ktor-client-json-jvm:$ktorVersion"
 
-            implementation "org.jsoup:jsoup:$jsoupVersion"
+                implementation "org.jsoup:jsoup:$jsoupVersion"
 
-            // serialisation
-            api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
+                // serialisation
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
+            }
         }
 
         androidTest {
             dependsOn androidMain
             dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+                implementation "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
             }
         }
 
