@@ -38,6 +38,11 @@ public struct TopicsView: View {
                         .foregroundColor(.secondary)
                 }
                 .padding(bottom: 4.0)
+                .editDeleteActionSheetModifier(
+                    title: "Change Topic",
+                    editAction: {
+                        print("edit topic \(content.name)")
+                    }, deleteAction: self.viewModel.delete(topicId: content.id))
             }
         })
         .navigationBarTitle(Text("Topics"))

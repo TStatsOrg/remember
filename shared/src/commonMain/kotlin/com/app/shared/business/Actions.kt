@@ -36,5 +36,7 @@ sealed class Actions: Action {
         }
 
         data class Add(val topic: TopicDTO): Topics()
+
+        data class Delete(val topicId: Int): Topics()
     }
 }

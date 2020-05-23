@@ -26,4 +26,10 @@ class SharedTopicsRepository(
     }
 
     private fun getDefaultTopics() = listOf(TopicDTO.GeneralTopic())
+
+    override suspend fun delete(topicId: Int) {
+        withContext(context = IODispatcher) {
+            topicDAO.delete(topicId = topicId)
+        }
+    }
 }

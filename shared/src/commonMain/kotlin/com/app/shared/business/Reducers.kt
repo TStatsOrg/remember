@@ -1,6 +1,8 @@
 package com.app.shared.business
 
+import com.app.shared.data.dto.TopicDTO
 import com.app.shared.redux.Reducer
+import com.app.shared.utils.copy
 import com.app.shared.utils.toState
 import com.app.shared.utils.toTopicState
 import com.app.shared.utils.toBookmarkState
@@ -54,6 +56,24 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
 
             old.copy(topics = TopicsState(topics = newTopics),
                 editBookmark = old.editBookmark?.copy(topics = newTopics))
+        }
+        // topics/delete
+        is Actions.Topics.Delete -> {
+            val newTopics = old.topics.topics.filter { it.id != action.topicId }
+            val newEditableTopics = old.editBookmark?.topics?.filter { it.id != action.topicId } ?: listOf()
+            val newBookmarks = old.bookmarks.bookmarks.map {
+                if (it.topic?.id == action.topicId) {
+                    it.copy(withTopic = TopicDTO.GeneralTopic().toState())
+                } else {
+                    it
+                }
+            }
+
+            old.copy(
+                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
+                topics = old.topics.copy(topics = newTopics),
+                editBookmark = old.editBookmark?.copy(topics = newEditableTopics)
+            )
         }
         else -> old
     }

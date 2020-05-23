@@ -5,6 +5,7 @@ import com.app.shared.data.dao.ImageBookmarkDAO
 import com.app.shared.data.dao.LinkBookmarkDAO
 import com.app.shared.data.dao.TextBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.TopicDTO
 import kotlinx.coroutines.withContext
 
 class SharedBookmarkRepository(
@@ -38,6 +39,14 @@ class SharedBookmarkRepository(
             textBookmarkDAO.delete(bookmarkId = bookmarkId)
             linkBookmarkDAO.delete(bookmarkId = bookmarkId)
             imageBookmarkDAO.delete(bookmarkId = bookmarkId)
+        }
+    }
+
+    override suspend fun replaceTopic(topicId: Int, withTopicDTO: TopicDTO) {
+        withContext(context = IODispatcher) {
+            textBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
+            linkBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
+            imageBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
         }
     }
 }

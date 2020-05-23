@@ -6,6 +6,7 @@ import com.app.shared.business.TopicsState
 interface TopicsViewModel {
     fun loadTopics()
     fun filter(byTopic: TopicState)
+    fun delete(topicId: Int)
     fun observeTopicState(callback: (TopicsState) -> Unit)
     fun cleanup()
 }

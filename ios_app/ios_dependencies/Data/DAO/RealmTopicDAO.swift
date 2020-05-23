@@ -28,4 +28,13 @@ class RealmTopicDAO: RealmDAO, TopicDAO {
         let result = realm?.objects(RealmTopicObject.self)
         return result?.map { $0 }.map { $0.toDTO() } ?? []
     }
+    
+    func delete(topicId: Int32) {
+        let result = realm?.objects(RealmTopicObject.self).filter { $0.id == topicId }
+        try? realm?.write {
+            if let dto = result {
+                realm?.delete(dto)
+            }
+        }
+    }
 }

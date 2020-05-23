@@ -6,6 +6,7 @@ import com.app.shared.business.TopicState
 import com.app.shared.business.TopicsState
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
+import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.TopicsRepository
 import com.app.shared.observ.map
@@ -48,6 +49,22 @@ class SharedTopicsViewModel(
                 action = Actions.Bookmark.Filter(
                     bookmarks = filtered,
                     topic = byTopic))
+        }
+    }
+
+    override fun delete(topicId: Int) {
+        scope.launch(context = MainDispatcher) {
+
+            val defaultTopic = TopicDTO.GeneralTopic()
+
+            // don't delete the default topic
+            if (defaultTopic.id == topicId) {
+                return@launch
+            }
+
+            bookmarkRepository.replaceTopic(topicId = topicId, withTopicDTO = defaultTopic)
+            topicsRepository.delete(topicId = topicId)
+            store.dispatch(action = Actions.Topics.Delete(topicId = topicId))
         }
     }
 
