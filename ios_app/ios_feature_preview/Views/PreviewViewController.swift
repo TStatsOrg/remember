@@ -18,6 +18,7 @@ class PreviewViewController: UIViewController {
     @Injected var viewModel: PreviewViewModel
     @Injected var capture: RawDataCapture
     @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -26,13 +27,17 @@ class PreviewViewController: UIViewController {
         mainTableView.delegate = dataSource
         
         viewModel.observePreviewState { (state) in
-            self.dataSource.redraw(viewState: PreviewsViewState(state: state))
+            let viewState = PreviewsViewState(state: state)
+            self.dataSource.redraw(viewState: viewState)
             self.mainTableView.reloadData()
+            self.activityIndicator.isHidden = viewState.isHidden
         }
         
         viewModel.observeBookmarkSaved { bookmarkId in
             self.extensionContext?.completeRequest(returningItems: [])
         }
+        
+        viewModel.clear()
 
         capture.capture(input: extensionContext) { (value) in
             self.viewModel.present(capturedRawData: value)

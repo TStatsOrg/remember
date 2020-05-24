@@ -10,8 +10,9 @@ import com.app.shared.utils.toBookmarkState
 val AppStateReducer: Reducer<MainState> = { old, action ->
     when (action) {
         // bookmark/preview
-        is Actions.Bookmark.Preview.Reset -> old.copy(preview = null)
-        is Actions.Bookmark.Preview.Present -> old.copy(preview = action.dto.toState())
+        is Actions.Bookmark.Preview.Reset -> old.copy(preview = PreviewState())
+        is Actions.Bookmark.Preview.Start -> old.copy(preview = old.preview.copy(isLoading = true))
+        is Actions.Bookmark.Preview.Present -> old.copy(preview = old.preview.copy(isLoading = false, preview = action.dto.toState()))
         // bookmark/present
         is Actions.Bookmark.Load.Start -> old.copy(bookmarks = BookmarksState(date = action.time))
         is Actions.Bookmark.Load.Success -> old.copy(bookmarks = BookmarksState(date = action.time, bookmarks = action.bookmarks.toBookmarkState()))
@@ -29,7 +30,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         // bookmark/edit
         is Actions.Bookmark.Edit -> {
             val selectedBookmarkFromExisting = old.bookmarks.bookmarks.firstOrNull { it.id == action.bookmarkId }
-            val selectedBookmarkFromPreview = old.preview
+            val selectedBookmarkFromPreview = old.preview.preview
             val selectedBookmark = selectedBookmarkFromExisting ?: selectedBookmarkFromPreview
             val allTopics = old.topics.topics
             val newEditBookmarkState = selectedBookmark?.let {

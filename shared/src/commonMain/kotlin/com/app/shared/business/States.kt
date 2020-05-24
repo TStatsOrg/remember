@@ -57,21 +57,26 @@ data class TopicsState(
     val isLoading: Boolean = false,
     val error: Throwable? = null,
     val topics: List<TopicState> = listOf()
-)
+): AppState
 
 data class EditBookmarkState(
     val bookmark: BookmarkState,
     val topics: List<TopicState> = listOf()
-)
+): AppState
 
 data class EditTopicState(
     val topic: TopicState
-)
+): AppState
+
+data class PreviewState(
+    val preview: BookmarkState? = null,
+    val isLoading: Boolean = false
+): AppState
 
 data class MainState(
     val bookmarks: BookmarksState = BookmarksState(),
     val topics: TopicsState = TopicsState(),
-    val preview: BookmarkState? = null,
+    val preview: PreviewState = PreviewState(),
     val editBookmark: EditBookmarkState? = null,
     val editTopic: EditTopicState? = null
 ): AppState

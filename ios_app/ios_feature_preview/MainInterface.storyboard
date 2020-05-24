@@ -68,7 +68,7 @@
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k4g-Ji-jwI">
                                                     <rect key="frame" x="346" y="8" width="60" height="60"/>
-                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="XnY-90-ajE"/>
                                                         <constraint firstAttribute="height" constant="60" id="l7p-Ro-hWJ"/>
@@ -200,11 +200,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="CHD-zq-Awu">
+                                <rect key="frame" x="188.5" y="120" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="CHD-zq-Awu" firstAttribute="top" secondItem="adS-cj-yLx" secondAttribute="top" constant="32" id="0rX-HW-J2h"/>
                             <constraint firstItem="GBV-aJ-FTs" firstAttribute="top" secondItem="adS-cj-yLx" secondAttribute="top" id="VGE-Op-G0O"/>
                             <constraint firstItem="GBV-aJ-FTs" firstAttribute="leading" secondItem="adS-cj-yLx" secondAttribute="leading" id="VzD-Gs-73S"/>
+                            <constraint firstItem="CHD-zq-Awu" firstAttribute="centerX" secondItem="IG0-kw-okG" secondAttribute="centerX" id="a73-1F-HYc"/>
                             <constraint firstItem="GBV-aJ-FTs" firstAttribute="bottom" secondItem="adS-cj-yLx" secondAttribute="bottom" id="bx1-5v-QVE"/>
                             <constraint firstItem="GBV-aJ-FTs" firstAttribute="trailing" secondItem="adS-cj-yLx" secondAttribute="trailing" id="wtb-FR-KyD"/>
                         </constraints>
@@ -223,6 +228,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="CHD-zq-Awu" id="MIX-5A-nA3"/>
                         <outlet property="mainTableView" destination="GBV-aJ-FTs" id="pkv-ht-rDF"/>
                     </connections>
                 </viewController>

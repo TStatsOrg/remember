@@ -12,13 +12,21 @@ import ios_views
 
 struct PreviewsViewState {
     
-    let state: BookmarkState
+    let state: PreviewState
     
-    init(state: BookmarkState) {
+    init(state: PreviewState) {
         self.state = state
     }
     
     var viewStates: [BookmarkViewState] {
-        return [BookmarkViewState(state: state)]
+        if let preview = state.preview {
+            return [BookmarkViewState(state: preview)]
+        } else {
+            return []
+        }
+    }
+    
+    var isHidden: Bool {
+        return !state.isLoading
     }
 }

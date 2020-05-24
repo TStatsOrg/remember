@@ -10,6 +10,7 @@ sealed class Actions: Action {
 
         sealed class Preview: Bookmark() {
             object Reset: Preview()
+            object Start: Preview()
             data class Present(val dto: BookmarkDTO): Preview()
         }
 

@@ -30,7 +30,9 @@ class PreviewActivity: AppCompatActivity() {
         binding.previewsRecyclerView.itemAnimator = animator
 
         viewModel.observePreviewState {
-            redraw(viewState = PreviewsViewState(state = it))
+            val viewState = PreviewsViewState(state = it)
+            redraw(viewState = viewState)
+            binding.previewLoadingSpinner.visibility = viewState.spinnerVisibility
         }
 
         viewModel.observeBookmarkSaved {
@@ -41,6 +43,8 @@ class PreviewActivity: AppCompatActivity() {
         binding.saveContentButton.setOnClickListener {
             viewModel.save()
         }
+
+        viewModel.clear()
 
         capture.capture(input = intent) {
             viewModel.present(capturedRawData = it)
