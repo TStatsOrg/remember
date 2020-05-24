@@ -36,6 +36,8 @@ import com.app.shared.feature.topics.TopicsViewModel
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
 import com.app.shared.utils.SystemCalendarUtils
+import com.app.views.lifecycle.AppLifecycleObserver
+import com.app.views.lifecycle.ForegroundObserver
 import org.koin.dsl.module
 
 class AppDependencyProvider(private val appContext: Context) {
@@ -51,6 +53,7 @@ class AppDependencyProvider(private val appContext: Context) {
         single<RawDataCapture<Intent>> { IntentDataCapture() }
         single<RawDataProcess> { AndroidDataProcess(context = appContext) }
         single<AndroidImageLoader> { GlideImageLoader() }
+        single<ForegroundObserver> { AppLifecycleObserver() }
 
         // repos
         single<BookmarkRepository> {

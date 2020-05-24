@@ -13,6 +13,11 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         is Actions.Bookmark.Preview.Reset -> old.copy(preview = PreviewState())
         is Actions.Bookmark.Preview.Start -> old.copy(preview = PreviewState(isLoading = true))
         is Actions.Bookmark.Preview.Present -> old.copy(preview = old.preview.copy(isLoading = false, preview = action.dto.toState()))
+        // bookmark/save
+        is Actions.Bookmark.Save -> {
+            val newBookmarks = listOf(action.dto.toState()) + old.bookmarks.bookmarks
+            old.copy(bookmarks = old.bookmarks.copy(bookmarks = newBookmarks))
+        }
         // bookmark/present
         is Actions.Bookmark.Load.Start -> old.copy(bookmarks = BookmarksState(date = action.time))
         is Actions.Bookmark.Load.Success -> old.copy(bookmarks = BookmarksState(date = action.time, bookmarks = action.bookmarks.toBookmarkState()))

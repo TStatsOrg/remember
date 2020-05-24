@@ -11,6 +11,7 @@ import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.views.dialogs.BottomDialogEditDelete
+import com.app.views.lifecycle.ForegroundObserver
 import com.app.views.navigation.Navigation
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject

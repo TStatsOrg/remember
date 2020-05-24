@@ -14,6 +14,8 @@ sealed class Actions: Action {
             data class Present(val dto: BookmarkDTO): Preview()
         }
 
+        data class Save(val dto: BookmarkDTO): Bookmark()
+
         sealed class Load: Bookmark() {
             data class Start(val time: Long): Load()
             data class Success(val time: Long, val bookmarks: List<BookmarkDTO>): Load()

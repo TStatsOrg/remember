@@ -63,6 +63,9 @@ public struct MainHubView: View {
             .onDisappear {
                 self.viewModel.cleanup()
             }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                self.viewModel.loadBookmarks()
+            }
             .sheet(isPresented: $isShowingSheet, content: navigation.content)
         }
     }
