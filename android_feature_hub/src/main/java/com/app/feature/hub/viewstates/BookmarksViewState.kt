@@ -11,8 +11,6 @@ data class BookmarksViewState(val state: BookmarksState? = null) {
 
     val topicSearchText: String = state?.filterByTopic?.name?.let { "in: $it" } ?: ""
 
-    val currentSearchText: String = state?.searchTerm ?: ""
-
     val bookmarksViewState: List<BookmarkViewState> = bookmarks.mapNotNull {
         when (it) {
             is BookmarkState.Link -> BookmarkViewState.Link(bookmark = it)
@@ -22,7 +20,22 @@ data class BookmarksViewState(val state: BookmarksState? = null) {
         }
     }
 
+    private val searchTextWhenFilteringByTopic: String
+        get() {
+            return state?.filterByTopic?.name ?: ""
+        }
+
+    private val currentSearchText: String
+        get() {
+            return state?.searchTerm ?: searchTextWhenFilteringByTopic
+        }
+
     private val noSearchResults = state?.bookmarks?.isEmpty() ?: true
+
+    val isFilteringByTopic: Boolean
+        get() {
+            return state?.filterByTopic != null
+        }
 
     val noResultsVisibility = if (currentSearchText.isNotEmpty() && noSearchResults) View.VISIBLE else View.GONE
 

@@ -22,16 +22,16 @@ struct BookmarksViewState {
         return state?.bookmarks ?? []
     }
     
-    private var searchText: String {
+    private var currentSearchText: String {
         return state?.searchTerm ?? searchTextWhenFilteringByTopic
     }
     
     var noSearchResults: Bool {
-        return !searchText.isEmpty && bookmarks.isEmpty
+        return !currentSearchText.isEmpty && bookmarks.isEmpty
     }
     
     var isGetStartedVisible: Bool {
-        return searchText.isEmpty && bookmarks.isEmpty
+        return currentSearchText.isEmpty && bookmarks.isEmpty
     }
     
     var isFilteringByTopic: Bool {
