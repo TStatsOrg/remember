@@ -1,68 +1,55 @@
 package com.app.views.views
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
-import android.widget.AutoCompleteTextView
-import androidx.appcompat.widget.SearchView
 import com.app.shared.observ.InfiniteEmitter
-import com.app.views.R
 import com.app.views.utils.hideKeyboard
+import com.google.android.material.textfield.TextInputEditText
 
-class ManagedSearchView: SearchView {
-
-    private val openSearchEmitter = InfiniteEmitter<Boolean>()
-    private val closeSearchEmitter = InfiniteEmitter<Boolean>()
-    private val searchChangedEmitter = InfiniteEmitter<String>()
-    private val searchSubmittedEmitter = InfiniteEmitter<String>()
+class ManagedSearchView: TextInputEditText {
 
     constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context) : super(context)
 
-    init {
+    private val searchChangedEmitter = InfiniteEmitter<String>()
 
-        // set threshold at 0
-        findViewById<AutoCompleteTextView>(R.id.search_src_text).threshold = 0
-
-        // gather round the old interface
-        setOnSearchClickListener {
-            openSearchEmitter.emit(value = true)
-        }
-        setOnCloseListener {
-            closeSearchEmitter.emit(value = true)
-            return@setOnCloseListener false
-        }
-
-        setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let {
-                    context.hideKeyboard(view = this@ManagedSearchView)
-                    searchSubmittedEmitter.emit(value = it)
-                }
-                return true
+    private val textWatcher = object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) = Unit
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
+        override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            text?.toString()?.let {
+                searchChangedEmitter.emit(value = it)
             }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let {
-                    searchChangedEmitter.emit(value = it)
-                }
-                return true
-            }
-        })
+        }
     }
 
-    fun observeSearchOpened(callback: (Boolean) -> Unit) = openSearchEmitter.observe().collect(callback)
+    init {
+        addTextChangedListener(textWatcher)
+        setOnTouchListener { view, motionEvent ->
+            isFocusable = true
+            isFocusableInTouchMode = true
+            false
+        }
+    }
 
-    fun observeSearchClosed(callback: (Boolean) -> Unit) = closeSearchEmitter.observe().collect(callback)
+    fun updateText(text: String) {
+        removeTextChangedListener(textWatcher)
+        setText(text)
+        addTextChangedListener(textWatcher)
+    }
+
+    fun loseFocus() {
+        isFocusable = false
+        context.hideKeyboard(view = this)
+        updateText(text = "")
+    }
 
     fun observeSearchChanged(callback: (String) -> Unit) = searchChangedEmitter.observe().collect(callback)
 
-    fun observeSearchSubmitted(callback: (String) -> Unit) = searchSubmittedEmitter.observe().collect(callback)
-
     fun cleanup() {
-        openSearchEmitter.cleanup()
-        closeSearchEmitter.cleanup()
         searchChangedEmitter.cleanup()
-        searchSubmittedEmitter.cleanup()
     }
 }

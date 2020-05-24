@@ -5,13 +5,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.views.navigation.Navigation
 import com.app.feature.hub.adapters.BookmarksAdapter
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
 import com.app.views.dialogs.BottomDialogEditDelete
+import com.app.views.navigation.Navigation
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
 
@@ -34,14 +34,6 @@ class MainHubActivity: AppCompatActivity() {
 
         binding.searchInput.observeSearchChanged {
             viewModel.search(byName = it)
-        }
-
-        binding.searchInput.observeSearchSubmitted {
-            viewModel.search(byName = it)
-        }
-
-        binding.searchInput.observeSearchClosed {
-            viewModel.loadBookmarks()
         }
 
         adapter.listener = object : BookmarkViewHolder.Listener {
@@ -72,6 +64,11 @@ class MainHubActivity: AppCompatActivity() {
                     navigation.seeTopicsList(context = this)
                     true
                 }
+                R.id.clear_search -> {
+                    viewModel.loadBookmarks()
+                    binding.searchInput.loseFocus()
+                    true
+                }
                 else -> false
             }
         }
@@ -81,7 +78,10 @@ class MainHubActivity: AppCompatActivity() {
             adapter.redraw(viewState = viewState)
             binding.noResultsView.redraw(viewState = viewState)
             binding.getStartedView.redraw(viewState = viewState)
-            binding.searchInput.queryHint = viewState.topicSearchText
+
+            if (viewState.isFilteringByTopic) {
+                binding.searchInput.updateText(text = viewState.topicSearchText)
+            }
         }
 
         viewModel.loadBookmarks()
