@@ -62,20 +62,26 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         }
         // topics/delete
         is Actions.Topics.Delete -> {
-            val newTopics = old.topics.topics.filter { it.id != action.topicId }
-            val newEditableTopics = old.editBookmark?.topics?.filter { it.id != action.topicId } ?: listOf()
-            val newBookmarks = old.bookmarks.bookmarks.map {
+            val bookmarkFunc: (BookmarkState) -> BookmarkState = {
                 if (it.topic?.id == action.topicId) {
                     it.copy(withTopic = TopicDTO.GeneralTopic().toState())
                 } else {
                     it
                 }
             }
+            val newTopics = old.topics.topics.filter { it.id != action.topicId }
+            val newEditableTopics = old.editBookmark?.topics?.filter { it.id != action.topicId } ?: listOf()
+            val newBookmarks = old.bookmarks.bookmarks.map(bookmarkFunc)
+
+            val newEditableBookmark = old.editBookmark?.copy(
+                topics = newEditableTopics,
+                bookmark = bookmarkFunc(old.editBookmark.bookmark)
+            )
 
             old.copy(
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
                 topics = old.topics.copy(topics = newTopics),
-                editBookmark = old.editBookmark?.copy(topics = newEditableTopics)
+                editBookmark = newEditableBookmark
             )
         }
         // topics/edit
@@ -96,18 +102,26 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             val newTopics = old.topics.topics.map(copyFunc)
             val newSelected = old.editBookmark?.topics?.map(copyFunc) ?: listOf()
             val selectedTopic = newTopics.firstOrNull { it.id == action.topicId }
-            val newBookmarks = old.bookmarks.bookmarks.map {
-                if (it.topic?.id == selectedTopic?.id) {
+
+            val bookmarkFunc: (BookmarkState) -> BookmarkState = {
+                if (it.topic?.id == action.topicId) {
                     it.copy(withTopic = selectedTopic)
                 } else {
                     it
                 }
             }
 
+            val newBookmarks = old.bookmarks.bookmarks.map(bookmarkFunc)
+
+            val newEditableBookmark = old.editBookmark?.copy(
+                topics = newSelected,
+                bookmark = bookmarkFunc(old.editBookmark.bookmark)
+            )
+
             old.copy(
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
                 topics = old.topics.copy(topics = newTopics),
-                editBookmark = old.editBookmark?.copy(topics = newSelected)
+                editBookmark = newEditableBookmark
             )
         }
         else -> old
