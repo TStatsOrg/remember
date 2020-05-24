@@ -24,7 +24,7 @@ public struct GetStartedView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 80, height: 80)
                     .padding(top: 20)
-                Text("No results found")
+                Text("Welcome! Add a bookmark to get started")
                     .foregroundColor(.secondary)
                 Spacer()
             } else {

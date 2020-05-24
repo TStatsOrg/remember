@@ -36,6 +36,7 @@ public struct MainHubView: View {
             VStack {
                 SearchView(viewModel: viewModel, binding: $search)
                 NoSearchResultsView(state: $state)
+                GetStartedView(state: $state)
                 List {
                     ForEach(state.bookmarksViewState, content: { state in
                         self.getCellType(state: state)

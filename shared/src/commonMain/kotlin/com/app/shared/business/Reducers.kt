@@ -18,9 +18,9 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         is Actions.Bookmark.Load.Success -> old.copy(bookmarks = BookmarksState(date = action.time, bookmarks = action.bookmarks.toBookmarkState()))
         is Actions.Bookmark.Load.Error -> old.copy(bookmarks = BookmarksState(error = action.error))
         // bookmark/filter
-        is Actions.Bookmark.Filter -> old.copy(bookmarks = BookmarksState(filterByTopic = action.topic, bookmarks = action.bookmarks.toBookmarkState()))
+        is Actions.Bookmark.Filter -> old.copy(bookmarks = BookmarksState(filterByTopic = action.topic, bookmarks = action.bookmarks.toBookmarkState(), searchTerm = null))
         // bookmark/search
-        is Actions.Bookmark.Search -> old.copy(bookmarks = old.bookmarks.copy(searchTerm = action.term, bookmarks = action.results.toBookmarkState()))
+        is Actions.Bookmark.Search -> old.copy(bookmarks = old.bookmarks.copy(searchTerm = action.term, bookmarks = action.results.toBookmarkState(), filterByTopic = null))
         // bookmark/update
         is Actions.Bookmark.Update -> {
 
