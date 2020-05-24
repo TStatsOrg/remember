@@ -25,8 +25,8 @@ public struct MainHubView: View {
     
     private func update(state: BookmarksState) {
         self.state = BookmarksViewState(state: state)
-        if let filterTopic = state.filterByTopic?.name {
-            self.search = self.state.topicText(text: filterTopic)
+        if self.state.isFilteringByTopic {
+            self.search = self.state.searchTextWhenFilteringByTopic
             self.dismissKeyboard()
         }
     }
@@ -35,7 +35,7 @@ public struct MainHubView: View {
         NavigationView {
             VStack {
                 SearchView(viewModel: viewModel, binding: $search)
-                NoSearchView(state: $state)
+                NoSearchResultsView(state: $state)
                 List {
                     ForEach(state.bookmarksViewState, content: { state in
                         self.getCellType(state: state)
@@ -80,29 +80,6 @@ public struct MainHubView: View {
             return AnyView(LinkBookmarkView(viewState: link))
         default:
             return AnyView(Text("N/A"))
-        }
-    }
-}
-
-public struct NoSearchView: View {
-    
-    @Binding var state: BookmarksViewState
-    
-    public var body: some View {
-        VStack {
-            if state.noSearchResults {
-                Image(systemName: "nosign")
-                    .resizable()
-                    .colorMultiply(.secondary)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 80)
-                    .padding(top: 20)
-                Text("No results found")
-                    .foregroundColor(.secondary)
-                Spacer()
-            } else {
-                EmptyView()
-            }
         }
     }
 }

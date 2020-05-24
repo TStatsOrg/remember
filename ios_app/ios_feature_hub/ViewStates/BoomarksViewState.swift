@@ -22,12 +22,28 @@ struct BookmarksViewState {
         return state?.bookmarks ?? []
     }
     
-    var noSearchResults: Bool {
-        return bookmarks.isEmpty
+    private var searchText: String {
+        return state?.searchTerm ?? searchTextWhenFilteringByTopic
     }
     
-    func topicText(text: String) -> String {
-        return "in: \(text)"
+    var noSearchResults: Bool {
+        return !searchText.isEmpty && bookmarks.isEmpty
+    }
+    
+    var isGetStartedVisible: Bool {
+        return searchText.isEmpty && bookmarks.isEmpty
+    }
+    
+    var isFilteringByTopic: Bool {
+        return state?.filterByTopic?.name != nil
+    }
+    
+    var searchTextWhenFilteringByTopic: String {
+        if let text = state?.filterByTopic?.name {
+            return "in: \(text)"
+        } else {
+            return ""
+        }
     }
     
     var title: String {

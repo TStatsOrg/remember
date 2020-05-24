@@ -20,6 +20,8 @@ sealed class Actions: Action {
             data class Error(val time: Long, val error: Throwable): Load()
         }
 
+        data class Search(val term: String, val results: List<BookmarkDTO>): Bookmark()
+
         data class Edit(val bookmarkId: Int): Bookmark()
         data class Update(val state: BookmarkState): Bookmark()
 

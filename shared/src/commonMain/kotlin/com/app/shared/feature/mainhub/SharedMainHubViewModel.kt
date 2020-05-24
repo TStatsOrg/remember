@@ -46,7 +46,7 @@ class SharedMainHubViewModel(
                 }
             }
 
-            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = searched))
+            store.dispatch(action = Actions.Bookmark.Search(term = byName, results = searched))
         }
     }
 

@@ -9,7 +9,9 @@ data class BookmarksViewState(val state: BookmarksState? = null) {
 
     private val bookmarks: List<BookmarkState> = state?.bookmarks ?: listOf()
 
-    val searchText: String = state?.filterByTopic?.name?.let { "in: $it" } ?: ""
+    val topicSearchText: String = state?.filterByTopic?.name?.let { "in: $it" } ?: ""
+
+    val currentSearchText: String = state?.searchTerm ?: ""
 
     val bookmarksViewState: List<BookmarkViewState> = bookmarks.mapNotNull {
         when (it) {
@@ -22,5 +24,7 @@ data class BookmarksViewState(val state: BookmarksState? = null) {
 
     private val noSearchResults = state?.bookmarks?.isEmpty() ?: true
 
-    val noResultsVisibility = if (noSearchResults) View.VISIBLE else View.GONE
+    val noResultsVisibility = if (currentSearchText.isNotEmpty() && noSearchResults) View.VISIBLE else View.GONE
+
+    val getStartedVisibility = if (currentSearchText.isEmpty() && noSearchResults) View.VISIBLE else View.GONE
 }

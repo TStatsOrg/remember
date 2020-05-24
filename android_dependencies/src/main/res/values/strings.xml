@@ -12,6 +12,7 @@
 
     <!-- main hub edit bookmark dialog -->
     <string name="main_hub_no_search_results">No results found</string>
+    <string name="main_hub_startup_text">Welcome! Add a bookmark to get started</string>
 
     <!-- topics feature -->
     <string name="topics_title">Topics</string>

@@ -42,6 +42,7 @@ interface BookmarkState: AppState {
 data class BookmarksState(
     val bookmarks: List<BookmarkState> = listOf(),
     val filterByTopic: TopicState? = null,
+    val searchTerm: String? = null,
     val date: Long = 0L,
     val error: Throwable? = null
 ): AppState

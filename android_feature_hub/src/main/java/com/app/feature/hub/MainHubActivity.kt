@@ -80,7 +80,8 @@ class MainHubActivity: AppCompatActivity() {
             val viewState = BookmarksViewState(state = it)
             adapter.redraw(viewState = viewState)
             binding.noResultsView.redraw(viewState = viewState)
-            binding.searchInput.queryHint = viewState.searchText
+            binding.getStartedView.redraw(viewState = viewState)
+            binding.searchInput.queryHint = viewState.topicSearchText
         }
 
         viewModel.loadBookmarks()

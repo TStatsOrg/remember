@@ -47,6 +47,14 @@
             android:visibility="gone"
             tools:visibility="visible"/>
 
+        <com.app.feature.hub.GetStartedView
+            android:id="@+id/get_started_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
