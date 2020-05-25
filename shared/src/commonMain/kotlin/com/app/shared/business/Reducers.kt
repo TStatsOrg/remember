@@ -55,9 +55,14 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         // bookmark/update
         is Actions.Bookmark.Update -> {
 
-            val newBookmarks = old.bookmarks.bookmarks.map { if (it.id == action.state.id) action.state else it }
+            val func: (BookmarkState) -> BookmarkState = { if (it.id == action.state.id) action.state else it }
 
-            old.copy(bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
+            val newBookmarks = old.bookmarks.bookmarks.map(func)
+            val newAllBookmarks = old.allBookmarks.map(func)
+
+            old.copy(
+                allBookmarks = newAllBookmarks,
+                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
                 editBookmark = old.editBookmark?.copy(bookmark = action.state))
         }
         // bookmark/edit
