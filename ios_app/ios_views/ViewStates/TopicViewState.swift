@@ -11,6 +11,7 @@ import RememberShared
 
 public protocol TopicViewStateType: Identifiable {
     var topic: TopicState { get }
+    var noBookmarks: Int { get }
 }
 
 public extension TopicViewStateType {
@@ -32,20 +33,24 @@ public class TopicViewState {
     
     public struct Normal: TopicViewStateType {
         public let topic: TopicState
+        public let noBookmarks: Int
+         
         
-        public init(state: TopicState) {
-            topic = state
+        public init(state: TopicState, noBookmarks: Int) {
+            self.topic = state
+            self.noBookmarks = noBookmarks
         }
     }
     
     public struct Selectable: TopicViewStateType {
         public let topic: TopicState
-        
         public let isSelected: Bool
+        public let noBookmarks: Int
         
-        public init(state: TopicState, isSelected: Bool) {
+        public init(state: TopicState, isSelected: Bool, noBookmarks: Int) {
             self.topic = state
             self.isSelected = isSelected
+            self.noBookmarks = noBookmarks
         }
     }
 }

@@ -25,8 +25,8 @@ class TopicsActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        viewModel.observeTopicState {
-            redraw(viewState = TopicsViewState(state = it))
+        viewModel.observeTopicState { state, bookmarks ->
+            redraw(viewState = TopicsViewState(state = state, bookmarks = bookmarks))
         }
 
         adapter.listener = object : TopicViewHolder.Listener {

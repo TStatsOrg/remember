@@ -8,6 +8,6 @@ data class EditBookmarkViewState(val state: EditBookmarkState) {
     val bookmarkId = state.bookmark.id
 
     val topicsViewState: List<TopicViewState.Selectable> = state.topics.map {
-        TopicViewState.Selectable(state = it, isSelected = it.id == state.bookmark.topic?.id)
+        TopicViewState.Selectable(state = it, isSelected = it.id == state.bookmark.topic?.id, noBookmarks = 0)
     }
 }

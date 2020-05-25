@@ -1,9 +1,6 @@
 package com.app.shared.feature.topics
 
-import com.app.shared.business.Actions
-import com.app.shared.business.MainState
-import com.app.shared.business.TopicState
-import com.app.shared.business.TopicsState
+import com.app.shared.business.*
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.TopicDTO
@@ -61,10 +58,12 @@ class SharedTopicsViewModel(
         }
     }
 
-    override fun observeTopicState(callback: (TopicsState) -> Unit) {
+    override fun observeTopicState(callback: (TopicsState, List<BookmarkState>) -> Unit) {
         storeObserver
-            .map { it.topics }
-            .collect(callback)
+            .map { Pair(it.topics, it.allBookmarks) }
+            .collect {
+                callback(it.first, it.second)
+            }
     }
 
     override fun cleanup() {

@@ -12,6 +12,7 @@ class TopicViewHolder(
 
     fun redraw(viewState: TopicViewState) = with(viewState) {
         binding.topicName.text = name
+        binding.topicNoArticles.text = "${viewState.numberOfBookmarks} bookmarks"
         binding.root.setOnClickListener {
             listener?.onClickTopic(state = viewState)
         }

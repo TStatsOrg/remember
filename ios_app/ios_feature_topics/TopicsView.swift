@@ -28,9 +28,9 @@ public struct TopicsView: View {
                 Text(content.name)
                     .ActionButton()
                     .padding(bottom: 4.0)
-//                Text("12 bookmarks")
-//                    .font(.caption)
-//                    .foregroundColor(.secondary)
+                Text("\(content.noBookmarks) bookmarks")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
             .padding(bottom: 4.0)
             .onTapGesture {
@@ -63,8 +63,8 @@ public struct TopicsView: View {
         .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
     
-    private func update(state: TopicsState) {
-        self.state = TopicsViewState(state: state.topics)
+    private func update(state: TopicsState, bookmarks: [BookmarkState]) {
+        self.state = TopicsViewState(state: state.topics, bookmarks: bookmarks)
     }
     
     private func dismiss() {

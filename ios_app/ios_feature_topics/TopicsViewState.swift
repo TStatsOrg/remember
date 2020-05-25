@@ -12,12 +12,26 @@ import RememberShared
 
 struct TopicsViewState {
     private let state: [TopicState]
+    private let bookmarks: [BookmarkState]
     
-    init(state: [TopicState] = []) {
+    init(
+        state: [TopicState] = [],
+        bookmarks: [BookmarkState] = []
+    ) {
         self.state = state
+        self.bookmarks = bookmarks
     }
     
     var viewStates: [TopicViewState.Normal] {
-        return state.map { TopicViewState.Normal(state: $0) }
+        return state.map {
+            TopicViewState.Normal(
+                state: $0,
+                noBookmarks: self.getNoBookmarks(fromTopic: $0)
+            )
+        }
+    }
+    
+    private func getNoBookmarks(fromTopic topic: TopicState) -> Int {
+        return bookmarks.filter { $0.topic?.id == topic.id }.count
     }
 }

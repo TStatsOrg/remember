@@ -23,6 +23,12 @@ struct EditBookmarkViewState {
     }
     
     var viewStates: [TopicViewState.Selectable] {
-        return state?.topics.map { TopicViewState.Selectable(state: $0, isSelected: $0.id == state?.bookmark.topic?.id) } ?? []
+        return state?.topics.map {
+            TopicViewState.Selectable(
+                state: $0,
+                isSelected: $0.id == state?.bookmark.topic?.id,
+                noBookmarks: 0
+            )
+        } ?? []
     }
 }
