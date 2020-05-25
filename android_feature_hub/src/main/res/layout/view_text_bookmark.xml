@@ -2,7 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="6dp"
+    android:paddingTop="12dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
     android:background="?android:attr/selectableItemBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -11,24 +13,10 @@
         android:id="@+id/bookmark_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textAppearance="?attr/textAppearanceSubtitle2"
         tools:text="TEXTS"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/bookmark_source"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="6dp"
-        android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/bookmark_topic"
-        app:layout_constraintTop_toTopOf="@id/bookmark_topic"
-        app:layout_constraintBottom_toBottomOf="@id/bookmark_topic"
-        android:textAppearance="?attr/textAppearanceCaption"
-        tools:text="medium.com"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/bookmark_title"
@@ -43,15 +31,25 @@
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/bookmark_save_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:id="@+id/bookmark_info"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="6dp"
-        android:textAppearance="?attr/textAppearanceOverline"
-        app:layout_constraintTop_toBottomOf="@id/bookmark_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="Apr 2020"/>
+        app:layout_constraintTop_toBottomOf="@id/bookmark_title"
+        android:textAppearance="?attr/textAppearanceCaption"
+        tools:text="medium.com - May 25, 2020"/>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/color_gray"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

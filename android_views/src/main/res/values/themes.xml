@@ -2,13 +2,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="color_white">#ffffff</color>
-    <color name="color_gray">#cccccc</color>
+    <color name="color_gray">#eeeeee</color>
+    <color name="color_mid_gray">#d0d0d0</color>
     <color name="color_dark_gray">#808e95</color>
-    <color name="color_light_black">#0e0e0e</color>
-    <color name="color_black">#000000</color>
+    <color name="color_black">#0D1B1E</color>
+    <color name="color_accent">#1976d2</color>
     <color name="color_red">#b00020</color>
-    <color name="color_magenta">#c158dc</color>
-    <color name="color_blue">#1e88e5</color>
 
     <!--Top level DayNight theme to be used in AndroidManifest.xml-->
     <style name="Theme.Remember" parent="Base.Theme.Remember"/>
@@ -28,47 +27,49 @@
 
     <style name="Theme.Remember.Text.Accent" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="fontFamily">@font/bold</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">?attr/colorSecondaryVariant</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="Theme.Remember.Text.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="fontFamily">@font/regular</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/color_dark_gray</item>
     </style>
 
     <style name="Theme.Remember.Text.Overline" parent="TextAppearance.MaterialComponents.Overline">
         <item name="fontFamily">@font/regular</item>
-        <item name="android:textSize">10sp</item>
-        <item name="textAllCaps">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/color_mid_gray</item>
     </style>
 
-    <style name="Theme.Remember.Text.Button.Action" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="fontFamily">@font/regular</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/color_blue</item>
+    <style name="Theme.Remember.Text.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/color_dark_gray</item>
     </style>
+
+<!--    <style name="Theme.Remember.Button" parent="TextAppearance.MaterialComponents.Button">-->
+<!--    </style>-->
 
     <!--Base custom theme which will be shared between both light and dark theme variants-->
     <style name="Base.Theme.Remember" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- primary colors -->
-        <item name="colorPrimary">@color/color_light_black</item>
-        <item name="colorPrimaryVariant">@color/color_black</item>
-        <item name="colorPrimaryDark">@color/color_black</item>
-        <item name="colorOnPrimary">@color/color_white</item>
+        <item name="colorPrimary">@color/color_white</item>
+        <item name="colorPrimaryVariant">@color/color_white</item>
+        <item name="colorPrimaryDark">@color/color_white</item>
+        <item name="colorOnPrimary">@color/color_dark_gray</item>
 
         <!-- secondary colors -->
-        <item name="colorSecondary">#d81b60</item>
-        <item name="colorSecondaryVariant">#ff5c8d</item>
+        <item name="colorSecondary">@color/color_accent</item>
+        <item name="colorSecondaryVariant">@color/color_accent</item>
         <item name="colorOnSecondary">@color/color_white</item>
 
         <!-- surface & bg colors -->
         <item name="colorSurface">@color/color_white</item>
-        <item name="colorOnSurface">@color/color_light_black</item>
+        <item name="colorOnSurface">@color/color_black</item>
         <item name="android:colorBackground">@color/color_white</item>
-        <item name="colorOnBackground">@color/color_light_black</item>
+        <item name="colorOnBackground">@color/color_black</item>
 
         <!-- error colors -->
         <item name="colorError">@color/color_red</item>
@@ -78,12 +79,12 @@
         <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorPrimary</item>
 <!--        <item name="android:navigationBarColor" tools:ignore="NewApi">?attr/colorPrimary</item>-->
 <!--        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">?attr/colorPrimary</item>-->
-        <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
 <!--        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>-->
         <item name="windowActionModeOverlay">true</item>
 
-        <item name="android:editTextColor">@color/color_white</item>
-        <item name="android:textColorHint">@color/color_gray</item>
+        <item name="android:editTextColor">@color/color_black</item>
+        <item name="android:textColorHint">@color/color_mid_gray</item>
 
         <!--Material type attributes-->
         <item name="textAppearanceHeadline1">@style/Theme.Remember.Text.Title</item>
@@ -94,9 +95,9 @@
         <item name="textAppearanceHeadline6">@style/Theme.Remember.Text.Title</item>
         <item name="textAppearanceSubtitle1">@style/Theme.Remember.Text.Subtitle</item>
         <item name="textAppearanceSubtitle2">@style/Theme.Remember.Text.Accent</item>
-        <item name="textAppearanceBody1">@style/TextAppearance.Remember.Body1</item>
-        <item name="textAppearanceBody2">@style/TextAppearance.Remember.Body2</item>
-        <item name="textAppearanceButton">@style/TextAppearance.Remember.Button</item>
+        <item name="textAppearanceBody1">@style/Theme.Remember.Text.Body1</item>
+        <item name="textAppearanceBody2">@style/Theme.Remember.Text.Body1</item>
+<!--        <item name="textAppearanceButton">@style/Theme.Remember.Button</item>-->
         <item name="textAppearanceCaption">@style/Theme.Remember.Text.Caption</item>
         <item name="textAppearanceOverline">@style/Theme.Remember.Text.Overline</item>
 <!--        <item name="textAppearanceLargePopupMenu">@style/Theme.Remember.Text.Button.Action</item>-->

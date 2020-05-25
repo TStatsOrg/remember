@@ -7,25 +7,29 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/app_bar_hub"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary">
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            app:elevation="0dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:src="@drawable/ic_baseline_search_24"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"/>
 
             <com.app.views.views.ManagedSearchView
                 android:id="@+id/search_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:focusable="false"
+                android:background="@null"
                 android:focusableInTouchMode="false"
                 android:hint="@string/main_hub_search_hint"
                 android:lines="1"
