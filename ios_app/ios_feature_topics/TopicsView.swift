@@ -28,10 +28,9 @@ public struct TopicsView: View {
                 Text(content.name)
                     .ActionButton()
                     .padding(bottom: 4.0)
-
-                Text("12 bookmarks")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+//                Text("12 bookmarks")
+//                    .font(.caption)
+//                    .foregroundColor(.secondary)
             }
             .padding(bottom: 4.0)
             .onTapGesture {
