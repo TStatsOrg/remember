@@ -1,16 +1,14 @@
 package com.app.shared.feature.mainhub
 
 import com.app.shared.business.Actions
-import com.app.shared.business.MainState
 import com.app.shared.business.BookmarksState
+import com.app.shared.business.MainState
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
-import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
-import com.app.shared.utils.MLogger
 import kotlinx.coroutines.launch
 
 class SharedMainHubViewModel(
@@ -35,18 +33,7 @@ class SharedMainHubViewModel(
 
     override fun search(byName: String) {
         scope.launch(context = MainDispatcher) {
-            val dtos = bookmarkRepository.load()
-
-            val searched = dtos.filter {
-                return@filter when (it) {
-                    is BookmarkDTO.LinkBookmarkDTO -> it.title?.contains(byName, ignoreCase = true) ?: false
-                    is BookmarkDTO.TextBookmarkDTO -> it.text.contains(byName, ignoreCase = true)
-                    is BookmarkDTO.ImageBookmarkDTO -> it.topic?.name?.contains(byName, ignoreCase = true) ?: false
-                    else -> false
-                }
-            }
-
-            store.dispatch(action = Actions.Bookmark.Search(term = byName, results = searched))
+            store.dispatch(action = Actions.Bookmark.Search(term = byName))
         }
     }
 

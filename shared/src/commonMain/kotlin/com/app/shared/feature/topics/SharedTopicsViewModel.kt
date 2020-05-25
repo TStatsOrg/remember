@@ -16,10 +16,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class SharedTopicsViewModel(
-        private val store: Store<MainState>,
-        private val calendar: CalendarUtils,
-        private val topicsRepository: TopicsRepository,
-        private val bookmarkRepository: BookmarkRepository
+    private val store: Store<MainState>,
+    private val calendar: CalendarUtils,
+    private val topicsRepository: TopicsRepository,
+    private val bookmarkRepository: BookmarkRepository
 ): TopicsViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
@@ -41,14 +41,7 @@ class SharedTopicsViewModel(
 
     override fun filter(byTopic: TopicState) {
         scope.launch(context = MainDispatcher) {
-            val dtos = bookmarkRepository.load()
-
-            val filtered = dtos.filter { it.topic?.id == byTopic.id }
-
-            store.dispatch(
-                action = Actions.Bookmark.Filter(
-                    bookmarks = filtered,
-                    topic = byTopic))
+            store.dispatch(action = Actions.Bookmark.Filter(topic = byTopic))
         }
     }
 

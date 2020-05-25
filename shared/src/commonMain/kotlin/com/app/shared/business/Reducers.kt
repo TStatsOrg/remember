@@ -14,18 +14,44 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         is Actions.Bookmark.Preview.Start -> old.copy(preview = PreviewState(isLoading = true))
         is Actions.Bookmark.Preview.Present -> old.copy(preview = old.preview.copy(isLoading = false, preview = action.dto.toState()))
         // bookmark/save
-        is Actions.Bookmark.Save -> {
+        is Actions.Bookmark.Add -> {
             val newBookmarks = listOf(action.dto.toState()) + old.bookmarks.bookmarks
-            old.copy(bookmarks = old.bookmarks.copy(bookmarks = newBookmarks))
+            val allNewBookmarks = listOf(action.dto.toState()) + old.allBookmarks
+            old.copy(
+                allBookmarks = allNewBookmarks,
+                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks))
         }
         // bookmark/present
         is Actions.Bookmark.Load.Start -> old.copy(bookmarks = BookmarksState(date = action.time))
-        is Actions.Bookmark.Load.Success -> old.copy(bookmarks = BookmarksState(date = action.time, bookmarks = action.bookmarks.toBookmarkState()))
+        is Actions.Bookmark.Load.Success -> old.copy(
+            allBookmarks = action.bookmarks.toBookmarkState(),
+            bookmarks = BookmarksState(date = action.time, bookmarks = action.bookmarks.toBookmarkState())
+        )
         is Actions.Bookmark.Load.Error -> old.copy(bookmarks = BookmarksState(date = action.time, error = action.error))
         // bookmark/filter
-        is Actions.Bookmark.Filter -> old.copy(bookmarks = BookmarksState(filterByTopic = action.topic, bookmarks = action.bookmarks.toBookmarkState(), searchTerm = null))
+        is Actions.Bookmark.Filter -> {
+            val filteredBookmarks = old.allBookmarks.filter { it.topic?.id == action.topic.id }
+            old.copy(bookmarks = BookmarksState(
+                filterByTopic = action.topic,
+                bookmarks = filteredBookmarks,
+                searchTerm = null))
+        }
         // bookmark/search
-        is Actions.Bookmark.Search -> old.copy(bookmarks = old.bookmarks.copy(searchTerm = action.term, bookmarks = action.results.toBookmarkState(), filterByTopic = null))
+        is Actions.Bookmark.Search -> {
+            val searchedBookmarks = old.allBookmarks.filter {
+                when (it) {
+                    is BookmarkState.Text -> it.text.contains(action.term, ignoreCase = true)
+                    is BookmarkState.Image -> it.topic?.name?.contains(action.term, ignoreCase = true) ?: false
+                    is BookmarkState.Link -> it.title?.contains(action.term, ignoreCase = true) ?: false
+                    else -> false
+                }
+            }
+
+            old.copy(bookmarks = old.bookmarks.copy(
+                searchTerm = action.term,
+                bookmarks = searchedBookmarks,
+                filterByTopic = null))
+        }
         // bookmark/update
         is Actions.Bookmark.Update -> {
 
@@ -48,9 +74,12 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         }
         // bookmark/delete
         is Actions.Bookmark.Delete -> {
-            val newList = old.bookmarks.bookmarks.toMutableList()
-            newList.removeAll { it.id == action.bookmarkId }
-            old.copy(bookmarks = old.bookmarks.copy(bookmarks = newList.toList()))
+            val newBookmarks = old.bookmarks.bookmarks.filter { it.id != action.bookmarkId }
+            val allNewBookmarks = old.allBookmarks.filter { it.id != action.bookmarkId }
+            old.copy(
+                allBookmarks = allNewBookmarks,
+                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks)
+            )
         }
         // topics/present
         is Actions.Topics.Load.Start -> old.copy(topics = TopicsState(date = action.time, isLoading = true))

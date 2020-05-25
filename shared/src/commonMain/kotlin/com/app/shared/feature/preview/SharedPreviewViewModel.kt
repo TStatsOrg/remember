@@ -55,7 +55,7 @@ class SharedPreviewViewModel(
         scope.launch(context = DispatcherFactory.main()) {
             store.state.preview.preview?.toDTO()?.let {
                 bookmarkRepository.save(dto = it)
-                store.dispatch(action = Actions.Bookmark.Save(dto = it))
+                store.dispatch(action = Actions.Bookmark.Add(dto = it))
                 emitter.emit(value = it.id)
             }
         }

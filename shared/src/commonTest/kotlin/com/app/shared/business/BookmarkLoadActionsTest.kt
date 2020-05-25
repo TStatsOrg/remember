@@ -36,23 +36,25 @@ class BookmarkLoadActionsTest: DefaultTest() {
         val newState = AppStateReducer(state, action)
 
         // then
+        val newList = listOf(
+            BookmarkState.Text(
+                id = 1,
+                text = "Text",
+                topic = null,
+                date = 123
+            ),
+            BookmarkState.Image(
+                id = 2,
+                url = "https://my.cdn/image.png",
+                topic = null,
+                date = 123
+            )
+        )
         assertEquals(MainState(
+            allBookmarks = newList,
             bookmarks = BookmarksState(
                 date = 123L,
-                bookmarks = listOf(
-                    BookmarkState.Text(
-                        id = 1,
-                        text = "Text",
-                        topic = null,
-                        date = 123
-                    ),
-                    BookmarkState.Image(
-                        id = 2,
-                        url = "https://my.cdn/image.png",
-                        topic = null,
-                        date = 123
-                    )
-                ))
+                bookmarks = newList)
         ), newState)
     }
 

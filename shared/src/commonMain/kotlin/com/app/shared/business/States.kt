@@ -75,6 +75,7 @@ data class PreviewState(
 ): AppState
 
 data class MainState(
+    val allBookmarks: List<BookmarkState> = listOf(),
     val bookmarks: BookmarksState = BookmarksState(),
     val topics: TopicsState = TopicsState(),
     val preview: PreviewState = PreviewState(),
