@@ -111,6 +111,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             val newTopics = old.topics.topics.filter { it.id != action.topicId }
             val newEditableTopics = old.editBookmark?.topics?.filter { it.id != action.topicId } ?: listOf()
             val newBookmarks = old.bookmarks.bookmarks.map(bookmarkFunc)
+            val allNewBookmarks = old.allBookmarks.map(bookmarkFunc)
 
             val newEditableBookmark = old.editBookmark?.copy(
                 topics = newEditableTopics,
@@ -118,6 +119,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             )
 
             old.copy(
+                allBookmarks = allNewBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
                 topics = old.topics.copy(topics = newTopics),
                 editBookmark = newEditableBookmark
@@ -151,6 +153,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             }
 
             val newBookmarks = old.bookmarks.bookmarks.map(bookmarkFunc)
+            val allNewBookmarks = old.allBookmarks.map(bookmarkFunc)
 
             val newEditableBookmark = old.editBookmark?.copy(
                 topics = newSelected,
@@ -158,6 +161,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             )
 
             old.copy(
+                allBookmarks = allNewBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
                 topics = old.topics.copy(topics = newTopics),
                 editBookmark = newEditableBookmark
