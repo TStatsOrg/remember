@@ -13,15 +13,13 @@ import SDWebImage
 
 class LinkPreviewCell: UITableViewCell, GenericIdentifiable {
     
-    @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
     
     func redraw(viewState: BookmarkLinkViewState) {
-        sourceLabel.text = viewState.source
         titleLabel.text = viewState.title
-        dateLabel.text = viewState.date
+        infoLabel.text = viewState.info
         iconImage.sd_setImage(with: viewState.icon)
         iconImage.isHidden = viewState.isIconHidden
     }

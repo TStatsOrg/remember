@@ -11,13 +11,11 @@ import ios_dependencies
 import ios_views
 
 class TextPreviewCell: UITableViewCell, GenericIdentifiable {
-    @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var textContentLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
  
     func redraw(viewState: BookmarkTextViewState) {
-        sourceLabel.text = viewState.source
-        dateLabel.text = viewState.date
+        infoLabel.text = viewState.info
         textContentLabel.text = viewState.text
     }
 }

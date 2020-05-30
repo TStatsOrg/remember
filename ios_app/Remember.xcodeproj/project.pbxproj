@@ -46,7 +46,6 @@
 		1B77239024829BAA006150F2 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; };
 		1B77239124829BAA006150F2 /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B7723932482A0E2006150F2 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7723922482A0E2006150F2 /* Colors.swift */; };
-		1B7723952482A1F0006150F2 /* StyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7723942482A1F0006150F2 /* StyleSheet.swift */; };
 		1B874FBA244B2611001E3543 /* RealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B874FB9244B2611001E3543 /* RealmDatabase.swift */; };
 		1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D02441E9600060EC1D /* AppDelegate.swift */; };
 		1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D22441E9600060EC1D /* SceneDelegate.swift */; };
@@ -466,7 +465,6 @@
 		1B7597D3244B4AAB009D5837 /* BoomarksViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoomarksViewState.swift; sourceTree = "<group>"; };
 		1B7597D5244B4AC8009D5837 /* MainHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHubView.swift; sourceTree = "<group>"; };
 		1B7723922482A0E2006150F2 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		1B7723942482A1F0006150F2 /* StyleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSheet.swift; sourceTree = "<group>"; };
 		1B874FB9244B2611001E3543 /* RealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabase.swift; sourceTree = "<group>"; };
 		1BA773CD2441E9600060EC1D /* Archie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Archie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773D02441E9600060EC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -689,7 +687,6 @@
 			isa = PBXGroup;
 			children = (
 				1B33F624246DD511001DEC4F /* Styles.swift */,
-				1B7723942482A1F0006150F2 /* StyleSheet.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -1888,7 +1885,6 @@
 				1BAEDA622461D186002A9D9B /* BookmarkViewState.swift in Sources */,
 				1B682C9324731A9C00658151 /* ScreenFactory.swift in Sources */,
 				1B682CD0247AE71800658151 /* ForegroundNotification.swift in Sources */,
-				1B7723952482A1F0006150F2 /* StyleSheet.swift in Sources */,
 				1BAEDA712461D621002A9D9B /* ManagedSearchView.swift in Sources */,
 				1B33F625246DD511001DEC4F /* Styles.swift in Sources */,
 				1B682CA224794A8300658151 /* EditDeleteBottomSheet.swift in Sources */,

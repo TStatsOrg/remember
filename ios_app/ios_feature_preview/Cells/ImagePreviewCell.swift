@@ -12,13 +12,11 @@ import ios_views
 import SDWebImage
 
 class ImagePreviewCell: UITableViewCell, GenericIdentifiable {
-    @IBOutlet weak var sourceLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var previewImage: UIImageView!
     
     func redraw(viewState: BookmarkImageViewState) {
-        sourceLabel.text = viewState.source
-        dateLabel.text = viewState.date
+        infoLabel.text = viewState.info
         previewImage.sd_setImage(with: viewState.url)
     }
 }

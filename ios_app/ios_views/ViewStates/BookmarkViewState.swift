@@ -59,6 +59,10 @@ public extension BookmarkViewStateType {
     var topic: String {
         return state.topic?.name.uppercased() ?? ""
     }
+    
+    var info: String {
+        return "\(source) - \(date)"
+    }
 }
 
 public struct BookmarkTextViewState: BookmarkViewStateType {

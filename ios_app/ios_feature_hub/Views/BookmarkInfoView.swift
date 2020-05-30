@@ -18,7 +18,7 @@ struct BookmarkInfoView: View {
     let viewState: BookmarkViewStateType
     
     var body: some View {
-        Text("\(viewState.source) - \(viewState.date)")
+        Text(viewState.info)
             .font(.caption)
             .foregroundColor(.secondary)
             .lineLimit(1)
