@@ -43,6 +43,8 @@
 		1B7597D0244B4A3D009D5837 /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B7597D4244B4AAB009D5837 /* BoomarksViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7597D3244B4AAB009D5837 /* BoomarksViewState.swift */; };
 		1B7597D6244B4AC8009D5837 /* MainHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7597D5244B4AC8009D5837 /* MainHubView.swift */; };
+		1B77239024829BAA006150F2 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; };
+		1B77239124829BAA006150F2 /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B874FBA244B2611001E3543 /* RealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B874FB9244B2611001E3543 /* RealmDatabase.swift */; };
 		1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D02441E9600060EC1D /* AppDelegate.swift */; };
 		1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D22441E9600060EC1D /* SceneDelegate.swift */; };
@@ -90,8 +92,6 @@
 		1BC2B07F24464D1B00E73BB6 /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC2B07E24464D1B00E73BB6 /* DependencyProvider.swift */; };
 		1BC2B080244781F700E73BB6 /* ios_dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */; };
 		1BC2B081244781F700E73BB6 /* ios_dependencies.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC2B05B2446464300E73BB6 /* ios_dependencies.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1BC2B0852447879200E73BB6 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; };
-		1BC2B0862447879200E73BB6 /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA774062441EDC60060EC1D /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BD96CB2246327A80080A6EF /* KeyboardUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD96CB1246327A80080A6EF /* KeyboardUtils.swift */; };
 		1BE01D33245205CD000FC4AF /* RealmTopicDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D32245205CD000FC4AF /* RealmTopicDAO.swift */; };
 		1BE01D3524520608000FC4AF /* RealmDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE01D3424520608000FC4AF /* RealmDAO.swift */; };
@@ -387,7 +387,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1BC2B0862447879200E73BB6 /* RememberShared.framework in Embed Frameworks */,
+				1B77239124829BAA006150F2 /* RememberShared.framework in Embed Frameworks */,
 				1BAEDA6C2461D4C9002A9D9B /* ios_views.framework in Embed Frameworks */,
 				1BC2B081244781F700E73BB6 /* ios_dependencies.framework in Embed Frameworks */,
 			);
@@ -577,9 +577,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BC2B0852447879200E73BB6 /* RememberShared.framework in Frameworks */,
 				1BC2B080244781F700E73BB6 /* ios_dependencies.framework in Frameworks */,
 				FE64FB8DBB6F57C7708316CF /* Pods_ios_feature_preview.framework in Frameworks */,
+				1B77239024829BAA006150F2 /* RememberShared.framework in Frameworks */,
 				1BAEDA6B2461D4C9002A9D9B /* ios_views.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2141,11 +2141,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				FRAMEWORK_SEARCH_PATHS = (
-					./gradlew,
-					":shared:packForXCode",
-					"-PXCODE_CONFIGURATION=${CONFIGURATION}",
-					"${inherited}",
 					"$SRCROOT/../shared/build/xcode-frameworks",
+					"${inherited}",
 				);
 				INFOPLIST_FILE = ios_feature_preview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2170,11 +2167,8 @@
 				CODE_SIGN_ENTITLEMENTS = ios_feature_preview/preview.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
-					./gradlew,
-					":shared:packForXCode",
-					"-PXCODE_CONFIGURATION=${CONFIGURATION}",
-					"${inherited}",
 					"$SRCROOT/../shared/build/xcode-frameworks",
+					"${inherited}",
 				);
 				INFOPLIST_FILE = ios_feature_preview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
