@@ -15,7 +15,8 @@
         android:name=".MyApplication"
         android:theme="@style/Theme.Remember">
 
-        <activity android:name="com.app.feature.hub.MainHubActivity">
+        <activity
+            android:name="com.app.feature.hub.MainHubActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

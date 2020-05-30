@@ -17,9 +17,17 @@ android {
     }
 
     buildTypes {
+        def API_DOMAIN = "API_DOMAIN"
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", API_DOMAIN, '"https://api.popjam.com/v2/"'
+        }
+
+        debug {
+            buildConfigField "String", API_DOMAIN, '"https://api.staging.popjam.com/v2/"'
         }
     }
 
@@ -35,6 +43,7 @@ android {
     viewBinding {
         enabled = true
     }
+
 }
 
 dependencies {

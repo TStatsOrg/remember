@@ -464,7 +464,7 @@
 		1B7597D3244B4AAB009D5837 /* BoomarksViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoomarksViewState.swift; sourceTree = "<group>"; };
 		1B7597D5244B4AC8009D5837 /* MainHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHubView.swift; sourceTree = "<group>"; };
 		1B874FB9244B2611001E3543 /* RealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabase.swift; sourceTree = "<group>"; };
-		1BA773CD2441E9600060EC1D /* Remember.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remember.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BA773CD2441E9600060EC1D /* Archie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Archie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773D02441E9600060EC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BA773D22441E9600060EC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1BA773D62441E9660060EC1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -787,7 +787,7 @@
 		1BA773CE2441E9600060EC1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1BA773CD2441E9600060EC1D /* Remember.app */,
+				1BA773CD2441E9600060EC1D /* Archie.app */,
 				1BA773E32441E9670060EC1D /* ios_app_tests.xctest */,
 				1BA773EE2441E9670060EC1D /* ios_app_uitests.xctest */,
 				1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */,
@@ -1238,7 +1238,7 @@
 			);
 			name = ios_app;
 			productName = Remember;
-			productReference = 1BA773CD2441E9600060EC1D /* Remember.app */;
+			productReference = 1BA773CD2441E9600060EC1D /* Archie.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1BA773E22441E9670060EC1D /* ios_app_tests */ = {
@@ -2391,7 +2391,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.Remember;
-				PRODUCT_NAME = Remember;
+				PRODUCT_NAME = Archie;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2417,7 +2417,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.Remember;
-				PRODUCT_NAME = Remember;
+				PRODUCT_NAME = Archie;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

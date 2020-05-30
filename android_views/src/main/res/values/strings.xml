@@ -2,10 +2,10 @@
 <resources>
 
     <!-- general app -->
-    <string name="app_name">Remember</string>
+    <string name="app_name">Archie</string>
 
     <!-- main hub feature -->
-    <string name="main_hub_title">Remember</string>
+    <string name="main_hub_title">Bookmarks</string>
     <string name="main_hub_edit">Edit</string>
     <string name="main_hub_clear">Clear</string>
     <string name="main_hub_edit_done">Done</string>
