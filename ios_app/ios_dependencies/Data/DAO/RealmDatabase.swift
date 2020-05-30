@@ -12,7 +12,7 @@ import RealmSwift
 
 public class RealmDatabase: NSObject {
     
-    private static let GROUP_ID = "group.app.remember"
+    private static let GROUP_ID = "group.app.keepjar"
     private static let PATH_COMPONENT = "db.realm"
     
     private lazy var config: Realm.Configuration = {

@@ -3,7 +3,7 @@ buildscript {
     // app SDK versions
     ext.compileVersion = 29
     ext.minVersion = 21
-    ext.targetVersion = 21
+    ext.targetVersion = 28
 
     // gradle
     ext.gradleVersion = '4.0.0-rc01'
