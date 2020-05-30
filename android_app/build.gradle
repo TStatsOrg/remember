@@ -7,7 +7,7 @@ android {
     compileSdkVersion compileVersion
 
     defaultConfig {
-        applicationId "com.app.remember"
+        applicationId "com.app.keepjar"
         minSdkVersion minVersion
         targetSdkVersion targetVersion
         versionCode 2

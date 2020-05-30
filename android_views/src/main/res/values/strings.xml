@@ -2,7 +2,7 @@
 <resources>
 
     <!-- general app -->
-    <string name="app_name">Archie</string>
+    <string name="app_name">KeepJar</string>
 
     <!-- main hub feature -->
     <string name="main_hub_title">Bookmarks</string>

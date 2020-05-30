@@ -40,7 +40,7 @@ public struct EditBookmarkView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 20, height: 20)
                     } else {
-                        Color(UIColor.white)
+                        Color(.clear)
                             .frame(width: 20.0, height: 20.0)
                     }
                     Text(content.name)

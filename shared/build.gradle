@@ -1,21 +1,26 @@
 apply plugin: 'kotlin-multiplatform'
+//apply plugin: "org.jetbrains.kotlin.native.cocoapods"
 apply plugin: 'com.android.library'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'jacoco'
 
 def RememberFramework = "RememberShared"
 
+// CocoaPods requires the podspec to have a version.
+version = "1.0"
+
 kotlin {
     targets {
-        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") ? presets.iosArm64 : presets.iosX64
+        def is32Bit = project.findProperty("is32bit")?.toBoolean() ?: false
         def buildForDevice = project.findProperty("device")?.toBoolean() ?: false
+        def iosPreset = (buildForDevice) ? presets.iosArm64 : presets.iosX64
 
-        fromPreset(iOSTarget, 'iOS') {
+        iosPreset = (is32Bit) ? presets.iosArm32 : iosPreset
+        fromPreset(iosPreset, 'iOS') {
             binaries {
-//                freeCompilerArgs += "-Xobjc-generics"
                 framework(RememberFramework) {
-//                    transitiveExport = true
-//
+                    transitiveExport = true
+
                     // Disable bitcode embedding for the simulator build.
                     if (!buildForDevice) {
                         embedBitcode("disable")
@@ -26,6 +31,15 @@ kotlin {
 
         fromPreset(presets.android, 'android')
     }
+
+//    cocoapods {
+//        // Configure fields required by CocoaPods.
+//        summary = "KeepJar shared library"
+//        homepage = "https://github.com/JetBrains/kotlin-native"
+//        frameworkName = "RememberShared"
+//        // Configure a dependency on AFNetworking. It will be added in all macOS and iOS targets.
+////        pod("AFNetworking", "~> 3.2.0")
+//    }
 
     sourceSets {
         commonMain {
@@ -144,6 +158,22 @@ configurations {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Setup Packing for XCode
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+task copyFramework {
+    def buildType = project.findProperty("kotlin.build.type") ?: "DEBUG"
+    dependsOn "link${RememberFramework}${buildType.toLowerCase().capitalize()}FrameworkIOS"
+
+    doLast {
+        def srcFile = kotlin.targets.iOS.binaries.getFramework("${RememberFramework}", buildType).outputFile
+        def targetDir = getProperty("configuration.build.dir")
+        copy {
+            from srcFile.parent
+            into targetDir
+            include "${RememberFramework}.framework/**"
+            include "${RememberFramework}.framework.dSYM"
+        }
+    }
+}
 
 task packForXCode(type: Sync) {
     final File frameworkDir = new File(buildDir, "xcode-frameworks")
