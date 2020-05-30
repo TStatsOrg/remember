@@ -11,7 +11,6 @@ class ImagePreviewViewHolder(
 
     override fun redraw(viewState: BookmarkViewState.Image) = with(viewState) {
         loader.load(url, binding.bookmarkImage)
-        binding.bookmarkSaveDate.text = date
-        binding.bookmarkSource.text = source
+        binding.bookmarkInfo.text = info
     }
 }

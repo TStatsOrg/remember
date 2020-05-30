@@ -20,7 +20,7 @@ public struct NoSearchResultsView: View {
             if state.noSearchResults {
                 Image(systemName: "nosign")
                     .resizable()
-                    .colorMultiply(.secondary)
+                    .foregroundColor(.secondary)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 80, height: 80)
                     .padding(top: 20)

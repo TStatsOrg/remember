@@ -9,7 +9,6 @@ class TextPreviewViewHolder(
 
     override fun redraw(viewState: BookmarkViewState.Text) = with(viewState) {
         binding.bookmarkTitle.text = text
-        binding.bookmarkSaveDate.text = date
-        binding.bookmarkSource.text = source
+        binding.bookmarkInfo.text = info
     }
 }

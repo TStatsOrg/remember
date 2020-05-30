@@ -10,9 +10,8 @@ class LinkPreviewViewHolder(
 ): PreviewViewHolder<BookmarkViewState.Link>(binding.root) {
 
     override fun redraw(viewState: BookmarkViewState.Link) = with(viewState) {
-        binding.bookmarkSaveDate.text = date
         binding.bookmarkTitle.text = title
-        binding.bookmarkSource.text = source
+        binding.bookmarkInfo.text = info
         loader.load(icon, binding.previewIcon)
         binding.previewIcon.visibility = iconVisibility
     }

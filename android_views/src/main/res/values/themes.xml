@@ -8,7 +8,7 @@
     <color name="color_black">#0D1B1E</color>
     <color name="color_accent">#384EAF</color>
     <color name="color_red">#b00020</color>
-    <color name="color_accent_more">#FFDB2C</color>
+    <color name="color_highlight">#FFDB2C</color>
 
     <!--Top level DayNight theme to be used in AndroidManifest.xml-->
     <style name="Theme.Remember" parent="Base.Theme.Remember"/>

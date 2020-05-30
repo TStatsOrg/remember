@@ -8,7 +8,8 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -36,12 +37,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:counterMaxLength="30"
             app:counterEnabled="true"
+            app:hintTextColor="@color/color_dark_gray"
             android:hint="@string/topic_input_placeholder">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/topic_name_input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textCursorDrawable="@drawable/cursor"
                 android:lines="1"
                 tools:text="Wow"/>
 
