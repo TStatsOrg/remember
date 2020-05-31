@@ -2159,6 +2159,7 @@
 				CODE_SIGN_ENTITLEMENTS = ios_feature_preview/preview.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = K79XEZP48K;
 				FRAMEWORK_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = ios_feature_preview/Info.plist;
@@ -2167,7 +2168,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.keepjar.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2186,6 +2187,7 @@
 				CODE_SIGN_ENTITLEMENTS = ios_feature_preview/preview.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = K79XEZP48K;
 				FRAMEWORK_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = ios_feature_preview/Info.plist;
@@ -2194,7 +2196,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.keepjar.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2462,6 +2464,7 @@
 				CODE_SIGN_ENTITLEMENTS = ios_app/app.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ios_app/Preview Content\"";
 				DEVELOPMENT_TEAM = K79XEZP48K;
 				ENABLE_PREVIEWS = YES;
@@ -2471,7 +2474,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.keepjar;
 				PRODUCT_NAME = KeepJar;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2489,6 +2492,7 @@
 				CODE_SIGN_ENTITLEMENTS = ios_app/app.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ios_app/Preview Content\"";
 				DEVELOPMENT_TEAM = K79XEZP48K;
 				ENABLE_PREVIEWS = YES;
@@ -2498,7 +2502,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.keepjar;
 				PRODUCT_NAME = KeepJar;
 				PROVISIONING_PROFILE_SPECIFIER = "";
