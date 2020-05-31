@@ -17,22 +17,22 @@ import ios_feature_topic_edit
 struct AppScreenFactory: ScreenFactory {
     
     func buildMainHubScreen() -> AnyView {
-        return AnyView(NavigationView { MainHubView() })
+        return AnyView(NavigationView { MainHubView() }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildTopicsListScreen() -> AnyView {
-        return AnyView(NavigationView { TopicsView() })
+        return AnyView(NavigationView { TopicsView() }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildEditBookmarkScreen(bookmarkId: Int32) -> AnyView {
-        return AnyView(NavigationView { EditBookmarkView(bookmarkId: bookmarkId) })
+        return AnyView(NavigationView { EditBookmarkView(bookmarkId: bookmarkId) }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildAddTopicScreen() -> AnyView {
-        return AnyView(NavigationView { AddTopicView() })
+        return AnyView(NavigationView { AddTopicView() }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildEditTopicScreen(topicId: Int32) -> AnyView {
-        return AnyView(NavigationView { EditTopicView(topicId: topicId) })
+        return AnyView(NavigationView { EditTopicView(topicId: topicId) }.navigationViewStyle(StackNavigationViewStyle()))
     }
 }

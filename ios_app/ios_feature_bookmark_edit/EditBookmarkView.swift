@@ -35,8 +35,8 @@ public struct EditBookmarkView: View {
                 HStack {
                     if content.isSelected {
                         Image(systemName: "checkmark")
-                            .renderingMode(.original)
                             .resizable()
+                            .foregroundColor(.secondary)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 20, height: 20)
                     } else {
