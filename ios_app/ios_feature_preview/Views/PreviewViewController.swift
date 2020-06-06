@@ -38,9 +38,10 @@ class PreviewViewController: UIViewController {
         }
         
         viewModel.clear()
-
+        
         capture.capture(input: extensionContext) { (value) in
-            self.viewModel.present(capturedRawData: value)
+            self.viewModel.present(capturedRawData: "https://link.medium.com/W9eyD6WiW6")
+//            self.viewModel.present(capturedRawData: value)
         }
     }
     

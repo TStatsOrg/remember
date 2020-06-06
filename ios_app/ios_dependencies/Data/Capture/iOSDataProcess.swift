@@ -12,6 +12,8 @@ import SwiftSoup
 
 public class iOSDataProcess: NSObject, RawDataProcess {
     
+    private let retriever = UrlRetriever()
+    
     public func process(capture: String?) -> RawDataProcessItem {
             
         // if null, it's unknown
@@ -33,8 +35,14 @@ public class iOSDataProcess: NSObject, RawDataProcess {
         guard let url = URL(string: content) else {
             return RawDataProcessItem.Unknown()
         }
-
-        guard let contents = try? String(contentsOf: url) else {
+        
+        // get the final Url
+        guard let finalUrl = retriever.getFinalUrl(url: url) else {
+            return RawDataProcessItem.Unknown()
+        }
+        
+        // get the contents
+        guard let contents = try? String(contentsOf: finalUrl) else {
             return RawDataProcessItem.Unknown()
         }
 

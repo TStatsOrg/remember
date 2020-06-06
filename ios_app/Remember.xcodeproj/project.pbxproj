@@ -15,6 +15,8 @@
 		1B22A8F92466D5FB00C215C0 /* GenericIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEDA44245EDBD2002A9D9B /* GenericIdentifiable.swift */; };
 		1B33F622246DC840001DEC4F /* BookmarkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B33F621246DC840001DEC4F /* BookmarkInfoView.swift */; };
 		1B33F625246DD511001DEC4F /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B33F624246DD511001DEC4F /* Styles.swift */; };
+		1B503435248BB820006ACEA7 /* UrlRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B503434248BB820006ACEA7 /* UrlRetriever.swift */; };
+		1B503437248BBC51006ACEA7 /* WebKitUrlRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B503436248BBC51006ACEA7 /* WebKitUrlRetriever.swift */; };
 		1B682C9324731A9C00658151 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B682C9224731A9C00658151 /* ScreenFactory.swift */; };
 		1B682C9524731AFA00658151 /* AppScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B682C9424731AFA00658151 /* AppScreenFactory.swift */; };
 		1B682CA224794A8300658151 /* EditDeleteBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B682CA124794A8300658151 /* EditDeleteBottomSheet.swift */; };
@@ -382,6 +384,8 @@
 		1B1826442444D6AD002F1361 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B33F621246DC840001DEC4F /* BookmarkInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkInfoView.swift; sourceTree = "<group>"; };
 		1B33F624246DD511001DEC4F /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		1B503434248BB820006ACEA7 /* UrlRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlRetriever.swift; sourceTree = "<group>"; };
+		1B503436248BBC51006ACEA7 /* WebKitUrlRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitUrlRetriever.swift; sourceTree = "<group>"; };
 		1B682C9224731A9C00658151 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		1B682C9424731AFA00658151 /* AppScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScreenFactory.swift; sourceTree = "<group>"; };
 		1B682CA124794A8300658151 /* EditDeleteBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeleteBottomSheet.swift; sourceTree = "<group>"; };
@@ -714,6 +718,8 @@
 			children = (
 				1BC2B0682446465D00E73BB6 /* ExtensionContextDataCapture.swift */,
 				1BC2B0672446465D00E73BB6 /* iOSDataProcess.swift */,
+				1B503434248BB820006ACEA7 /* UrlRetriever.swift */,
+				1B503436248BBC51006ACEA7 /* WebKitUrlRetriever.swift */,
 			);
 			path = Capture;
 			sourceTree = "<group>";
@@ -1876,6 +1882,8 @@
 				1BC2B078244649BB00E73BB6 /* RealmImageBookmarkDAO.swift in Sources */,
 				1BC2B06A2446465D00E73BB6 /* ExtensionContextDataCapture.swift in Sources */,
 				1BC2B0742446481600E73BB6 /* RealmLinkBookmarkObject.swift in Sources */,
+				1B503437248BBC51006ACEA7 /* WebKitUrlRetriever.swift in Sources */,
+				1B503435248BB820006ACEA7 /* UrlRetriever.swift in Sources */,
 				1BC2B0762446482000E73BB6 /* RealmTextBookmarkObject.swift in Sources */,
 				1BC2B0692446465D00E73BB6 /* iOSDataProcess.swift in Sources */,
 				1BC2B07F24464D1B00E73BB6 /* DependencyProvider.swift in Sources */,
