@@ -73,8 +73,7 @@ public class DependencyProvider {
         register {
             SharedPreviewViewModel(store: self.resolve(),
                                    bookmarkRepository: self.resolve(),
-                                   calendar: self.resolve(),
-                                   processor: self.resolve()) as PreviewViewModel
+                                   calendar: self.resolve()) as PreviewViewModel
         }
         
         register {

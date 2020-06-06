@@ -38,7 +38,6 @@ class PreviewViewController: UIViewController {
             self.extensionContext?.completeRequest(returningItems: [])
         }
         
-        viewModel.clear()
         viewModel.start()
         
         capture.capture(input: extensionContext) { (value) in
