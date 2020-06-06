@@ -2,8 +2,7 @@ package com.app.remember
 
 import android.content.Context
 import android.content.Intent
-import com.app.dependencies.data.capture.AndroidDataProcess
-import com.app.dependencies.data.capture.IntentDataCapture
+import com.app.dependencies.data.capture.*
 import com.app.dependencies.data.dao.RealmDatabase
 import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.dependencies.data.utils.GlideImageLoader
@@ -49,9 +48,11 @@ class AppDependencyProvider(private val appContext: Context) {
         single<Navigation> { AppNavigation() }
 
         // utils
+        factory<HTMLParser> { JsoupHTMLParser() }
+        factory<ImageParser> { MediaStoreImageParser(context = appContext) }
         single<CalendarUtils> { SystemCalendarUtils() }
         single<RawDataCapture<Intent>> { IntentDataCapture() }
-        single<RawDataProcess> { AndroidDataProcess(context = appContext) }
+        single<RawDataProcess> { AndroidDataProcess(htmlParser = get(), imageParser = get()) }
         single<AndroidImageLoader> { GlideImageLoader() }
         single<ForegroundObserver> { AppLifecycleObserver() }
 
