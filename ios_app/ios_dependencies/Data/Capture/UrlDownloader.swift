@@ -8,7 +8,14 @@
 
 import Foundation
 
-struct UrlDownloader {
+/*
+ * The URL downloader downloads the contents of a URL, as a String
+ */
+protocol UrlDownloader {
+    func download(url: URL, callback: @escaping (Result<String, DownloaderError>) -> Void)
+}
+
+struct SimpleUrlDownloader: UrlDownloader {
     
     func download(url: URL, callback: @escaping (Result<String, DownloaderError>) -> Void) {
         DispatchQueue.global(qos: .default).async {
@@ -26,6 +33,6 @@ struct UrlDownloader {
             }
         }
     }
-    
-    struct DownloaderError: Error {}
 }
+
+struct DownloaderError: Error {}

@@ -54,9 +54,14 @@ public class DependencyProvider {
         register { RealmDatabase() as Database }
         
         // different utils
+        register { WebKitUrlResolver() as UrlResolver }
+        register { SimpleUrlDownloader() as UrlDownloader }
+        register { SwiftSoupHTMLParser() as HTMLParser }
         register { SystemCalendarUtils() as CalendarUtils }
         register { ExtensionContextDataCapture() as RawDataCapture }
-        register { iOSDataProcess() as RawDataProcess }
+        register { iOSDataProcess(resolver: self.resolve(),
+                                  downloader: self.resolve(),
+                                  parser: self.resolve()) as RawDataProcess }
         
         // repos
         register {

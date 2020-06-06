@@ -9,9 +9,13 @@
 import Foundation
 import SwiftSoup
 
-struct HTMLParser {
+protocol HTMLParser {
+    func parse(content: String) -> Result<HTMLOutput, ParserError>
+}
+
+struct SwiftSoupHTMLParser: HTMLParser {
     
-    func parse(content: String) -> Result<Output, ParserError> {
+    func parse(content: String) -> Result<HTMLOutput, ParserError> {
         
         do {
             let document: Document = try SwiftSoup.parse(content)
@@ -21,19 +25,19 @@ struct HTMLParser {
             let thumbnail1Image = try? document.body()?.select("link[rel=\"image_src\"]").first()?.attr("href")
             let thumbnial2Image = try? document.head()?.select("meta[property=og:image]").first()?.attr("content")
 
-            return .success(Output(title: title,
-                                   description: description,
-                                   icon: thumbnial2Image ?? thumbnail1Image ?? iconImage))
+            return .success(HTMLOutput(title: title,
+                                       description: description,
+                                       icon: thumbnial2Image ?? thumbnail1Image ?? iconImage))
         } catch {
             return .failure(ParserError())
         }
     }
-    
-    struct Output {
-        let title: String?
-        let description: String?
-        let icon: String?
-    }
-    
-    struct ParserError: Error {}
 }
+
+struct HTMLOutput {
+    let title: String?
+    let description: String?
+    let icon: String?
+}
+
+struct ParserError: Error {}

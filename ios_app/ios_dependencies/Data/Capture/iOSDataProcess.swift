@@ -10,11 +10,19 @@ import Foundation
 import RememberShared
 import SwiftSoup
 
-public class iOSDataProcess: NSObject, RawDataProcess {
+public class iOSDataProcess: RawDataProcess {
     
-    private let retriever = WebKitUrlRetriever()
-    private let downloader = UrlDownloader()
-    private let parser = HTMLParser()
+    private let resolver: UrlResolver
+    private let downloader: UrlDownloader
+    private let parser: HTMLParser
+    
+    init(resolver: UrlResolver,
+         downloader: UrlDownloader,
+         parser: HTMLParser) {
+        self.resolver = resolver
+        self.downloader = downloader
+        self.parser = parser
+    }
     
     public func process(capture: String?, result: @escaping (RawDataProcessItem) -> Void) {
         
@@ -43,7 +51,7 @@ public class iOSDataProcess: NSObject, RawDataProcess {
         }
         
         // get the final url, after all redirects
-        retriever.getFinalUrl(url: url) { (finalUrl) in
+        resolver.getFinalUrl(url: url) { (finalUrl) in
             self.downloader.download(url: finalUrl) { (contentResult) in
                 switch contentResult {
                 case .success(let content):

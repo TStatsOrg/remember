@@ -9,7 +9,15 @@
 import UIKit
 import WebKit
 
-class WebKitUrlRetriever: NSObject {
+/*
+ * The URL resolver is here to take a base URL and resolve it through redirections, etc
+ * until the final URL is reachedd, from which actual data can be safely extracted.
+ */
+protocol UrlResolver {
+    func getFinalUrl(url: URL, callback: @escaping (URL) -> Void)
+}
+
+class WebKitUrlResolver: NSObject {
     
     private static let TIMEOUT = 1.5
     
@@ -18,12 +26,6 @@ class WebKitUrlRetriever: NSObject {
     private var timer: Timer?
     
     private var isLoading: Bool = false
-    
-    func getFinalUrl(url: URL, callback: @escaping (URL) -> Void) {
-        prepareWebView(webView: webView)
-        webView.load(URLRequest(url: url))
-        self.callback = callback
-    }
     
     private func prepareWebView(webView: WKWebView) {
         webView.navigationDelegate = self
@@ -37,7 +39,16 @@ class WebKitUrlRetriever: NSObject {
     }
 }
 
-extension WebKitUrlRetriever: WKNavigationDelegate {
+extension WebKitUrlResolver: UrlResolver {
+    
+    func getFinalUrl(url: URL, callback: @escaping (URL) -> Void) {
+        prepareWebView(webView: webView)
+        webView.load(URLRequest(url: url))
+        self.callback = callback
+    }
+}
+
+extension WebKitUrlResolver: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         isLoading = true
@@ -48,7 +59,7 @@ extension WebKitUrlRetriever: WKNavigationDelegate {
         isLoading = false
         
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: WebKitUrlRetriever.TIMEOUT, repeats: false) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: WebKitUrlResolver.TIMEOUT, repeats: false) { _ in
             
             if !self.isLoading {
                 if let url = webView.url {
