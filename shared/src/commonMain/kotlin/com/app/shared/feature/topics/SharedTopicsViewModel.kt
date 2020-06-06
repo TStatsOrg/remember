@@ -1,7 +1,7 @@
 package com.app.shared.feature.topics
 
 import com.app.shared.business.*
-import com.app.shared.coroutines.MainDispatcher
+import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.BookmarkRepository
@@ -23,7 +23,7 @@ class SharedTopicsViewModel(
     private val storeObserver = store.observe()
 
     override fun loadTopics() {
-        scope.launch(context = MainDispatcher) {
+        scope.launch(context = DispatcherFactory.main()) {
 
             // start load
             store.dispatch(action = Actions.Topics.Load.Start(time = calendar.getTime()))
@@ -37,13 +37,13 @@ class SharedTopicsViewModel(
     }
 
     override fun filter(byTopic: TopicState) {
-        scope.launch(context = MainDispatcher) {
+        scope.launch(context = DispatcherFactory.main()) {
             store.dispatch(action = Actions.Bookmark.Filter(topic = byTopic))
         }
     }
 
     override fun delete(topicId: Int) {
-        scope.launch(context = MainDispatcher) {
+        scope.launch(context = DispatcherFactory.main()) {
 
             val defaultTopic = TopicDTO.GeneralTopic()
 

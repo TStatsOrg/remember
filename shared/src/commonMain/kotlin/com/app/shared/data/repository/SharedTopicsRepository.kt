@@ -1,9 +1,8 @@
 package com.app.shared.data.repository
 
-import com.app.shared.coroutines.IODispatcher
+import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.data.dao.TopicDAO
 import com.app.shared.data.dto.TopicDTO
-import com.app.shared.utils.MLogger
 import kotlinx.coroutines.withContext
 
 class SharedTopicsRepository(
@@ -11,13 +10,13 @@ class SharedTopicsRepository(
 ): TopicsRepository {
 
     override suspend fun save(dto: TopicDTO) {
-        withContext(context = IODispatcher) {
+        withContext(context = DispatcherFactory.io()) {
             topicDAO.insert(dto = dto)
         }
     }
 
     override suspend fun load(): List<TopicDTO> {
-        return withContext(context = IODispatcher) {
+        return withContext(context = DispatcherFactory.io()) {
             val userTopics = topicDAO.getAll().sortedBy { it.name }
             val defaultTopic = getDefaultTopics()
 
@@ -28,7 +27,7 @@ class SharedTopicsRepository(
     private fun getDefaultTopics() = listOf(TopicDTO.GeneralTopic())
 
     override suspend fun delete(topicId: Int) {
-        withContext(context = IODispatcher) {
+        withContext(context = DispatcherFactory.io()) {
             topicDAO.delete(topicId = topicId)
         }
     }

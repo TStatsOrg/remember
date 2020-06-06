@@ -1,6 +1,6 @@
 package com.app.shared.data.repository
 
-import com.app.shared.coroutines.IODispatcher
+import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.data.dao.ImageBookmarkDAO
 import com.app.shared.data.dao.LinkBookmarkDAO
 import com.app.shared.data.dao.TextBookmarkDAO
@@ -15,7 +15,7 @@ class SharedBookmarkRepository(
 ): BookmarkRepository {
 
     override suspend fun save(dto: BookmarkDTO) {
-        withContext(context = IODispatcher) {
+        withContext(context = DispatcherFactory.io()) {
             when (dto) {
                 is BookmarkDTO.TextBookmarkDTO -> textBookmarkDAO.insert(dto = dto)
                 is BookmarkDTO.LinkBookmarkDTO -> linkBookmarkDAO.insert(dto = dto)
@@ -25,7 +25,7 @@ class SharedBookmarkRepository(
     }
 
     override suspend fun load(): List<BookmarkDTO> {
-        return withContext(context = IODispatcher) {
+        return withContext(context = DispatcherFactory.io()) {
             val texts = textBookmarkDAO.getAll()
             val links = linkBookmarkDAO.getAll()
             val images = imageBookmarkDAO.getAll()
@@ -35,7 +35,7 @@ class SharedBookmarkRepository(
     }
 
     override suspend fun delete(bookmarkId: Int) {
-        withContext(context = IODispatcher) {
+        withContext(context = DispatcherFactory.io()) {
             textBookmarkDAO.delete(bookmarkId = bookmarkId)
             linkBookmarkDAO.delete(bookmarkId = bookmarkId)
             imageBookmarkDAO.delete(bookmarkId = bookmarkId)
@@ -43,7 +43,7 @@ class SharedBookmarkRepository(
     }
 
     override suspend fun replaceTopic(topicId: Int, withTopicDTO: TopicDTO) {
-        withContext(context = IODispatcher) {
+        withContext(context = DispatcherFactory.io()) {
             textBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
             linkBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
             imageBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
