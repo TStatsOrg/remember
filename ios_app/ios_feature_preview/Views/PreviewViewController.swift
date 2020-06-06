@@ -16,8 +16,6 @@ class PreviewViewController: UIViewController {
     
     private let dataSource = PreviewDataSource()
     @Injected var viewModel: PreviewViewModel
-    @Injected var capture: RawDataCapture
-    @Injected var process: RawDataProcess
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -38,13 +36,7 @@ class PreviewViewController: UIViewController {
             self.extensionContext?.completeRequest(returningItems: [])
         }
         
-        viewModel.start()
-        
-        capture.capture(input: extensionContext) { (value) in
-            self.process.process(capture: value) { (item) in
-                self.viewModel.present(processedData: item)
-            }
-        }
+        viewModel.capture(input: extensionContext)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -5,11 +5,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.views.navigation.Navigation
 import com.app.feature.preview.databinding.ViewPreviewBinding
-import com.app.shared.data.capture.RawDataCapture
-import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.feature.preview.PreviewViewModel
+import com.app.views.navigation.Navigation
 import org.koin.android.ext.android.inject
 
 class PreviewActivity: AppCompatActivity() {
@@ -17,10 +15,8 @@ class PreviewActivity: AppCompatActivity() {
     private val adapter: PreviewsAdapter by inject()
     private val layoutManager = LinearLayoutManager(this)
     private val animator = DefaultItemAnimator()
-    private val viewModel: PreviewViewModel by inject()
+    private val viewModel: PreviewViewModel<Intent> by inject()
     private val navigator: Navigation by inject()
-    private val capture: RawDataCapture<Intent> by inject()
-    private val process: RawDataProcess by inject()
     private val binding: ViewPreviewBinding by lazy { ViewPreviewBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,13 +42,7 @@ class PreviewActivity: AppCompatActivity() {
             viewModel.save()
         }
 
-        viewModel.start()
-
-        capture.capture(input = intent) { capture ->
-            process.process(capture = capture) { data ->
-                viewModel.present(processedData = data)
-            }
-        }
+        viewModel.capture(input = intent)
     }
 
     private fun redraw(viewState: PreviewsViewState) = with(viewState) {

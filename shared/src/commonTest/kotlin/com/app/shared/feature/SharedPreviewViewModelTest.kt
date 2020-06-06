@@ -6,6 +6,7 @@ import com.app.shared.business.BookmarkState
 import com.app.shared.business.MainState
 import com.app.shared.business.PreviewState
 import com.app.shared.coroutines.runTest
+import com.app.shared.data.capture.RawDataCapture
 import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.feature.preview.SharedPreviewViewModel
@@ -22,25 +23,17 @@ class SharedPreviewViewModelTest: DefaultTest() {
     private val store = mockk<Store<MainState>>(relaxed = true)
     private val calendar = mockk<CalendarUtils>(relaxed = true)
     private val repository = mockk<BookmarkRepository>(relaxed = true)
+    private val capture = mockk<RawDataCapture<String>>(relaxed = true)
+    private val process = mockk<RawDataProcess>(relaxed = true)
 
     // to test
     private val viewModel = SharedPreviewViewModel(
         store = store,
         calendar = calendar,
-        bookmarkRepository = repository
+        bookmarkRepository = repository,
+        capture = capture,
+        process = process
     )
-
-    @Test
-    fun `view model can start`() = runTest {
-        // when
-        viewModel.start()
-
-        // then
-        verify {
-            store.dispatch(action = Actions.Bookmark.Preview.Start)
-            store.dispatch(action = Actions.Bookmark.Preview.Reset)
-        }
-    }
 
     @Test
     fun `view model ca present raw data as a bookmark`() = runTest {
@@ -54,12 +47,20 @@ class SharedPreviewViewModelTest: DefaultTest() {
         )
 
         every { calendar.getTime() } returns 123L
+        every { capture.capture(input = "https://my.website.com/article.01.html", data = any()) } answers {
+            secondArg<(String?)->Unit>().invoke(rawData)
+        }
+        every { process.process(capture = "https://my.website.com/article.01.html", result = any()) } answers {
+            secondArg<(RawDataProcess.Item) -> Unit>().invoke(result)
+        }
 
         // when
-        viewModel.present(processedData = result)
+        viewModel.capture(input = "https://my.website.com/article.01.html")
 
         // then
         verify {
+            store.dispatch(action = Actions.Bookmark.Preview.Reset)
+            store.dispatch(action = Actions.Bookmark.Preview.Start)
             store.dispatch(action = any())
         }
     }

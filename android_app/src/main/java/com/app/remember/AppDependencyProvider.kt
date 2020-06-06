@@ -71,11 +71,13 @@ class AppDependencyProvider(private val appContext: Context) {
         }
 
         // view models
-        factory<PreviewViewModel> {
+        factory<PreviewViewModel<Intent>> {
             SharedPreviewViewModel(
                 store = get(),
                 bookmarkRepository = get(),
-                calendar = get())
+                calendar = get(),
+                process = get(),
+                capture = get())
         }
 
         factory<MainHubViewModel> {
