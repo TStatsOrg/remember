@@ -32,7 +32,7 @@ class WebKitUrlRetriever: NSObject {
     }
     
     private func getTopMostViewController() -> UIViewController? {
-        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let keyWindow = UIApplication.shared.windows.first
         return keyWindow?.rootViewController
     }
 }

@@ -9,9 +9,6 @@ import com.app.shared.coroutines.runTest
 import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.feature.preview.SharedPreviewViewModel
-import com.app.shared.observ.InfiniteEmitter
-import com.app.shared.observ.Observer
-import com.app.shared.observ.SimpleObserver
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
 import io.mockk.coEvery
@@ -19,30 +16,28 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class SharedPreviewViewModelTest: DefaultTest() {
 
     private val store = mockk<Store<MainState>>(relaxed = true)
     private val calendar = mockk<CalendarUtils>(relaxed = true)
-    private val processor = mockk<RawDataProcess>(relaxed = true)
     private val repository = mockk<BookmarkRepository>(relaxed = true)
 
     // to test
     private val viewModel = SharedPreviewViewModel(
         store = store,
         calendar = calendar,
-        processor = processor,
         bookmarkRepository = repository
     )
 
     @Test
-    fun `view model can clear`() = runTest {
+    fun `view model can start`() = runTest {
         // when
-        viewModel.clear()
+        viewModel.start()
 
         // then
         verify {
+            store.dispatch(action = Actions.Bookmark.Preview.Start)
             store.dispatch(action = Actions.Bookmark.Preview.Reset)
         }
     }
@@ -59,13 +54,14 @@ class SharedPreviewViewModelTest: DefaultTest() {
         )
 
         every { calendar.getTime() } returns 123L
-        every { processor.process(capture = rawData) } returns result
 
         // when
-        viewModel.present(capturedRawData = rawData)
+        viewModel.present(processedData = result)
 
         // then
-        verify { store.dispatch(action = Actions.Bookmark.Preview.Start) }
+        verify {
+            store.dispatch(action = any())
+        }
     }
 
     @Test

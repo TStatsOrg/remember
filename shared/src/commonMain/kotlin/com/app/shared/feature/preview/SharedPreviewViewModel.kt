@@ -15,34 +15,27 @@ import com.app.shared.utils.CalendarUtils
 import com.app.shared.utils.toDTO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class SharedPreviewViewModel(
     private val store: Store<MainState>,
     private val bookmarkRepository: BookmarkRepository,
-    private val calendar: CalendarUtils,
-    private val processor: RawDataProcess
+    private val calendar: CalendarUtils
 ): PreviewViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
     private val emitter = InfiniteEmitter<Int>()
 
-    override fun clear() = store.dispatch(action = Actions.Bookmark.Preview.Reset)
+    override fun start() {
+        store.dispatch(action = Actions.Bookmark.Preview.Reset)
+        store.dispatch(action = Actions.Bookmark.Preview.Start)
+    }
 
-    override fun present(capturedRawData: String?) {
+    override fun present(processedData: RawDataProcess.Item) {
         scope.launch(context = DispatcherFactory.main()) {
 
-            // start loading
-            store.dispatch(action = Actions.Bookmark.Preview.Start)
-
-            // do this on a secondary thread
-            val data = withContext(context = DispatcherFactory.default()) {
-                return@withContext processor.process(capture = capturedRawData)
-            }
-
-            // transform to DTO
-            val dto = data.toDTO(date = calendar.getTime(), topic = TopicDTO.GeneralTopic())
+            // get the DTO from the processed data
+            val dto = processedData.toDTO(date = calendar.getTime(), topic = TopicDTO.GeneralTopic())
 
             // send action
             if (dto != null) {

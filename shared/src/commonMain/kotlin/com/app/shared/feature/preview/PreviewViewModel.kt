@@ -1,11 +1,12 @@
 package com.app.shared.feature.preview
 
 import com.app.shared.business.PreviewState
+import com.app.shared.data.capture.RawDataProcess
 
 interface PreviewViewModel {
 
-    fun clear()
-    fun present(capturedRawData: String?)
+    fun start()
+    fun present(processedData: RawDataProcess.Item)
     fun save()
 
     fun observePreviewState(callback: (PreviewState) -> Unit)

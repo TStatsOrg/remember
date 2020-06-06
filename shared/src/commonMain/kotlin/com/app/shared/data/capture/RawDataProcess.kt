@@ -2,7 +2,9 @@ package com.app.shared.data.capture
 
 interface RawDataProcess {
 
-    fun process(capture: String?): Item
+//    fun process(capture: String?): Item
+
+    fun process(capture: String?, result: (Item) -> Unit)
 
     sealed class Item {
         /**

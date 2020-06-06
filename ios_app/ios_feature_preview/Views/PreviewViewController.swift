@@ -17,6 +17,7 @@ class PreviewViewController: UIViewController {
     private let dataSource = PreviewDataSource()
     @Injected var viewModel: PreviewViewModel
     @Injected var capture: RawDataCapture
+    @Injected var process: RawDataProcess
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -38,10 +39,12 @@ class PreviewViewController: UIViewController {
         }
         
         viewModel.clear()
+        viewModel.start()
         
         capture.capture(input: extensionContext) { (value) in
-            self.viewModel.present(capturedRawData: "https://link.medium.com/W9eyD6WiW6")
-//            self.viewModel.present(capturedRawData: value)
+            self.process.process(capture: value) { (item) in
+                self.viewModel.present(processedData: item)
+            }
         }
     }
     
