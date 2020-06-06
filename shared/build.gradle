@@ -32,15 +32,6 @@ kotlin {
         fromPreset(presets.android, 'android')
     }
 
-//    cocoapods {
-//        // Configure fields required by CocoaPods.
-//        summary = "KeepJar shared library"
-//        homepage = "https://github.com/JetBrains/kotlin-native"
-//        frameworkName = "RememberShared"
-//        // Configure a dependency on AFNetworking. It will be added in all macOS and iOS targets.
-////        pod("AFNetworking", "~> 3.2.0")
-//    }
-
     sourceSets {
         commonMain {
             dependencies {
@@ -49,10 +40,10 @@ kotlin {
                 // kotlin/coroutines
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion"
 
-//                // ktor
-//                implementation "io.ktor:ktor-client-core:$ktorVersion"
-//                implementation "io.ktor:ktor-client-json:$ktorVersion"
-//                implementation "io.ktor:ktor-client-cio:$ktorVersion"
+                // ktor
+                implementation "io.ktor:ktor-client-core:$ktorVersion"
+                implementation "io.ktor:ktor-client-json:$ktorVersion"
+                implementation "io.ktor:ktor-client-cio:$ktorVersion"
 
                 // serialisation
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializationVersion"
@@ -77,10 +68,10 @@ kotlin {
                 // kotlin/coroutines
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
-//                // ktor
-//                implementation "io.ktor:ktor-client-android:$ktorVersion"
-//                implementation "io.ktor:ktor-client-okhttp:$ktorVersion"
-//                implementation "io.ktor:ktor-client-json-jvm:$ktorVersion"
+                // ktor
+                implementation "io.ktor:ktor-client-android:$ktorVersion"
+                implementation "io.ktor:ktor-client-okhttp:$ktorVersion"
+                implementation "io.ktor:ktor-client-json-jvm:$ktorVersion"
 
                 // serialisation
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion"
@@ -103,9 +94,9 @@ kotlin {
                 // kotlin
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVersion"
 
-//                // ktor
-//                implementation "io.ktor:ktor-client-core-native:$ktorVersion"
-//                implementation "io.ktor:ktor-client-ios:$ktorVersion"
+                // ktor
+                implementation "io.ktor:ktor-client-core-native:$ktorVersion"
+                implementation "io.ktor:ktor-client-ios:$ktorVersion"
 
                 // serialisation
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serializationVersion"
