@@ -10,7 +10,6 @@ import com.app.shared.utils.toBookmarkState
 val AppStateReducer: Reducer<MainState> = { old, action ->
     when (action) {
         // bookmark/preview
-        is Actions.Bookmark.Preview.Reset -> old.copy(preview = PreviewState())
         is Actions.Bookmark.Preview.Start -> old.copy(preview = PreviewState(isLoading = true))
         is Actions.Bookmark.Preview.Present -> old.copy(preview = old.preview.copy(isLoading = false, preview = action.dto.toState()))
         // bookmark/save

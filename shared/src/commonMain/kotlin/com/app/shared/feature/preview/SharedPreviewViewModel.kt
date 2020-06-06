@@ -31,7 +31,6 @@ class SharedPreviewViewModel<Input>(
 
     override fun capture(input: Input) {
 
-        store.dispatch(action = Actions.Bookmark.Preview.Reset)
         store.dispatch(action = Actions.Bookmark.Preview.Start)
 
         capture.capture(input = input) { capture ->

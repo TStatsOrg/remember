@@ -36,7 +36,7 @@ class SharedPreviewViewModelTest: DefaultTest() {
     )
 
     @Test
-    fun `view model ca present raw data as a bookmark`() = runTest {
+    fun `view model can capture raw data`() = runTest {
         // given
         val rawData = "https://my.website.com/article.01.html"
         val result = RawDataProcess.Item.Link(
@@ -59,7 +59,6 @@ class SharedPreviewViewModelTest: DefaultTest() {
 
         // then
         verify {
-            store.dispatch(action = Actions.Bookmark.Preview.Reset)
             store.dispatch(action = Actions.Bookmark.Preview.Start)
             store.dispatch(action = any())
         }
