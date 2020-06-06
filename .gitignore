@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 ios_app/Pods/*
+/resources/releases/*
