@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.views.navigation.Navigation
 import com.app.feature.preview.databinding.ViewPreviewBinding
 import com.app.shared.data.capture.RawDataCapture
+import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.feature.preview.PreviewViewModel
 import org.koin.android.ext.android.inject
 
@@ -19,6 +20,7 @@ class PreviewActivity: AppCompatActivity() {
     private val viewModel: PreviewViewModel by inject()
     private val navigator: Navigation by inject()
     private val capture: RawDataCapture<Intent> by inject()
+    private val process: RawDataProcess by inject()
     private val binding: ViewPreviewBinding by lazy { ViewPreviewBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,10 +46,12 @@ class PreviewActivity: AppCompatActivity() {
             viewModel.save()
         }
 
-        viewModel.clear()
+        viewModel.start()
 
-        capture.capture(input = intent) {
-            viewModel.present(capturedRawData = it)
+        capture.capture(input = intent) { capture ->
+            process.process(capture = capture) { data ->
+                viewModel.present(processedData = data)
+            }
         }
     }
 

@@ -74,8 +74,7 @@ class AppDependencyProvider(private val appContext: Context) {
             SharedPreviewViewModel(
                 store = get(),
                 bookmarkRepository = get(),
-                calendar = get(),
-                processor = get())
+                calendar = get())
         }
 
         factory<MainHubViewModel> {

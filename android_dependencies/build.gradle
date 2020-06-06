@@ -45,6 +45,10 @@ dependencies {
     implementation "androidx.core:core-ktx:$androidXVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
 
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
     // Material Design Components
     implementation "com.google.android.material:material:$materialDesignVersion"
 
