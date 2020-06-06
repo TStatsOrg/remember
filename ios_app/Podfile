@@ -4,10 +4,7 @@
 target 'ios_app' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  
-  # shared library
-#  pod 'shared', :path => '../shared'
-  
+   
   # Pods for Remember
   pod 'SDWebImageSwiftUI', '1.3.3'
 
