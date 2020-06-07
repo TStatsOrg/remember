@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.app.dependencies.data.capture.*
 import com.app.dependencies.data.dao.RealmDatabase
+import com.app.dependencies.data.utils.AndroidDeviceUtils
 import com.app.dependencies.data.utils.AndroidImageLoader
 import com.app.dependencies.data.utils.GlideImageLoader
 import com.app.views.navigation.Navigation
@@ -34,6 +35,7 @@ import com.app.shared.feature.topics.SharedTopicsViewModel
 import com.app.shared.feature.topics.TopicsViewModel
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
+import com.app.shared.utils.DeviceUtils
 import com.app.shared.utils.SystemCalendarUtils
 import com.app.views.lifecycle.AppLifecycleObserver
 import com.app.views.lifecycle.ForegroundObserver
@@ -48,6 +50,7 @@ class AppDependencyProvider(private val appContext: Context) {
         single<Navigation> { AppNavigation() }
 
         // utils
+        single<DeviceUtils> { AndroidDeviceUtils(context = appContext) }
         factory<HTMLParser> { JsoupHTMLParser() }
         factory<ImageParser> { MediaStoreImageParser(context = appContext) }
         single<CalendarUtils> { SystemCalendarUtils() }

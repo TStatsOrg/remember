@@ -5,13 +5,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.app.feature.hub.adapters.BookmarksAdapter
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
 import com.app.shared.feature.mainhub.MainHubViewModel
+import com.app.shared.utils.DeviceUtils
 import com.app.views.dialogs.BottomDialogEditDelete
-import com.app.views.lifecycle.ForegroundObserver
 import com.app.views.navigation.Navigation
 import com.app.views.viewstate.BookmarkViewState
 import org.koin.android.ext.android.inject
@@ -21,7 +23,16 @@ class MainHubActivity: AppCompatActivity() {
     private val viewModel: MainHubViewModel by inject()
     private val adapter: BookmarksAdapter by inject()
     private val navigation: Navigation by inject()
-    private val layoutManager = LinearLayoutManager(this)
+    private val deviceUtils: DeviceUtils by inject()
+
+    private val layoutManager: RecyclerView.LayoutManager by lazy {
+        return@lazy if (deviceUtils.isTablet()) {
+            val columns = if (deviceUtils.isLandscape()) 3 else 2
+            StaggeredGridLayoutManager(columns, StaggeredGridLayoutManager.VERTICAL) as RecyclerView.LayoutManager
+        } else {
+            LinearLayoutManager(this) as RecyclerView.LayoutManager
+        }
+    }
     private val animator = DefaultItemAnimator()
     private val binding by lazy { ViewMainhubBinding.inflate(layoutInflater) }
 
