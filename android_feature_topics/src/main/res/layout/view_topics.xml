@@ -14,7 +14,6 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            style="@style/Theme.Remember.Toolbar"
             app:title="@string/topics_title"
             app:menu="@menu/app_bar_topics"/>
 

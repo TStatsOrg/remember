@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="status_bar_color" type="bool">true</item>
+    <color name="color_white">#ffffff</color>
+    <color name="color_gray">#eeeeee</color>
+    <color name="color_mid_gray">#d0d0d0</color>
+    <color name="color_dark_gray">#808e95</color>
+    <color name="color_black">#0D1B1E</color>
+    <color name="color_accent">#384EAF</color>
+    <color name="color_red">#b00020</color>
+    <color name="color_highlight">#FFDB2C</color>
+</resources>
