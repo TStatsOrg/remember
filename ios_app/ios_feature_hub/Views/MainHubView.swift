@@ -12,14 +12,20 @@ import ios_dependencies
 import RememberShared
 import SDWebImageSwiftUI
 import ios_views
+import Grid
 
 public struct MainHubView: View {
     
     @Injected private var viewModel: MainHubViewModel
     @Injected private var navigation: Navigation
+    @Injected private var deviceUtils: DeviceUtils
     @State private var state: BookmarksViewState = BookmarksViewState()
     @State private var isShowingSheet: Bool = false
     @State private var search: String = ""
+    
+    private var noGridTracks: Tracks {
+        return deviceUtils.isTablet() ? 2 : 1
+    }
     
     public init() {}
     
@@ -37,8 +43,8 @@ public struct MainHubView: View {
                 SearchView(viewModel: viewModel, binding: $search)
                 NoSearchResultsView(state: $state)
                 GetStartedView(state: $state)
-                List {
-                    ForEach(state.bookmarksViewState, content: { state in
+                ScrollView {
+                    Grid(state.bookmarksViewState) { state in
                         self.getCellType(state: state)
                         .editDeleteActionSheetModifier(
                             title: "Change Bookmark",
@@ -46,7 +52,11 @@ public struct MainHubView: View {
                                 self.navigation.showEditBookmark(bookmarkId: state.id)
                                 self.isShowingSheet = true
                             }, deleteAction: self.viewModel.delete(bookmarkId: state.id))
-                    })
+                    }
+                    .gridStyle(
+                        StaggeredGridStyle(.vertical, tracks: noGridTracks, spacing: 8)
+                    )
+                    .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12))
                 }
             }
             .navigationBarTitle(Text(state.title), displayMode: .inline)

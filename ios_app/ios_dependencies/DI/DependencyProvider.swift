@@ -54,6 +54,7 @@ public class DependencyProvider {
         register { RealmDatabase() as Database }
         
         // different utils
+        register { iOSDeviceUtils() as DeviceUtils }
         register { WebKitUrlResolver() as UrlResolver }
         register { SimpleUrlDownloader() as UrlDownloader }
         register { SwiftSoupHTMLParser() as HTMLParser }

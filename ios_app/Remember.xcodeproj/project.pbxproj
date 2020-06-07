@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,8 @@
 		1B503437248BBC51006ACEA7 /* UrlResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B503436248BBC51006ACEA7 /* UrlResolver.swift */; };
 		1B50343B248BCE71006ACEA7 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B50343A248BCE71006ACEA7 /* HTMLParser.swift */; };
 		1B50343D248BE4B3006ACEA7 /* UrlDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B50343C248BE4B3006ACEA7 /* UrlDownloader.swift */; };
+		1B503442248D491C006ACEA7 /* Grid in Frameworks */ = {isa = PBXBuildFile; productRef = 1B503441248D491C006ACEA7 /* Grid */; };
+		1B503445248D4D01006ACEA7 /* iOSDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B503444248D4D01006ACEA7 /* iOSDeviceUtils.swift */; };
 		1B682C9324731A9C00658151 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B682C9224731A9C00658151 /* ScreenFactory.swift */; };
 		1B682C9524731AFA00658151 /* AppScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B682C9424731AFA00658151 /* AppScreenFactory.swift */; };
 		1B682CA224794A8300658151 /* EditDeleteBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B682CA124794A8300658151 /* EditDeleteBottomSheet.swift */; };
@@ -388,6 +390,7 @@
 		1B503436248BBC51006ACEA7 /* UrlResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlResolver.swift; sourceTree = "<group>"; };
 		1B50343A248BCE71006ACEA7 /* HTMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		1B50343C248BE4B3006ACEA7 /* UrlDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlDownloader.swift; sourceTree = "<group>"; };
+		1B503444248D4D01006ACEA7 /* iOSDeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSDeviceUtils.swift; sourceTree = "<group>"; };
 		1B682C9224731A9C00658151 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		1B682C9424731AFA00658151 /* AppScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScreenFactory.swift; sourceTree = "<group>"; };
 		1B682CA124794A8300658151 /* EditDeleteBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeleteBottomSheet.swift; sourceTree = "<group>"; };
@@ -536,6 +539,7 @@
 				24209344639E693CE5F95890 /* Pods_ios_feature_hub.framework in Frameworks */,
 				1B7597CA244B4A2E009D5837 /* ios_dependencies.framework in Frameworks */,
 				1B7723E92482F937006150F2 /* RememberShared.framework in Frameworks */,
+				1B503442248D491C006ACEA7 /* Grid in Frameworks */,
 				1B682CC624797C3200658151 /* ios_views.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +643,14 @@
 				1B33F624246DD511001DEC4F /* Styles.swift */,
 			);
 			path = Style;
+			sourceTree = "<group>";
+		};
+		1B503443248D4CF1006ACEA7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1B503444248D4D01006ACEA7 /* iOSDeviceUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		1B682C9124731A8700658151 /* ViewFactories */ = {
@@ -887,6 +899,7 @@
 		1BC2B05C2446464300E73BB6 /* ios_dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				1B503443248D4CF1006ACEA7 /* Utils */,
 				1BC2B07D24464D0600E73BB6 /* DI */,
 				1BC2B06E244647F000E73BB6 /* Data */,
 				1BC2B05D2446464300E73BB6 /* ios_dependencies.h */,
@@ -1171,6 +1184,9 @@
 				1B7723EC2482F937006150F2 /* PBXTargetDependency */,
 			);
 			name = ios_feature_hub;
+			packageProductDependencies = (
+				1B503441248D491C006ACEA7 /* Grid */,
+			);
 			productName = ios_feature_hub;
 			productReference = 1B7597BC244B495E009D5837 /* ios_feature_hub.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1217,6 +1233,8 @@
 				1B682CBF247973FF00658151 /* PBXTargetDependency */,
 			);
 			name = ios_app;
+			packageProductDependencies = (
+			);
 			productName = Remember;
 			productReference = 1BA773CD2441E9600060EC1D /* KeepJar.app */;
 			productType = "com.apple.product-type.application";
@@ -1431,6 +1449,9 @@
 				Base,
 			);
 			mainGroup = 1BA773C42441E9600060EC1D;
+			packageReferences = (
+				1B50343E248D4803006ACEA7 /* XCRemoteSwiftPackageReference "swiftui-grid" */,
+			);
 			productRefGroup = 1BA773CE2441E9600060EC1D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1895,6 +1916,7 @@
 				1B50343B248BCE71006ACEA7 /* HTMLParser.swift in Sources */,
 				1BE01D33245205CD000FC4AF /* RealmTopicDAO.swift in Sources */,
 				1BC2B07A24464C1900E73BB6 /* RealmTextBookmarkDAO.swift in Sources */,
+				1B503445248D4D01006ACEA7 /* iOSDeviceUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3059,6 +3081,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1B50343E248D4803006ACEA7 /* XCRemoteSwiftPackageReference "swiftui-grid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-grid";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1B503441248D491C006ACEA7 /* Grid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B50343E248D4803006ACEA7 /* XCRemoteSwiftPackageReference "swiftui-grid" */;
+			productName = Grid;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1BA773C52441E9600060EC1D /* Project object */;
 }
