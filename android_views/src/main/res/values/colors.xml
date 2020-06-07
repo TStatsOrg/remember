@@ -9,4 +9,6 @@
     <color name="color_accent">#384EAF</color>
     <color name="color_red">#b00020</color>
     <color name="color_highlight">#FFDB2C</color>
+
+    <color name="color_dialog_background">#ffffff</color>
 </resources>

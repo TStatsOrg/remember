@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Remember.ActionScreen" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="windowNoTitle">true</item>
+
+        <!-- primary colors -->
+        <item name="colorPrimary">@color/color_white</item>
+        <item name="colorPrimaryVariant">@color/color_white</item>
+        <item name="colorPrimaryDark">@color/color_white</item>
+        <item name="colorOnPrimary">@color/color_dark_gray</item>
+
+        <!-- secondary colors -->
+        <item name="colorSecondary">@color/color_accent</item>
+        <item name="colorSecondaryVariant">@color/color_accent</item>
+        <item name="colorOnSecondary">@color/color_white</item>
+
+        <!-- surface & bg colors -->
+        <item name="colorSurface">@color/color_white</item>
+        <item name="colorOnSurface">@color/color_black</item>
+        <item name="android:colorBackground">@color/color_dialog_background</item>
+        <item name="colorOnBackground">@color/color_black</item>
+
+        <!-- error colors -->
+        <item name="colorError">@color/color_red</item>
+        <item name="colorOnError">@color/color_white</item>
+
+        <item name="android:editTextColor">@color/color_black</item>
+        <item name="android:textColorHint">@color/color_mid_gray</item>
+
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/Theme.Remember.Text.Title</item>
+        <item name="textAppearanceHeadline2">@style/Theme.Remember.Text.Title</item>
+        <item name="textAppearanceHeadline3">@style/Theme.Remember.Text.Title</item>
+        <item name="textAppearanceHeadline4">@style/Theme.Remember.Text.Title</item>
+        <item name="textAppearanceHeadline5">@style/Theme.Remember.Text.Title</item>
+        <item name="textAppearanceHeadline6">@style/Theme.Remember.Text.Title</item>
+        <item name="textAppearanceSubtitle1">@style/Theme.Remember.Text.Subtitle</item>
+        <item name="textAppearanceSubtitle2">@style/Theme.Remember.Text.Accent</item>
+        <item name="textAppearanceBody1">@style/Theme.Remember.Text.Body1</item>
+        <item name="textAppearanceBody2">@style/Theme.Remember.Text.Body1</item>
+        <!--        <item name="textAppearanceButton">@style/Theme.Remember.Button</item>-->
+        <item name="textAppearanceCaption">@style/Theme.Remember.Text.Caption</item>
+        <item name="textAppearanceOverline">@style/Theme.Remember.Text.Overline</item>
+        <!--        <item name="textAppearanceLargePopupMenu">@style/Theme.Remember.Text.Button.Action</item>-->
+        <!--Material shape attributes-->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Remember.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Remember.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Remember.LargeComponent</item>
+        <!--Component styles-->
+        <item name="materialAlertDialogTheme">@style/Theme.Remember.ActionScreen</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.BottomSheetDialog</item>
+        <!--        <item name="navigationViewStyle">@style/Widget.MyTheme.NavigationView</item>-->
+        <item name="toolbarStyle">@style/Theme.Remember.Toolbar</item>
+    </style>
+</resources>

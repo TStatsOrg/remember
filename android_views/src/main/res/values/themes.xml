@@ -4,6 +4,9 @@
     <!--Top level DayNight theme to be used in AndroidManifest.xml-->
     <style name="Theme.Remember" parent="Base.Theme.Remember"/>
 
+    <!-- a theme for all screens that come out of the main screen to help perform some action on a bookmark -->
+    <style name="Theme.Remember.ActionScreen" parent="Theme.Remember"/>
+
     <!-- The launcher theme. It sets the main window background to the launch_screen drawable -->
     <style name="Theme.Remember.Launcher" parent="Theme.Remember">
         <item name="android:windowBackground">@drawable/splash_screen</item>
@@ -48,6 +51,7 @@
         <item name="android:textColor">@color/color_dark_gray</item>
     </style>
 
+    <!-- theme for all toolbars in the app -->
     <style name="Theme.Remember.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="android:background">@color/color_white</item>
     </style>

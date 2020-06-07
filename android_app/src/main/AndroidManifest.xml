@@ -23,13 +23,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.app.feature.topics.TopicsActivity"/>
-        <activity android:name="com.app.feature.topic.add.AddTopicActivity"/>
-        <activity android:name="com.app.feature.topic.edit.EditTopicActivity"/>
-        <activity android:name="com.app.feature.bookmark.edit.EditBookmarkActivity"/>
+        <activity android:name="com.app.feature.topics.TopicsActivity"
+            android:theme="@style/Theme.Remember.ActionScreen"/>
+        <activity android:name="com.app.feature.topic.add.AddTopicActivity"
+            android:theme="@style/Theme.Remember.ActionScreen"/>
+        <activity android:name="com.app.feature.topic.edit.EditTopicActivity"
+            android:theme="@style/Theme.Remember.ActionScreen"/>
+        <activity android:name="com.app.feature.bookmark.edit.EditBookmarkActivity"
+            android:theme="@style/Theme.Remember.ActionScreen"/>
 
         <activity android:name="com.app.feature.preview.PreviewActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Remember.ActionScreen">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
                 <category android:name="android.intent.category.DEFAULT"/>
