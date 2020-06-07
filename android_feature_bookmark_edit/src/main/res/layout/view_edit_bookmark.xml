@@ -16,7 +16,7 @@
             android:layout_height="?attr/actionBarSize"
             app:title="@string/bookmark_edit_title"
             app:menu="@menu/app_bar_edit_bookmark"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+            style="@style/Theme.Remember.Toolbar" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

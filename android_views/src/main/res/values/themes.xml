@@ -57,6 +57,10 @@
         <item name="android:textColor">@color/color_dark_gray</item>
     </style>
 
+    <style name="Theme.Remember.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:background">@color/color_white</item>
+    </style>
+
 <!--    <style name="Theme.Remember.Button" parent="TextAppearance.MaterialComponents.Button">-->
 <!--    </style>-->
 

@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/preview_title"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+            style="@style/Theme.Remember.Toolbar"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
