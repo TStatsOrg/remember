@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUI
 import ios_feature_hub
+import ios_views
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ios_dependencies/ios_dependencies.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ios_views/ios_views.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Remember.xcodeproj">
    </FileRef>
    <FileRef

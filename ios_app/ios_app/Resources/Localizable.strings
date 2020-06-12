@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Remember
+
+  Created by Gabriel Coman on 08/06/2020.
+  Copyright © 2020 Gabriel Coman. All rights reserved.
+*/
+
+//  edit bookmark
+"bookmark_edit_title" = "Edit bookmark";
+"bookmark_edit_add_topics" = "Add topic";
+
+// topics feature
+"topics_title" = "Topics";
+"topics_add" = "Add";

@@ -46,12 +46,12 @@ public struct TopicsView: View {
                 },
                 deleteAction: self.viewModel.delete(topicId: content.id))
         })
-        .navigationBarTitle(Text("Topics"))
+        .navigationBarTitle(Text(Translations.Topics.title))
         .navigationBarItems(trailing: Button(action: {
             self.navigation.showAddTopic()
             self.isShowingSheet = true
         }, label: {
-            Text("Add")
+            Text(Translations.Topics.addButtonTitle)
         }))
         .onAppear {
             self.viewModel.observeTopicState(callback: self.update)

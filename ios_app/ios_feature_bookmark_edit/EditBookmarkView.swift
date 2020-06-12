@@ -49,12 +49,12 @@ public struct EditBookmarkView: View {
                 
             }
         })
-        .navigationBarTitle("Edit bookmark", displayMode: .inline)
+        .navigationBarTitle(Translations.EditBookmarks.title, displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             self.navigation.showAddTopic()
             self.isShowingSheet = true
         }, label: {
-            Text("Add topic")
+            Text(Translations.EditBookmarks.addButtonTitle)
         }))
         .onAppear {
             self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
