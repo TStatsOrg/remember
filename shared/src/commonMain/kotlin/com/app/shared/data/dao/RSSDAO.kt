@@ -1,0 +1,7 @@
+package com.app.shared.data.dao
+
+import com.app.shared.data.dto.RSSDTO
+
+interface RSSDAO {
+    fun getAll(): List<RSSDTO>
+}
