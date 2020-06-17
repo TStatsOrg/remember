@@ -9,50 +9,24 @@
 import SwiftUI
 import ios_views
 import ios_dependencies
-import ios_feature_bookmarks
-import ios_feature_feed
-
-struct FirstTab: View {
-
-    @Injected private var screenFactory: ScreenFactory
-
-    var body: some View {
-        screenFactory.buildFeedScreen()
-    }
-}
-
-struct SecondTab: View {
-
-    @Injected private var screenFactory: ScreenFactory
-
-    var body: some View {
-        screenFactory.buildBookmarksScreen()
-    }
-}
 
 public struct MainHubView: View  {
 
     @Injected private var screenFactory: ScreenFactory
 
-    private let firstTabView = FirstTab()
-    private let secondTabView = SecondTab()
-
     public init() { /* n/a */ }
 
     public var body: some View {
         TabView {
-            NavigationView {
-                FeedView()
-            }
+            screenFactory.buildFeedScreen()
                 .tabItem {
                     Image(systemName: "house.fill")
-                    Text("Home")
+                    Text(Translations.MainHub.tab1Title)
                 }
-            NavigationView {
-                BookmarksView()
-            }.tabItem {
+            screenFactory.buildBookmarksScreen()
+                .tabItem {
                     Image(systemName: "bookmark.fill")
-                    Text("Bookmarks")
+                    Text(Translations.MainHub.tab2Title)
                 }
         }
         .navigationBarHidden(true)

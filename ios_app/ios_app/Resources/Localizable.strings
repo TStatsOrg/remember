@@ -6,6 +6,10 @@
   Copyright © 2020 Gabriel Coman. All rights reserved.
 */
 
+// main hub
+"main_hub_tab_1" = "Home";
+"main_hub_tab_2" = "Bookmarks";
+
 //  edit bookmark
 "bookmark_edit_title" = "Edit bookmark";
 "bookmark_edit_add_topics" = "Add topic";

@@ -12,8 +12,6 @@
 		1BE2B6812493D5CB00A082BC /* ios_views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B6802493D5CB00A082BC /* ios_views.framework */; };
 		1BE2B6842493D5D100A082BC /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B6832493D5D100A082BC /* RememberShared.framework */; };
 		1BE2B77D24993D3800A082BC /* MainHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B77C24993D3800A082BC /* MainHubView.swift */; };
-		1BE2B77F24994A8600A082BC /* ios_feature_bookmarks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B77E24994A8600A082BC /* ios_feature_bookmarks.framework */; };
-		1BE2B78324994A8E00A082BC /* ios_feature_feed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B78224994A8E00A082BC /* ios_feature_feed.framework */; };
 		A3C6641B6A7058AA18B6FFFF /* Pods_ios_feature_hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A103B7CE57514CE10A443EF3 /* Pods_ios_feature_hub.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,8 +38,6 @@
 				1BE2B6842493D5D100A082BC /* RememberShared.framework in Frameworks */,
 				1BE2B67D2493D5C700A082BC /* ios_dependencies.framework in Frameworks */,
 				1BE2B6812493D5CB00A082BC /* ios_views.framework in Frameworks */,
-				1BE2B78324994A8E00A082BC /* ios_feature_feed.framework in Frameworks */,
-				1BE2B77F24994A8600A082BC /* ios_feature_bookmarks.framework in Frameworks */,
 				A3C6641B6A7058AA18B6FFFF /* Pods_ios_feature_hub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

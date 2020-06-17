@@ -23,4 +23,9 @@ public struct Translations {
         public static let addButtonTitle: LocalizedStringKey = "topics_add"
     }
     
+    public struct MainHub {
+        public static let tab1Title: LocalizedStringKey = "main_hub_tab_1"
+        public static let tab2Title: LocalizedStringKey = "main_hub_tab_2"
+    }
+    
 }
