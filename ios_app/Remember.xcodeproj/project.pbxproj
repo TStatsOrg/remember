@@ -49,6 +49,8 @@
 		1BE2B71C2499375600A082BC /* ios_feature_bookmarks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B71A2499375600A082BC /* ios_feature_bookmarks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BE2B77A24993C8700A082BC /* ios_feature_feed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B77924993C8700A082BC /* ios_feature_feed.framework */; };
 		1BE2B77B24993C8700A082BC /* ios_feature_feed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B77924993C8700A082BC /* ios_feature_feed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1BE2B7A9249A9BF600A082BC /* ios_feature_rss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B7A8249A9BF500A082BC /* ios_feature_rss.framework */; };
+		1BE2B7AA249A9BF600A082BC /* ios_feature_rss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B7A8249A9BF500A082BC /* ios_feature_rss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3889C007EC75333962CD00BB /* Pods_ios_app_tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A140D3B6C44D5A7C2D5C536 /* Pods_ios_app_tests.framework */; };
 		A50BC53D350C131955AEAC79 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A029FB2870657FBCF68C43 /* Pods_ios_app.framework */; };
 		FE64FB8DBB6F57C7708316CF /* Pods_ios_feature_preview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E888A39247480EE424E1C21 /* Pods_ios_feature_preview.framework */; };
@@ -106,6 +108,7 @@
 				1BE2B6AC2493D79900A082BC /* ios_feature_hub.framework in Embed Frameworks */,
 				1BE2B77B24993C8700A082BC /* ios_feature_feed.framework in Embed Frameworks */,
 				1BE2B71C2499375600A082BC /* ios_feature_bookmarks.framework in Embed Frameworks */,
+				1BE2B7AA249A9BF600A082BC /* ios_feature_rss.framework in Embed Frameworks */,
 				1BE2B6B22493D7A200A082BC /* ios_feature_topic_edit.framework in Embed Frameworks */,
 				1B7723D22482F884006150F2 /* RememberShared.framework in Embed Frameworks */,
 				1BE2B5C52493D19800A082BC /* ios_views.framework in Embed Frameworks */,
@@ -177,6 +180,7 @@
 		1BE2B71A2499375600A082BC /* ios_feature_bookmarks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_bookmarks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B71D2499376300A082BC /* ios_feature_subscriptions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_subscriptions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B77924993C8700A082BC /* ios_feature_feed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_feed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BE2B7A8249A9BF500A082BC /* ios_feature_rss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_rss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CEAAA64881149E1EB6A6DF2 /* Pods-ios_app_uitests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_app_uitests.release.xcconfig"; path = "Target Support Files/Pods-ios_app_uitests/Pods-ios_app_uitests.release.xcconfig"; sourceTree = "<group>"; };
 		209B88ADE76F864D3F1BB738 /* Pods-Remember.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remember.release.xcconfig"; path = "Target Support Files/Pods-Remember/Pods-Remember.release.xcconfig"; sourceTree = "<group>"; };
 		20B1E607BCE8F6720FF194D2 /* Pods-ios_feature_topic_edit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_feature_topic_edit.debug.xcconfig"; path = "Target Support Files/Pods-ios_feature_topic_edit/Pods-ios_feature_topic_edit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 				1BE2B6AB2493D79900A082BC /* ios_feature_hub.framework in Frameworks */,
 				1BE2B71B2499375600A082BC /* ios_feature_bookmarks.framework in Frameworks */,
 				1BE2B6B12493D7A200A082BC /* ios_feature_topic_edit.framework in Frameworks */,
+				1BE2B7A9249A9BF600A082BC /* ios_feature_rss.framework in Frameworks */,
 				A50BC53D350C131955AEAC79 /* Pods_ios_app.framework in Frameworks */,
 				1B7723D12482F884006150F2 /* RememberShared.framework in Frameworks */,
 				1BE2B6A82493D79300A082BC /* ios_feature_bookmark_edit.framework in Frameworks */,
@@ -369,6 +374,7 @@
 		1BA774012441ED240060EC1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1BE2B7A8249A9BF500A082BC /* ios_feature_rss.framework */,
 				1BE2B77924993C8700A082BC /* ios_feature_feed.framework */,
 				1BE2B71D2499376300A082BC /* ios_feature_subscriptions.framework */,
 				1BE2B71A2499375600A082BC /* ios_feature_bookmarks.framework */,

@@ -95,21 +95,12 @@
 				1BE2B5A82493D17D00A082BC /* Navigation */,
 				1BE2B5A52493D17D00A082BC /* Style */,
 				1BE2B5AF2493D17D00A082BC /* Utils */,
-				1BE2B59F2493D17D00A082BC /* ViewFactories */,
 				1BE2B5AA2493D17D00A082BC /* Views */,
 				1BE2B5AC2493D17D00A082BC /* ViewStates */,
 				1BE2B52E2493C85D00A082BC /* ios_views.h */,
 				1BE2B52F2493C85D00A082BC /* Info.plist */,
 			);
 			path = ios_views;
-			sourceTree = "<group>";
-		};
-		1BE2B59F2493D17D00A082BC /* ViewFactories */ = {
-			isa = PBXGroup;
-			children = (
-				1BE2B5A02493D17D00A082BC /* ScreenFactory.swift */,
-			);
-			path = ViewFactories;
 			sourceTree = "<group>";
 		};
 		1BE2B5A12493D17D00A082BC /* Lifecycle */ = {
@@ -140,6 +131,7 @@
 		1BE2B5A82493D17D00A082BC /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				1BE2B5A02493D17D00A082BC /* ScreenFactory.swift */,
 				1BE2B5A92493D17D00A082BC /* Navigation.swift */,
 			);
 			path = Navigation;

@@ -22,6 +22,10 @@ class AppNavigation: Navigation {
     
     private var destination: NavigationDestination = .None
     
+    func showRSS() {
+        destination = .RSS(view: factory.buildRSSScreen())
+    }
+    
     func showBookmarks() {
         destination = .Bookmarks(view: factory.buildBookmarksScreen())
     }
@@ -54,6 +58,8 @@ class AppNavigation: Navigation {
     
     func content() -> AnyView {
         switch destination {
+        case .RSS(let view):
+            return view
         case .Feed(let view):
             return view
         case .Bookmarks(let view):

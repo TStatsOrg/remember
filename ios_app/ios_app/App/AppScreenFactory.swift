@@ -14,9 +14,14 @@ import ios_feature_hub
 import ios_feature_topics
 import ios_feature_topic_edit
 import ios_feature_bookmarks
-import ios_feature_feed 
+import ios_feature_feed
+import ios_feature_rss
 
 struct AppScreenFactory: ScreenFactory {
+    
+    func buildRSSScreen() -> AnyView {
+        return AnyView(NavigationView { RSSVIew() }.navigationViewStyle(StackNavigationViewStyle()))
+    }
     
     func buildMainHubScreen() -> AnyView {
         return AnyView(EmptyView())

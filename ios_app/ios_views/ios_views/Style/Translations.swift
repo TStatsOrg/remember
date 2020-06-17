@@ -28,4 +28,8 @@ public struct Translations {
         public static let tab2Title: LocalizedStringKey = "main_hub_tab_2"
     }
     
+    public struct Feed {
+        public static let title: LocalizedStringKey = "feed_title"
+        public static let feedButtonTitle: LocalizedStringKey = "feed_button_title"
+    }
 }

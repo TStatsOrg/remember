@@ -17,3 +17,7 @@
 // topics feature
 "topics_title" = "Topics";
 "topics_add" = "Add";
+
+// feed
+"feed_title" = "Your feed";
+"feed_button_title" = "Feeds";

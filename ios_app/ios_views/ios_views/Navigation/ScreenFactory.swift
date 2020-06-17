@@ -9,6 +9,7 @@
 import SwiftUI
 
 public protocol ScreenFactory {
+    func buildRSSScreen() -> AnyView
     func buildMainHubScreen() -> AnyView
     func buildFeedScreen() -> AnyView
     func buildBookmarksScreen() -> AnyView
