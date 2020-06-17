@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ios_feature_feed/ios_feature_feed.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ios_feature_bookmarks/ios_feature_bookmarks.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ios_feature_topic_edit/ios_feature_topic_edit.xcodeproj">
    </FileRef>
    <FileRef

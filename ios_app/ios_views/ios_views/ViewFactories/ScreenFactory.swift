@@ -10,6 +10,8 @@ import SwiftUI
 
 public protocol ScreenFactory {
     func buildMainHubScreen() -> AnyView
+    func buildFeedScreen() -> AnyView
+    func buildBookmarksScreen() -> AnyView
     func buildTopicsListScreen() -> AnyView
     func buildEditBookmarkScreen(bookmarkId: Int32) -> AnyView
     func buildAddTopicScreen() -> AnyView

@@ -11,6 +11,8 @@ import SwiftUI
 
 public enum NavigationDestination {
     case None
+    case Bookmarks(view: AnyView)
+    case Feed(view: AnyView)
     case TopicList(view: AnyView)
     case AddTopic(view: AnyView)
     case EditBookmark(view: AnyView)
@@ -20,6 +22,8 @@ public enum NavigationDestination {
 
 public protocol Navigation {
     
+    func showBookmarks()
+    func showFeed()
     func showTopicList()
     func showEditBookmark(bookmarkId: Int32)
     func showAddTopic()

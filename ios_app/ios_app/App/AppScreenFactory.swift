@@ -13,11 +13,21 @@ import ios_feature_bookmark_edit
 import ios_feature_hub
 import ios_feature_topics
 import ios_feature_topic_edit
+import ios_feature_bookmarks
+import ios_feature_feed 
 
 struct AppScreenFactory: ScreenFactory {
     
     func buildMainHubScreen() -> AnyView {
-        return AnyView(NavigationView { MainHubView() }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(EmptyView())
+    }
+    
+    func buildFeedScreen() -> AnyView {
+        return AnyView(NavigationView { FeedView() }.navigationViewStyle(StackNavigationViewStyle()))
+    }
+
+    func buildBookmarksScreen() -> AnyView {
+        return AnyView(NavigationView { BookmarksView() }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildTopicsListScreen() -> AnyView {

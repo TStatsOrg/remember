@@ -72,3 +72,15 @@ target 'ios_feature_topic_edit' do
   project 'ios_feature_topic_edit/ios_feature_topic_edit.xcodeproj'
   use_frameworks!
 end
+
+target 'ios_feature_subscriptions' do
+  project 'ios_feature_subscriptions/ios_feature_subscriptions.xcodeproj'
+  use_frameworks!
+end
+
+target 'ios_feature_bookmarks' do
+  project 'ios_feature_bookmarks/ios_feature_bookmarks.xcodeproj'
+  use_frameworks!
+  
+  pod 'SDWebImageSwiftUI', '1.3.3'
+end

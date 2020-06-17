@@ -13,12 +13,22 @@ import ios_dependencies
 import ios_feature_topics
 import ios_feature_topic_add
 import ios_feature_bookmark_edit
+import ios_feature_bookmarks
+import ios_feature_feed
 
 class AppNavigation: Navigation {
     
     @Injected private var factory: ScreenFactory
     
     private var destination: NavigationDestination = .None
+    
+    func showBookmarks() {
+        destination = .Bookmarks(view: factory.buildBookmarksScreen())
+    }
+    
+    func showFeed() {
+        destination = .Feed(view: factory.buildFeedScreen())
+    }
     
     func showTopicList() {
         destination = .TopicList(view: factory.buildTopicsListScreen())
@@ -44,6 +54,10 @@ class AppNavigation: Navigation {
     
     func content() -> AnyView {
         switch destination {
+        case .Feed(let view):
+            return view
+        case .Bookmarks(let view):
+            return view
         case .TopicList(let view):
             return view
         case .EditBookmark(let view):
