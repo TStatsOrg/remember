@@ -85,9 +85,9 @@ public class DependencyProvider {
         }
         
         register {
-            SharedMainHubViewModel(store: self.resolve(),
-                                   calendar: self.resolve(),
-                                   bookmarkRepository: self.resolve()) as MainHubViewModel
+            SharedBookmarksViewModel(store: self.resolve(),
+                                     calendar: self.resolve(),
+                                     bookmarkRepository: self.resolve()) as BookmarksViewModel
         }
         register {
             SharedTopicsViewModel(store: self.resolve(),

@@ -16,7 +16,7 @@ import Grid
 
 public struct BookmarksView: View {
     
-    @Injected private var viewModel: MainHubViewModel
+    @Injected private var viewModel: BookmarksViewModel
     @Injected private var navigation: Navigation
     @Injected private var deviceUtils: DeviceUtils
     @State private var state: BookmarksViewState = BookmarksViewState()
@@ -98,10 +98,10 @@ public struct BookmarksView: View {
 
 public struct SearchView: View {
 
-    var bookmarksViewModel: MainHubViewModel
+    var bookmarksViewModel: BookmarksViewModel
     @Binding var searchText: String
 
-    public init(viewModel: MainHubViewModel, binding: Binding<String>) {
+    public init(viewModel: BookmarksViewModel, binding: Binding<String>) {
         bookmarksViewModel = viewModel
         _searchText = binding
     }

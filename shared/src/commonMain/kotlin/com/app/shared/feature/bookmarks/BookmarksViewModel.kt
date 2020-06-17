@@ -1,8 +1,8 @@
-package com.app.shared.feature.mainhub
+package com.app.shared.feature.bookmarks
 
 import com.app.shared.business.BookmarksState
 
-interface MainHubViewModel {
+interface BookmarksViewModel {
 
     fun loadBookmarks()
     fun search(byName: String)

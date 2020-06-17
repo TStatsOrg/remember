@@ -27,8 +27,8 @@ import com.app.shared.feature.editbookmark.EditBookmarkViewModel
 import com.app.shared.feature.editbookmark.SharedEditBookmarkViewModel
 import com.app.shared.feature.edittopic.EditTopicViewModel
 import com.app.shared.feature.edittopic.SharedEditTopicViewModel
-import com.app.shared.feature.mainhub.MainHubViewModel
-import com.app.shared.feature.mainhub.SharedMainHubViewModel
+import com.app.shared.feature.bookmarks.BookmarksViewModel
+import com.app.shared.feature.bookmarks.SharedBookmarksViewModel
 import com.app.shared.feature.preview.PreviewViewModel
 import com.app.shared.feature.preview.SharedPreviewViewModel
 import com.app.shared.feature.topics.SharedTopicsViewModel
@@ -83,8 +83,8 @@ class AppDependencyProvider(private val appContext: Context) {
                 capture = get())
         }
 
-        factory<MainHubViewModel> {
-            SharedMainHubViewModel(
+        factory<BookmarksViewModel> {
+            SharedBookmarksViewModel(
                 store = get(),
                 calendar = get(),
                 bookmarkRepository = get()

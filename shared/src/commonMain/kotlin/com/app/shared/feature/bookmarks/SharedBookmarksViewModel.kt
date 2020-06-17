@@ -1,4 +1,4 @@
-package com.app.shared.feature.mainhub
+package com.app.shared.feature.bookmarks
 
 import com.app.shared.business.Actions
 import com.app.shared.business.BookmarksState
@@ -11,11 +11,11 @@ import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
 import kotlinx.coroutines.launch
 
-class SharedMainHubViewModel(
+class SharedBookmarksViewModel(
         private val store: Store<MainState>,
         private val calendar: CalendarUtils,
         private val bookmarkRepository: BookmarkRepository
-): MainHubViewModel {
+): BookmarksViewModel {
 
     private val scope = provideViewModelScope()
     private val storeObserver = store.observe()

@@ -11,7 +11,7 @@ import com.app.feature.hub.adapters.BookmarksAdapter
 import com.app.feature.hub.databinding.ViewMainhubBinding
 import com.app.feature.hub.viewholders.BookmarkViewHolder
 import com.app.feature.hub.viewstates.BookmarksViewState
-import com.app.shared.feature.mainhub.MainHubViewModel
+import com.app.shared.feature.bookmarks.BookmarksViewModel
 import com.app.shared.utils.DeviceUtils
 import com.app.views.dialogs.BottomDialogEditDelete
 import com.app.views.navigation.Navigation
@@ -20,7 +20,7 @@ import org.koin.android.ext.android.inject
 
 class MainHubActivity: AppCompatActivity() {
 
-    private val viewModel: MainHubViewModel by inject()
+    private val viewModel: BookmarksViewModel by inject()
     private val adapter: BookmarksAdapter by inject()
     private val navigation: Navigation by inject()
     private val deviceUtils: DeviceUtils by inject()
