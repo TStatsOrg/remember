@@ -74,11 +74,26 @@ data class PreviewState(
     val isLoading: Boolean = false
 ): AppState
 
+data class RSSFeedState(
+    val id: Int = 0,
+    val title: String = "",
+    val description: String? = null,
+    val link: String,
+    val isSubscribed: Boolean = false
+): AppState
+
+data class RSSState(
+    val feed: List<RSSFeedState> = listOf(),
+    val error: Throwable? = null,
+    val time: Long = 0L
+): AppState
+
 data class MainState(
     val allBookmarks: List<BookmarkState> = listOf(),
     val bookmarks: BookmarksState = BookmarksState(),
     val topics: TopicsState = TopicsState(),
     val preview: PreviewState = PreviewState(),
     val editBookmark: EditBookmarkState? = null,
-    val editTopic: EditTopicState? = null
+    val editTopic: EditTopicState? = null,
+    val rss: RSSState = RSSState()
 ): AppState

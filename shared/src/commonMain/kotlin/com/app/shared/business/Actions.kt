@@ -1,6 +1,7 @@
 package com.app.shared.business
 
 import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.RSSDTO
 import com.app.shared.data.dto.TopicDTO
 import com.app.shared.redux.Action
 
@@ -46,5 +47,14 @@ sealed class Actions: Action {
         data class Update(val topicId: Int, val newName: String): Topics()
 
         data class Delete(val topicId: Int): Topics()
+    }
+
+    sealed class RSS: Actions() {
+
+        sealed class Load: RSS() {
+            data class Start(val time: Long): Load()
+            data class Success(val time: Long, val rss: List<RSSDTO>): Load()
+            data class Error(val time: Long, val error: Throwable): Load()
+        }
     }
 }

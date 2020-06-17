@@ -1,9 +1,12 @@
 package com.app.shared.utils
 
 import com.app.shared.business.BookmarkState
+import com.app.shared.business.RSSFeedState
+import com.app.shared.business.RSSState
 import com.app.shared.business.TopicState
 import com.app.shared.data.capture.RawDataProcess
 import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.RSSDTO
 import com.app.shared.data.dto.TopicDTO
 
 fun RawDataProcess.Item.toDTO(date: Long, topic: TopicDTO? = null): BookmarkDTO? {
@@ -110,3 +113,13 @@ fun TopicState.toDTO(): TopicDTO = object : TopicDTO {
 }
 
 fun List<TopicDTO>.toTopicState(): List<TopicState> = this.map { it.toState() }
+
+fun RSSDTO.toState(): RSSFeedState = RSSFeedState(
+    id = id,
+    title = title,
+    description = description,
+    link = link,
+    isSubscribed = isSubscribed
+)
+
+fun List<RSSDTO>.toState(): List<RSSFeedState> = this.map { it.toState() }
