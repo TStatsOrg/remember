@@ -7,14 +7,59 @@
 //
 
 import SwiftUI
+import ios_dependencies
+import RememberShared
+import ios_views
 
-public struct RSSVIew: View {
+public struct RSSView: View {
     
-    public init() {
-        
-    }
+    @Injected private var viewModel: RSSViewModel
+    @State private var state: RSSListViewState = RSSListViewState()
+    
+    public init() {}
     
     public var body: some View {
-        Text("RSSs")
+        List(state.items, rowContent: { content in
+            HStack(alignment: .center) {
+                VStack(alignment: .leading) {
+                    Text(content.title)
+                        .font(.body)
+                        .fontWeight(.bold)
+                    Text(content.link)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                }
+                Spacer()
+                VStack(alignment: .trailing) {
+                    if content.isSubscribeButtonVisible {
+                        Button(action: {
+                            /* subscribe */
+                        }) {
+                            Text(Translations.RSS.subscribeTitle)
+                                .foregroundColor(Color.green)
+                        }
+                    }
+                    if content.isUnsubscribeButtonVisible {
+                        Button(action: {
+                            /* unsubscribe */
+                        }) {
+                            Text(Translations.RSS.unsubscribeTitle)
+                                .foregroundColor(Color.red)
+                        }
+                    }
+                }
+            }
+        })
+        .navigationBarTitle(Text(Translations.RSS.title))
+        .onAppear {
+            self.viewModel.observeRSSState {
+                self.state = RSSListViewState(state: $0.feed)
+            }
+            self.viewModel.loadRSSFeeds()
+        }
+        .onDisappear {
+            self.viewModel.cleanup()
+        }
     }
 }

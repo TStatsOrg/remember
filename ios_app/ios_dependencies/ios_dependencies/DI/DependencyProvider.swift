@@ -72,7 +72,12 @@ public class DependencyProvider {
         }
         
         register {
-            SharedTopicsRepository(topicDAO: (self.resolve() as Database).getTopicDAO() ) as TopicsRepository
+            SharedTopicsRepository(topicDAO: (self.resolve() as Database).getTopicDAO()) as TopicsRepository
+        }
+        
+        register {
+            SharedRSSRepository(defaultRSSDAO: DefaultRSSDAO(),
+                                userRSSDAO: (self.resolve() as Database).getUserRSSDAO()) as RSSRepository
         }
         
         // view models
@@ -111,6 +116,12 @@ public class DependencyProvider {
         register {
             SharedEditTopicViewModel(store: self.resolve(),
                                      topicsRepository: self.resolve()) as EditTopicViewModel
+        }
+        
+        register {
+            SharedRSSViewModel(store: self.resolve(),
+                               repository: self.resolve(),
+                               calendarUtils: self.resolve()) as RSSViewModel
         }
     }
 }

@@ -32,4 +32,10 @@ public struct Translations {
         public static let title: LocalizedStringKey = "feed_title"
         public static let feedButtonTitle: LocalizedStringKey = "feed_button_title"
     }
+    
+    public struct RSS {
+        public static let title: LocalizedStringKey = "rss_title"
+        public static let subscribeTitle: LocalizedStringKey = "rss_subscribe_button_title"
+        public static let unsubscribeTitle: LocalizedStringKey = "rss_unsubscribe_button_title"
+    }
 }

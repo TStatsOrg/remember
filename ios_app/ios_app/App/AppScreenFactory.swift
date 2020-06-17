@@ -20,7 +20,7 @@ import ios_feature_rss
 struct AppScreenFactory: ScreenFactory {
     
     func buildRSSScreen() -> AnyView {
-        return AnyView(NavigationView { RSSVIew() }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { RSSView() }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildMainHubScreen() -> AnyView {

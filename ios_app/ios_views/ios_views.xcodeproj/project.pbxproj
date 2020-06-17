@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B531222249AAB8100F4DF14 /* RSSViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B531221249AAB8100F4DF14 /* RSSViewState.swift */; };
 		1BE2B5302493C85D00A082BC /* ios_views.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE2B52E2493C85D00A082BC /* ios_views.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BE2B5B32493D17D00A082BC /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5A02493D17D00A082BC /* ScreenFactory.swift */; };
 		1BE2B5B42493D17D00A082BC /* ForegroundNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5A22493D17D00A082BC /* ForegroundNotification.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		0A79771215A6ADD12E4F51C8 /* Pods_ios_views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B531221249AAB8100F4DF14 /* RSSViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSViewState.swift; sourceTree = "<group>"; };
 		1BE2B52B2493C85D00A082BC /* ios_views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B52E2493C85D00A082BC /* ios_views.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_views.h; sourceTree = "<group>"; };
 		1BE2B52F2493C85D00A082BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			children = (
 				1BE2B5AD2493D17D00A082BC /* TopicViewState.swift */,
 				1BE2B5AE2493D17D00A082BC /* BookmarkViewState.swift */,
+				1B531221249AAB8100F4DF14 /* RSSViewState.swift */,
 			);
 			path = ViewStates;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				1BE2B5B92493D17D00A082BC /* ManagedSearchView.swift in Sources */,
 				1BE2B5B62493D17D00A082BC /* Translations.swift in Sources */,
 				1BE2B5BD2493D17D00A082BC /* GenericIdentifiable.swift in Sources */,
+				1B531222249AAB8100F4DF14 /* RSSViewState.swift in Sources */,
 				1BE2B5B52493D17D00A082BC /* EditDeleteBottomSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

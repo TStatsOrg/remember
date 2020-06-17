@@ -26,6 +26,7 @@
 		1BE2B57E2493CD1300A082BC /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B56C2493CD1200A082BC /* DependencyProvider.swift */; };
 		1BE2B57F2493CD1300A082BC /* iOSDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B56E2493CD1300A082BC /* iOSDeviceUtils.swift */; };
 		1BE2B5842493CD3E00A082BC /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B5832493CD3E00A082BC /* RememberShared.framework */; };
+		1BE2B7AE249AA8D700A082BC /* RealmUserRSSDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7AD249AA8D700A082BC /* RealmUserRSSDAO.swift */; };
 		61621C4FA413BB61F8291239 /* Pods_ios_dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0ADB771741B48B955BAA4E5 /* Pods_ios_dependencies.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		1BE2B56C2493CD1200A082BC /* DependencyProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
 		1BE2B56E2493CD1300A082BC /* iOSDeviceUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSDeviceUtils.swift; sourceTree = "<group>"; };
 		1BE2B5832493CD3E00A082BC /* RememberShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RememberShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BE2B7AD249AA8D700A082BC /* RealmUserRSSDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserRSSDAO.swift; sourceTree = "<group>"; };
 		8A797628AA4B2837DD6659F0 /* Pods-ios_dependencies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_dependencies.release.xcconfig"; path = "Target Support Files/Pods-ios_dependencies/Pods-ios_dependencies.release.xcconfig"; sourceTree = "<group>"; };
 		B0ADB771741B48B955BAA4E5 /* Pods_ios_dependencies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_dependencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 				1BE2B5652493CD1200A082BC /* RealmImageBookmarkDAO.swift */,
 				1BE2B5662493CD1200A082BC /* RealmLinkBookmarkDAO.swift */,
 				1BE2B5672493CD1200A082BC /* RealmTopicDAO.swift */,
+				1BE2B7AD249AA8D700A082BC /* RealmUserRSSDAO.swift */,
 				1BE2B5682493CD1200A082BC /* RealmDatabase.swift */,
 				1BE2B5692493CD1200A082BC /* RealmDAO.swift */,
 				1BE2B56A2493CD1200A082BC /* RealmTextBookmarkDAO.swift */,
@@ -292,6 +295,7 @@
 				1BE2B5792493CD1300A082BC /* RealmLinkBookmarkDAO.swift in Sources */,
 				1BE2B5722493CD1300A082BC /* RealmLinkBookmarkObject.swift in Sources */,
 				1BE2B5772493CD1300A082BC /* ExtensionContextDataCapture.swift in Sources */,
+				1BE2B7AE249AA8D700A082BC /* RealmUserRSSDAO.swift in Sources */,
 				1BE2B5702493CD1300A082BC /* RealmTopicObject.swift in Sources */,
 				1BE2B56F2493CD1300A082BC /* RealmImageBookmarkObject.swift in Sources */,
 				1BE2B5742493CD1300A082BC /* UrlResolver.swift in Sources */,
