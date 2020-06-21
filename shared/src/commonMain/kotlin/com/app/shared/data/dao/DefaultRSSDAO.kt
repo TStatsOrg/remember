@@ -6,24 +6,24 @@ class DefaultRSSDAO: RSSDAO {
     override fun getAll(): List<RSSDTO> {
         return listOf(
             DefaultRSS(
-                id = "xckd.com".hashCode(),
-                title = "xckd.com",
-                link = "https://feeder.co/add-feed?url=http://xkcd.com/atom.xml"
+                id = "Tech Crunch".hashCode(),
+                title = "Tech Crunch",
+                link = "http://feeds.feedburner.com/TechCrunch/"
             ),
             DefaultRSS(
-                id = "Explosm.net".hashCode(),
-                title = "Explosm.net",
-                link = "https://feeder.co/add-feed?url=http://feeds.feedburner.com/Explosm"
+                id = "The Guardian UK".hashCode(),
+                title = "The Guardian UK",
+                link = "https://www.theguardian.com/uk/rss"
             ),
             DefaultRSS(
                 id = "BBC News - World".hashCode(),
                 title = "BBC News - World",
-                link = "https://feeder.co/add-feed?url=http://feeds.bbci.co.uk/news/rss.xml"
+                link = "http://feeds.bbci.co.uk/news/world/rss.xml"
             ),
             DefaultRSS(
-                id = "Slashdot".hashCode(),
-                title = "Slashdot",
-                link = "https://feeder.co/add-feed?url=http://rss.slashdot.org/Slashdot/slashdot"
+                id = "Washington Post".hashCode(),
+                title = "Washington Post",
+                link = "http://feeds.washingtonpost.com/rss/rss_blogpost"
             )
         )
     }

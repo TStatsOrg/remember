@@ -78,14 +78,28 @@ data class RSSFeedState(
     val id: Int = 0,
     val title: String = "",
     val description: String? = null,
-    val link: String,
+    val link: String = "",
     val isSubscribed: Boolean = false
+): AppState
+
+data class RSSFeedItemState(
+    val id: Int = 0,
+    val title: String = "",
+    val link: String = "",
+    val pubDate: String = "",
+    val description: String?
 ): AppState
 
 data class RSSState(
     val feed: List<RSSFeedState> = listOf(),
     val error: Throwable? = null,
     val time: Long = 0L
+): AppState
+
+data class RSSFeedDetailState(
+    val feedState: RSSFeedState = RSSFeedState(),
+    val items: List<RSSFeedItemState> = listOf(),
+    val error: Throwable? = null
 ): AppState
 
 data class MainState(
@@ -95,5 +109,6 @@ data class MainState(
     val preview: PreviewState = PreviewState(),
     val editBookmark: EditBookmarkState? = null,
     val editTopic: EditTopicState? = null,
-    val rss: RSSState = RSSState()
+    val rss: RSSState = RSSState(),
+    val rssFeedDetail: RSSFeedDetailState = RSSFeedDetailState()
 ): AppState

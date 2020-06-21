@@ -18,11 +18,13 @@ public enum NavigationDestination {
     case EditBookmark(view: AnyView)
     case EditTopic(view: AnyView)
     case RSS(view: AnyView)
+    case RSSItems(view: AnyView)
     case UrlDestination
 }
 
 public protocol Navigation {
     
+    func showRSSItems(rssId: Int32)
     func showRSS()
     func showBookmarks()
     func showFeed()

@@ -16,8 +16,13 @@ import ios_feature_topic_edit
 import ios_feature_bookmarks
 import ios_feature_feed
 import ios_feature_rss
+import ios_feature_rss_items
 
 struct AppScreenFactory: ScreenFactory {
+    
+    func buildRSSItemsScreen(rssId: Int32) -> AnyView {
+        return AnyView(NavigationView { RSSItemsView(rssId: rssId) }.navigationViewStyle(StackNavigationViewStyle()))
+    }
     
     func buildRSSScreen() -> AnyView {
         return AnyView(NavigationView { RSSView() }.navigationViewStyle(StackNavigationViewStyle()))

@@ -10,17 +10,16 @@ import Foundation
 import SwiftUI
 import ios_views
 import ios_dependencies
-import ios_feature_topics
-import ios_feature_topic_add
-import ios_feature_bookmark_edit
-import ios_feature_bookmarks
-import ios_feature_feed
 
 class AppNavigation: Navigation {
     
     @Injected private var factory: ScreenFactory
     
     private var destination: NavigationDestination = .None
+    
+    func showRSSItems(rssId: Int32) {
+        destination = .RSSItems(view: factory.buildRSSItemsScreen(rssId: rssId))
+    }
     
     func showRSS() {
         destination = .RSS(view: factory.buildRSSScreen())
@@ -71,6 +70,8 @@ class AppNavigation: Navigation {
         case .AddTopic(let view):
             return view
         case .EditTopic(let view):
+            return view
+        case .RSSItems(let view):
             return view
         default:
             return AnyView(EmptyView())

@@ -2,10 +2,7 @@ package com.app.shared.business
 
 import com.app.shared.data.dto.TopicDTO
 import com.app.shared.redux.Reducer
-import com.app.shared.utils.copy
-import com.app.shared.utils.toState
-import com.app.shared.utils.toTopicState
-import com.app.shared.utils.toBookmarkState
+import com.app.shared.utils.*
 
 val AppStateReducer: Reducer<MainState> = { old, action ->
     when (action) {
@@ -168,8 +165,13 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         }
         // rss/load
         is Actions.RSS.Load.Start -> old.copy(rss = RSSState())
-        is Actions.RSS.Load.Success -> old.copy(rss = RSSState(feed = action.rss.toState(), time = action.time))
+        is Actions.RSS.Load.Success -> old.copy(rss = RSSState(feed = action.rss.toRSSState(), time = action.time))
         is Actions.RSS.Load.Error -> old.copy(rss = RSSState(error = action.error, time = action.time))
+        // rss/detail
+        is Actions.RSS.Detail.Present -> old.copy(rssFeedDetail = RSSFeedDetailState(feedState = action.rss.toState()))
+        is Actions.RSS.Detail.LoadItems.Start -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = listOf(), error = null))
+        is Actions.RSS.Detail.LoadItems.Success -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = action.items.toRSSItemState()))
+        is Actions.RSS.Detail.LoadItems.Error -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(error = action.error))
         else -> old
     }
 }

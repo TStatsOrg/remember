@@ -14,22 +14,30 @@ import ios_views
 public struct RSSView: View {
     
     @Injected private var viewModel: RSSViewModel
+    @Injected private var navigation: Navigation
     @State private var state: RSSListViewState = RSSListViewState()
+    @State private var isShowingSheet: Bool = false
     
     public init() {}
     
     public var body: some View {
         List(state.items, rowContent: { content in
             HStack(alignment: .center) {
-                VStack(alignment: .leading) {
-                    Text(content.title)
-                        .font(.body)
-                        .fontWeight(.bold)
-                    Text(content.link)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
+                Button(action: {
+                    self.navigation.showRSSItems(rssId: content.id)
+                    self.isShowingSheet = true
+                }) {
+                    VStack(alignment: .leading) {
+                        Text(content.title)
+                            .font(.body)
+                            .fontWeight(.bold)
+                        Text(content.link)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .lineLimit(1)
+                    }
                 }
+                
                 Spacer()
                 VStack(alignment: .trailing) {
                     if content.isSubscribeButtonVisible {
@@ -61,5 +69,6 @@ public struct RSSView: View {
         .onDisappear {
             self.viewModel.cleanup()
         }
+        .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
 }
