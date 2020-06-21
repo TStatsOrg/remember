@@ -32,7 +32,7 @@ public class FeedKitRSSItemDataSource: RSSItemDataSource {
                 return []
             }
         case .failure(let error):
-            return [] // handle error somehow
+            return []
         }
     }
 }

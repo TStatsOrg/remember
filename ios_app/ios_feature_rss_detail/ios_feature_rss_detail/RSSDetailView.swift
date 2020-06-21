@@ -23,9 +23,10 @@ public struct RSSDetailView: View {
     }
     
     public var body: some View {
-        List(state.items, rowContent: { content in
-            Text(content.title)
-        })
+        VStack {
+            createList()
+            createError()
+        }
             .navigationBarTitle(Text(state.title), displayMode: .inline)
             .onAppear {
                 self.viewModel.observeRSSDetailsState {
@@ -36,5 +37,19 @@ public struct RSSDetailView: View {
             .onDisappear {
                 self.viewModel.cleanup()
             }
+    }
+    
+    private func createList() -> some View {
+        List(state.items, rowContent: { content in
+            Text(content.title)
+        })
+    }
+    
+    private func createError() -> AnyView {
+        if state.hasError {
+            return AnyView(Text(state.errorMessage))
+        } else {
+            return AnyView(EmptyView())
+        }
     }
 }

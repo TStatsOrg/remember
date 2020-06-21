@@ -37,4 +37,12 @@ public struct RSSDetailViewState {
     public var isUnsubscribeButtonVisible: Bool {
         return feedState.isSubscribed
     }
+    
+    public var hasError: Bool {
+        return state.error != nil
+    }
+    
+    public var errorMessage: String {
+        return state.error?.message ?? "N/A"
+    }
 }
