@@ -35,6 +35,7 @@ public struct RSSView: View {
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .lineLimit(1)
+                        Divider()
                     }
                 }
                 

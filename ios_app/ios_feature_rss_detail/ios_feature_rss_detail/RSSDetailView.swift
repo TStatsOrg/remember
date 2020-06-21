@@ -42,7 +42,16 @@ public struct RSSDetailView: View {
         HStack {
             if state.isContentVisible {
                 List(state.items, rowContent: { content in
-                    Text(content.title)
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(content.title)
+                            .fontWeight(.bold)
+                        Text(content.link)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .lineLimit(1)
+                            .padding(EdgeInsets(top: 8, leading: 0, bottom: 16, trailing: 0))
+                        Divider()
+                    }
                 })
             } else {
                 ErrorView(error: state.errorViewState)
