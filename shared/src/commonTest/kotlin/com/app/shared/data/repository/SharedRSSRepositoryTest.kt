@@ -3,7 +3,9 @@ package com.app.shared.data.repository
 import com.app.shared.DefaultTest
 import com.app.shared.coroutines.runTest
 import com.app.shared.data.dao.RSSDAO
+import com.app.shared.data.source.RSSItemDataSource
 import com.app.shared.mocks.MockRSSDTO
+import com.app.shared.mocks.MockRSSItemDTO
 import io.mockk.every
 import io.mockk.mockk
 import kotlin.test.Test
@@ -14,7 +16,11 @@ class SharedRSSRepositoryTest: DefaultTest() {
 
     private val defaultRSSDAO = mockk<RSSDAO>()
     private val userRSSDAO = mockk<RSSDAO>()
-    private val repository = SharedRSSRepository(defaultRSSDAO, userRSSDAO)
+    private val dataSource = mockk<RSSItemDataSource>(relaxed = true)
+    private val repository = SharedRSSRepository(
+        defaultRSSDAO = defaultRSSDAO,
+        userRSSDAO = userRSSDAO,
+        rssItemDataSource = dataSource)
 
     @Test
     fun `repository returns only default RSS items that come with the app sorted by id asc`() = runTest {
@@ -103,5 +109,23 @@ class SharedRSSRepositoryTest: DefaultTest() {
 
         // then
         assertEquals(result, rss11)
+    }
+
+    @Test
+    fun `repository returns RSS Feed Items for a particular RSS Feed`() = runTest {
+        // data
+        val rss = MockRSSDTO(id = 1, title = "Feed 1", description = null, link = "https://rss1/feed.xml", isSubscribed = false)
+
+        val item1 = MockRSSItemDTO(id = 10, link = "https://my.article.1/index.html", title = "My article 1")
+        val item2 = MockRSSItemDTO(id = 11, link = "https://my.article.2/index.html", title = "My article 2")
+
+        // given
+        every { dataSource.getRSSItems(fromLink = "https://rss1/feed.xml") } returns listOf(item1, item2)
+
+        // when
+        val result = repository.getAllItems(dto = rss)
+
+        // then
+        assertEquals(result, listOf(item1, item2))
     }
 }

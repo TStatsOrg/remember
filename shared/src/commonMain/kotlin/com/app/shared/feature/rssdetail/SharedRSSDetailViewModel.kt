@@ -26,6 +26,13 @@ class SharedRSSDetailViewModel(
 
             if (rss != null) {
                 store.dispatch(action = Actions.RSS.Detail.Present(rss = rss))
+
+                try {
+                    val items = repository.getAllItems(dto = rss)
+                    store.dispatch(action = Actions.RSS.Detail.LoadItems.Success(items = items))
+                } catch (e: Throwable) {
+                    store.dispatch(action = Actions.RSS.Detail.LoadItems.Error(error = e))
+                }
             }
         }
     }

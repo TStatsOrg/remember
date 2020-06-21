@@ -23,7 +23,9 @@ public struct RSSDetailView: View {
     }
     
     public var body: some View {
-        Text("Items")
+        List(state.items, rowContent: { content in
+            Text(content.title)
+        })
             .navigationBarTitle(Text(state.title), displayMode: .inline)
             .onAppear {
                 self.viewModel.observeRSSDetailsState {

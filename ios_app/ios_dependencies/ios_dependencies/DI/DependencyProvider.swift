@@ -64,6 +64,11 @@ public class DependencyProvider {
                                   downloader: self.resolve(),
                                   parser: self.resolve()) as RawDataProcess }
         
+        // data sources
+        register {
+            FeedKitRSSItemDataSource() as RSSItemDataSource
+        }
+        
         // repos
         register {
             SharedBookmarkRepository(imageBookmarkDAO: (self.resolve() as Database).getImageBookmarkDAO(),
@@ -77,7 +82,8 @@ public class DependencyProvider {
         
         register {
             SharedRSSRepository(defaultRSSDAO: DefaultRSSDAO(),
-                                userRSSDAO: (self.resolve() as Database).getUserRSSDAO()) as RSSRepository
+                                userRSSDAO: (self.resolve() as Database).getUserRSSDAO(),
+                                rssItemDataSource: self.resolve()) as RSSRepository
         }
         
         // view models
