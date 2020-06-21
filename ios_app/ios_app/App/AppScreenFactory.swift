@@ -16,7 +16,7 @@ import ios_feature_topic_edit
 import ios_feature_bookmarks
 import ios_feature_feed
 import ios_feature_rss
-import ios_feature_rss_items
+import ios_feature_rss_detail
 
 struct AppScreenFactory: ScreenFactory {
     

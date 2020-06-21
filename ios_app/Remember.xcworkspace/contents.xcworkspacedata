@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:ios_feature_rss_items/ios_feature_rss_items.xcodeproj">
+      location = "group:ios_feature_rss_detail/ios_feature_rss_detail.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:ios_feature_rss/ios_feature_rss.xcodeproj">

@@ -87,7 +87,7 @@ data class RSSFeedItemState(
     val title: String = "",
     val link: String = "",
     val pubDate: String = "",
-    val description: String?
+    val caption: String?
 ): AppState
 
 data class RSSState(
@@ -100,7 +100,11 @@ data class RSSFeedDetailState(
     val feedState: RSSFeedState = RSSFeedState(),
     val items: List<RSSFeedItemState> = listOf(),
     val error: Throwable? = null
-): AppState
+): AppState {
+
+    // iOS constructor
+    constructor(): this(feedState = RSSFeedState(), items = listOf(), error = null)
+}
 
 data class MainState(
     val allBookmarks: List<BookmarkState> = listOf(),

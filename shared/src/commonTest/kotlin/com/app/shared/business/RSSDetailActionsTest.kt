@@ -61,7 +61,7 @@ class RSSDetailActionsTest: DefaultTest() {
                         RSSFeedItemState(
                             id = 5,
                             title = "Item 5",
-                            description = null,
+                            caption = null,
                             link = "https://my.rss.item.4/index.html"
                         )
                     ),
@@ -133,21 +133,21 @@ class RSSDetailActionsTest: DefaultTest() {
                         RSSFeedItemState(
                             id = 1,
                             title = "Item 1",
-                            description = null,
+                            caption = null,
                             pubDate = "20th Apr 2020",
                             link = "https://my.rss.item.1/index.html"
                         ),
                         RSSFeedItemState(
                             id = 2,
                             title = "Item 2",
-                            description = null,
+                            caption = null,
                             pubDate = "20th Apr 2020",
                             link = "https://my.rss.item.2/index.html"
                         ),
                         RSSFeedItemState(
                             id = 3,
                             title = "Item 3",
-                            description = null,
+                            caption = null,
                             pubDate = "20th Apr 2020",
                             link = "https://my.rss.item.3/index.html"
                         )

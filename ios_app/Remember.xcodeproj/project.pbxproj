@@ -16,8 +16,8 @@
 		1B7723D12482F884006150F2 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7723CA2482F884006150F2 /* RememberShared.framework */; };
 		1B7723D22482F884006150F2 /* RememberShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7723CA2482F884006150F2 /* RememberShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B7DCF48248EC2E000E30038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B7DCF46248EC10800E30038 /* Localizable.strings */; };
-		1B841461249F9B8300AD4660 /* ios_feature_rss_items.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B841460249F9B8300AD4660 /* ios_feature_rss_items.framework */; };
-		1B841462249F9B8300AD4660 /* ios_feature_rss_items.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B841460249F9B8300AD4660 /* ios_feature_rss_items.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B841466249FB4F800AD4660 /* ios_feature_rss_detail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B841465249FB4F800AD4660 /* ios_feature_rss_detail.framework */; };
+		1B841467249FB4F800AD4660 /* ios_feature_rss_detail.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B841465249FB4F800AD4660 /* ios_feature_rss_detail.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D02441E9600060EC1D /* AppDelegate.swift */; };
 		1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D22441E9600060EC1D /* SceneDelegate.swift */; };
 		1BA773D72441E9660060EC1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BA773D62441E9660060EC1D /* Assets.xcassets */; };
@@ -108,7 +108,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1BE2B6AC2493D79900A082BC /* ios_feature_hub.framework in Embed Frameworks */,
-				1B841462249F9B8300AD4660 /* ios_feature_rss_items.framework in Embed Frameworks */,
 				1BE2B77B24993C8700A082BC /* ios_feature_feed.framework in Embed Frameworks */,
 				1BE2B71C2499375600A082BC /* ios_feature_bookmarks.framework in Embed Frameworks */,
 				1BE2B7AA249A9BF600A082BC /* ios_feature_rss.framework in Embed Frameworks */,
@@ -118,6 +117,7 @@
 				1BE2B5822493CD3300A082BC /* ios_dependencies.framework in Embed Frameworks */,
 				1BE2B6A92493D79300A082BC /* ios_feature_bookmark_edit.framework in Embed Frameworks */,
 				1BE2B6AF2493D79D00A082BC /* ios_feature_topic_add.framework in Embed Frameworks */,
+				1B841467249FB4F800AD4660 /* ios_feature_rss_detail.framework in Embed Frameworks */,
 				1BE2B6B52493D7A800A082BC /* ios_feature_topics.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -142,6 +142,7 @@
 		1B7723CD2482F884006150F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B7DCF46248EC10800E30038 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		1B841460249F9B8300AD4660 /* ios_feature_rss_items.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_rss_items.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B841465249FB4F800AD4660 /* ios_feature_rss_detail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_rss_detail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773CD2441E9600060EC1D /* KeepJar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeepJar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773D02441E9600060EC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BA773D22441E9600060EC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -253,8 +254,8 @@
 				1BE2B71B2499375600A082BC /* ios_feature_bookmarks.framework in Frameworks */,
 				1BE2B6B12493D7A200A082BC /* ios_feature_topic_edit.framework in Frameworks */,
 				1BE2B7A9249A9BF600A082BC /* ios_feature_rss.framework in Frameworks */,
+				1B841466249FB4F800AD4660 /* ios_feature_rss_detail.framework in Frameworks */,
 				A50BC53D350C131955AEAC79 /* Pods_ios_app.framework in Frameworks */,
-				1B841461249F9B8300AD4660 /* ios_feature_rss_items.framework in Frameworks */,
 				1B7723D12482F884006150F2 /* RememberShared.framework in Frameworks */,
 				1BE2B6A82493D79300A082BC /* ios_feature_bookmark_edit.framework in Frameworks */,
 				1BE2B5812493CD3300A082BC /* ios_dependencies.framework in Frameworks */,
@@ -379,6 +380,7 @@
 		1BA774012441ED240060EC1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B841465249FB4F800AD4660 /* ios_feature_rss_detail.framework */,
 				1B841460249F9B8300AD4660 /* ios_feature_rss_items.framework */,
 				1BE2B7A8249A9BF500A082BC /* ios_feature_rss.framework */,
 				1BE2B77924993C8700A082BC /* ios_feature_feed.framework */,

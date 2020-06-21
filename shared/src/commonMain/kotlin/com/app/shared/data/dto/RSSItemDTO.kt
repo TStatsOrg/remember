@@ -5,5 +5,5 @@ interface RSSItemDTO {
     val title: String
     val link: String
     val pubDate: String
-    val description: String?
+    val caption: String?
 }

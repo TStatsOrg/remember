@@ -127,7 +127,7 @@ fun RSSItemDTO.toState(): RSSFeedItemState = RSSFeedItemState(
     title = title,
     link = link,
     pubDate = pubDate,
-    description = description
+    caption = caption
 )
 
 fun List<RSSItemDTO>.toRSSItemState(): List<RSSFeedItemState> = this.map { it.toState() }

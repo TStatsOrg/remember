@@ -84,6 +84,11 @@ target 'ios_feature_rss' do
   use_frameworks!
 end
 
+target 'ios_feature_rss_detail' do
+  project 'ios_feature_rss_detail/ios_feature_rss_detail.xcodeproj'
+  use_frameworks!
+end
+
 target 'ios_feature_bookmarks' do
   project 'ios_feature_bookmarks/ios_feature_bookmarks.xcodeproj'
   use_frameworks!

@@ -123,5 +123,10 @@ public class DependencyProvider {
                                repository: self.resolve(),
                                calendarUtils: self.resolve()) as RSSViewModel
         }
+        
+        register {
+            SharedRSSDetailViewModel(store: self.resolve(),
+                                     repository: self.resolve()) as RSSDetailViewModel
+        }
     }
 }

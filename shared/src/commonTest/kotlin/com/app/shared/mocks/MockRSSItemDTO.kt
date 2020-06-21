@@ -7,5 +7,5 @@ data class MockRSSItemDTO(
     override val title: String,
     override val link: String,
     override val pubDate: String = "20th Apr 2020",
-    override val description: String? = null
+    override val caption: String? = null
 ) : RSSItemDTO
