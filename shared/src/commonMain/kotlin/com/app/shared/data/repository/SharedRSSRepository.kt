@@ -19,4 +19,12 @@ class SharedRSSRepository(
             return@withContext (defaults + user).sortedBy { it.id }
         }
     }
+
+    override suspend fun get(rssId: Int): RSSDTO? {
+        return withContext(DispatcherFactory.io()) {
+            val user = userRSSDAO.get(rssId = rssId)
+            val default = defaultRSSDAO.get(rssId = rssId)
+            return@withContext user ?: default
+        }
+    }
 }

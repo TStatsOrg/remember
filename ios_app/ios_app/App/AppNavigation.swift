@@ -17,8 +17,8 @@ class AppNavigation: Navigation {
     
     private var destination: NavigationDestination = .None
     
-    func showRSSItems(rssId: Int32) {
-        destination = .RSSItems(view: factory.buildRSSItemsScreen(rssId: rssId))
+    func showRSSDetail(rssId: Int32) {
+        destination = .RSSDetail(view: factory.buildRSSDetailScreen(rssId: rssId))
     }
     
     func showRSS() {
@@ -71,7 +71,7 @@ class AppNavigation: Navigation {
             return view
         case .EditTopic(let view):
             return view
-        case .RSSItems(let view):
+        case .RSSDetail(let view):
             return view
         default:
             return AnyView(EmptyView())

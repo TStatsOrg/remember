@@ -21,4 +21,8 @@ class RealmUserRSSDAO: RealmDAO, RSSDAO {
     func getAll() -> [RSSDTO] {
         return []
     }
+    
+    func get(rssId: Int32) -> RSSDTO? {
+        return nil
+    }
 }

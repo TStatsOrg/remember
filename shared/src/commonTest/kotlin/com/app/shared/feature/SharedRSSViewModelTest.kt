@@ -63,7 +63,7 @@ class SharedRSSViewModelTest: DefaultTest() {
         val dto1 = MockRSSDTO(id = 1, title = "RSS 1", link = "https://rss.1/feed.xml", description = null, isSubscribed = false)
         val dto2 = MockRSSDTO(id = 2, title = "RSS 2", link = "https://rss.2/feed.xml", description = null, isSubscribed = true)
 
-        val store = Store<MainState>(
+        val store = Store(
             reducer = AppStateReducer,
             initialState = MainState()
         )

@@ -20,8 +20,8 @@ import ios_feature_rss_items
 
 struct AppScreenFactory: ScreenFactory {
     
-    func buildRSSItemsScreen(rssId: Int32) -> AnyView {
-        return AnyView(NavigationView { RSSItemsView(rssId: rssId) }.navigationViewStyle(StackNavigationViewStyle()))
+    func buildRSSDetailScreen(rssId: Int32) -> AnyView {
+        return AnyView(NavigationView { RSSDetailView(rssId: rssId) }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildRSSScreen() -> AnyView {

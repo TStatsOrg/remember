@@ -11,7 +11,7 @@
 		1B841455249F9B6700AD4660 /* ios_dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B841454249F9B6700AD4660 /* ios_dependencies.framework */; };
 		1B841459249F9B6C00AD4660 /* ios_views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B841458249F9B6C00AD4660 /* ios_views.framework */; };
 		1B84145D249F9B7100AD4660 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B84145C249F9B7100AD4660 /* RememberShared.framework */; };
-		1B841464249F9EDE00AD4660 /* RSSItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841463249F9EDE00AD4660 /* RSSItemsView.swift */; };
+		1B841464249F9EDE00AD4660 /* RSSDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841463249F9EDE00AD4660 /* RSSDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +21,7 @@
 		1B841454249F9B6700AD4660 /* ios_dependencies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_dependencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B841458249F9B6C00AD4660 /* ios_views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B84145C249F9B7100AD4660 /* RememberShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RememberShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B841463249F9EDE00AD4660 /* RSSItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSItemsView.swift; sourceTree = "<group>"; };
+		1B841463249F9EDE00AD4660 /* RSSDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			children = (
 				1B84144B249F9B5C00AD4660 /* ios_feature_rss_items.h */,
 				1B84144C249F9B5C00AD4660 /* Info.plist */,
-				1B841463249F9EDE00AD4660 /* RSSItemsView.swift */,
+				1B841463249F9EDE00AD4660 /* RSSDetailView.swift */,
 			);
 			path = ios_feature_rss_items;
 			sourceTree = "<group>";
@@ -155,7 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B841464249F9EDE00AD4660 /* RSSItemsView.swift in Sources */,
+				1B841464249F9EDE00AD4660 /* RSSDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

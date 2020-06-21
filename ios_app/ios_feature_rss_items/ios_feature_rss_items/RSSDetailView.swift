@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public struct RSSItemsView: View {
+public struct RSSDetailView: View {
     
     private let rssId: Int32
     

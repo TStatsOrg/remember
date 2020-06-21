@@ -24,7 +24,7 @@ public struct RSSView: View {
         List(state.items, rowContent: { content in
             HStack(alignment: .center) {
                 Button(action: {
-                    self.navigation.showRSSItems(rssId: content.id)
+                    self.navigation.showRSSDetail(rssId: content.id)
                     self.isShowingSheet = true
                 }) {
                     VStack(alignment: .leading) {
