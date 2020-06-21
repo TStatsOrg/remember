@@ -4,6 +4,6 @@ interface RSSItemDTO {
     val id: Int
     val title: String
     val link: String
-    val pubDate: String
+    val pubDate: Long
     val caption: String?
 }

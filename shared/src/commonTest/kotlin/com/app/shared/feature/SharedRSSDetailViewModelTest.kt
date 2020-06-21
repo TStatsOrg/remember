@@ -136,14 +136,14 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
                         link = "https://my.article.1/index.html",
                         title = "My article 1",
                         caption = null,
-                        pubDate = "20th Apr 2020"
+                        pubDate = 0L
                     ),
                     RSSFeedItemState(
                         id = 11,
                         link = "https://my.article.2/index.html",
                         title = "My article 2",
                         caption = null,
-                        pubDate = "20th Apr 2020"
+                        pubDate = 0L
                     )
                 ),
                 error = null

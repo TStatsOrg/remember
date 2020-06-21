@@ -11,6 +11,7 @@
 		1B841469249FB78600AD4660 /* RSSItemViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841468249FB78600AD4660 /* RSSItemViewState.swift */; };
 		1B841472249FD2F900AD4660 /* ErrorViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841471249FD2F900AD4660 /* ErrorViewState.swift */; };
 		1B841474249FD5BE00AD4660 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841473249FD5BE00AD4660 /* ErrorView.swift */; };
+		1B841476249FE5FE00AD4660 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841475249FE5FE00AD4660 /* DateUtils.swift */; };
 		1BE2B5302493C85D00A082BC /* ios_views.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE2B52E2493C85D00A082BC /* ios_views.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BE2B5B32493D17D00A082BC /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5A02493D17D00A082BC /* ScreenFactory.swift */; };
 		1BE2B5B42493D17D00A082BC /* ForegroundNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5A22493D17D00A082BC /* ForegroundNotification.swift */; };
@@ -34,6 +35,7 @@
 		1B841468249FB78600AD4660 /* RSSItemViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSItemViewState.swift; sourceTree = "<group>"; };
 		1B841471249FD2F900AD4660 /* ErrorViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewState.swift; sourceTree = "<group>"; };
 		1B841473249FD5BE00AD4660 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		1B841475249FE5FE00AD4660 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		1BE2B52B2493C85D00A082BC /* ios_views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B52E2493C85D00A082BC /* ios_views.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_views.h; sourceTree = "<group>"; };
 		1BE2B52F2493C85D00A082BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				1B531221249AAB8100F4DF14 /* RSSViewState.swift */,
 				1B841468249FB78600AD4660 /* RSSItemViewState.swift */,
 				1B841471249FD2F900AD4660 /* ErrorViewState.swift */,
+				1B841475249FE5FE00AD4660 /* DateUtils.swift */,
 			);
 			path = ViewStates;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BE2B5B32493D17D00A082BC /* ScreenFactory.swift in Sources */,
+				1B841476249FE5FE00AD4660 /* DateUtils.swift in Sources */,
 				1BE2B5BE2493D17D00A082BC /* Colors.swift in Sources */,
 				1B841469249FB78600AD4660 /* RSSItemViewState.swift in Sources */,
 				1BE2B5B72493D17D00A082BC /* Styles.swift in Sources */,

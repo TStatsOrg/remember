@@ -45,7 +45,7 @@ public struct RSSDetailView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(content.title)
                             .fontWeight(.bold)
-                        Text(content.link)
+                        Text(content.date)
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .lineLimit(1)

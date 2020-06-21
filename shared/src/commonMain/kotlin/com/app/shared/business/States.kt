@@ -86,7 +86,7 @@ data class RSSFeedItemState(
     val id: Int = 0,
     val title: String = "",
     val link: String = "",
-    val pubDate: String = "",
+    val pubDate: Long = 0L,
     val caption: String?
 ): AppState
 

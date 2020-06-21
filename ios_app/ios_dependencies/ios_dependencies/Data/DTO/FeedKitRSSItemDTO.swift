@@ -14,12 +14,12 @@ class FeedKitRSSItemDTO: RSSItemDTO {
     var caption: String? = ""
     var id: Int32 = 0
     var link: String = ""
-    var pubDate: String = ""
     var title: String = ""
+    var pubDate: Int64 = 0
     
     public init(feedKit item: FeedKit.RSSFeedItem) {
         self.title = item.title ?? ""
-//        self.pubDate = item.pubDate
+        self.pubDate = Int64(item.pubDate?.timeIntervalSince1970 ?? 0) * 1000
         self.caption = item.description
         self.link = item.link ?? ""
         self.id = Int32(item.title?.count ?? 0)

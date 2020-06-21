@@ -30,7 +30,7 @@ public struct RSSItemViewState: Identifiable {
     }
     
     public var date: String {
-        return state.pubDate
+        return DateUtils.format(fromLong: state.pubDate)
     }
     
     public var caption: String? {
