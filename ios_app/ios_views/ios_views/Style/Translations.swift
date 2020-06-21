@@ -38,4 +38,16 @@ public struct Translations {
         public static let subscribeTitle: LocalizedStringKey = "rss_subscribe_button_title"
         public static let unsubscribeTitle: LocalizedStringKey = "rss_unsubscribe_button_title"
     }
+    
+    public struct Errors {
+        public static let Network: LocalizedStringKey = "error_network"
+        public static let InvalidRSSFormat: LocalizedStringKey = "error_rss"
+        public static let Database: LocalizedStringKey = "error_database"
+        public static let InvalidURL: LocalizedStringKey = "error_url"
+        public static let Other: LocalizedStringKey = "error_other"
+    }
+    
+    public struct General {
+        public static let NoResults: LocalizedStringKey = "general_no_results"
+    }
 }

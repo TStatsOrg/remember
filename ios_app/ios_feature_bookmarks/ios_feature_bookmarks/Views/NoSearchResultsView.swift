@@ -24,7 +24,7 @@ public struct NoSearchResultsView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 80, height: 80)
                     .padding(top: 20)
-                Text("No results found")
+                Text(Translations.General.NoResults)
                     .foregroundColor(.secondary)
                 Spacer()
             } else {

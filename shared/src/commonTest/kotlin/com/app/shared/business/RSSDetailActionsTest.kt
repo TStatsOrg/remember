@@ -110,7 +110,7 @@ class RSSDetailActionsTest: DefaultTest() {
                     link = "https://my.rss1/feed.xml"
                 ),
                 items = listOf(),
-                error = null
+                error = Errors.InvalidRSSFormat
             )
         )
 
@@ -174,7 +174,15 @@ class RSSDetailActionsTest: DefaultTest() {
                     isSubscribed = false,
                     link = "https://my.rss1/feed.xml"
                 ),
-                items = listOf(),
+                items = listOf(
+                    RSSFeedItemState(
+                        id = 1,
+                        title = "Item 1",
+                        caption = null,
+                        pubDate = "20th Apr 2020",
+                        link = "https://my.rss.item.1/index.html"
+                    )
+                ),
                 error = null
             )
         )

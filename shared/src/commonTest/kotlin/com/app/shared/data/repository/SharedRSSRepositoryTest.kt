@@ -1,16 +1,17 @@
 package com.app.shared.data.repository
 
 import com.app.shared.DefaultTest
+import com.app.shared.business.Actions
+import com.app.shared.business.Either
 import com.app.shared.coroutines.runTest
 import com.app.shared.data.dao.RSSDAO
+import com.app.shared.data.dto.RSSItemDTO
 import com.app.shared.data.source.RSSItemDataSource
 import com.app.shared.mocks.MockRSSDTO
 import com.app.shared.mocks.MockRSSItemDTO
 import io.mockk.every
 import io.mockk.mockk
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
+import kotlin.test.*
 
 class SharedRSSRepositoryTest: DefaultTest() {
 
@@ -120,12 +121,14 @@ class SharedRSSRepositoryTest: DefaultTest() {
         val item2 = MockRSSItemDTO(id = 11, link = "https://my.article.2/index.html", title = "My article 2")
 
         // given
-        every { dataSource.getRSSItems(fromLink = "https://rss1/feed.xml") } returns listOf(item1, item2)
+        every { dataSource.getRSSItems(fromLink = "https://rss1/feed.xml") } returns Either.Success(listOf(item1, item2))
 
         // when
         val result = repository.getAllItems(dto = rss)
+        val unpacked = result as Either.Success
 
         // then
-        assertEquals(result, listOf(item1, item2))
+        assertNotNull(unpacked)
+        assertEquals(unpacked.data, listOf(item1, item2))
     }
 }

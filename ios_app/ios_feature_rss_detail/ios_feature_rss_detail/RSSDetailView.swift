@@ -23,33 +23,35 @@ public struct RSSDetailView: View {
     }
     
     public var body: some View {
-        VStack {
-            createList()
-            createError()
+        VStack(alignment: .center) {
+            RSSFeedItems()
         }
-            .navigationBarTitle(Text(state.title), displayMode: .inline)
-            .onAppear {
-                self.viewModel.observeRSSDetailsState {
-                    self.state = RSSDetailViewState(state: $0)
-                }
-                self.viewModel.loadRSSFeedData(rssId: self.rssId)
+        .navigationBarTitle(Text(state.title), displayMode: .inline)
+        .onAppear {
+            self.viewModel.observeRSSDetailsState {
+                self.state = RSSDetailViewState(state: $0)
             }
-            .onDisappear {
-                self.viewModel.cleanup()
-            }
+            self.viewModel.loadRSSFeedData(rssId: self.rssId)
+        }
+        .onDisappear {
+            self.viewModel.cleanup()
+        }
     }
     
-    private func createList() -> some View {
-        List(state.items, rowContent: { content in
-            Text(content.title)
-        })
-    }
-    
-    private func createError() -> AnyView {
-        if state.hasError {
-            return AnyView(Text(state.errorMessage))
-        } else {
-            return AnyView(EmptyView())
+    private func RSSFeedItems() -> some View {
+        HStack {
+            if state.isContentVisible {
+                List(state.items, rowContent: { content in
+                    Text(content.title)
+                })
+            } else {
+                ErrorView(error: state.errorViewState)
+            }
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity,
+            alignment: .center
+        )
     }
 }

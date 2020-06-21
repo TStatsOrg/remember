@@ -1,6 +1,7 @@
 package com.app.shared.feature.rssdetail
 
 import com.app.shared.business.Actions
+import com.app.shared.business.Either
 import com.app.shared.business.MainState
 import com.app.shared.business.RSSFeedDetailState
 import com.app.shared.coroutines.DispatcherFactory
@@ -27,11 +28,9 @@ class SharedRSSDetailViewModel(
             if (rss != null) {
                 store.dispatch(action = Actions.RSS.Detail.Present(rss = rss))
 
-                try {
-                    val items = repository.getAllItems(dto = rss)
-                    store.dispatch(action = Actions.RSS.Detail.LoadItems.Success(items = items))
-                } catch (e: Throwable) {
-                    store.dispatch(action = Actions.RSS.Detail.LoadItems.Error(error = e))
+                when (val result = repository.getAllItems(dto = rss)) {
+                    is Either.Success -> store.dispatch(action = Actions.RSS.Detail.LoadItems.Success(items = result.data))
+                    is Either.Failure -> store.dispatch(action = Actions.RSS.Detail.LoadItems.Error(error = result.error))
                 }
             }
         }

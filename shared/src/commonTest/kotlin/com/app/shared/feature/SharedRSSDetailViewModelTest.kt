@@ -34,7 +34,7 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
 
         // when
         coEvery { repository.get(rssId = 13) } returns rss
-        coEvery { repository.getAllItems(dto = rss) } returns listOf(item1, item2)
+        coEvery { repository.getAllItems(dto = rss) } returns Either.Success(listOf(item1, item2))
         viewModel.loadRSSFeedData(rssId = 13)
 
         // then
@@ -48,11 +48,11 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
     fun `view model will load rss details if a RSS feed with Id is found but there is a network error`() = runTest {
         // given
         val rss = MockRSSDTO(id = 13, title = "My RSS", link = "https://my.rss/feed.xml", description = null, isSubscribed = false)
-        val error = Throwable(message = "Network error")
+        val error = Errors.InvalidRSSFormat
 
         // when
         coEvery { repository.get(rssId = 13) } returns rss
-        coEvery { repository.getAllItems(dto = rss) } throws error
+        coEvery { repository.getAllItems(dto = rss) } returns  Either.Failure(error)
         viewModel.loadRSSFeedData(rssId = 13)
 
         // then
@@ -104,7 +104,7 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
         val viewModel = SharedRSSDetailViewModel(store = store, repository = repository)
 
         coEvery { repository.get(rssId = 1) } returns rss1
-        coEvery { repository.getAllItems(dto = rss1) } returns listOf(item1, item2)
+        coEvery { repository.getAllItems(dto = rss1) } returns Either.Success(listOf(item1, item2))
 
         // when
         var newState: RSSFeedDetailState? = null
@@ -145,7 +145,30 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
                         caption = null,
                         pubDate = "20th Apr 2020"
                     )
-                )
+                ),
+                error = null
+            ),
+            newState
+        )
+
+        // when
+        val error = Errors.Network
+        coEvery { repository.getAllItems(dto = rss1) } returns Either.Failure(error)
+
+        viewModel.loadRSSFeedData(rssId = 1)
+
+        // then
+        assertEquals(
+            RSSFeedDetailState(
+                feedState = RSSFeedState(
+                    id = 1,
+                    title = "Feed 1",
+                    description = null,
+                    link = "https://rss1/feed.xml",
+                    isSubscribed = false
+                ),
+                items = listOf(),
+                error = Errors.Network
             ),
             newState
         )

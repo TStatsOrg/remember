@@ -11,10 +11,11 @@ import RememberShared
 import FeedKit
 
 public class FeedKitRSSItemDataSource: RSSItemDataSource {
-    public func getRSSItems(fromLink: String) -> [RSSItemDTO] {
+    
+    public func getRSSItems(fromLink: String) -> Either {
         
         guard let url = URL(string: fromLink) else {
-            return []
+            return Either.Failure(error: Errors.InvalidURL())
         }
         
         let parser = FeedParser(URL: url)
@@ -24,15 +25,19 @@ public class FeedKitRSSItemDataSource: RSSItemDataSource {
         switch result {
         case .success(let feed):
             switch feed {
-            case let .atom(items):       // Atom Syndication Format Feed Model
-                return []
-            case let .rss(items):        // Really Simple Syndication Feed Model
-                return items.items?.map(FeedKitRSSItemDTO.init) ?? []
-            case let .json(items):       // JSON Feed Model
-                return []
+            // Atom Syndication Format Feed Model
+            case .atom:
+                return Either.Failure(error: Errors.InvalidRSSFormat())
+            // Really Simple Syndication Feed Model
+            case let .rss(items):
+                let result = items.items?.map(FeedKitRSSItemDTO.init) ?? []
+                return Either.Success(data: result)
+            // JSON Feed Model
+            case .json:
+                return Either.Failure(error: Errors.InvalidRSSFormat())
             }
-        case .failure(let error):
-            return []
+        case .failure:
+            return Either.Failure(error: Errors.InvalidRSSFormat())
         }
     }
 }

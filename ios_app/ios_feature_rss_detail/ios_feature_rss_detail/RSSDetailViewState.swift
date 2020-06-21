@@ -38,11 +38,11 @@ public struct RSSDetailViewState {
         return feedState.isSubscribed
     }
     
-    public var hasError: Bool {
-        return state.error != nil
+    public var errorViewState: ErrorViewState {
+        return ErrorViewState(error: state.error)
     }
     
-    public var errorMessage: String {
-        return state.error?.message ?? "N/A"
+    public var isContentVisible: Bool {
+        return !errorViewState.isVisible
     }
 }

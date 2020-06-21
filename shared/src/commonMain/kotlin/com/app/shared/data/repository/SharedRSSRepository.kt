@@ -1,5 +1,6 @@
 package com.app.shared.data.repository
 
+import com.app.shared.business.Either
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.data.dao.RSSDAO
 import com.app.shared.data.dto.RSSDTO
@@ -31,7 +32,7 @@ class SharedRSSRepository(
         }
     }
 
-    override suspend fun getAllItems(dto: RSSDTO): List<RSSItemDTO> {
+    override suspend fun getAllItems(dto: RSSDTO): Either<List<RSSItemDTO>> {
         return withContext(context = DispatcherFactory.io()) {
             return@withContext rssItemDataSource.getRSSItems(fromLink = dto.link)
         }
