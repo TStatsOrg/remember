@@ -24,6 +24,9 @@ public class FeedKitRSSItemDataSource: RSSItemDataSource {
         
         switch result {
         case .success(let feed):
+            
+            print("GABBOX IMAGE link is \(feed.rssFeed?.image?.url)")
+            
             switch feed {
             // Atom Syndication Format Feed Model
             case .atom:

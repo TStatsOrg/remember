@@ -22,42 +22,44 @@ public struct RSSView: View {
     
     public var body: some View {
         List(state.items, rowContent: { content in
-            HStack(alignment: .center) {
-                Button(action: {
-                    self.navigation.showRSSDetail(rssId: content.id)
-                    self.isShowingSheet = true
-                }) {
-                    VStack(alignment: .leading) {
-                        Text(content.title)
-                            .font(.body)
-                            .fontWeight(.bold)
-                        Text(content.link)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .lineLimit(1)
-                        Divider()
-                    }
-                }
-                
-                Spacer()
-                VStack(alignment: .trailing) {
-                    if content.isSubscribeButtonVisible {
-                        Button(action: {
-                            /* subscribe */
-                        }) {
-                            Text(Translations.RSS.subscribeTitle)
-                                .foregroundColor(Color.green)
+            VStack {
+                HStack(alignment: .center) {
+                    Button(action: {
+                        self.navigation.showRSSDetail(rssId: content.id)
+                        self.isShowingSheet = true
+                    }) {
+                        VStack(alignment: .leading) {
+                            Text(content.title)
+                                .font(.body)
+                                .fontWeight(.bold)
+                            Text(content.link)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
                         }
                     }
-                    if content.isUnsubscribeButtonVisible {
-                        Button(action: {
-                            /* unsubscribe */
-                        }) {
-                            Text(Translations.RSS.unsubscribeTitle)
-                                .foregroundColor(Color.red)
+                    
+                    Spacer()
+                    VStack(alignment: .trailing) {
+                        if content.isSubscribeButtonVisible {
+                            Button(action: {
+                                /* subscribe */
+                            }) {
+                                Text(Translations.RSS.subscribeTitle)
+                                    .foregroundColor(Color.green)
+                            }
+                        }
+                        if content.isUnsubscribeButtonVisible {
+                            Button(action: {
+                                /* unsubscribe */
+                            }) {
+                                Text(Translations.RSS.unsubscribeTitle)
+                                    .foregroundColor(Color.red)
+                            }
                         }
                     }
                 }
+                Divider()
             }
         })
         .navigationBarTitle(Text(Translations.RSS.title))
