@@ -22,6 +22,6 @@ class FeedKitRSSItemDTO: RSSItemDTO {
         self.pubDate = Int64(item.pubDate?.timeIntervalSince1970 ?? 0) * 1000
         self.caption = item.description
         self.link = item.link ?? ""
-        self.id = Int32(item.title?.count ?? 0)
+        self.id = Int32.random(in: 0..<1_000_000)
     }
 }

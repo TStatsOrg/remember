@@ -24,6 +24,11 @@ class DefaultRSSDAO: RSSDAO {
             id = "Washington Post".hashCode(),
             title = "Washington Post",
             link = "http://feeds.washingtonpost.com/rss/rss_blogpost"
+        ),
+        DefaultRSS(
+            id = "Zoso.ro".hashCode(),
+            title = "Zoso.ro",
+            link = "https://zoso.ro/feed/"
         )
     )
 

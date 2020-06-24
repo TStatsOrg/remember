@@ -25,15 +25,15 @@ public struct RSSItemViewState: Identifiable {
         return state.title
     }
     
-    public var link: String {
-        return state.link
-    }
-    
     public var date: String {
         return DateUtils.format(fromLong: state.pubDate)
     }
     
     public var caption: String? {
         return state.caption
+    }
+    
+    public var url: URL? {
+        return URL(string: state.link)
     }
 }

@@ -134,5 +134,11 @@ public class DependencyProvider {
             SharedRSSDetailViewModel(store: self.resolve(),
                                      repository: self.resolve()) as RSSDetailViewModel
         }
+        
+        register {
+            SharedDisplayViewModel(store: self.resolve(),
+                                   process: self.resolve(),
+                                   bookmarkRepository: self.resolve()) as DisplayViewModel
+        }
     }
 }

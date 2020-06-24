@@ -19,6 +19,7 @@ public enum NavigationDestination {
     case EditTopic(view: AnyView)
     case RSS(view: AnyView)
     case RSSDetail(view: AnyView)
+    case Display(view: AnyView)
     case UrlDestination
 }
 
@@ -33,6 +34,7 @@ public protocol Navigation {
     func showAddTopic()
     func showUrl(url: URL?)
     func showEditTopic(topicId: Int32)
+    func showDisplay(rssItemId: Int32)
     
     func content() -> AnyView
 }

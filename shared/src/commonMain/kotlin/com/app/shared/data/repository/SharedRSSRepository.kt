@@ -34,7 +34,13 @@ class SharedRSSRepository(
 
     override suspend fun getAllItems(dto: RSSDTO): Either<List<RSSItemDTO>> {
         return withContext(context = DispatcherFactory.io()) {
-            return@withContext rssItemDataSource.getRSSItems(fromLink = dto.link)
+
+            val data = rssItemDataSource.getRSSItems(fromLink = dto.link)
+
+            return@withContext when (data) {
+                is Either.Success -> Either.Success<List<RSSItemDTO>>(data = data.data.sortedBy { it.title })
+                is Either.Failure -> Either.Failure<List<RSSItemDTO>>(error = data.error)
+            }
         }
     }
 }

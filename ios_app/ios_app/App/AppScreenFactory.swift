@@ -17,6 +17,7 @@ import ios_feature_bookmarks
 import ios_feature_feed
 import ios_feature_rss
 import ios_feature_rss_detail
+import ios_feature_display
 
 struct AppScreenFactory: ScreenFactory {
     
@@ -54,5 +55,9 @@ struct AppScreenFactory: ScreenFactory {
     
     func buildEditTopicScreen(topicId: Int32) -> AnyView {
         return AnyView(NavigationView { EditTopicView(topicId: topicId) }.navigationViewStyle(StackNavigationViewStyle()))
+    }
+    
+    func buildDisplayView(rssItemId: Int32) -> AnyView {
+        return AnyView(NavigationView { DisplayView(rssItemId: rssItemId) }.navigationViewStyle(StackNavigationViewStyle()))
     }
 }

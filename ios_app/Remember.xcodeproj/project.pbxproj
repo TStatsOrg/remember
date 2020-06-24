@@ -18,6 +18,8 @@
 		1B7DCF48248EC2E000E30038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B7DCF46248EC10800E30038 /* Localizable.strings */; };
 		1B841466249FB4F800AD4660 /* ios_feature_rss_detail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B841465249FB4F800AD4660 /* ios_feature_rss_detail.framework */; };
 		1B841467249FB4F800AD4660 /* ios_feature_rss_detail.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B841465249FB4F800AD4660 /* ios_feature_rss_detail.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B8414A424A133A600AD4660 /* ios_feature_display.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8414A324A133A600AD4660 /* ios_feature_display.framework */; };
+		1B8414A524A133A600AD4660 /* ios_feature_display.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8414A324A133A600AD4660 /* ios_feature_display.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D02441E9600060EC1D /* AppDelegate.swift */; };
 		1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA773D22441E9600060EC1D /* SceneDelegate.swift */; };
 		1BA773D72441E9660060EC1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BA773D62441E9660060EC1D /* Assets.xcassets */; };
@@ -113,6 +115,7 @@
 				1BE2B7AA249A9BF600A082BC /* ios_feature_rss.framework in Embed Frameworks */,
 				1BE2B6B22493D7A200A082BC /* ios_feature_topic_edit.framework in Embed Frameworks */,
 				1B7723D22482F884006150F2 /* RememberShared.framework in Embed Frameworks */,
+				1B8414A524A133A600AD4660 /* ios_feature_display.framework in Embed Frameworks */,
 				1BE2B5C52493D19800A082BC /* ios_views.framework in Embed Frameworks */,
 				1BE2B5822493CD3300A082BC /* ios_dependencies.framework in Embed Frameworks */,
 				1BE2B6A92493D79300A082BC /* ios_feature_bookmark_edit.framework in Embed Frameworks */,
@@ -143,6 +146,7 @@
 		1B7DCF46248EC10800E30038 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		1B841460249F9B8300AD4660 /* ios_feature_rss_items.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_rss_items.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B841465249FB4F800AD4660 /* ios_feature_rss_detail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_rss_detail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B8414A324A133A600AD4660 /* ios_feature_display.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_display.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773CD2441E9600060EC1D /* KeepJar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeepJar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA773D02441E9600060EC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BA773D22441E9600060EC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				1BE2B5C42493D19800A082BC /* ios_views.framework in Frameworks */,
 				1BE2B6B42493D7A800A082BC /* ios_feature_topics.framework in Frameworks */,
 				1BE2B6AB2493D79900A082BC /* ios_feature_hub.framework in Frameworks */,
+				1B8414A424A133A600AD4660 /* ios_feature_display.framework in Frameworks */,
 				1BE2B71B2499375600A082BC /* ios_feature_bookmarks.framework in Frameworks */,
 				1BE2B6B12493D7A200A082BC /* ios_feature_topic_edit.framework in Frameworks */,
 				1BE2B7A9249A9BF600A082BC /* ios_feature_rss.framework in Frameworks */,
@@ -380,6 +385,7 @@
 		1BA774012441ED240060EC1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B8414A324A133A600AD4660 /* ios_feature_display.framework */,
 				1B841465249FB4F800AD4660 /* ios_feature_rss_detail.framework */,
 				1B841460249F9B8300AD4660 /* ios_feature_rss_items.framework */,
 				1BE2B7A8249A9BF500A082BC /* ios_feature_rss.framework */,

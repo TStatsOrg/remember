@@ -106,6 +106,10 @@ data class RSSFeedDetailState(
     constructor(): this(feedState = RSSFeedState(), items = listOf(), error = null)
 }
 
+data class DisplayState(
+    val item: RSSFeedItemState? = null
+): AppState
+
 data class MainState(
     val allBookmarks: List<BookmarkState> = listOf(),
     val bookmarks: BookmarksState = BookmarksState(),
@@ -114,5 +118,6 @@ data class MainState(
     val editBookmark: EditBookmarkState? = null,
     val editTopic: EditTopicState? = null,
     val rss: RSSState = RSSState(),
-    val rssFeedDetail: RSSFeedDetailState = RSSFeedDetailState()
+    val rssFeedDetail: RSSFeedDetailState = RSSFeedDetailState(),
+    val display: DisplayState = DisplayState()
 ): AppState

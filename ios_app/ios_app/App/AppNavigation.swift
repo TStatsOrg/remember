@@ -49,6 +49,10 @@ class AppNavigation: Navigation {
         destination = .EditTopic(view: factory.buildEditTopicScreen(topicId: topicId))
     }
     
+    func showDisplay(rssItemId: Int32) {
+        destination = .Display(view: factory.buildDisplayView(rssItemId: rssItemId))
+    }
+    
     func showUrl(url: URL?) {
         if let url = url {
             UIApplication.shared.open(url)
@@ -72,6 +76,8 @@ class AppNavigation: Navigation {
         case .EditTopic(let view):
             return view
         case .RSSDetail(let view):
+            return view
+        case .Display(let view):
             return view
         default:
             return AnyView(EmptyView())

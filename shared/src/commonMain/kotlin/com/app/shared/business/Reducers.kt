@@ -172,6 +172,8 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         is Actions.RSS.Detail.LoadItems.Start -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = listOf(), error = null))
         is Actions.RSS.Detail.LoadItems.Success -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = action.items.toRSSItemState(), error = null))
         is Actions.RSS.Detail.LoadItems.Error -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(error = action.error, items = listOf()))
+        // rss/item display
+        is Actions.RSS.Display -> old.copy(display = DisplayState(item = old.rssFeedDetail.items.firstOrNull { it.id == action.id }))
         else -> old
     }
 }

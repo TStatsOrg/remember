@@ -14,7 +14,9 @@ import RememberShared
 public struct RSSDetailView: View {
     
     @Injected private var viewModel: RSSDetailViewModel
+    @Injected private var navigation: Navigation
     @State private var state: RSSDetailViewState = RSSDetailViewState()
+    @State private var isShowingSheet: Bool = false
     
     private let rssId: Int32
     
@@ -36,6 +38,7 @@ public struct RSSDetailView: View {
         .onDisappear {
             self.viewModel.cleanup()
         }
+        .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
     
     private func RSSFeedItems() -> some View {
@@ -52,6 +55,10 @@ public struct RSSDetailView: View {
                             .padding(EdgeInsets(top: 8, leading: 0, bottom: 16, trailing: 0))
                         Divider()
                     }
+                    .onTapGesture {
+                        self.navigation.showDisplay(rssItemId: content.id)
+                        self.isShowingSheet = true
+                    }
                 })
             } else {
                 ErrorView(error: state.errorViewState)
@@ -62,5 +69,6 @@ public struct RSSDetailView: View {
             maxHeight: .infinity,
             alignment: .center
         )
+        
     }
 }

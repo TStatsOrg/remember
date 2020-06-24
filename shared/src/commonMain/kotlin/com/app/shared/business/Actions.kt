@@ -66,5 +66,7 @@ sealed class Actions: Action {
                 data class Error(val error: Throwable): LoadItems()
             }
         }
+
+        data class Display(val id: Int): RSS()
     }
 }
