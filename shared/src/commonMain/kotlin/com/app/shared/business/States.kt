@@ -107,7 +107,8 @@ data class RSSFeedDetailState(
 }
 
 data class DisplayState(
-    val item: RSSFeedItemState? = null
+    val item: RSSFeedItemState? = null,
+    val isBookmarked: Boolean = false
 ): AppState
 
 data class MainState(

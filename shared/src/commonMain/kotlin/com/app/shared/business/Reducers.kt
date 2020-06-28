@@ -20,9 +20,9 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         // bookmark/present
         is Actions.Bookmark.Load.Start -> old.copy(bookmarks = BookmarksState(date = action.time))
         is Actions.Bookmark.Load.Success -> old.copy(
-            allBookmarks = action.bookmarks.toBookmarkState(),
-            bookmarks = BookmarksState(date = action.time, bookmarks = action.bookmarks.toBookmarkState())
-        )
+                allBookmarks = action.bookmarks.toBookmarkState(),
+                bookmarks = BookmarksState(date = action.time, bookmarks = action.bookmarks.toBookmarkState())
+            )
         is Actions.Bookmark.Load.Error -> old.copy(bookmarks = BookmarksState(date = action.time, error = action.error))
         // bookmark/filter
         is Actions.Bookmark.Filter -> {
@@ -173,7 +173,15 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         is Actions.RSS.Detail.LoadItems.Success -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = action.items.toRSSItemState(), error = null))
         is Actions.RSS.Detail.LoadItems.Error -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(error = action.error, items = listOf()))
         // rss/item display
-        is Actions.RSS.Display -> old.copy(display = DisplayState(item = old.rssFeedDetail.items.firstOrNull { it.id == action.id }))
+        is Actions.RSS.Display -> {
+            val item = old.rssFeedDetail.items.firstOrNull { it.id == action.id }
+            val bookmarked = old.allBookmarks.firstOrNull { it.id == action.id }
+
+            old.copy(
+                display = DisplayState(
+                    item = item,
+                    isBookmarked = item?.id == bookmarked?.id))
+        }
         else -> old
     }
 }

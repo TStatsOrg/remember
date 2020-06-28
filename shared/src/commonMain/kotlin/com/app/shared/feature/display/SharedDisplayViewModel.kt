@@ -37,12 +37,6 @@ class SharedDisplayViewModel(
         }
     }
 
-    override fun isItemAleradyBookmarked(rssItemId: Int): Boolean {
-        val item = store.state.display.item ?: return false
-        val bookmarkId = item.link.hashCode()
-        return store.state.allBookmarks.map { it.id }.contains(bookmarkId)
-    }
-
     override fun save() {
         scope.launch(context = DispatcherFactory.main()) {
             val item = store.state.display.item
