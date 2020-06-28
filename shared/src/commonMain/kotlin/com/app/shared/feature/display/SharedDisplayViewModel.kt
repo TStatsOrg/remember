@@ -58,6 +58,18 @@ class SharedDisplayViewModel(
         }
     }
 
+    override fun delete() {
+        scope.launch(context = DispatcherFactory.main()) {
+
+            val item = store.state.display.item
+
+            if (item != null) {
+                bookmarkRepository.delete(bookmarkId = item.id)
+                store.dispatch(action = Actions.Bookmark.Delete(bookmarkId = item.id))
+            }
+        }
+    }
+
     override fun observeDisplayState(callback: (DisplayState) -> Unit) {
         storeObserver
             .map { it.display }

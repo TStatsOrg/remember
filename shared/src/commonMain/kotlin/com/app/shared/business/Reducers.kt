@@ -81,7 +81,8 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             val allNewBookmarks = old.allBookmarks.filter { it.id != action.bookmarkId }
             old.copy(
                 allBookmarks = allNewBookmarks,
-                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks)
+                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
+                display = old.display.copy(isBookmarked = false)
             )
         }
         // topics/present

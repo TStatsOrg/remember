@@ -28,7 +28,7 @@ public struct DisplayView: View {
                 
                 if (self.state.isBookmarked) {
                     Button(action: {
-                        // self.viewModel.save()
+                        self.viewModel.delete()
                     }, label: {
                         Image(systemName: "bookmark.fill")
                     })

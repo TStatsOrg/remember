@@ -8,4 +8,5 @@ interface DisplayViewModel {
     fun observeDisplayState(callback: (DisplayState) -> Unit)
     fun cleanup()
     fun save()
+    fun delete()
 }
