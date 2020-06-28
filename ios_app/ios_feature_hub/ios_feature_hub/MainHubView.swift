@@ -9,10 +9,12 @@
 import SwiftUI
 import ios_views
 import ios_dependencies
+import RememberShared
 
 public struct MainHubView: View  {
 
     @Injected private var screenFactory: ScreenFactory
+    @Injected private var viewModel: HubViewModel
 
     public init() { /* n/a */ }
 
@@ -30,5 +32,8 @@ public struct MainHubView: View  {
                 }
         }
         .navigationBarHidden(true)
+        .onAppear {
+            self.viewModel.loadData()
+        }
     }
 }
