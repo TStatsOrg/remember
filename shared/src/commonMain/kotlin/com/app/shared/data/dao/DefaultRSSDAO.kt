@@ -8,27 +8,32 @@ class DefaultRSSDAO: RSSDAO {
         DefaultRSS(
             id = "Tech Crunch".hashCode(),
             title = "Tech Crunch",
-            link = "http://feeds.feedburner.com/TechCrunch/"
+            link = "http://feeds.feedburner.com/TechCrunch/",
+            icon = "http://www.techcrunch.com/wp-content/themes/techcrunchmu/images/techcrunch_logo.png"
         ),
         DefaultRSS(
             id = "The Guardian UK".hashCode(),
             title = "The Guardian UK",
-            link = "https://www.theguardian.com/uk/rss"
+            link = "https://www.theguardian.com/uk/rss",
+            icon = "https://assets.guim.co.uk/images/guardian-logo-rss.c45beb1bafa34b347ac333af2e6fe23f.png"
         ),
         DefaultRSS(
             id = "BBC News - World".hashCode(),
             title = "BBC News - World",
-            link = "http://feeds.bbci.co.uk/news/world/rss.xml"
+            link = "http://feeds.bbci.co.uk/news/world/rss.xml",
+            icon = "https://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif"
         ),
         DefaultRSS(
             id = "Washington Post".hashCode(),
             title = "Washington Post",
-            link = "http://feeds.washingtonpost.com/rss/rss_blogpost"
+            link = "http://feeds.washingtonpost.com/rss/rss_blogpost",
+            icon = null
         ),
         DefaultRSS(
             id = "Zoso.ro".hashCode(),
             title = "Zoso.ro",
-            link = "https://zoso.ro/feed/"
+            link = "https://zoso.ro/feed/",
+            icon = null
         )
     )
 
@@ -40,6 +45,7 @@ class DefaultRSSDAO: RSSDAO {
         override val id: Int,
         override val title: String,
         override val link: String,
+        override val icon: String?,
         override val description: String? = null,
         override val isSubscribed: Boolean = false
     ) : RSSDTO

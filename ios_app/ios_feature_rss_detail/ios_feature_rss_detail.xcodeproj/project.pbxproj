@@ -13,9 +13,11 @@
 		1B84145D249F9B7100AD4660 /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B84145C249F9B7100AD4660 /* RememberShared.framework */; };
 		1B841464249F9EDE00AD4660 /* RSSDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841463249F9EDE00AD4660 /* RSSDetailView.swift */; };
 		1B84146B249FB85F00AD4660 /* RSSDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146A249FB85F00AD4660 /* RSSDetailViewState.swift */; };
+		8A3ED2EE25E4969E4A39E9DE /* Pods_ios_feature_rss_detail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982959E5E338B3E649360020 /* Pods_ios_feature_rss_detail.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17EE1B4BEAD8DE02270AA441 /* Pods-ios_feature_rss_detail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_feature_rss_detail.debug.xcconfig"; path = "Target Support Files/Pods-ios_feature_rss_detail/Pods-ios_feature_rss_detail.debug.xcconfig"; sourceTree = "<group>"; };
 		1B841448249F9B5C00AD4660 /* ios_feature_rss_detail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_feature_rss_detail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B84144B249F9B5C00AD4660 /* ios_feature_rss_items.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_feature_rss_items.h; sourceTree = "<group>"; };
 		1B84144C249F9B5C00AD4660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		1B84145C249F9B7100AD4660 /* RememberShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RememberShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B841463249F9EDE00AD4660 /* RSSDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSDetailView.swift; sourceTree = "<group>"; };
 		1B84146A249FB85F00AD4660 /* RSSDetailViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSDetailViewState.swift; sourceTree = "<group>"; };
+		3B0E5DAEE08AC34FBBFC8626 /* Pods-ios_feature_rss_detail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_feature_rss_detail.release.xcconfig"; path = "Target Support Files/Pods-ios_feature_rss_detail/Pods-ios_feature_rss_detail.release.xcconfig"; sourceTree = "<group>"; };
+		982959E5E338B3E649360020 /* Pods_ios_feature_rss_detail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_feature_rss_detail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +38,7 @@
 				1B84145D249F9B7100AD4660 /* RememberShared.framework in Frameworks */,
 				1B841455249F9B6700AD4660 /* ios_dependencies.framework in Frameworks */,
 				1B841459249F9B6C00AD4660 /* ios_views.framework in Frameworks */,
+				8A3ED2EE25E4969E4A39E9DE /* Pods_ios_feature_rss_detail.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +51,7 @@
 				1B84144A249F9B5C00AD4660 /* ios_feature_rss_detail */,
 				1B841449249F9B5C00AD4660 /* Products */,
 				1B841453249F9B6700AD4660 /* Frameworks */,
+				71ABD38FE12753ED71B4D84F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,8 +80,19 @@
 				1B84145C249F9B7100AD4660 /* RememberShared.framework */,
 				1B841458249F9B6C00AD4660 /* ios_views.framework */,
 				1B841454249F9B6700AD4660 /* ios_dependencies.framework */,
+				982959E5E338B3E649360020 /* Pods_ios_feature_rss_detail.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		71ABD38FE12753ED71B4D84F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				17EE1B4BEAD8DE02270AA441 /* Pods-ios_feature_rss_detail.debug.xcconfig */,
+				3B0E5DAEE08AC34FBBFC8626 /* Pods-ios_feature_rss_detail.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +113,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B841450249F9B5C00AD4660 /* Build configuration list for PBXNativeTarget "ios_feature_rss_detail" */;
 			buildPhases = (
+				309F85D7B5AA0C58A567EF41 /* [CP] Check Pods Manifest.lock */,
 				1B841443249F9B5C00AD4660 /* Headers */,
 				1B841444249F9B5C00AD4660 /* Sources */,
 				1B841445249F9B5C00AD4660 /* Frameworks */,
@@ -152,6 +170,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		309F85D7B5AA0C58A567EF41 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ios_feature_rss_detail-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1B841444249F9B5C00AD4660 /* Sources */ = {
@@ -288,6 +331,7 @@
 		};
 		1B841451249F9B5C00AD4660 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17EE1B4BEAD8DE02270AA441 /* Pods-ios_feature_rss_detail.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -314,6 +358,7 @@
 		};
 		1B841452249F9B5C00AD4660 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B0E5DAEE08AC34FBBFC8626 /* Pods-ios_feature_rss_detail.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

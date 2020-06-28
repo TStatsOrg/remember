@@ -10,6 +10,7 @@ import SwiftUI
 import ios_dependencies
 import RememberShared
 import ios_views
+import SDWebImageSwiftUI
 
 public struct RSSView: View {
     
@@ -24,6 +25,18 @@ public struct RSSView: View {
         List(state.items, rowContent: { content in
             VStack {
                 HStack(alignment: .center) {
+                    
+                    WebImage(url: content.icon)
+                        .placeholder(content: {
+                            Image(systemName: "bookmark.fill")
+                                .foregroundColor(AppColors.secondaryColor)
+                        })
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 60, height: 60)
+                        .background(AppColors.mainColor)
+                        .clipped()
+                    
                     Button(action: {
                         self.navigation.showRSSDetail(rssId: content.id)
                         self.isShowingSheet = true

@@ -13,6 +13,7 @@
 		1B841474249FD5BE00AD4660 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841473249FD5BE00AD4660 /* ErrorView.swift */; };
 		1B841476249FE5FE00AD4660 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841475249FE5FE00AD4660 /* DateUtils.swift */; };
 		1B8414A924A1387900AD4660 /* ManagedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8414A824A1387900AD4660 /* ManagedWebView.swift */; };
+		1B8ABAAD24A8F81200D35366 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAAC24A8F81200D35366 /* AppColors.swift */; };
 		1BE2B5302493C85D00A082BC /* ios_views.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE2B52E2493C85D00A082BC /* ios_views.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BE2B5B32493D17D00A082BC /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5A02493D17D00A082BC /* ScreenFactory.swift */; };
 		1BE2B5B42493D17D00A082BC /* ForegroundNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5A22493D17D00A082BC /* ForegroundNotification.swift */; };
@@ -38,6 +39,7 @@
 		1B841473249FD5BE00AD4660 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		1B841475249FE5FE00AD4660 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		1B8414A824A1387900AD4660 /* ManagedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedWebView.swift; sourceTree = "<group>"; };
+		1B8ABAAC24A8F81200D35366 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		1BE2B52B2493C85D00A082BC /* ios_views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B52E2493C85D00A082BC /* ios_views.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_views.h; sourceTree = "<group>"; };
 		1BE2B52F2493C85D00A082BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				1BE2B5A62493D17D00A082BC /* Translations.swift */,
 				1BE2B5A72493D17D00A082BC /* Styles.swift */,
+				1B8ABAAC24A8F81200D35366 /* AppColors.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				1BE2B5B42493D17D00A082BC /* ForegroundNotification.swift in Sources */,
 				1BE2B5B82493D17D00A082BC /* Navigation.swift in Sources */,
 				1BE2B5BC2493D17D00A082BC /* KeyboardUtils.swift in Sources */,
+				1B8ABAAD24A8F81200D35366 /* AppColors.swift in Sources */,
 				1BE2B5B92493D17D00A082BC /* ManagedSearchView.swift in Sources */,
 				1BE2B5B62493D17D00A082BC /* Translations.swift in Sources */,
 				1BE2B5BD2493D17D00A082BC /* GenericIdentifiable.swift in Sources */,

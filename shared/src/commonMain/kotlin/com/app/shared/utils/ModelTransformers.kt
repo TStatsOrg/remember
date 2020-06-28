@@ -117,6 +117,7 @@ fun RSSDTO.toState(): RSSFeedState = RSSFeedState(
     title = title,
     description = description,
     link = link,
+    icon = icon,
     isSubscribed = isSubscribed
 )
 

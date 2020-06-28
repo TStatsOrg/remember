@@ -14,6 +14,7 @@ class RSSDetailActionsTest: DefaultTest() {
         val rss = MockRSSDTO(
             id = 1,
             title = "My RSS Feed",
+            icon = null,
             description = null,
             isSubscribed = false,
             link = "https://my.rss1/feed.xml"

@@ -36,4 +36,12 @@ public struct RSSViewState: Identifiable {
     public var isUnsubscribeButtonVisible: Bool {
         return state.isSubscribed
     }
+    
+    public var icon: URL? {
+        if let url = state.icon {
+            return URL(string: url)
+        } else {
+            return nil
+        }
+    }
 }
