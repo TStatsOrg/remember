@@ -11,11 +11,13 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         is Actions.Bookmark.Preview.Present -> old.copy(preview = old.preview.copy(isLoading = false, preview = action.dto.toState()))
         // bookmark/save
         is Actions.Bookmark.Add -> {
-            val newBookmarks = listOf(action.dto.toState()) + old.bookmarks.bookmarks
-            val allNewBookmarks = listOf(action.dto.toState()) + old.allBookmarks
+            val newBookmark = action.dto.toState()
+            val newBookmarks = listOf(newBookmark) + old.bookmarks.bookmarks
+            val allNewBookmarks = listOf(newBookmark) + old.allBookmarks
             old.copy(
                 allBookmarks = allNewBookmarks,
-                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks))
+                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
+                display = old.display.copy(isBookmarked = newBookmark.id == old.display.item?.id))
         }
         // bookmark/present
         is Actions.Bookmark.Load.Start -> old.copy(bookmarks = BookmarksState(date = action.time))
