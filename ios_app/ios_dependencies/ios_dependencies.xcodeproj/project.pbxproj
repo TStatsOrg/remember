@@ -10,6 +10,7 @@
 		1B84146E249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146D249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift */; };
 		1B841470249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */; };
 		1B8ABAB124AA6A8300D35366 /* RealmRSSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */; };
+		1B8ABAB524AA7EC500D35366 /* FeedKitAtomItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB424AA7EC500D35366 /* FeedKitAtomItemDTO.swift */; };
 		1BE2B54C2493CBAE00A082BC /* ios_dependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE2B54A2493CBAE00A082BC /* ios_dependencies.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BE2B56F2493CD1300A082BC /* RealmImageBookmarkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B55A2493CD1200A082BC /* RealmImageBookmarkObject.swift */; };
 		1BE2B5702493CD1300A082BC /* RealmTopicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B55B2493CD1200A082BC /* RealmTopicObject.swift */; };
@@ -38,6 +39,7 @@
 		1B84146D249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitRSSItemDataSource.swift; sourceTree = "<group>"; };
 		1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitRSSItemDTO.swift; sourceTree = "<group>"; };
 		1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRSSObject.swift; sourceTree = "<group>"; };
+		1B8ABAB424AA7EC500D35366 /* FeedKitAtomItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitAtomItemDTO.swift; sourceTree = "<group>"; };
 		1BE2B5472493CBAE00A082BC /* ios_dependencies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_dependencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B54A2493CBAE00A082BC /* ios_dependencies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_dependencies.h; sourceTree = "<group>"; };
 		1BE2B54B2493CBAE00A082BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				1BE2B55D2493CD1200A082BC /* RealmLinkBookmarkObject.swift */,
 				1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */,
 				1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */,
+				1B8ABAB424AA7EC500D35366 /* FeedKitAtomItemDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				1BE2B57B2493CD1300A082BC /* RealmDatabase.swift in Sources */,
 				1BE2B5762493CD1300A082BC /* UrlDownloader.swift in Sources */,
 				1B8ABAB124AA6A8300D35366 /* RealmRSSObject.swift in Sources */,
+				1B8ABAB524AA7EC500D35366 /* FeedKitAtomItemDTO.swift in Sources */,
 				1BE2B5792493CD1300A082BC /* RealmLinkBookmarkDAO.swift in Sources */,
 				1BE2B5722493CD1300A082BC /* RealmLinkBookmarkObject.swift in Sources */,
 				1BE2B5772493CD1300A082BC /* ExtensionContextDataCapture.swift in Sources */,

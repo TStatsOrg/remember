@@ -34,6 +34,48 @@ class DefaultRSSDAO: RSSDAO {
             title = "Zoso.ro",
             link = "https://zoso.ro/feed/",
             icon = null
+        ),
+        DefaultRSS(
+            id = "xkcd.com".hashCode(),
+            title = "xkcd.com",
+            link = "http://xkcd.com/atom.xml",
+            icon = null
+        ),
+        DefaultRSS(
+            id = "Explosm.net".hashCode(),
+            title = "Exlosm.net",
+            link = "http://feeds.feedburner.com/Explosm",
+            icon = null
+        ),
+        DefaultRSS(
+            id = "The Verge".hashCode(),
+            title = "The Verge",
+            link = "http://www.theverge.com/rss/index.xml",
+            icon = "https://cdn.vox-cdn.com/community_logos/52801/VER_Logomark_32x32..png"
+        ),
+        DefaultRSS(
+            id = "VOX".hashCode(),
+            title = "VOX",
+            link = "http://www.vox.com/rss/index.xml",
+            icon = "https://cdn.vox-cdn.com/community_logos/52517/voxv.png"
+        ),
+        DefaultRSS(
+            id = "Wired".hashCode(),
+            title = "Wired",
+            link = "http://feeds.wired.com/wired/index",
+            icon = null
+        ),
+        DefaultRSS(
+            id = "Oatmeal".hashCode(),
+            title = "Oatmeal",
+            link = "http://feeds.feedburner.com/oatmealfeed",
+            icon = null
+        ),
+        DefaultRSS(
+            id = "Hacker News".hashCode(),
+            title = "Hacker News",
+            link = "https://news.ycombinator.com/rss",
+            icon = null
         )
     )
 

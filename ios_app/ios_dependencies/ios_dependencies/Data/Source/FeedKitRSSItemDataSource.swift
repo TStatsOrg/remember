@@ -29,8 +29,9 @@ public class FeedKitRSSItemDataSource: RSSItemDataSource {
             
             switch feed {
             // Atom Syndication Format Feed Model
-            case .atom:
-                return Either.Failure(error: Errors.InvalidRSSFormat())
+            case let .atom(entries):
+                let result = entries.entries?.map(FeeddKitAtomItemDTO.init) ?? []
+                return Either.Success(data: result)
             // Really Simple Syndication Feed Model
             case let .rss(items):
                 let result = items.items?.map(FeedKitRSSItemDTO.init) ?? []
