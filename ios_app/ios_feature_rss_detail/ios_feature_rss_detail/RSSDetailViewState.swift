@@ -45,4 +45,12 @@ public struct RSSDetailViewState {
     public var isContentVisible: Bool {
         return !errorViewState.isVisible
     }
+    
+    public var id: Int32 {
+        return feedState.id
+    }
+    
+    public var isSubscribed: Bool {
+        return feedState.isSubscribed
+    }
 }

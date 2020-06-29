@@ -79,7 +79,7 @@ data class RSSFeedState(
     val title: String = "",
     val description: String? = null,
     val link: String = "",
-    val icon: String? = "",
+    val icon: String? = null,
     val isSubscribed: Boolean = false
 ): AppState
 

@@ -43,4 +43,21 @@ class SharedRSSRepository(
             }
         }
     }
+
+    override suspend fun subscribe(rssId: Int) {
+        withContext(context = DispatcherFactory.io()) {
+
+            val item = get(rssId = rssId)
+
+            item?.let {
+                userRSSDAO.insert(dto = it)
+            }
+        }
+    }
+
+    override suspend fun unsubscribe(rssId: Int) {
+        withContext(context = DispatcherFactory.io()) {
+            userRSSDAO.delete(rssId = rssId)
+        }
+    }
 }

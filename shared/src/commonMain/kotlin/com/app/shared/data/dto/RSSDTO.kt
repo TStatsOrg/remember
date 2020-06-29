@@ -5,6 +5,6 @@ interface RSSDTO {
     val title: String
     val link: String
     val icon: String?
-    val description: String?
+    val caption: String?
     val isSubscribed: Boolean
 }

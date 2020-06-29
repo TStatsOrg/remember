@@ -7,6 +7,6 @@ data class MockRSSDTO(
     override val title: String,
     override val icon: String? = null,
     override val link: String,
-    override val description: String?,
+    override val caption: String?,
     override val isSubscribed: Boolean
 ) : RSSDTO

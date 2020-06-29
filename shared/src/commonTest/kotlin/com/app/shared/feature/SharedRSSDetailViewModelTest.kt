@@ -28,7 +28,7 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
     @Test
     fun `view model will load rss details if a RSS feed with Id is found`() = runTest {
         // given
-        val rss = MockRSSDTO(id = 13, title = "My RSS", link = "https://my.rss/feed.xml", description = null, isSubscribed = false)
+        val rss = MockRSSDTO(id = 13, title = "My RSS", link = "https://my.rss/feed.xml", caption = null, isSubscribed = false)
         val item1 = MockRSSItemDTO(id = 10, link = "https://my.article.1/index.html", title = "My article 1")
         val item2 = MockRSSItemDTO(id = 11, link = "https://my.article.2/index.html", title = "My article 2")
 
@@ -47,7 +47,7 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
     @Test
     fun `view model will load rss details if a RSS feed with Id is found but there is a network error`() = runTest {
         // given
-        val rss = MockRSSDTO(id = 13, title = "My RSS", link = "https://my.rss/feed.xml", description = null, isSubscribed = false)
+        val rss = MockRSSDTO(id = 13, title = "My RSS", link = "https://my.rss/feed.xml", caption = null, isSubscribed = false)
         val error = Errors.InvalidRSSFormat
 
         // when
@@ -91,7 +91,7 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
     @Test
     fun `view model can observe changes in the RSS state`() = runTest {
         // data
-        val rss1 = MockRSSDTO(id = 1, title = "Feed 1", description = null, link = "https://rss1/feed.xml", isSubscribed = false)
+        val rss1 = MockRSSDTO(id = 1, title = "Feed 1", caption = null, link = "https://rss1/feed.xml", isSubscribed = false)
 
         val item1 = MockRSSItemDTO(id = 10, link = "https://my.article.1/index.html", title = "My article 1")
         val item2 = MockRSSItemDTO(id = 11, link = "https://my.article.2/index.html", title = "My article 2")

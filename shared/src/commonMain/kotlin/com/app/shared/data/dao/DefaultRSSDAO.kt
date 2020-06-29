@@ -41,12 +41,16 @@ class DefaultRSSDAO: RSSDAO {
 
     override fun get(rssId: Int): RSSDTO? = defaultRSSFeeds.firstOrNull { it.id == rssId }
 
+    override fun insert(dto: RSSDTO) = Unit
+
+    override fun delete(rssId: Int) = Unit
+
     private data class DefaultRSS(
         override val id: Int,
         override val title: String,
         override val link: String,
         override val icon: String?,
-        override val description: String? = null,
+        override val caption: String? = null,
         override val isSubscribed: Boolean = false
     ) : RSSDTO
 }

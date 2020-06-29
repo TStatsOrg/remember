@@ -29,11 +29,7 @@ public struct RSSViewState: Identifiable {
         return state.link
     }
     
-    public var isSubscribeButtonVisible: Bool {
-        return !state.isSubscribed
-    }
-    
-    public var isUnsubscribeButtonVisible: Bool {
+    public var isSubscribed: Bool {
         return state.isSubscribed
     }
     

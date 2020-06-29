@@ -19,10 +19,27 @@ class RealmUserRSSDAO: RealmDAO, RSSDAO {
     }
     
     func getAll() -> [RSSDTO] {
-        return []
+        let result = realm?.objects(RealmRSSObject.self)
+        return result?.map { $0 }.map { $0.toDTO() } ?? []
     }
     
     func get(rssId: Int32) -> RSSDTO? {
-        return nil
+        let result = realm?.objects(RealmRSSObject.self).map { $0 }.filter { $0.id == rssId }
+        return result?.first?.toDTO()
+    }
+    
+    func delete(rssId: Int32) {
+        let result = realm?.objects(RealmRSSObject.self).filter { $0.id == rssId }
+        try? realm?.write {
+            if let dto = result {
+                realm?.delete(dto)
+            }
+        }
+    }
+    
+    func insert(dto: RSSDTO) {
+        try? realm?.write {
+            realm?.add(dto.toObject(), update: Realm.UpdatePolicy.all)
+        }
     }
 }

@@ -15,7 +15,7 @@ class RSSDetailActionsTest: DefaultTest() {
             id = 1,
             title = "My RSS Feed",
             icon = null,
-            description = null,
+            caption = null,
             isSubscribed = false,
             link = "https://my.rss1/feed.xml"
         )

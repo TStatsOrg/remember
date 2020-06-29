@@ -22,7 +22,7 @@ class SharedRSSViewModel(
     private val storeObserver = store.observe()
 
     override fun loadRSSFeeds() {
-        scope.launch(DispatcherFactory.main()) {
+        scope.launch(context = DispatcherFactory.main()) {
 
             // get all RSS data items
             val rss = repository.getAll()

@@ -29,14 +29,14 @@ class RSSLoadActionsTest: DefaultTest() {
                 id = 1,
                 title = "RSS 1",
                 link = "https://rss.1/feed.xml",
-                description = null,
+                caption = null,
                 isSubscribed = false
             ),
             MockRSSDTO(
                 id = 2,
                 title = "RSS 2",
                 link = "https://rss.2/feed.xml",
-                description = null,
+                caption = null,
                 isSubscribed = true
             )
         )
@@ -53,6 +53,7 @@ class RSSLoadActionsTest: DefaultTest() {
                         RSSFeedState(
                             id = 1,
                             title = "RSS 1",
+                            icon = null,
                             link = "https://rss.1/feed.xml",
                             description = null,
                             isSubscribed = false
@@ -60,6 +61,7 @@ class RSSLoadActionsTest: DefaultTest() {
                         RSSFeedState(
                             id = 2,
                             title = "RSS 2",
+                            icon = null,
                             link = "https://rss.2/feed.xml",
                             description = null,
                             isSubscribed = true

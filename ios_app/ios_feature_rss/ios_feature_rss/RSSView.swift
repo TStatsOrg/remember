@@ -53,24 +53,7 @@ public struct RSSView: View {
                     }
                     
                     Spacer()
-                    VStack(alignment: .trailing) {
-                        if content.isSubscribeButtonVisible {
-                            Button(action: {
-                                /* subscribe */
-                            }) {
-                                Text(Translations.RSS.subscribeTitle)
-                                    .foregroundColor(Color.green)
-                            }
-                        }
-                        if content.isUnsubscribeButtonVisible {
-                            Button(action: {
-                                /* unsubscribe */
-                            }) {
-                                Text(Translations.RSS.unsubscribeTitle)
-                                    .foregroundColor(Color.red)
-                            }
-                        }
-                    }
+                    ManagedSubscribeButton(isSubscribed: content.isSubscribed)
                 }
                 Divider()
             }

@@ -36,6 +36,28 @@ class SharedRSSDetailViewModel(
         }
     }
 
+    override fun subscribe(feedId: Int) {
+        scope.launch(context = DispatcherFactory.main()) {
+
+            // subscribe
+            repository.subscribe(rssId = feedId)
+
+            // dispatch action
+            store.dispatch(action = Actions.RSS.Subscribe(id = feedId))
+        }
+    }
+
+    override fun unsubscribe(feedId: Int) {
+        scope.launch(context = DispatcherFactory.main()) {
+
+            // unsubscribe
+            repository.unsubscribe(rssId = feedId)
+
+            // dispatch action
+            store.dispatch(action = Actions.RSS.Unsubscribe(id = feedId))
+        }
+    }
+
     override fun observeRSSDetailsState(callback: (RSSFeedDetailState) -> Unit) {
         storeObserver
             .map { it.rssFeedDetail }

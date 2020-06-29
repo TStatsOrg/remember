@@ -8,4 +8,6 @@ interface RSSRepository {
     suspend fun getAll(): List<RSSDTO>
     suspend fun get(rssId: Int): RSSDTO?
     suspend fun getAllItems(dto: RSSDTO): Either<List<RSSItemDTO>>
+    suspend fun subscribe(rssId: Int)
+    suspend fun unsubscribe(rssId: Int)
 }
