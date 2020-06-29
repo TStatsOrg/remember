@@ -47,10 +47,20 @@ class SharedRSSRepository(
     override suspend fun subscribe(rssId: Int) {
         withContext(context = DispatcherFactory.io()) {
 
-            val item = get(rssId = rssId)
+            val existingItem = get(rssId = rssId)
 
-            item?.let {
-                userRSSDAO.insert(dto = it)
+            existingItem?.let {
+
+                val saveditem = object : RSSDTO {
+                    override val id: Int = existingItem.id
+                    override val title: String = existingItem.title
+                    override val link: String = existingItem.link
+                    override val icon: String? = existingItem.icon
+                    override val caption: String? = existingItem.caption
+                    override val isSubscribed: Boolean = true
+                }
+
+                userRSSDAO.insert(dto = saveditem)
             }
         }
     }

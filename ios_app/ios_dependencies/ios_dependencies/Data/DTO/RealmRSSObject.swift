@@ -62,6 +62,6 @@ extension RealmRSSObject {
 extension RSSDTO {
     
     func toObject() -> RealmRSSObject {
-        return RealmRSSObject(id: id, link: link, title: title, isSubscribed: true, caption: caption, icon: icon)
+        return RealmRSSObject(id: id, link: link, title: title, isSubscribed: isSubscribed, caption: caption, icon: icon)
     }
 }
