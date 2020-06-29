@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B8ABAB324AA78EA00D35366 /* FeedViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB224AA78EA00D35366 /* FeedViewState.swift */; };
 		1BE2B76424993C3A00A082BC /* ios_feature_feed.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE2B76224993C3A00A082BC /* ios_feature_feed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BE2B76C24993C4400A082BC /* ios_dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B76B24993C4400A082BC /* ios_dependencies.framework */; };
 		1BE2B77024993C4B00A082BC /* ios_views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B76F24993C4B00A082BC /* ios_views.framework */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		04CD1401E8CE0146375005D7 /* Pods-ios_feature_feed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_feature_feed.debug.xcconfig"; path = "Target Support Files/Pods-ios_feature_feed/Pods-ios_feature_feed.debug.xcconfig"; sourceTree = "<group>"; };
+		1B8ABAB224AA78EA00D35366 /* FeedViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewState.swift; sourceTree = "<group>"; };
 		1BE2B75F24993C3A00A082BC /* ios_feature_feed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_feature_feed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B76224993C3A00A082BC /* ios_feature_feed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_feature_feed.h; sourceTree = "<group>"; };
 		1BE2B76324993C3A00A082BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				1BE2B76224993C3A00A082BC /* ios_feature_feed.h */,
 				1BE2B76324993C3A00A082BC /* Info.plist */,
 				1BE2B77724993C5C00A082BC /* FeedView.swift */,
+				1B8ABAB224AA78EA00D35366 /* FeedViewState.swift */,
 			);
 			path = ios_feature_feed;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B8ABAB324AA78EA00D35366 /* FeedViewState.swift in Sources */,
 				1BE2B77824993C5C00A082BC /* FeedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

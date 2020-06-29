@@ -119,7 +119,8 @@ data class MainState(
     val preview: PreviewState = PreviewState(),
     val editBookmark: EditBookmarkState? = null,
     val editTopic: EditTopicState? = null,
-    val rss: RSSState = RSSState(),
+    val allRssFeeds: RSSState = RSSState(),
+    val userRssFeeds: RSSState = RSSState(),
     val rssFeedDetail: RSSFeedDetailState = RSSFeedDetailState(),
     val display: DisplayState = DisplayState()
 ): AppState

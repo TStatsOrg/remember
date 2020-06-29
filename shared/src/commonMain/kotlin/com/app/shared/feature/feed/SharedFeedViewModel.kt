@@ -1,4 +1,4 @@
-package com.app.shared.feature.rss
+package com.app.shared.feature.feed
 
 import com.app.shared.business.Actions
 import com.app.shared.business.MainState
@@ -12,29 +12,27 @@ import com.app.shared.utils.CalendarUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class SharedRSSViewModel(
+class SharedFeedViewModel(
     private val store: Store<MainState>,
-    private val repository: RSSRepository,
+    private val rssRepository: RSSRepository,
     private val calendarUtils: CalendarUtils
-): RSSViewModel {
+): FeedViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
 
-    override fun loadRSSFeeds() {
+    override fun loadOwnRSSFeeds() {
         scope.launch(context = DispatcherFactory.main()) {
 
-            // get all RSS data items
-            val rss = repository.getAll()
+            val dtos = rssRepository.getUserFeeds()
 
-            // dispatch action
-            store.dispatch(action = Actions.RSS.Load.Success(rss = rss, time = calendarUtils.getTime()))
+            store.dispatch(action = Actions.RSS.User.Load(rss = dtos, time = calendarUtils.getTime()))
         }
     }
 
-    override fun observeRSSState(callback: (RSSState) -> Unit) {
+    override fun observeUserRSSFeed(callback: (RSSState) -> Unit) {
         storeObserver
-            .map { it.allRssFeeds }
+            .map { it.userRssFeeds }
             .collect(callback)
     }
 

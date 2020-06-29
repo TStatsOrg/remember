@@ -58,6 +58,10 @@ sealed class Actions: Action {
             data class Error(val time: Long, val error: Throwable): Load()
         }
 
+        sealed class User: RSS() {
+            data class Load(val time: Long, val rss: List<RSSDTO>): User()
+        }
+
         data class Subscribe(val id: Int): RSS()
         data class Unsubscribe(val id: Int): RSS()
 

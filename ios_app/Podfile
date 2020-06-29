@@ -77,6 +77,8 @@ end
 target 'ios_feature_feed' do
   project 'ios_feature_feed/ios_feature_feed.xcodeproj'
   use_frameworks!
+  
+  pod 'SDWebImageSwiftUI', '1.3.3'
 end
 
 target 'ios_feature_rss' do

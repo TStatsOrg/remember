@@ -146,5 +146,11 @@ public class DependencyProvider {
                               calendar: self.resolve(),
                               bookmarkRepository: self.resolve()) as HubViewModel
         }
+        
+        register {
+            SharedFeedViewModel(store: self.resolve(),
+                                rssRepository: self.resolve(),
+                                calendarUtils: self.resolve()) as FeedViewModel
+        }
     }
 }

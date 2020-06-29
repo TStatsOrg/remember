@@ -17,7 +17,7 @@ class RSSLoadActionsTest: DefaultTest() {
         val newState = AppStateReducer(state, action)
 
         // then
-        assertEquals(MainState(rss = RSSState()), newState)
+        assertEquals(MainState(allRssFeeds = RSSState()), newState)
     }
 
     @Test
@@ -48,7 +48,7 @@ class RSSLoadActionsTest: DefaultTest() {
         // then
         assertEquals(
             MainState(
-                rss = RSSState(
+                allRssFeeds = RSSState(
                     feed = listOf(
                         RSSFeedState(
                             id = 1,
@@ -86,7 +86,7 @@ class RSSLoadActionsTest: DefaultTest() {
 
         // then
         assertEquals(
-            MainState(rss = RSSState(feed = listOf(), error = error, time = 123L)),
+            MainState(allRssFeeds = RSSState(feed = listOf(), error = error, time = 123L)),
             newState)
     }
 }
