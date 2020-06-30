@@ -13,20 +13,16 @@ public struct DisplayViewState {
     
     private let state: DisplayState
     
-    public init(state: DisplayState = DisplayState(item: nil, isBookmarked: false)) {
+    public init(state: DisplayState = DisplayState()) {
         self.state = state
     }
     
     public var title: String {
-        return self.state.item?.title ?? ""
+        return self.state.title
     }
     
     public var url: URL? {
-        if let url = self.state.item?.link {
-            return URL(string: url)
-        } else {
-            return nil
-        }
+        return URL(string: self.state.url)
     }
     
     public var isBookmarked: Bool {

@@ -26,10 +26,10 @@ class SharedDisplayViewModel(
 
     override fun loadRssItem(rssItemId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
-            store.dispatch(action = Actions.RSS.Display(id = rssItemId))
+            store.dispatch(action = Actions.Display.Show(id = rssItemId))
 
-            val displayItem = store.state.display.item
-            val url = displayItem?.link
+            val displayItem = store.state.display
+            val url = displayItem.url
 
             process.process(capture = url) {
                 MLogger.log("GABBOX ==> $it")
@@ -39,34 +39,30 @@ class SharedDisplayViewModel(
 
     override fun save() {
         scope.launch(context = DispatcherFactory.main()) {
-            val item = store.state.display.item
+            val item = store.state.display
 
-            if (item != null) {
-                val bookmarkDTO = object : BookmarkDTO.LinkBookmarkDTO {
-                    override val url: String = item.link
-                    override val title: String? = item.title
-                    override val caption: String? = item.caption
-                    override val icon: String? = null
-                    override val id: Int = item.link.hashCode()
-                    override val date: Long = item.pubDate
-                    override val topic: TopicDTO? = TopicDTO.GeneralTopic()
-                }
-
-                bookmarkRepository.save(dto = bookmarkDTO)
-                store.dispatch(action = Actions.Bookmark.Add(dto = bookmarkDTO))
+            val bookmarkDTO = object : BookmarkDTO.LinkBookmarkDTO {
+                override val url: String = item.url
+                override val title: String? = item.title
+                override val caption: String? = item.caption
+                override val icon: String? = null
+                override val id: Int = item.id
+                override val date: Long = item.date
+                override val topic: TopicDTO? = TopicDTO.GeneralTopic()
             }
+
+            bookmarkRepository.save(dto = bookmarkDTO)
+            store.dispatch(action = Actions.Bookmark.Add(dto = bookmarkDTO))
         }
     }
 
     override fun delete() {
         scope.launch(context = DispatcherFactory.main()) {
 
-            val item = store.state.display.item
+            val item = store.state.display
 
-            if (item != null) {
-                bookmarkRepository.delete(bookmarkId = item.id)
-                store.dispatch(action = Actions.Bookmark.Delete(bookmarkId = item.id))
-            }
+            bookmarkRepository.delete(bookmarkId = item.id)
+            store.dispatch(action = Actions.Bookmark.Delete(bookmarkId = item.id))
         }
     }
 

@@ -17,7 +17,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             old.copy(
                 allBookmarks = allNewBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
-                display = old.display.copy(isBookmarked = newBookmark.id == old.display.item?.id))
+                display = old.display.copy(isBookmarked = newBookmark.id == old.display.id))
         }
         // bookmark/present
         is Actions.Bookmark.Load.Start -> old.copy(bookmarks = BookmarksState(date = action.time))
@@ -218,15 +218,37 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
                 rssFeedDetail = old.rssFeedDetail.copy(feedState = newRssFeedDetail)
             )
         }
-        // rss/item display
-        is Actions.RSS.Display -> {
-            val item = old.rssFeedDetail.items.firstOrNull { it.id == action.id }
-            val bookmarked = old.allBookmarks.firstOrNull { it.id == action.id }
+        // display
+        is Actions.Display.Show -> {
+            // get item from current RSSs
+            val rssItem = old.rssFeedDetail.items.firstOrNull { it.id == action.id }
+            val bookmarkItem = old.allBookmarks.firstOrNull { it.id == action.id }
 
-            old.copy(
-                display = DisplayState(
-                    item = item,
-                    isBookmarked = item?.id == bookmarked?.id))
+            val display1 = rssItem?.let {
+                DisplayState(
+                    id = it.id,
+                    title = it.title,
+                    url = it.link,
+                    isBookmarked = false,
+                    date = it.pubDate
+                )
+            }
+
+            val display2 = when (bookmarkItem) {
+                is BookmarkState.Link -> DisplayState(
+                    id = bookmarkItem.id,
+                    title = bookmarkItem.title ?: "",
+                    url = bookmarkItem.url,
+                    isBookmarked = true,
+                    date = bookmarkItem.date,
+                    caption = bookmarkItem.caption
+                )
+                else -> null
+            }
+
+            val newState = display2 ?: display1 ?: old.display
+
+            old.copy(display = newState)
         }
         else -> old
     }

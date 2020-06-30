@@ -73,7 +73,10 @@ sealed class Actions: Action {
                 data class Error(val error: Throwable): LoadItems()
             }
         }
+    }
 
-        data class Display(val id: Int): RSS()
+
+    sealed class Display: Actions() {
+        data class Show(val id: Int): Display()
     }
 }

@@ -108,9 +108,17 @@ data class RSSFeedDetailState(
 }
 
 data class DisplayState(
-    val item: RSSFeedItemState? = null,
+    val id: Int = 0,
+    val url: String = "",
+    val title: String = "",
+    val date: Long = 0L,
+    val caption: String? = null,
     val isBookmarked: Boolean = false
-): AppState
+): AppState {
+
+    // iOS constructor
+    constructor(): this(id = 0, url = "", title = "", date = 0L, caption = null, isBookmarked = false)
+}
 
 data class MainState(
     val allBookmarks: List<BookmarkState> = listOf(),

@@ -45,6 +45,10 @@ public struct BookmarksView: View {
             ScrollView {
                 Grid(state.bookmarksViewState) { state in
                     self.getCellType(state: state)
+                    .onTapGesture {
+                        self.navigation.showDisplay(rssItemId: state.id)
+                        self.isShowingSheet = true
+                    }
                     .editDeleteActionSheetModifier(
                         title: "Change Bookmark",
                         editAction: {
