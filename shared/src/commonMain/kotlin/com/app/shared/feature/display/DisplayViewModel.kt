@@ -4,7 +4,7 @@ import com.app.shared.business.DisplayState
 
 interface DisplayViewModel {
 
-    fun loadRssItem(rssItemId: Int)
+    fun loadDisplayItem(itemId: Int)
     fun observeDisplayState(callback: (DisplayState) -> Unit)
     fun cleanup()
     fun save()

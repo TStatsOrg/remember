@@ -18,5 +18,5 @@ public protocol ScreenFactory {
     func buildEditBookmarkScreen(bookmarkId: Int32) -> AnyView
     func buildAddTopicScreen() -> AnyView
     func buildEditTopicScreen(topicId: Int32) -> AnyView
-    func buildDisplayView(rssItemId: Int32) -> AnyView
+    func buildDisplayView(itemId: Int32) -> AnyView
 }

@@ -13,13 +13,13 @@ import RememberShared
 
 public struct DisplayView: View {
     
-    private let rssItemId: Int32
+    private let itemId: Int32
     @Injected private var viewModel: DisplayViewModel
     @State private var state: DisplayViewState = DisplayViewState()
     @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
     
-    public init(rssItemId: Int32) {
-        self.rssItemId = rssItemId
+    public init(itemId: Int32) {
+        self.itemId = itemId
     }
     
     public var body: some View {
@@ -51,7 +51,7 @@ public struct DisplayView: View {
                 self.viewModel.observeDisplayState {
                     self.state = DisplayViewState(state: $0)
                 }
-                self.viewModel.loadRssItem(rssItemId: self.rssItemId)
+                self.viewModel.loadDisplayItem(itemId: self.itemId)
             }
             .onDisappear {
                 self.viewModel.cleanup()

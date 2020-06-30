@@ -24,9 +24,9 @@ class SharedDisplayViewModel(
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
 
-    override fun loadRssItem(rssItemId: Int) {
+    override fun loadDisplayItem(itemId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
-            store.dispatch(action = Actions.Display.Show(id = rssItemId))
+            store.dispatch(action = Actions.Display.Show(id = itemId))
 
             val displayItem = store.state.display
             val url = displayItem.url

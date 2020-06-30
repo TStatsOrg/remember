@@ -46,7 +46,7 @@ public struct BookmarksView: View {
                 Grid(state.bookmarksViewState) { state in
                     self.getCellType(state: state)
                     .onTapGesture {
-                        self.navigation.showDisplay(rssItemId: state.id)
+                        self.navigation.showDisplay(itemId: state.id)
                         self.isShowingSheet = true
                     }
                     .editDeleteActionSheetModifier(

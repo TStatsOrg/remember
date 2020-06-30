@@ -61,7 +61,7 @@ public struct RSSDetailView: View {
                         Divider()
                     }
                     .onTapGesture {
-                        self.navigation.showDisplay(rssItemId: content.id)
+                        self.navigation.showDisplay(itemId: content.id)
                         self.isShowingSheet = true
                     }
                 })
