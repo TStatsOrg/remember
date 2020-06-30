@@ -20,7 +20,7 @@ class FeeddKitAtomItemDTO: RSSItemDTO {
     public init(feedKit item: FeedKit.AtomFeedEntry) {
         self.caption = item.content?.value ?? ""
         self.title = item.title ?? ""
-        self.pubDate = Int64(item.published?.timeIntervalSince1970 ?? 0) * 1000
+        self.pubDate = Int64(item.updated?.timeIntervalSince1970 ?? 0) * 1000
         self.link = item.links?.first?.attributes?.href ?? ""
         self.id = IdProvider().fromString(string: self.link)
     }

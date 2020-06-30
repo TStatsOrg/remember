@@ -16,6 +16,7 @@ public struct DisplayView: View {
     private let rssItemId: Int32
     @Injected private var viewModel: DisplayViewModel
     @State private var state: DisplayViewState = DisplayViewState()
+    @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
     
     public init(rssItemId: Int32) {
         self.rssItemId = rssItemId
@@ -23,8 +24,14 @@ public struct DisplayView: View {
     
     public var body: some View {
         ManagedWebView(url: state.url)
-            .navigationBarTitle(Text("Display"), displayMode: .inline)
-            .navigationBarItems(trailing: VStack {
+            .navigationBarTitle(Text(state.title), displayMode: .inline)
+            .navigationBarItems(
+                leading: Button(action: {
+                    self.dismiss()
+                }, label: {
+                    Text(Translations.Display.doneTitle)
+                }),
+                trailing: VStack {
                 
                 if (self.state.isBookmarked) {
                     Button(action: {
@@ -49,5 +56,9 @@ public struct DisplayView: View {
             .onDisappear {
                 self.viewModel.cleanup()
             }
+    }
+    
+    private func dismiss() {
+        mode.wrappedValue.dismiss()
     }
 }

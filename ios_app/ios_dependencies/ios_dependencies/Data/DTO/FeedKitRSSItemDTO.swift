@@ -19,9 +19,13 @@ class FeedKitRSSItemDTO: RSSItemDTO {
     
     public init(feedKit item: FeedKit.RSSFeedItem) {
         self.title = item.title ?? ""
-        self.pubDate = Int64(item.pubDate?.timeIntervalSince1970 ?? 0) * 1000
+        
+        let pubDate = Int64(item.pubDate?.timeIntervalSince1970 ?? 0) * 1000
+        let now: Int64 = Int64(Date().timeIntervalSince1970) * 1000
+        
+        self.pubDate = pubDate == 0 ? now : pubDate
         self.caption = item.description
         self.link = item.link ?? ""
-        self.id = IdProvider().fromString(string: self.link) // Int32.random(in: 0..<1_000_000)
+        self.id = IdProvider().fromString(string: self.link)
     }
 }

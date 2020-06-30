@@ -17,6 +17,10 @@ public struct DisplayViewState {
         self.state = state
     }
     
+    public var title: String {
+        return self.state.item?.title ?? ""
+    }
+    
     public var url: URL? {
         if let url = self.state.item?.link {
             return URL(string: url)

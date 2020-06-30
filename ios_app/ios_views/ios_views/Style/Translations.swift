@@ -50,4 +50,8 @@ public struct Translations {
     public struct General {
         public static let NoResults: LocalizedStringKey = "general_no_results"
     }
+    
+    public struct Display {
+        public static let doneTitle: LocalizedStringKey = "display_done_button_title"
+    }
 }
