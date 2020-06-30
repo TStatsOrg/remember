@@ -1,6 +1,7 @@
 package com.app.shared.feature.display
 
 import com.app.shared.business.Actions
+import com.app.shared.business.BookmarkState
 import com.app.shared.business.DisplayState
 import com.app.shared.business.MainState
 import com.app.shared.coroutines.DispatcherFactory
@@ -24,6 +25,8 @@ class SharedDisplayViewModel(
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
 
+    private var temporaryIcon: String? = null
+
     override fun loadDisplayItem(itemId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
             store.dispatch(action = Actions.Display.Show(id = itemId))
@@ -32,6 +35,24 @@ class SharedDisplayViewModel(
             val url = displayItem.url
 
             process.process(capture = url) {
+                when (it) {
+                    is RawDataProcess.Item.Link -> {
+
+                        // a potentially already existing item
+                        val potentialState = store.state.allBookmarks.firstOrNull { it.id == itemId }
+
+                        // update the state
+                        when (potentialState) {
+                            is BookmarkState.Link -> {
+                                val newState = potentialState.copy(icon = it.icon)
+                                store.dispatch(action = Actions.Bookmark.Update(state = newState))
+                            }
+                        }
+
+                        temporaryIcon = it.icon
+                    }
+                    else -> Unit
+                }
                 MLogger.log("GABBOX ==> $it")
             }
         }
@@ -45,7 +66,7 @@ class SharedDisplayViewModel(
                 override val url: String = item.url
                 override val title: String? = item.title
                 override val caption: String? = item.caption
-                override val icon: String? = null
+                override val icon: String? = temporaryIcon
                 override val id: Int = item.id
                 override val date: Long = item.date
                 override val topic: TopicDTO? = TopicDTO.GeneralTopic()
