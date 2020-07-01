@@ -200,7 +200,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         }
         is Actions.RSS.Unsubscribe -> {
 
-            val feeds = old.allRssFeeds.feed.map {
+            val filterFunc: (RSSFeedState) -> RSSFeedState = {
                 if (it.id == action.id) {
                     it.copy(isSubscribed = false)
                 } else {
@@ -208,13 +208,17 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
                 }
             }
 
+            val allRssFeeds = old.allRssFeeds.feed.map(filterFunc)
+            val userRssFeeds = old.userRssFeeds.feed.map(filterFunc)
+            val feeds = (allRssFeeds + userRssFeeds).distinctBy { it.id }
+
             val oldFeedDetailState = old.rssFeedDetail.feedState
             val newRssFeedDetail = if (oldFeedDetailState.id == action.id) oldFeedDetailState.copy(isSubscribed = false) else oldFeedDetailState
-            val allUserFeeds = feeds.filter { it.isSubscribed }
+            val newUserFeeds = feeds.filter { it.isSubscribed }
 
             old.copy(
                 allRssFeeds = old.allRssFeeds.copy(feed = feeds),
-                userRssFeeds = old.userRssFeeds.copy(feed = allUserFeeds),
+                userRssFeeds = old.userRssFeeds.copy(feed = newUserFeeds),
                 rssFeedDetail = old.rssFeedDetail.copy(feedState = newRssFeedDetail)
             )
         }

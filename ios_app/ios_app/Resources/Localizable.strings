@@ -10,6 +10,9 @@
 "main_hub_tab_1" = "Home";
 "main_hub_tab_2" = "Bookmarks";
 
+// bookmarks
+"bookmarks_startup_message" = "Welcome! Add a bookmark to get started.";
+
 //  edit bookmark
 "bookmark_edit_title" = "Edit bookmark";
 "bookmark_edit_add_topics" = "Add topic";
@@ -21,6 +24,7 @@
 // feed
 "feed_title" = "Your feed";
 "feed_button_title" = "Feeds";
+"feed_startup_message" = "You don't have any of your own feeds yet.\nTap \"Feeds\" to browse some of our highlighted content";
 
 // rss
 "rss_title" = "Highlighted feeds";

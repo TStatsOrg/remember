@@ -1,30 +1,33 @@
 //
-//  GetStartedView.swift
-//  ios_feature_hub
+//  ManagedEmptyView.swift
+//  ios_views
 //
-//  Created by Gabriel Coman on 24/05/2020.
+//  Created by Gabriel Coman on 01/07/2020.
 //  Copyright © 2020 Gabriel Coman. All rights reserved.
 //
 
 import Foundation
 import SwiftUI
 import RememberShared
-import ios_views
 
-public struct GetStartedView: View {
+public struct ManagedEmptyView: View {
     
-    @Binding var state: BookmarksViewState
+    let state: EmptyViewState
+    
+    public init(state: EmptyViewState) {
+        self.state = state
+    }
     
     public var body: some View {
-        VStack {
-            if state.isGetStartedVisible {
-                Image(systemName: "bookmark.fill")
+        VStack(alignment: .center) {
+            if state.isEmptyViewVisible {
+                Image(systemName: state.emptyViewImage)
                     .resizable()
                     .colorMultiply(.secondary)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 80, height: 80)
                     .padding(top: 20)
-                Text("Welcome! Add a bookmark to get started")
+                Text(state.emptyViewText)
                     .foregroundColor(.secondary)
                 Spacer()
             } else {

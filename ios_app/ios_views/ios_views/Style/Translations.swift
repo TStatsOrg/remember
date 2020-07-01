@@ -11,6 +11,10 @@ import SwiftUI
 
 public struct Translations {
     
+    public struct Bookmarks {
+        public static let startupMessage: LocalizedStringKey = "bookmarks_startup_message"
+    }
+    
     public struct EditBookmarks {
         
         public static let title: LocalizedStringKey = "bookmark_edit_title"
@@ -31,6 +35,7 @@ public struct Translations {
     public struct Feed {
         public static let title: LocalizedStringKey = "feed_title"
         public static let feedButtonTitle: LocalizedStringKey = "feed_button_title"
+        public static let startupMessage: LocalizedStringKey = "feed_startup_message"
     }
     
     public struct RSS {

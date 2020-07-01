@@ -26,14 +26,6 @@ struct BookmarksViewState {
         return state?.searchTerm ?? searchTextWhenFilteringByTopic
     }
     
-    var noSearchResults: Bool {
-        return !currentSearchText.isEmpty && bookmarks.isEmpty
-    }
-    
-    var isGetStartedVisible: Bool {
-        return currentSearchText.isEmpty && bookmarks.isEmpty
-    }
-    
     var isFilteringByTopic: Bool {
         return state?.filterByTopic?.name != nil
     }
@@ -52,5 +44,17 @@ struct BookmarksViewState {
     
     var bookmarksViewState: [BookmarkViewState] {
         return bookmarks.map(BookmarkViewState.init)
+    }
+    
+    var empty: EmptyViewState {
+        return EmptyViewState(isVisible: currentSearchText.isEmpty && bookmarks.isEmpty,
+                              image: "bookmark.fill",
+                              text: Translations.Bookmarks.startupMessage)
+    }
+    
+    var noSearchResults: EmptyViewState {
+        return EmptyViewState(isVisible: !currentSearchText.isEmpty && bookmarks.isEmpty,
+                              image: "nosign",
+                              text: Translations.General.NoResults)
     }
 }

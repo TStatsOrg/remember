@@ -15,6 +15,8 @@
 		1B8414A924A1387900AD4660 /* ManagedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8414A824A1387900AD4660 /* ManagedWebView.swift */; };
 		1B8ABAAD24A8F81200D35366 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAAC24A8F81200D35366 /* AppColors.swift */; };
 		1B8ABAAF24A9093200D35366 /* ManagedSubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAAE24A9093200D35366 /* ManagedSubscribeButton.swift */; };
+		1B8ABAB724ACF83800D35366 /* ManagedEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB624ACF83800D35366 /* ManagedEmptyView.swift */; };
+		1B8ABAB924ACF85800D35366 /* EmptyViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB824ACF85800D35366 /* EmptyViewState.swift */; };
 		1BE2B5302493C85D00A082BC /* ios_views.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE2B52E2493C85D00A082BC /* ios_views.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BE2B5B32493D17D00A082BC /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5A02493D17D00A082BC /* ScreenFactory.swift */; };
 		1BE2B5B42493D17D00A082BC /* ForegroundNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5A22493D17D00A082BC /* ForegroundNotification.swift */; };
@@ -42,6 +44,8 @@
 		1B8414A824A1387900AD4660 /* ManagedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedWebView.swift; sourceTree = "<group>"; };
 		1B8ABAAC24A8F81200D35366 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		1B8ABAAE24A9093200D35366 /* ManagedSubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedSubscribeButton.swift; sourceTree = "<group>"; };
+		1B8ABAB624ACF83800D35366 /* ManagedEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedEmptyView.swift; sourceTree = "<group>"; };
+		1B8ABAB824ACF85800D35366 /* EmptyViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewState.swift; sourceTree = "<group>"; };
 		1BE2B52B2493C85D00A082BC /* ios_views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B52E2493C85D00A082BC /* ios_views.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_views.h; sourceTree = "<group>"; };
 		1BE2B52F2493C85D00A082BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 		1BE2B5AA2493D17D00A082BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1B8ABAB624ACF83800D35366 /* ManagedEmptyView.swift */,
 				1BE2B5AB2493D17D00A082BC /* ManagedSearchView.swift */,
 				1B841473249FD5BE00AD4660 /* ErrorView.swift */,
 				1B8414A824A1387900AD4660 /* ManagedWebView.swift */,
@@ -168,6 +173,7 @@
 		1BE2B5AC2493D17D00A082BC /* ViewStates */ = {
 			isa = PBXGroup;
 			children = (
+				1B8ABAB824ACF85800D35366 /* EmptyViewState.swift */,
 				1BE2B5AD2493D17D00A082BC /* TopicViewState.swift */,
 				1BE2B5AE2493D17D00A082BC /* BookmarkViewState.swift */,
 				1B531221249AAB8100F4DF14 /* RSSViewState.swift */,
@@ -316,11 +322,13 @@
 				1BE2B5B82493D17D00A082BC /* Navigation.swift in Sources */,
 				1BE2B5BC2493D17D00A082BC /* KeyboardUtils.swift in Sources */,
 				1B8ABAAD24A8F81200D35366 /* AppColors.swift in Sources */,
+				1B8ABAB724ACF83800D35366 /* ManagedEmptyView.swift in Sources */,
 				1BE2B5B92493D17D00A082BC /* ManagedSearchView.swift in Sources */,
 				1BE2B5B62493D17D00A082BC /* Translations.swift in Sources */,
 				1BE2B5BD2493D17D00A082BC /* GenericIdentifiable.swift in Sources */,
 				1B531222249AAB8100F4DF14 /* RSSViewState.swift in Sources */,
 				1BE2B5B52493D17D00A082BC /* EditDeleteBottomSheet.swift in Sources */,
+				1B8ABAB924ACF85800D35366 /* EmptyViewState.swift in Sources */,
 				1B841474249FD5BE00AD4660 /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

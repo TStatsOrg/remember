@@ -14,8 +14,6 @@
 		1BE2B7492499398D00A082BC /* BoomarksViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B73F2499398D00A082BC /* BoomarksViewState.swift */; };
 		1BE2B74A2499398D00A082BC /* BookmarkTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7412499398D00A082BC /* BookmarkTopicView.swift */; };
 		1BE2B74B2499398D00A082BC /* ImageBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7422499398D00A082BC /* ImageBookmarkView.swift */; };
-		1BE2B74C2499398D00A082BC /* NoSearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7432499398D00A082BC /* NoSearchResultsView.swift */; };
-		1BE2B74D2499398D00A082BC /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7442499398D00A082BC /* GetStartedView.swift */; };
 		1BE2B74E2499398D00A082BC /* LinkBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7452499398D00A082BC /* LinkBookmarkView.swift */; };
 		1BE2B74F2499398D00A082BC /* TextBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7462499398D00A082BC /* TextBookmarkView.swift */; };
 		1BE2B7502499398D00A082BC /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7472499398D00A082BC /* BookmarksView.swift */; };
@@ -34,8 +32,6 @@
 		1BE2B73F2499398D00A082BC /* BoomarksViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomarksViewState.swift; sourceTree = "<group>"; };
 		1BE2B7412499398D00A082BC /* BookmarkTopicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkTopicView.swift; sourceTree = "<group>"; };
 		1BE2B7422499398D00A082BC /* ImageBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBookmarkView.swift; sourceTree = "<group>"; };
-		1BE2B7432499398D00A082BC /* NoSearchResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoSearchResultsView.swift; sourceTree = "<group>"; };
-		1BE2B7442499398D00A082BC /* GetStartedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		1BE2B7452499398D00A082BC /* LinkBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkBookmarkView.swift; sourceTree = "<group>"; };
 		1BE2B7462499398D00A082BC /* TextBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBookmarkView.swift; sourceTree = "<group>"; };
 		1BE2B7472499398D00A082BC /* BookmarksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
@@ -115,8 +111,6 @@
 				1BE2B7472499398D00A082BC /* BookmarksView.swift */,
 				1BE2B7412499398D00A082BC /* BookmarkTopicView.swift */,
 				1BE2B7422499398D00A082BC /* ImageBookmarkView.swift */,
-				1BE2B7432499398D00A082BC /* NoSearchResultsView.swift */,
-				1BE2B7442499398D00A082BC /* GetStartedView.swift */,
 				1BE2B7452499398D00A082BC /* LinkBookmarkView.swift */,
 				1BE2B7462499398D00A082BC /* TextBookmarkView.swift */,
 				1BE2B7482499398D00A082BC /* BookmarkInfoView.swift */,
@@ -245,7 +239,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BE2B74C2499398D00A082BC /* NoSearchResultsView.swift in Sources */,
 				1BE2B74A2499398D00A082BC /* BookmarkTopicView.swift in Sources */,
 				1BE2B7502499398D00A082BC /* BookmarksView.swift in Sources */,
 				1BE2B74E2499398D00A082BC /* LinkBookmarkView.swift in Sources */,
@@ -253,7 +246,6 @@
 				1BE2B74B2499398D00A082BC /* ImageBookmarkView.swift in Sources */,
 				1BE2B74F2499398D00A082BC /* TextBookmarkView.swift in Sources */,
 				1BE2B7492499398D00A082BC /* BoomarksViewState.swift in Sources */,
-				1BE2B74D2499398D00A082BC /* GetStartedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

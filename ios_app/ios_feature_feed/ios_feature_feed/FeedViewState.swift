@@ -6,7 +6,7 @@
 //  Copyright © 2020 Gabriel Coman. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import ios_views
 import RememberShared
 
@@ -20,5 +20,11 @@ public struct FeedViewState {
     
     public var items: [RSSViewState] {
         return state.map(RSSViewState.init)
+    }
+    
+    public var empty: EmptyViewState {
+        return EmptyViewState(isVisible: items.isEmpty,
+                              image: "bookmark.fill",
+                              text: Translations.Feed.startupMessage)
     }
 }

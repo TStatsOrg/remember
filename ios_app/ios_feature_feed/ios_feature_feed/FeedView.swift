@@ -19,62 +19,32 @@ public struct FeedView: View {
     @State private var isShowingSheet: Bool = false
     @State private var state: FeedViewState = FeedViewState()
     
-    public init() {
-        
-    }
+    public init() { /* n/a */ }
     
     public var body: some View {
-        List(state.items, rowContent: { content in
-            VStack {
-                HStack(alignment: .center) {
-
-                    WebImage(url: content.icon)
-                        .placeholder(content: {
-                            Image(systemName: "bookmark.fill")
-                                .foregroundColor(AppColors.secondaryColor)
-                        })
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 60, height: 60)
-                        .background(AppColors.mainColor)
-                        .clipped()
-
-                    Button(action: {
-                        self.navigation.showRSSDetail(rssId: content.id)
-                        self.isShowingSheet = true
-                    }) {
-                        VStack(alignment: .leading) {
-                            Text(content.title)
-                                .font(.body)
-                                .fontWeight(.bold)
-                            Text(content.link)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                                .lineLimit(1)
-                        }
-                    }
-
-                    Spacer()
-                }
-                Divider()
-            }
-        })
-            .navigationBarTitle(Text(Translations.Feed.title), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                self.navigation.showRSS()
+        VStack {
+            ManagedEmptyView(state: state.empty)
+            FeedListView(state: $state, buttonAction: { id in
+                self.navigation.showRSSDetail(rssId: id)
                 self.isShowingSheet = true
-            }, label: {
-                Text(Translations.Feed.feedButtonTitle)
-            }))
-            .onAppear {
-                self.viewModel.observeUserRSSFeed {
-                    self.state = FeedViewState(state: $0.feed)
-                }
-                self.viewModel.loadOwnRSSFeeds()
+            })
+        }
+        .navigationBarTitle(Text(Translations.Feed.title), displayMode: .inline)
+        .navigationBarItems(trailing: Button(action: {
+            self.navigation.showRSS()
+            self.isShowingSheet = true
+        }, label: {
+            Text(Translations.Feed.feedButtonTitle)
+        }))
+        .onAppear {
+            self.viewModel.observeUserRSSFeed {
+                self.state = FeedViewState(state: $0.feed)
             }
-            .onDisappear {
-                // self.viewModel.cleanup()
-            }
-            .sheet(isPresented: $isShowingSheet, content: navigation.content)
+            self.viewModel.loadOwnRSSFeeds()
+        }
+        .onDisappear {
+            // self.viewModel.cleanup()
+        }
+        .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
 }

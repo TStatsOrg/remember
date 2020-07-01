@@ -40,8 +40,8 @@ public struct BookmarksView: View {
     public var body: some View {
         VStack {
             SearchView(viewModel: viewModel, binding: $search)
-            NoSearchResultsView(state: $state)
-            GetStartedView(state: $state)
+            ManagedEmptyView(state: state.noSearchResults)
+            ManagedEmptyView(state: state.empty)
             ScrollView {
                 Grid(state.bookmarksViewState) { state in
                     self.getCellType(state: state)
