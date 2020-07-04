@@ -15,6 +15,7 @@ public struct DisplayView: View {
     
     private let itemId: Int32
     @Injected private var viewModel: DisplayViewModel
+    @Injected private var htmlParser: HTMLParser
     @State private var state: DisplayViewState = DisplayViewState()
     @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
     
@@ -24,6 +25,23 @@ public struct DisplayView: View {
     
     public var body: some View {
         ManagedWebView(url: state.url)
+            .onFinishedLoading { result in
+                
+                let parser = self.htmlParser.parse(content: result.content)
+                
+                switch parser {
+                case .success(let output):
+                    let item = RawDataProcessItem.Link(url: result.url,
+                                                       title: output.title,
+                                                       description: output.description,
+                                                       icon: output.icon)
+                    print("GABBOX2 Parsing result is \(item)")
+                    break
+                case .failure(let error):
+                    print("GABBOX2 Parsing error for HTML at \(result.url) ==> \(error)")
+                }
+                
+            }
             .navigationBarTitle(Text(state.title), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {

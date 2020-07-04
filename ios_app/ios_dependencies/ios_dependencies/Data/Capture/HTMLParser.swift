@@ -9,13 +9,13 @@
 import Foundation
 import SwiftSoup
 
-protocol HTMLParser {
+public protocol HTMLParser {
     func parse(content: String) -> Result<HTMLOutput, ParserError>
 }
 
-struct SwiftSoupHTMLParser: HTMLParser {
+public struct SwiftSoupHTMLParser: HTMLParser {
     
-    func parse(content: String) -> Result<HTMLOutput, ParserError> {
+    public func parse(content: String) -> Result<HTMLOutput, ParserError> {
         
         do {
             let document: Document = try SwiftSoup.parse(content)
@@ -34,10 +34,10 @@ struct SwiftSoupHTMLParser: HTMLParser {
     }
 }
 
-struct HTMLOutput {
-    let title: String?
-    let description: String?
-    let icon: String?
+public struct HTMLOutput {
+    public let title: String?
+    public let description: String?
+    public let icon: String?
 }
 
-struct ParserError: Error {}
+public struct ParserError: Error {}

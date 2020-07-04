@@ -76,7 +76,13 @@ class DefaultRSSDAO: RSSDAO {
             title = "Hacker News",
             link = "https://news.ycombinator.com/rss",
             icon = null
-        )
+        ),
+            DefaultRSS(
+                    id = "Utopia Balcanica".hashCode(),
+                    title = "Utopia Balcanica",
+                    link = "https://utopiabalcanica.net/feed/",
+                    icon = null
+            )
     )
 
     override fun getAll(): List<RSSDTO> = defaultRSSFeeds

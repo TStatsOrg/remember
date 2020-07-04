@@ -11,13 +11,13 @@ import Foundation
 /*
  * The URL downloader downloads the contents of a URL, as a String
  */
-protocol UrlDownloader {
+public protocol UrlDownloader {
     func download(url: URL, callback: @escaping (Result<String, DownloaderError>) -> Void)
 }
 
-struct SimpleUrlDownloader: UrlDownloader {
+public struct SimpleUrlDownloader: UrlDownloader {
     
-    func download(url: URL, callback: @escaping (Result<String, DownloaderError>) -> Void) {
+    public func download(url: URL, callback: @escaping (Result<String, DownloaderError>) -> Void) {
         DispatchQueue.global(qos: .default).async {
             
             let contents: String? = try? String(contentsOf: url)
@@ -35,4 +35,4 @@ struct SimpleUrlDownloader: UrlDownloader {
     }
 }
 
-struct DownloaderError: Error {}
+public struct DownloaderError: Error {}
