@@ -42,4 +42,5 @@
 "general_no_results" = "No results found";
 
 // display
-"display_done_button_title" = "Done";
+"display_title" = "Loading...";
+

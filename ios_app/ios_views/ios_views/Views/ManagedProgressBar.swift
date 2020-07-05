@@ -16,6 +16,14 @@ public struct ManagedProgressBar: View {
         self._value = value
     }
     
+    private var foregroundBarColor: Color {
+        if value >= 1.0 {
+            return Color.white
+        } else {
+            return Color(UIColor.systemBlue)
+        }
+    }
+    
     public var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
@@ -24,7 +32,7 @@ public struct ManagedProgressBar: View {
                     .frame(width: geometry.size.width , height: geometry.size.height)
                 
                 Rectangle()
-                    .foregroundColor(Color(UIColor.systemBlue))
+                    .foregroundColor(self.foregroundBarColor)
                     .frame(width: min(CGFloat(self.value)*geometry.size.width, geometry.size.width),
                            height: geometry.size.height)
                     .animation(.linear)

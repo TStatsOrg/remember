@@ -57,6 +57,6 @@ public struct Translations {
     }
     
     public struct Display {
-        public static let doneTitle: LocalizedStringKey = "display_done_button_title"
+        public static let title: LocalizedStringKey = "display_title"
     }
 }

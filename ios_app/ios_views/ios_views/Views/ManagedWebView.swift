@@ -19,6 +19,18 @@ public struct WebViewProvider {
             webView.load(URLRequest(url: url))
         }
     }
+    
+    public func goBack() {
+        if webView.canGoBack {
+            webView.goBack()
+        }
+    }
+    
+    public func goForward() {
+        if webView.canGoForward {
+            webView.goForward()
+        }
+    }
 }
 
 public struct ManagedWebView {

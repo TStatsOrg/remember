@@ -40,33 +40,47 @@ public struct DisplayView: View {
                 .onFinishedLoading { result in
                     self.viewModel.finishLoad(url: result.url, content: result.content)
                 }
-        }
-        .background(Color.red)
-        .navigationBarTitle(Text(state.title), displayMode: .inline)
-        .navigationBarItems(
-            leading: Button(action: {
-                self.dismiss()
-            }, label: {
-                Text(Translations.Display.doneTitle)
-            }),
-            trailing: VStack {
-            
-            if (self.state.isBookmarked) {
+            HStack {
                 Button(action: {
-                    self.viewModel.delete()
-                }, label: {
-                    Image(systemName: "bookmark.fill")
-                })
-                .disabled(state.isDisabled)
-            } else {
+                    self.provider.goBack()
+                }) {
+                    Image(systemName: "arrowtriangle.left")
+                }
+                .frame(maxWidth: .infinity)
+                
                 Button(action: {
-                    self.viewModel.save()
-                }, label: {
-                    Image(systemName: "bookmark")
-                })
+                    self.provider.goForward()
+                }) {
+                    Image(systemName: "arrowtriangle.right")
+                }
+                .frame(maxWidth: .infinity)
+                
+                Button(action: {
+                    self.dismiss()
+                }) {
+                    Image(systemName: "xmark")
+                }
+                .frame(maxWidth: .infinity)
+                
+                Button(action: {
+                    if self.state.isBookmarked {
+                        self.viewModel.delete()
+                    } else {
+                        self.viewModel.save()
+                    }
+                }) {
+                    if self.state.isBookmarked {
+                        Image(systemName: "bookmark.fill")
+                    } else {
+                        Image(systemName: "bookmark")
+                    }
+                }
                 .disabled(state.isDisabled)
+                .frame(maxWidth: .infinity)
             }
-        })
+            .frame(height: 52)
+        }
+        .navigationBarTitle(Text(state.title), displayMode: .inline)
         .onAppear {
             self.viewModel.observeDisplayState {
                 self.state = DisplayViewState(state: $0)

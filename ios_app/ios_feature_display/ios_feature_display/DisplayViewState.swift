@@ -27,7 +27,7 @@ public struct DisplayViewState {
     }
     
     public var title: String {
-        return bookmark?.title ?? "N/A"
+        return bookmark?.title ?? "Loading ..."
     }
     
     public var isBookmarked: Bool {
