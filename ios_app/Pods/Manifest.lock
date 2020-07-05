@@ -5,9 +5,9 @@ PODS:
   - Realm/Headers (4.4.0)
   - RealmSwift (4.4.0):
     - Realm (= 4.4.0)
-  - SDWebImage (5.8.1):
-    - SDWebImage/Core (= 5.8.1)
-  - SDWebImage/Core (5.8.1)
+  - SDWebImage (5.8.3):
+    - SDWebImage/Core (= 5.8.3)
+  - SDWebImage/Core (5.8.3)
   - SDWebImageSwiftUI (1.3.3):
     - SDWebImage (~> 5.7)
   - SwiftSoup (2.3.1)
@@ -32,7 +32,7 @@ SPEC CHECKSUMS:
   FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
   Realm: e125f464884cda953ebefe70c671b75b03b81b9b
   RealmSwift: 33656a42bd300959a081fc13347376bc478071af
-  SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
+  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SDWebImageSwiftUI: a34ad354527ec71f8dcb5c5e82179734285280a6
   SwiftSoup: e5af192bc99be8398d5f93e15ff6a3c80ba81de1
 
