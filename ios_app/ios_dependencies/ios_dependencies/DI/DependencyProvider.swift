@@ -138,15 +138,9 @@ public class DependencyProvider {
         
         register {
             SharedDisplayViewModel(store: self.resolve(),
-                                   process: self.resolve(),
-                                   bookmarkRepository: self.resolve()) as DisplayViewModel
-        }
-        
-        register {
-            SharedDisplayViewModel2(store: self.resolve(),
-                                    bookmarkRepository: self.resolve(),
-                                    calendarUtils: self.resolve(),
-                                    htmlDataProcess: self.resolve()) as DisplayViewModel2
+                                   bookmarkRepository: self.resolve(),
+                                   calendarUtils: self.resolve(),
+                                   htmlDataProcess: self.resolve()) as DisplayViewModel
         }
         
         register {

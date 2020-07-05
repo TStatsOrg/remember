@@ -25,9 +25,11 @@ public struct ManagedWebView {
     
     private let webView: WKWebView
     private let delegate: ManagedWebViewDelegate = ManagedWebViewDelegate()
+    private let progress: ManagedWebViewProgress
     
     public init(webView: WKWebView) {
         self.webView = webView
+        self.progress = ManagedWebViewProgress(webView: webView)
         self.webView.navigationDelegate = delegate
     }
     
@@ -46,6 +48,11 @@ extension ManagedWebView {
     
     public func onFinishedLoading(callback: @escaping (ManagedWebView.Result) -> Void) -> ManagedWebView {
         delegate.finishNavigationObserver = callback
+        return self
+    }
+    
+    public func onProgrss(callback: @escaping (Float) -> Void) -> ManagedWebView {
+        progress.progressObserver = callback
         return self
     }
 }
@@ -84,5 +91,28 @@ class ManagedWebViewDelegate: NSObject, WKNavigationDelegate {
                 }
             }
         }
+    }
+}
+
+public class ManagedWebViewProgress: NSObject {
+    
+    private let webView: WKWebView
+    private var observation: NSKeyValueObservation? = nil
+    internal var progressObserver: ((Float) -> Void)? = nil
+    
+    public init(webView: WKWebView) {
+        self.webView = webView
+    
+        super.init()
+    
+        observation = self.webView.observe(\.estimatedProgress, options: [.new]) { [weak self] (_, _) in
+            if let value = self?.webView.estimatedProgress {
+                self?.progressObserver?(Float(value))
+            }
+        }
+    }
+    
+    deinit {
+        observation = nil
     }
 }
