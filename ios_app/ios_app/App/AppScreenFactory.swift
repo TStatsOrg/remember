@@ -57,7 +57,7 @@ struct AppScreenFactory: ScreenFactory {
         return AnyView(NavigationView { EditTopicView(topicId: topicId) }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
-    func buildDisplayView(itemId: Int32) -> AnyView {
-        return AnyView(NavigationView { DisplayView(itemId: itemId) }.navigationViewStyle(StackNavigationViewStyle()))
+    func buildDisplayView(url: URL?) -> AnyView {
+        return AnyView(NavigationView { DisplayView(url: url) }.navigationViewStyle(StackNavigationViewStyle()))
     }
 }

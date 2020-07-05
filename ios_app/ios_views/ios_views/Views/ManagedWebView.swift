@@ -9,21 +9,26 @@
 import SwiftUI
 import WebKit
 
+public struct WebViewProvider {
+    public let webView: WKWebView = WKWebView()
+    
+    public init() { /* n/a*/ }
+    
+    public func load(url: URL?) {
+        if let url = url {
+            webView.load(URLRequest(url: url))
+        }
+    }
+}
+
 public struct ManagedWebView {
     
-    private let webView = WKWebView()
+    private let webView: WKWebView
+    private let delegate: ManagedWebViewDelegate = ManagedWebViewDelegate()
     
-    private let delegate: ManagedWebViewDelegate?
-    private let url: URL?
-    
-    public init(url: URL?) {
-        self.url = url
-        self.delegate = nil
-    }
-    
-    public init(url: URL?, callback: @escaping (ManagedWebView.Result) -> Void) {
-        self.url = url
-        self.delegate = ManagedWebViewDelegate(withObserver: callback)
+    public init(webView: WKWebView) {
+        self.webView = webView
+        self.webView.navigationDelegate = delegate
     }
     
     public struct Result {
@@ -34,8 +39,14 @@ public struct ManagedWebView {
 
 extension ManagedWebView {
     
-    public func onFinishedLoading(callback: @escaping (ManagedWebView.Result) -> Void) -> some UIViewRepresentable {
-        return ManagedWebView(url: url, callback: callback)
+    public func onStartLoading(callback: @escaping () -> Void) -> ManagedWebView {
+        delegate.startNavigationObserver = callback
+        return self
+    }
+    
+    public func onFinishedLoading(callback: @escaping (ManagedWebView.Result) -> Void) -> ManagedWebView {
+        delegate.finishNavigationObserver = callback
+        return self
     }
 }
 
@@ -46,19 +57,17 @@ extension ManagedWebView: UIViewRepresentable {
     }
     
     public func updateUIView(_ uiView: WKWebView, context: Context) {
-        if let url = url {
-            uiView.navigationDelegate = delegate
-            uiView.load(URLRequest(url: url))
-        }
+        // n/a
     }
 }
 
 class ManagedWebViewDelegate: NSObject, WKNavigationDelegate {
     
-    private let navigationObserver: (ManagedWebView.Result) -> Void
+    internal var startNavigationObserver: (() -> Void)?
+    internal var finishNavigationObserver: ((ManagedWebView.Result) -> Void)?
     
-    init(withObserver observer: @escaping (ManagedWebView.Result) -> Void) {
-        navigationObserver = observer
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        startNavigationObserver?()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -71,7 +80,7 @@ class ManagedWebViewDelegate: NSObject, WKNavigationDelegate {
                 }
                 
                 if let content = result as? String {
-                    self.navigationObserver(ManagedWebView.Result(url: url.absoluteString, content: content))
+                    self.finishNavigationObserver?(ManagedWebView.Result(url: url.absoluteString, content: content))
                 }
             }
         }

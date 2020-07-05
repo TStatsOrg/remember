@@ -60,6 +60,7 @@ public class DependencyProvider {
         register { SwiftSoupHTMLParser() as HTMLParser }
         register { SystemCalendarUtils() as CalendarUtils }
         register { ExtensionContextDataCapture() as RawDataCapture }
+        register { SwiftSoupHTMLDataProcess() as HTMLDataProcess }
         register { iOSDataProcess(resolver: self.resolve(),
                                   downloader: self.resolve(),
                                   parser: self.resolve()) as RawDataProcess }
@@ -139,6 +140,13 @@ public class DependencyProvider {
             SharedDisplayViewModel(store: self.resolve(),
                                    process: self.resolve(),
                                    bookmarkRepository: self.resolve()) as DisplayViewModel
+        }
+        
+        register {
+            SharedDisplayViewModel2(store: self.resolve(),
+                                    bookmarkRepository: self.resolve(),
+                                    calendarUtils: self.resolve(),
+                                    htmlDataProcess: self.resolve()) as DisplayViewModel2
         }
         
         register {

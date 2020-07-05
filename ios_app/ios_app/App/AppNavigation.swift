@@ -49,8 +49,8 @@ class AppNavigation: Navigation {
         destination = .EditTopic(view: factory.buildEditTopicScreen(topicId: topicId))
     }
     
-    func showDisplay(itemId: Int32) {
-        destination = .Display(view: factory.buildDisplayView(itemId: itemId))
+    func showDisplay(url: URL?) {
+        destination = .Display(view: factory.buildDisplayView(url: url))
     }
     
     func showUrl(url: URL?) {

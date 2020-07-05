@@ -5,4 +5,5 @@ sealed class Errors: Throwable() {
     object InvalidRSSFormat: Errors()
     object Database: Errors()
     object InvalidURL: Errors()
+    object InvalidHTMLFormat: Errors()
 }

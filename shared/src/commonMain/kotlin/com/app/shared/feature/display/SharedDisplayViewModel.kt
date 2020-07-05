@@ -29,61 +29,61 @@ class SharedDisplayViewModel(
 
     override fun loadDisplayItem(itemId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
-            store.dispatch(action = Actions.Display.Show(id = itemId))
-
-            val displayItem = store.state.display
-            val url = displayItem.url
-
-            process.process(capture = url) {
-                when (it) {
-                    is RawDataProcess.Item.Link -> {
-
-                        // a potentially already existing item
-                        val potentialState = store.state.allBookmarks.firstOrNull { it.id == itemId }
-
-                        // update the state
-                        when (potentialState) {
-                            is BookmarkState.Link -> {
-                                val newState = potentialState.copy(icon = it.icon)
-                                store.dispatch(action = Actions.Bookmark.Update(state = newState))
-                            }
-                        }
-
-                        temporaryIcon = it.icon
-                    }
-                    else -> Unit
-                }
-                MLogger.log("GABBOX ==> $it")
-            }
+//            store.dispatch(action = Actions.Display.Show(id = itemId))
+//
+//            val displayItem = store.state.display
+//            val url = displayItem.url
+//
+//            process.process(capture = url) {
+//                when (it) {
+//                    is RawDataProcess.Item.Link -> {
+//
+//                        // a potentially already existing item
+//                        val potentialState = store.state.allBookmarks.firstOrNull { it.id == itemId }
+//
+//                        // update the state
+//                        when (potentialState) {
+//                            is BookmarkState.Link -> {
+//                                val newState = potentialState.copy(icon = it.icon)
+//                                store.dispatch(action = Actions.Bookmark.Update(state = newState))
+//                            }
+//                        }
+//
+//                        temporaryIcon = it.icon
+//                    }
+//                    else -> Unit
+//                }
+//                MLogger.log("GABBOX ==> $it")
+//            }
         }
     }
 
     override fun save() {
         scope.launch(context = DispatcherFactory.main()) {
-            val item = store.state.display
-
-            val bookmarkDTO = object : BookmarkDTO.LinkBookmarkDTO {
-                override val url: String = item.url
-                override val title: String? = item.title
-                override val caption: String? = item.caption
-                override val icon: String? = temporaryIcon
-                override val id: Int = item.id
-                override val date: Long = item.date
-                override val topic: TopicDTO? = TopicDTO.GeneralTopic()
-            }
-
-            bookmarkRepository.save(dto = bookmarkDTO)
-            store.dispatch(action = Actions.Bookmark.Add(dto = bookmarkDTO))
+//            val item = store.state.display
+//
+//            val bookmarkDTO = object : BookmarkDTO.LinkBookmarkDTO {
+//                override val url: String = item.url
+//                override val title: String? = item.title
+//                override val caption: String? = item.caption
+//                override val icon: String? = temporaryIcon
+//                override val id: Int = item.id
+//                override val date: Long = item.date
+//                override val topic: TopicDTO? = TopicDTO.GeneralTopic()
+//            }
+//
+//            bookmarkRepository.save(dto = bookmarkDTO)
+//            store.dispatch(action = Actions.Bookmark.Add(dto = bookmarkDTO))
         }
     }
 
     override fun delete() {
         scope.launch(context = DispatcherFactory.main()) {
 
-            val item = store.state.display
-
-            bookmarkRepository.delete(bookmarkId = item.id)
-            store.dispatch(action = Actions.Bookmark.Delete(bookmarkId = item.id))
+//            val item = store.state.display
+//
+//            bookmarkRepository.delete(bookmarkId = item.id)
+//            store.dispatch(action = Actions.Bookmark.Delete(bookmarkId = item.id))
         }
     }
 

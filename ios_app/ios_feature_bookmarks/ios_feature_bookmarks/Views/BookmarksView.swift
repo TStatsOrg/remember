@@ -46,8 +46,10 @@ public struct BookmarksView: View {
                 Grid(state.bookmarksViewState) { state in
                     self.getCellType(state: state)
                     .onTapGesture {
-                        self.navigation.showDisplay(itemId: state.id)
-                        self.isShowingSheet = true
+                        if let state = state.viewState as? BookmarkLinkViewState {
+                            self.navigation.showDisplay(url: state.destinationUrl)
+                            self.isShowingSheet = true
+                        }
                     }
                     .editDeleteActionSheetModifier(
                         title: "Change Bookmark",

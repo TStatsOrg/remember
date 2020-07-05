@@ -75,8 +75,11 @@ sealed class Actions: Action {
         }
     }
 
-
     sealed class Display: Actions() {
-        data class Show(val id: Int): Display()
+        sealed class Load: Display() {
+            data class Start(val time: Long): Load()
+            data class Success(val time: Long, val url: String, val title: String?, val caption: String?, val icon: String?): Load()
+            data class Error(val time: Long, val error: Throwable): Load()
+        }
     }
 }

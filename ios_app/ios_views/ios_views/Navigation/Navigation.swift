@@ -34,7 +34,7 @@ public protocol Navigation {
     func showAddTopic()
     func showUrl(url: URL?)
     func showEditTopic(topicId: Int32)
-    func showDisplay(itemId: Int32)
+    func showDisplay(url: URL?)
     
     func content() -> AnyView
 }

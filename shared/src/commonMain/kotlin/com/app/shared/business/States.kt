@@ -108,16 +108,14 @@ data class RSSFeedDetailState(
 }
 
 data class DisplayState(
-    val id: Int = 0,
-    val url: String = "",
-    val title: String = "",
-    val date: Long = 0L,
-    val caption: String? = null,
+    val item: BookmarkState.Link? = null,
+    val error: Throwable? = null,
+    val isLoading: Boolean = false,
     val isBookmarked: Boolean = false
 ): AppState {
 
     // iOS constructor
-    constructor(): this(id = 0, url = "", title = "", date = 0L, caption = null, isBookmarked = false)
+    constructor(): this(item = null, error = null, isLoading = false, isBookmarked = false)
 }
 
 data class MainState(

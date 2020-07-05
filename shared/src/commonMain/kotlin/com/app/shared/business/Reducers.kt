@@ -17,7 +17,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             old.copy(
                 allBookmarks = allNewBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
-                display = old.display.copy(isBookmarked = newBookmark.id == old.display.id))
+                display = old.display.copy(isBookmarked = newBookmark.id == old.display.item?.id))
         }
         // bookmark/present
         is Actions.Bookmark.Load.Start -> old.copy(bookmarks = BookmarksState(date = action.time))
@@ -223,37 +223,26 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             )
         }
         // display
-        is Actions.Display.Show -> {
-            // get item from current RSSs
-            val rssItem = old.rssFeedDetail.items.firstOrNull { it.id == action.id }
-            val bookmarkItem = old.allBookmarks.firstOrNull { it.id == action.id }
+        is Actions.Display.Load.Start -> old.copy(display = DisplayState(isLoading = true))
+        is Actions.Display.Load.Success -> {
 
-            val display1 = rssItem?.let {
-                DisplayState(
-                    id = it.id,
-                    title = it.title,
-                    url = it.link,
-                    isBookmarked = false,
-                    date = it.pubDate
-                )
-            }
+            val id = action.url.hashCode()
+            val bookmarkItem = old.allBookmarks.firstOrNull { it.id == id }
 
-            val display2 = when (bookmarkItem) {
-                is BookmarkState.Link -> DisplayState(
-                    id = bookmarkItem.id,
-                    title = bookmarkItem.title ?: "",
-                    url = bookmarkItem.url,
-                    isBookmarked = true,
-                    date = bookmarkItem.date,
-                    caption = bookmarkItem.caption
-                )
-                else -> null
-            }
-
-            val newState = display2 ?: display1 ?: old.display
-
-            old.copy(display = newState)
+            old.copy(display = DisplayState(
+                item = BookmarkState.Link(
+                    id = id,
+                    url = action.url,
+                    date = action.time,
+                    caption = action.caption,
+                    icon = action.icon,
+                    title = action.title,
+                    topic = null
+                ),
+                isBookmarked = bookmarkItem != null
+            ))
         }
+        is Actions.Display.Load.Error -> old.copy(display = DisplayState(error = action.error))
         else -> old
     }
 }

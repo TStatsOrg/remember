@@ -13,34 +13,23 @@ import RememberShared
 
 public struct DisplayView: View {
     
-    private let itemId: Int32
-    @Injected private var viewModel: DisplayViewModel
-    @Injected private var htmlParser: HTMLParser
+    private let url: URL?
+    private let provider = WebViewProvider()
+    @Injected private var viewModel: DisplayViewModel2
     @State private var state: DisplayViewState = DisplayViewState()
     @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
     
-    public init(itemId: Int32) {
-        self.itemId = itemId
+    public init(url: URL?) {
+        self.url = url
     }
     
     public var body: some View {
-        ManagedWebView(url: state.url)
+        ManagedWebView(webView: provider.webView)
+            .onStartLoading {
+                self.viewModel.startLoad()
+            }
             .onFinishedLoading { result in
-                
-                let parser = self.htmlParser.parse(content: result.content)
-                
-                switch parser {
-                case .success(let output):
-                    let item = RawDataProcessItem.Link(url: result.url,
-                                                       title: output.title,
-                                                       description: output.description,
-                                                       icon: output.icon)
-                    print("GABBOX2 Parsing result is \(item)")
-                    break
-                case .failure(let error):
-                    print("GABBOX2 Parsing error for HTML at \(result.url) ==> \(error)")
-                }
-                
+                self.viewModel.finishLoad(url: result.url, content: result.content)
             }
             .navigationBarTitle(Text(state.title), displayMode: .inline)
             .navigationBarItems(
@@ -57,19 +46,22 @@ public struct DisplayView: View {
                     }, label: {
                         Image(systemName: "bookmark.fill")
                     })
+                    .disabled(state.isDisabled)
                 } else {
                     Button(action: {
                         self.viewModel.save()
                     }, label: {
                         Image(systemName: "bookmark")
                     })
+                    .disabled(state.isDisabled)
                 }
             })
             .onAppear {
                 self.viewModel.observeDisplayState {
                     self.state = DisplayViewState(state: $0)
                 }
-                self.viewModel.loadDisplayItem(itemId: self.itemId)
+                self.viewModel.startLoad()
+                self.provider.load(url: self.url)
             }
             .onDisappear {
                 self.viewModel.cleanup()

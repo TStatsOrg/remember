@@ -8,6 +8,7 @@
 
 import Foundation
 import RememberShared
+import ios_views
 
 public struct DisplayViewState {
     
@@ -17,15 +18,23 @@ public struct DisplayViewState {
         self.state = state
     }
     
-    public var title: String {
-        return self.state.title
+    private var bookmark: BookmarkLinkViewState? {
+        if let item = self.state.item {
+            return BookmarkLinkViewState(state: item)
+        } else {
+            return nil
+        }
     }
     
-    public var url: URL? {
-        return URL(string: self.state.url)
+    public var title: String {
+        return bookmark?.title ?? "N/A"
     }
     
     public var isBookmarked: Bool {
         return self.state.isBookmarked
+    }
+    
+    public var isDisabled: Bool {
+        return self.state.isLoading
     }
 }
