@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B169C7824B35AA000F962FB /* WebViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7724B35AA000F962FB /* WebViewProvider.swift */; };
+		1B169C7A24B35AE600F962FB /* WebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7924B35AE600F962FB /* WebViewDelegate.swift */; };
+		1B169C7C24B35B7200F962FB /* WebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7B24B35B7200F962FB /* WebViewProgress.swift */; };
+		1B169C7E24B3606A00F962FB /* ContentResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7D24B3606A00F962FB /* ContentResolver.swift */; };
 		1B84146E249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146D249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift */; };
 		1B841470249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */; };
 		1B8ABAB124AA6A8300D35366 /* RealmRSSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */; };
@@ -18,8 +22,6 @@
 		1BE2B5712493CD1300A082BC /* RealmTextBookmarkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B55C2493CD1200A082BC /* RealmTextBookmarkObject.swift */; };
 		1BE2B5722493CD1300A082BC /* RealmLinkBookmarkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B55D2493CD1200A082BC /* RealmLinkBookmarkObject.swift */; };
 		1BE2B5732493CD1300A082BC /* iOSDataProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B55F2493CD1200A082BC /* iOSDataProcess.swift */; };
-		1BE2B5742493CD1300A082BC /* UrlResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5602493CD1200A082BC /* UrlResolver.swift */; };
-		1BE2B5752493CD1300A082BC /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5612493CD1200A082BC /* HTMLParser.swift */; };
 		1BE2B5762493CD1300A082BC /* UrlDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5622493CD1200A082BC /* UrlDownloader.swift */; };
 		1BE2B5772493CD1300A082BC /* ExtensionContextDataCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5632493CD1200A082BC /* ExtensionContextDataCapture.swift */; };
 		1BE2B5782493CD1300A082BC /* RealmImageBookmarkDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B5652493CD1200A082BC /* RealmImageBookmarkDAO.swift */; };
@@ -37,6 +39,10 @@
 
 /* Begin PBXFileReference section */
 		03039EB8ABB16F5072CACEE1 /* Pods-ios_dependencies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_dependencies.debug.xcconfig"; path = "Target Support Files/Pods-ios_dependencies/Pods-ios_dependencies.debug.xcconfig"; sourceTree = "<group>"; };
+		1B169C7724B35AA000F962FB /* WebViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewProvider.swift; sourceTree = "<group>"; };
+		1B169C7924B35AE600F962FB /* WebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewDelegate.swift; sourceTree = "<group>"; };
+		1B169C7B24B35B7200F962FB /* WebViewProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewProgress.swift; sourceTree = "<group>"; };
+		1B169C7D24B3606A00F962FB /* ContentResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentResolver.swift; sourceTree = "<group>"; };
 		1B84146D249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitRSSItemDataSource.swift; sourceTree = "<group>"; };
 		1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitRSSItemDTO.swift; sourceTree = "<group>"; };
 		1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRSSObject.swift; sourceTree = "<group>"; };
@@ -50,8 +56,6 @@
 		1BE2B55C2493CD1200A082BC /* RealmTextBookmarkObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmTextBookmarkObject.swift; sourceTree = "<group>"; };
 		1BE2B55D2493CD1200A082BC /* RealmLinkBookmarkObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmLinkBookmarkObject.swift; sourceTree = "<group>"; };
 		1BE2B55F2493CD1200A082BC /* iOSDataProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSDataProcess.swift; sourceTree = "<group>"; };
-		1BE2B5602493CD1200A082BC /* UrlResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlResolver.swift; sourceTree = "<group>"; };
-		1BE2B5612493CD1200A082BC /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		1BE2B5622493CD1200A082BC /* UrlDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlDownloader.swift; sourceTree = "<group>"; };
 		1BE2B5632493CD1200A082BC /* ExtensionContextDataCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionContextDataCapture.swift; sourceTree = "<group>"; };
 		1BE2B5652493CD1200A082BC /* RealmImageBookmarkDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmImageBookmarkDAO.swift; sourceTree = "<group>"; };
@@ -81,6 +85,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B169C7624B35A1D00F962FB /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				1B169C7724B35AA000F962FB /* WebViewProvider.swift */,
+				1B169C7924B35AE600F962FB /* WebViewDelegate.swift */,
+				1B169C7B24B35B7200F962FB /* WebViewProgress.swift */,
+				1B169C7D24B3606A00F962FB /* ContentResolver.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		1B84146C249FBC7700AD4660 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +125,7 @@
 		1BE2B5492493CBAE00A082BC /* ios_dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				1B169C7624B35A1D00F962FB /* WebView */,
 				1BE2B5582493CD1200A082BC /* Data */,
 				1BE2B56B2493CD1200A082BC /* DI */,
 				1BE2B56D2493CD1300A082BC /* Utils */,
@@ -148,8 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				1BE2B55F2493CD1200A082BC /* iOSDataProcess.swift */,
-				1BE2B5602493CD1200A082BC /* UrlResolver.swift */,
-				1BE2B5612493CD1200A082BC /* HTMLParser.swift */,
 				1BDE1FB124B1073900C3C2E8 /* SwiftSoupHTMLDataProcess.swift */,
 				1BE2B5622493CD1200A082BC /* UrlDownloader.swift */,
 				1BE2B5632493CD1200A082BC /* ExtensionContextDataCapture.swift */,
@@ -311,11 +325,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B169C7C24B35B7200F962FB /* WebViewProgress.swift in Sources */,
+				1B169C7824B35AA000F962FB /* WebViewProvider.swift in Sources */,
 				1BE2B57D2493CD1300A082BC /* RealmTextBookmarkDAO.swift in Sources */,
 				1BE2B5782493CD1300A082BC /* RealmImageBookmarkDAO.swift in Sources */,
 				1B84146E249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift in Sources */,
+				1B169C7E24B3606A00F962FB /* ContentResolver.swift in Sources */,
 				1BE2B57B2493CD1300A082BC /* RealmDatabase.swift in Sources */,
 				1BE2B5762493CD1300A082BC /* UrlDownloader.swift in Sources */,
+				1B169C7A24B35AE600F962FB /* WebViewDelegate.swift in Sources */,
 				1B8ABAB124AA6A8300D35366 /* RealmRSSObject.swift in Sources */,
 				1B8ABAB524AA7EC500D35366 /* FeedKitAtomItemDTO.swift in Sources */,
 				1BE2B5792493CD1300A082BC /* RealmLinkBookmarkDAO.swift in Sources */,
@@ -325,8 +343,6 @@
 				1BE2B7AE249AA8D700A082BC /* RealmUserRSSDAO.swift in Sources */,
 				1BE2B5702493CD1300A082BC /* RealmTopicObject.swift in Sources */,
 				1BE2B56F2493CD1300A082BC /* RealmImageBookmarkObject.swift in Sources */,
-				1BE2B5742493CD1300A082BC /* UrlResolver.swift in Sources */,
-				1BE2B5752493CD1300A082BC /* HTMLParser.swift in Sources */,
 				1BE2B5732493CD1300A082BC /* iOSDataProcess.swift in Sources */,
 				1BE2B57A2493CD1300A082BC /* RealmTopicDAO.swift in Sources */,
 				1BE2B57E2493CD1300A082BC /* DependencyProvider.swift in Sources */,

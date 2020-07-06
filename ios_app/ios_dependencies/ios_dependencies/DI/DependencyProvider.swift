@@ -55,15 +55,15 @@ public class DependencyProvider {
         
         // different utils
         register { iOSDeviceUtils() as DeviceUtils }
-        register { WebKitUrlResolver() as UrlResolver }
         register { SimpleUrlDownloader() as UrlDownloader }
-        register { SwiftSoupHTMLParser() as HTMLParser }
         register { SystemCalendarUtils() as CalendarUtils }
         register { ExtensionContextDataCapture() as RawDataCapture }
         register { SwiftSoupHTMLDataProcess() as HTMLDataProcess }
-        register { iOSDataProcess(resolver: self.resolve(),
-                                  downloader: self.resolve(),
-                                  parser: self.resolve()) as RawDataProcess }
+        register { WebViewProvider() as WebViewProvider }
+        register { WebViewContentResolver(provider: self.resolve()) as ContentResolver }
+        register { iOSDataProcess(downloader: self.resolve(),
+                                  resolver: self.resolve(),
+                                  dataProcess: self.resolve()) as RawDataProcess }
         
         // data sources
         register {

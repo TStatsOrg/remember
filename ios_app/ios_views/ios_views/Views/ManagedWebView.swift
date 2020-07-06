@@ -8,40 +8,17 @@
 
 import SwiftUI
 import WebKit
-
-public struct WebViewProvider {
-    public let webView: WKWebView = WKWebView()
-    
-    public init() { /* n/a*/ }
-    
-    public func load(url: URL?) {
-        if let url = url {
-            webView.load(URLRequest(url: url))
-        }
-    }
-    
-    public func goBack() {
-        if webView.canGoBack {
-            webView.goBack()
-        }
-    }
-    
-    public func goForward() {
-        if webView.canGoForward {
-            webView.goForward()
-        }
-    }
-}
+import ios_dependencies
 
 public struct ManagedWebView {
     
     private let webView: WKWebView
-    private let delegate: ManagedWebViewDelegate = ManagedWebViewDelegate()
-    private let progress: ManagedWebViewProgress
+    private let delegate: WebViewDelegate = WebViewDelegate()
+    private let progress: WebViewProgress
     
     public init(webView: WKWebView) {
         self.webView = webView
-        self.progress = ManagedWebViewProgress(webView: webView)
+        self.progress = WebViewProgress(webView: webView)
         self.webView.navigationDelegate = delegate
     }
     
@@ -58,7 +35,7 @@ extension ManagedWebView {
         return self
     }
     
-    public func onFinishedLoading(callback: @escaping (ManagedWebView.Result) -> Void) -> ManagedWebView {
+    public func onFinishedLoading(callback: @escaping (URL, String) -> Void) -> ManagedWebView {
         delegate.finishNavigationObserver = callback
         return self
     }
@@ -77,54 +54,5 @@ extension ManagedWebView: UIViewRepresentable {
     
     public func updateUIView(_ uiView: WKWebView, context: Context) {
         // n/a
-    }
-}
-
-class ManagedWebViewDelegate: NSObject, WKNavigationDelegate {
-    
-    internal var startNavigationObserver: (() -> Void)?
-    internal var finishNavigationObserver: ((ManagedWebView.Result) -> Void)?
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        startNavigationObserver?()
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if let url = webView.url {
-            webView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (result, error) in
-                
-                if error != nil {
-                    print("GABBOX ==> Error getting HTML from \(url)")
-                    return
-                }
-                
-                if let content = result as? String {
-                    self.finishNavigationObserver?(ManagedWebView.Result(url: url.absoluteString, content: content))
-                }
-            }
-        }
-    }
-}
-
-public class ManagedWebViewProgress: NSObject {
-    
-    private let webView: WKWebView
-    private var observation: NSKeyValueObservation? = nil
-    internal var progressObserver: ((Float) -> Void)? = nil
-    
-    public init(webView: WKWebView) {
-        self.webView = webView
-    
-        super.init()
-    
-        observation = self.webView.observe(\.estimatedProgress, options: [.new]) { [weak self] (_, _) in
-            if let value = self?.webView.estimatedProgress {
-                self?.progressObserver?(Float(value))
-            }
-        }
-    }
-    
-    deinit {
-        observation = nil
     }
 }

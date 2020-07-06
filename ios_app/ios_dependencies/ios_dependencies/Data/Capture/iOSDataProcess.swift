@@ -9,19 +9,20 @@
 import Foundation
 import RememberShared
 import SwiftSoup
+import FeedKit
 
 public class iOSDataProcess: RawDataProcess {
     
-    private let resolver: UrlResolver
     private let downloader: UrlDownloader
-    private let parser: HTMLParser
+    private let resolver: ContentResolver
+    private let dataProcess: HTMLDataProcess
     
-    init(resolver: UrlResolver,
-         downloader: UrlDownloader,
-         parser: HTMLParser) {
-        self.resolver = resolver
+    init(downloader: UrlDownloader,
+         resolver: ContentResolver,
+         dataProcess: HTMLDataProcess) {
         self.downloader = downloader
-        self.parser = parser
+        self.resolver = resolver
+        self.dataProcess = dataProcess
     }
     
     public func process(capture: String?, result: @escaping (RawDataProcessItem) -> Void) {
@@ -50,26 +51,40 @@ public class iOSDataProcess: RawDataProcess {
             return
         }
         
-        // get the final url, after all redirects
-        resolver.getFinalUrl(url: url) { (finalUrl) in
-            self.downloader.download(url: finalUrl) { (contentResult) in
-                switch contentResult {
-                case .success(let content):
-                    let parsingResult = self.parser.parse(content: content)
+        downloader.download(url: url) { [weak self] (contentResult) in
+            switch contentResult {
+            case .success(let content):
+                if let data = content.data(using: .utf8) {
+                    let parser = FeedParser(data: data)
+                    let parseResult = parser.parse()
                     
-                    switch parsingResult {
-                    case .success(let output):
-                        result(RawDataProcessItem.Link(url: finalUrl.absoluteString,
-                                                       title: output.title,
-                                                       description: output.description,
-                                                       icon: output.icon))
-                    case .failure:
-                        result(RawDataProcessItem.Unknown())
+                    switch parseResult {
+                    case .success(let feed):
+                        let title = feed.rssFeed?.title
+                        let icon = feed.rssFeed?.image?.link
+                        
+                        print("GABBOX ==> Feed is \(url) | \(title) | \(icon)")
+                    case .failure(let parseError):
+
+                        print("GABBOX ==> Failed to parse content as feed \(parseError)")
+                        
+                        self?.resolver.getContent(url: url) { [weak self] (finalURL, content) in
+                            let htmlResult = self?.dataProcess.process(html: content)
+                            
+                            if let success = htmlResult as? Either.Success, let successResult = success.data as? HTMLDataProcessResult {
+                                result(RawDataProcessItem.Link(url: finalURL.absoluteString,
+                                                               title: successResult.title,
+                                                               description: successResult.caption,
+                                                               icon: successResult.icon))
+                            }
+                            if let error = htmlResult as? Either.Failure {
+                                result(RawDataProcessItem.Unknown())
+                            }
+                        }
                     }
-                    
-                case .failure:
-                    result(RawDataProcessItem.Unknown())
                 }
+            case .failure:
+                print("GABBOX ==> Download failure")
             }
         }
     }

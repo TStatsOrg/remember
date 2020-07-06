@@ -37,8 +37,8 @@ public struct DisplayView: View {
                 .onProgrss { value in
                     self.progressValue = value
                 }
-                .onFinishedLoading { result in
-                    self.viewModel.finishLoad(url: result.url, content: result.content)
+                .onFinishedLoading { url, content in
+                    self.viewModel.finishLoad(url: url.absoluteString, content: content)
                 }
             HStack {
                 Button(action: {
