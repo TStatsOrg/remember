@@ -24,14 +24,15 @@ fun RawDataProcess.Item.toDTO(date: Long, topic: TopicDTO? = null): BookmarkDTO?
             override val date: Long = date
             override val topic: TopicDTO? = topic
         }
-        is RawDataProcess.Item.RSSFeed -> object : BookmarkDTO.RSSFeedDTO {
+        is RawDataProcess.Item.RSSFeed -> object : BookmarkDTO.RSSFeedBookmarkDTO {
             override val url: String = this@toDTO.url
             override val title: String? = this@toDTO.title
             override val caption: String? = this@toDTO.caption
             override val icon: String? = this@toDTO.icon
-            override val id: Int = this@toDTO.title.hashCode()
+            override val id: Int = this@toDTO.url.hashCode()
             override val date: Long = date
             override val topic: TopicDTO? = topic
+            override val isSubscribed: Boolean = false
         }
         is RawDataProcess.Item.Image -> object : BookmarkDTO.ImageBookmarkDTO {
             override val url: String = this@toDTO.url
@@ -66,14 +67,15 @@ fun BookmarkDTO.toState(): BookmarkState {
             url = url,
             topic = topic?.toState()
         )
-        is BookmarkDTO.RSSFeedDTO -> BookmarkState.RSSFeed(
+        is BookmarkDTO.RSSFeedBookmarkDTO -> BookmarkState.RSSFeed(
             id = id,
             date = date,
             url = url,
             title = title,
             caption = caption,
             icon = icon,
-            topic = topic?.toState()
+            topic = topic?.toState(),
+            isSubscribed = isSubscribed
         )
         else -> BookmarkState.Unsupported(
             id = id,
@@ -106,13 +108,14 @@ fun BookmarkState.toDTO(withTopic: TopicState? = null): BookmarkDTO? {
             override val date: Long = this@toDTO.date
             override val topic: TopicDTO? = withTopic?.toDTO() ?: this@toDTO.topic?.toDTO()
         }
-        is BookmarkState.RSSFeed -> object : BookmarkDTO.RSSFeedDTO {
+        is BookmarkState.RSSFeed -> object : BookmarkDTO.RSSFeedBookmarkDTO {
             override val url: String = this@toDTO.url
             override val title: String? = this@toDTO.title
             override val caption: String? = this@toDTO.caption
             override val icon: String? = this@toDTO.icon
             override val id: Int = this@toDTO.id
             override val date: Long = this@toDTO.date
+            override val isSubscribed: Boolean = this@toDTO.isSubscribed
             override val topic: TopicDTO? = withTopic?.toDTO() ?: this@toDTO.topic?.toDTO()
         }
         else -> null

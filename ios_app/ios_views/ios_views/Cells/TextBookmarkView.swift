@@ -11,13 +11,16 @@ import SwiftUI
 import ios_dependencies
 import RememberShared
 import SDWebImageSwiftUI
-import ios_views
 
-struct TextBookmarkView: View {
+public struct TextBookmarkView: View {
     
-    let viewState: BookmarkTextViewState
+    private let viewState: BookmarkTextViewState
     
-    var body: some View {
+    public init(viewState: BookmarkTextViewState) {
+        self.viewState = viewState
+    }
+    
+    public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             BookmarkTopicView(viewState: viewState)
             Text(viewState.text)

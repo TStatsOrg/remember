@@ -1,9 +1,9 @@
 package com.app.shared.feature.feed
 
-import com.app.shared.business.RSSState
+import com.app.shared.business.BookmarksState
 
 interface FeedViewModel {
-    fun loadOwnRSSFeeds()
-    fun observeUserRSSFeed(callback: (RSSState) -> Unit)
+    fun loadBookmarkedRSSFeeds()
+    fun observeBookmarkState(callback: (BookmarksState) -> Unit)
     fun cleanup()
 }

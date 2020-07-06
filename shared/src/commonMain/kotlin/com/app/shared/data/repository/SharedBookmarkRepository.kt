@@ -3,6 +3,7 @@ package com.app.shared.data.repository
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.data.dao.ImageBookmarkDAO
 import com.app.shared.data.dao.LinkBookmarkDAO
+import com.app.shared.data.dao.RSSFeedBookmarkDAO
 import com.app.shared.data.dao.TextBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.dto.TopicDTO
@@ -11,7 +12,8 @@ import kotlinx.coroutines.withContext
 class SharedBookmarkRepository(
     private val imageBookmarkDAO: ImageBookmarkDAO,
     private val textBookmarkDAO: TextBookmarkDAO,
-    private val linkBookmarkDAO: LinkBookmarkDAO
+    private val linkBookmarkDAO: LinkBookmarkDAO,
+    private val rssFeedBookmarkDAO: RSSFeedBookmarkDAO
 ): BookmarkRepository {
 
     override suspend fun save(dto: BookmarkDTO) {
@@ -20,6 +22,7 @@ class SharedBookmarkRepository(
                 is BookmarkDTO.TextBookmarkDTO -> textBookmarkDAO.insert(dto = dto)
                 is BookmarkDTO.LinkBookmarkDTO -> linkBookmarkDAO.insert(dto = dto)
                 is BookmarkDTO.ImageBookmarkDTO -> imageBookmarkDAO.insert(dto = dto)
+                is BookmarkDTO.RSSFeedBookmarkDTO -> rssFeedBookmarkDAO.insert(dto = dto)
             }
         }
     }
@@ -29,8 +32,9 @@ class SharedBookmarkRepository(
             val texts = textBookmarkDAO.getAll()
             val links = linkBookmarkDAO.getAll()
             val images = imageBookmarkDAO.getAll()
+            val rssFeed = rssFeedBookmarkDAO.getAll()
 
-            return@withContext (texts + links + images).sortedByDescending { it.date }
+            return@withContext (texts + links + images + rssFeed).sortedByDescending { it.date }
         }
     }
 
@@ -39,6 +43,7 @@ class SharedBookmarkRepository(
             textBookmarkDAO.delete(bookmarkId = bookmarkId)
             linkBookmarkDAO.delete(bookmarkId = bookmarkId)
             imageBookmarkDAO.delete(bookmarkId = bookmarkId)
+            rssFeedBookmarkDAO.delete(bookmarkId = bookmarkId)
         }
     }
 
@@ -47,6 +52,7 @@ class SharedBookmarkRepository(
             textBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
             linkBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
             imageBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
+            rssFeedBookmarkDAO.replaceTopic(topicId = topicId, withTopicDTO = withTopicDTO)
         }
     }
 }

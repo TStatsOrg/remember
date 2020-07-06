@@ -16,8 +16,9 @@ interface BookmarkDTO {
         val icon: String?
     }
 
-    interface RSSFeedDTO: BookmarkDTO {
+    interface RSSFeedBookmarkDTO: BookmarkDTO {
         val url: String
+        val isSubscribed: Boolean
         val title: String?
         val caption: String?
         val icon: String?

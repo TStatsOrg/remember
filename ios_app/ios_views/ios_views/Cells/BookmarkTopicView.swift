@@ -11,15 +11,16 @@ import SwiftUI
 import ios_dependencies
 import RememberShared
 import SDWebImageSwiftUI
-import ios_views
 
-struct BookmarkTopicView: View {
+public struct BookmarkTopicView: View {
     
-    @Injected var navigation: Navigation
+    private let viewState: BookmarkViewStateType
     
-    let viewState: BookmarkViewStateType
+    public init(viewState: BookmarkViewStateType) {
+        self.viewState = viewState
+    }
     
-    var body: some View {
+    public var body: some View {
         Text(viewState.topic)
             .ActionButton()
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))

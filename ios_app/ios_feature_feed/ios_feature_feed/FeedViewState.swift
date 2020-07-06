@@ -12,18 +12,22 @@ import RememberShared
 
 public struct FeedViewState {
     
-    private let state: [RSSFeedState]
+    private let state: BookmarksState?
     
-    public init(state: [RSSFeedState] = []) {
+    public init(state: BookmarksState? = nil) {
         self.state = state
     }
     
-    public var items: [RSSViewState] {
-        return state.map(RSSViewState.init)
+    private var bookmarks: [BookmarkState] {
+        return state?.bookmarks ?? []
+    }
+    
+    var bookmarksViewState: [BookmarkViewState] {
+        return bookmarks.map(BookmarkViewState.init)
     }
     
     public var empty: EmptyViewState {
-        return EmptyViewState(isVisible: items.isEmpty,
+        return EmptyViewState(isVisible: bookmarks.isEmpty,
                               image: "bookmark.fill",
                               text: Translations.Feed.startupMessage)
     }

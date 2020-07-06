@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1B169C7524B222C100F962FB /* ManagedProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7424B222C100F962FB /* ManagedProgressBar.swift */; };
+		1B169C9A24B3938B00F962FB /* ImageBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C9424B3938A00F962FB /* ImageBookmarkView.swift */; };
+		1B169C9B24B3938B00F962FB /* BookmarkTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C9524B3938A00F962FB /* BookmarkTopicView.swift */; };
+		1B169C9C24B3938B00F962FB /* LinkBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C9624B3938A00F962FB /* LinkBookmarkView.swift */; };
+		1B169C9D24B3938B00F962FB /* RSSFeedBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C9724B3938B00F962FB /* RSSFeedBookmarkView.swift */; };
+		1B169C9E24B3938B00F962FB /* TextBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C9824B3938B00F962FB /* TextBookmarkView.swift */; };
+		1B169C9F24B3938B00F962FB /* BookmarkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C9924B3938B00F962FB /* BookmarkInfoView.swift */; };
 		1B531222249AAB8100F4DF14 /* RSSViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B531221249AAB8100F4DF14 /* RSSViewState.swift */; };
 		1B841469249FB78600AD4660 /* RSSItemViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841468249FB78600AD4660 /* RSSItemViewState.swift */; };
 		1B841472249FD2F900AD4660 /* ErrorViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B841471249FD2F900AD4660 /* ErrorViewState.swift */; };
@@ -38,6 +44,12 @@
 /* Begin PBXFileReference section */
 		0A79771215A6ADD12E4F51C8 /* Pods_ios_views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B169C7424B222C100F962FB /* ManagedProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedProgressBar.swift; sourceTree = "<group>"; };
+		1B169C9424B3938A00F962FB /* ImageBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBookmarkView.swift; sourceTree = "<group>"; };
+		1B169C9524B3938A00F962FB /* BookmarkTopicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkTopicView.swift; sourceTree = "<group>"; };
+		1B169C9624B3938A00F962FB /* LinkBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkBookmarkView.swift; sourceTree = "<group>"; };
+		1B169C9724B3938B00F962FB /* RSSFeedBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedBookmarkView.swift; sourceTree = "<group>"; };
+		1B169C9824B3938B00F962FB /* TextBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBookmarkView.swift; sourceTree = "<group>"; };
+		1B169C9924B3938B00F962FB /* BookmarkInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkInfoView.swift; sourceTree = "<group>"; };
 		1B531221249AAB8100F4DF14 /* RSSViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSViewState.swift; sourceTree = "<group>"; };
 		1B841468249FB78600AD4660 /* RSSItemViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSItemViewState.swift; sourceTree = "<group>"; };
 		1B841471249FD2F900AD4660 /* ErrorViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewState.swift; sourceTree = "<group>"; };
@@ -91,6 +103,19 @@
 			path = ../Pods;
 			sourceTree = "<group>";
 		};
+		1B169C8724B3932B00F962FB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1B169C9924B3938B00F962FB /* BookmarkInfoView.swift */,
+				1B169C9524B3938A00F962FB /* BookmarkTopicView.swift */,
+				1B169C9424B3938A00F962FB /* ImageBookmarkView.swift */,
+				1B169C9624B3938A00F962FB /* LinkBookmarkView.swift */,
+				1B169C9724B3938B00F962FB /* RSSFeedBookmarkView.swift */,
+				1B169C9824B3938B00F962FB /* TextBookmarkView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		1BE2B5212493C85D00A082BC = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +142,7 @@
 				1BE2B5A82493D17D00A082BC /* Navigation */,
 				1BE2B5A52493D17D00A082BC /* Style */,
 				1BE2B5AF2493D17D00A082BC /* Utils */,
+				1B169C8724B3932B00F962FB /* Cells */,
 				1BE2B5AA2493D17D00A082BC /* Views */,
 				1BE2B5AC2493D17D00A082BC /* ViewStates */,
 				1BE2B52E2493C85D00A082BC /* ios_views.h */,
@@ -312,14 +338,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BE2B5B32493D17D00A082BC /* ScreenFactory.swift in Sources */,
+				1B169C9D24B3938B00F962FB /* RSSFeedBookmarkView.swift in Sources */,
 				1B841476249FE5FE00AD4660 /* DateUtils.swift in Sources */,
 				1BE2B5BE2493D17D00A082BC /* Colors.swift in Sources */,
 				1B841469249FB78600AD4660 /* RSSItemViewState.swift in Sources */,
 				1BE2B5B72493D17D00A082BC /* Styles.swift in Sources */,
 				1BE2B5BA2493D17D00A082BC /* TopicViewState.swift in Sources */,
+				1B169C9B24B3938B00F962FB /* BookmarkTopicView.swift in Sources */,
 				1B8ABAAF24A9093200D35366 /* ManagedSubscribeButton.swift in Sources */,
+				1B169C9C24B3938B00F962FB /* LinkBookmarkView.swift in Sources */,
 				1B841472249FD2F900AD4660 /* ErrorViewState.swift in Sources */,
+				1B169C9E24B3938B00F962FB /* TextBookmarkView.swift in Sources */,
 				1BE2B5BB2493D17D00A082BC /* BookmarkViewState.swift in Sources */,
+				1B169C9F24B3938B00F962FB /* BookmarkInfoView.swift in Sources */,
 				1B8414A924A1387900AD4660 /* ManagedWebView.swift in Sources */,
 				1BE2B5B42493D17D00A082BC /* ForegroundNotification.swift in Sources */,
 				1BE2B5B82493D17D00A082BC /* Navigation.swift in Sources */,
@@ -333,6 +364,7 @@
 				1B531222249AAB8100F4DF14 /* RSSViewState.swift in Sources */,
 				1BE2B5B52493D17D00A082BC /* EditDeleteBottomSheet.swift in Sources */,
 				1B8ABAB924ACF85800D35366 /* EmptyViewState.swift in Sources */,
+				1B169C9A24B3938B00F962FB /* ImageBookmarkView.swift in Sources */,
 				1B841474249FD5BE00AD4660 /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

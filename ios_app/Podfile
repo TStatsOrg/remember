@@ -34,6 +34,8 @@ end
 target 'ios_views' do
   project 'ios_views/ios_views.xcodeproj'
   use_frameworks!
+  
+  pod 'SDWebImageSwiftUI', '1.3.3'
 end
 
 target 'ios_dependencies' do

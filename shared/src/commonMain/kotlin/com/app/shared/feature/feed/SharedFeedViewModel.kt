@@ -1,11 +1,12 @@
 package com.app.shared.feature.feed
 
 import com.app.shared.business.Actions
+import com.app.shared.business.BookmarksState
 import com.app.shared.business.MainState
-import com.app.shared.business.RSSState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
-import com.app.shared.data.repository.RSSRepository
+import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
@@ -14,25 +15,27 @@ import kotlinx.coroutines.launch
 
 class SharedFeedViewModel(
     private val store: Store<MainState>,
-    private val rssRepository: RSSRepository,
-    private val calendarUtils: CalendarUtils
+    private val bookmarkRepository: BookmarkRepository,
+    private val calendar: CalendarUtils
 ): FeedViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
 
-    override fun loadOwnRSSFeeds() {
+    override fun loadBookmarkedRSSFeeds() {
         scope.launch(context = DispatcherFactory.main()) {
 
-            val dtos = rssRepository.getUserFeeds()
+            store.dispatch(action = Actions.Bookmark.Load.Start(time = calendar.getTime()))
 
-            store.dispatch(action = Actions.RSS.User.Load(rss = dtos, time = calendarUtils.getTime()))
+            val dtos = bookmarkRepository.load().filterIsInstance<BookmarkDTO.RSSFeedBookmarkDTO>()
+
+            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = dtos))
         }
     }
 
-    override fun observeUserRSSFeed(callback: (RSSState) -> Unit) {
+    override fun observeBookmarkState(callback: (BookmarksState) -> Unit) {
         storeObserver
-            .map { it.userRssFeeds }
+            .map { it.bookmarks }
             .collect(callback)
     }
 

@@ -11,15 +11,16 @@ import SwiftUI
 import ios_dependencies
 import RememberShared
 import SDWebImageSwiftUI
-import ios_views
 
-struct LinkBookmarkView: View {
+public struct LinkBookmarkView: View {
     
-    @Injected private var navigation: Navigation
+    private let viewState: BookmarkLinkViewState
     
-    let viewState: BookmarkLinkViewState
+    public init(viewState: BookmarkLinkViewState) {
+        self.viewState = viewState
+    }
     
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             BookmarkTopicView(viewState: viewState)
             HStack(alignment: .top, spacing: 0) {

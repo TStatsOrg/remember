@@ -12,12 +12,7 @@
 		1BE2B7262499377E00A082BC /* ios_views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B7252499377E00A082BC /* ios_views.framework */; };
 		1BE2B72A2499378400A082BC /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B7292499378400A082BC /* RememberShared.framework */; };
 		1BE2B7492499398D00A082BC /* BoomarksViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B73F2499398D00A082BC /* BoomarksViewState.swift */; };
-		1BE2B74A2499398D00A082BC /* BookmarkTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7412499398D00A082BC /* BookmarkTopicView.swift */; };
-		1BE2B74B2499398D00A082BC /* ImageBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7422499398D00A082BC /* ImageBookmarkView.swift */; };
-		1BE2B74E2499398D00A082BC /* LinkBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7452499398D00A082BC /* LinkBookmarkView.swift */; };
-		1BE2B74F2499398D00A082BC /* TextBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7462499398D00A082BC /* TextBookmarkView.swift */; };
 		1BE2B7502499398D00A082BC /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7472499398D00A082BC /* BookmarksView.swift */; };
-		1BE2B7512499398D00A082BC /* BookmarkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7482499398D00A082BC /* BookmarkInfoView.swift */; };
 		1BE2B754249939D100A082BC /* Grid in Frameworks */ = {isa = PBXBuildFile; productRef = 1BE2B753249939D100A082BC /* Grid */; };
 		F71CE2430BD97BE8249CDD77 /* Pods_ios_feature_bookmarks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEEFF9C573FE0D360C06C5E /* Pods_ios_feature_bookmarks.framework */; };
 /* End PBXBuildFile section */
@@ -30,12 +25,7 @@
 		1BE2B7252499377E00A082BC /* ios_views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B7292499378400A082BC /* RememberShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RememberShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE2B73F2499398D00A082BC /* BoomarksViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomarksViewState.swift; sourceTree = "<group>"; };
-		1BE2B7412499398D00A082BC /* BookmarkTopicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkTopicView.swift; sourceTree = "<group>"; };
-		1BE2B7422499398D00A082BC /* ImageBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBookmarkView.swift; sourceTree = "<group>"; };
-		1BE2B7452499398D00A082BC /* LinkBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkBookmarkView.swift; sourceTree = "<group>"; };
-		1BE2B7462499398D00A082BC /* TextBookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBookmarkView.swift; sourceTree = "<group>"; };
 		1BE2B7472499398D00A082BC /* BookmarksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
-		1BE2B7482499398D00A082BC /* BookmarkInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkInfoView.swift; sourceTree = "<group>"; };
 		7FEEFF9C573FE0D360C06C5E /* Pods_ios_feature_bookmarks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_feature_bookmarks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41DF7588F6156C25C3502FD /* Pods-ios_feature_bookmarks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_feature_bookmarks.release.xcconfig"; path = "Target Support Files/Pods-ios_feature_bookmarks/Pods-ios_feature_bookmarks.release.xcconfig"; sourceTree = "<group>"; };
 		F746AB8FA651D5C1D59B3453 /* Pods-ios_feature_bookmarks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_feature_bookmarks.debug.xcconfig"; path = "Target Support Files/Pods-ios_feature_bookmarks/Pods-ios_feature_bookmarks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,8 +68,8 @@
 		1BE2B7112499373900A082BC /* ios_feature_bookmarks */ = {
 			isa = PBXGroup;
 			children = (
-				1BE2B7402499398D00A082BC /* Views */,
-				1BE2B73E2499398D00A082BC /* ViewStates */,
+				1BE2B7472499398D00A082BC /* BookmarksView.swift */,
+				1BE2B73F2499398D00A082BC /* BoomarksViewState.swift */,
 				1BE2B7122499373900A082BC /* ios_feature_bookmarks.h */,
 				1BE2B7132499373900A082BC /* Info.plist */,
 			);
@@ -95,27 +85,6 @@
 				7FEEFF9C573FE0D360C06C5E /* Pods_ios_feature_bookmarks.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1BE2B73E2499398D00A082BC /* ViewStates */ = {
-			isa = PBXGroup;
-			children = (
-				1BE2B73F2499398D00A082BC /* BoomarksViewState.swift */,
-			);
-			path = ViewStates;
-			sourceTree = "<group>";
-		};
-		1BE2B7402499398D00A082BC /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				1BE2B7472499398D00A082BC /* BookmarksView.swift */,
-				1BE2B7412499398D00A082BC /* BookmarkTopicView.swift */,
-				1BE2B7422499398D00A082BC /* ImageBookmarkView.swift */,
-				1BE2B7452499398D00A082BC /* LinkBookmarkView.swift */,
-				1BE2B7462499398D00A082BC /* TextBookmarkView.swift */,
-				1BE2B7482499398D00A082BC /* BookmarkInfoView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		AFB2DCD3BD7E0C2AB4F23B99 /* Pods */ = {
@@ -239,12 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BE2B74A2499398D00A082BC /* BookmarkTopicView.swift in Sources */,
 				1BE2B7502499398D00A082BC /* BookmarksView.swift in Sources */,
-				1BE2B74E2499398D00A082BC /* LinkBookmarkView.swift in Sources */,
-				1BE2B7512499398D00A082BC /* BookmarkInfoView.swift in Sources */,
-				1BE2B74B2499398D00A082BC /* ImageBookmarkView.swift in Sources */,
-				1BE2B74F2499398D00A082BC /* TextBookmarkView.swift in Sources */,
 				1BE2B7492499398D00A082BC /* BoomarksViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

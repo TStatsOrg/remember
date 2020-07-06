@@ -46,6 +46,10 @@ extension RealmDatabase: Database {
         return RealmTextBookmarkDAO(realm: database)
     }
     
+    public func getRSSFeedBookmarkDAO() -> RSSFeedBookmarkDAO {
+        return RealmRSSFeedBookmarkDAO(realm: database)
+    }
+    
     public func getTopicDAO() -> TopicDAO {
         return RealmTopicDAO(realm: database)
     }

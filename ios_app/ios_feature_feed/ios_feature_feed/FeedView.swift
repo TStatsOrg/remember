@@ -24,10 +24,7 @@ public struct FeedView: View {
     public var body: some View {
         VStack {
             ManagedEmptyView(state: state.empty)
-            FeedListView(state: $state, buttonAction: { id in
-                self.navigation.showRSSDetail(rssId: id)
-                self.isShowingSheet = true
-            })
+            List(state.bookmarksViewState, rowContent: getCellType)
         }
         .navigationBarTitle(Text(Translations.Feed.title), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
@@ -37,14 +34,31 @@ public struct FeedView: View {
             Text(Translations.Feed.feedButtonTitle)
         }))
         .onAppear {
-            self.viewModel.observeUserRSSFeed {
-                self.state = FeedViewState(state: $0.feed)
+            self.viewModel.observeBookmarkState {
+                self.state = FeedViewState(state: $0)
             }
-            self.viewModel.loadOwnRSSFeeds()
+            
+            self.viewModel.loadBookmarkedRSSFeeds()
         }
         .onDisappear {
             // self.viewModel.cleanup()
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            self.viewModel.loadBookmarkedRSSFeeds()
+        }
         .sheet(isPresented: $isShowingSheet, content: navigation.content)
+    }
+    
+    private func getCellType(state: BookmarkViewState) -> AnyView {
+        guard let viewState = state.viewState else {
+            return AnyView(Text("N/A"))
+        }
+        
+        switch viewState {
+        case let rssFeed as BookmarkRSSFeedViewState:
+            return AnyView(RSSFeedBookmarkView(viewState: rssFeed))
+        default:
+            return AnyView(Text("N/A"))
+        }
     }
 }

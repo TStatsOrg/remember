@@ -11,6 +11,8 @@
 		1B169C7A24B35AE600F962FB /* WebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7924B35AE600F962FB /* WebViewDelegate.swift */; };
 		1B169C7C24B35B7200F962FB /* WebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7B24B35B7200F962FB /* WebViewProgress.swift */; };
 		1B169C7E24B3606A00F962FB /* ContentResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7D24B3606A00F962FB /* ContentResolver.swift */; };
+		1B169C8224B37D8100F962FB /* RealmRSSFeedBookmarkDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C8124B37D8100F962FB /* RealmRSSFeedBookmarkDAO.swift */; };
+		1B169C8424B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C8324B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift */; };
 		1B84146E249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146D249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift */; };
 		1B841470249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */; };
 		1B8ABAB124AA6A8300D35366 /* RealmRSSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */; };
@@ -43,6 +45,8 @@
 		1B169C7924B35AE600F962FB /* WebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewDelegate.swift; sourceTree = "<group>"; };
 		1B169C7B24B35B7200F962FB /* WebViewProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewProgress.swift; sourceTree = "<group>"; };
 		1B169C7D24B3606A00F962FB /* ContentResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentResolver.swift; sourceTree = "<group>"; };
+		1B169C8124B37D8100F962FB /* RealmRSSFeedBookmarkDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRSSFeedBookmarkDAO.swift; sourceTree = "<group>"; };
+		1B169C8324B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRSSFeedBookmarkObject.swift; sourceTree = "<group>"; };
 		1B84146D249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitRSSItemDataSource.swift; sourceTree = "<group>"; };
 		1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitRSSItemDTO.swift; sourceTree = "<group>"; };
 		1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRSSObject.swift; sourceTree = "<group>"; };
@@ -149,9 +153,10 @@
 		1BE2B5592493CD1200A082BC /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				1BE2B55A2493CD1200A082BC /* RealmImageBookmarkObject.swift */,
 				1BE2B55B2493CD1200A082BC /* RealmTopicObject.swift */,
+				1BE2B55A2493CD1200A082BC /* RealmImageBookmarkObject.swift */,
 				1BE2B55C2493CD1200A082BC /* RealmTextBookmarkObject.swift */,
+				1B169C8324B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift */,
 				1BE2B55D2493CD1200A082BC /* RealmLinkBookmarkObject.swift */,
 				1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */,
 				1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */,
@@ -175,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				1BE2B5652493CD1200A082BC /* RealmImageBookmarkDAO.swift */,
+				1B169C8124B37D8100F962FB /* RealmRSSFeedBookmarkDAO.swift */,
 				1BE2B5662493CD1200A082BC /* RealmLinkBookmarkDAO.swift */,
 				1BE2B5672493CD1200A082BC /* RealmTopicDAO.swift */,
 				1BE2B7AD249AA8D700A082BC /* RealmUserRSSDAO.swift */,
@@ -327,6 +333,7 @@
 			files = (
 				1B169C7C24B35B7200F962FB /* WebViewProgress.swift in Sources */,
 				1B169C7824B35AA000F962FB /* WebViewProvider.swift in Sources */,
+				1B169C8424B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift in Sources */,
 				1BE2B57D2493CD1300A082BC /* RealmTextBookmarkDAO.swift in Sources */,
 				1BE2B5782493CD1300A082BC /* RealmImageBookmarkDAO.swift in Sources */,
 				1B84146E249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift in Sources */,
@@ -350,6 +357,7 @@
 				1BE2B57C2493CD1300A082BC /* RealmDAO.swift in Sources */,
 				1BE2B5712493CD1300A082BC /* RealmTextBookmarkObject.swift in Sources */,
 				1BE2B57F2493CD1300A082BC /* iOSDeviceUtils.swift in Sources */,
+				1B169C8224B37D8100F962FB /* RealmRSSFeedBookmarkDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

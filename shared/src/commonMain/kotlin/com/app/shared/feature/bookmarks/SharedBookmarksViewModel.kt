@@ -5,6 +5,7 @@ import com.app.shared.business.BookmarksState
 import com.app.shared.business.MainState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
+import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
@@ -25,7 +26,7 @@ class SharedBookmarksViewModel(
 
             store.dispatch(action = Actions.Bookmark.Load.Start(time = calendar.getTime()))
 
-            val dtos = bookmarkRepository.load()
+            val dtos = bookmarkRepository.load().filter { it !is BookmarkDTO.RSSFeedBookmarkDTO }
 
             store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = dtos))
         }

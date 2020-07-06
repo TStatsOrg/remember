@@ -32,7 +32,8 @@ interface BookmarkState: AppState {
         val url: String,
         val title: String?,
         val caption: String?,
-        val icon: String?
+        val icon: String?,
+        val isSubscribed: Boolean
     ): BookmarkState
 
     data class Image(

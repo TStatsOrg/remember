@@ -11,13 +11,16 @@ import SwiftUI
 import ios_dependencies
 import RememberShared
 import SDWebImageSwiftUI
-import ios_views
 
-struct BookmarkInfoView: View {
+public struct BookmarkInfoView: View {
     
-    let viewState: BookmarkViewStateType
+    private let viewState: BookmarkViewStateType
     
-    var body: some View {
+    public init(viewState: BookmarkViewStateType) {
+        self.viewState = viewState
+    }
+    
+    public var body: some View {
         Text(viewState.info)
             .font(.caption)
             .foregroundColor(.secondary)
