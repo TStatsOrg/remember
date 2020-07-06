@@ -66,8 +66,6 @@ public class iOSDataProcess: RawDataProcess {
                         print("GABBOX ==> Feed is \(url) | \(title) | \(icon)")
                     case .failure(let parseError):
 
-                        print("GABBOX ==> Failed to parse content as feed \(parseError)")
-                        
                         self?.resolver.getContent(url: url) { [weak self] (finalURL, content) in
                             let htmlResult = self?.dataProcess.process(html: content)
                             
