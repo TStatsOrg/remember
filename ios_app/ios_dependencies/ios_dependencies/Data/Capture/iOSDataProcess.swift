@@ -60,11 +60,15 @@ public class iOSDataProcess: RawDataProcess {
                     
                     switch parseResult {
                     case .success(let feed):
-                        let title = feed.rssFeed?.title
-                        let icon = feed.rssFeed?.image?.link
+                        let title = feed.rssFeed?.title ?? feed.atomFeed?.title
+                        let icon = feed.rssFeed?.image?.link ?? feed.atomFeed?.icon
+                        let caption = feed.rssFeed?.description ?? feed.atomFeed?.subtitle?.value
                         
-                        print("GABBOX ==> Feed is \(url) | \(title) | \(icon)")
-                    case .failure(let parseError):
+                        result(RawDataProcessItem.RSSFeed(url: url.absoluteString,
+                                                          title: title,
+                                                          caption: caption,
+                                                          icon: icon))
+                    case .failure:
 
                         self?.resolver.getContent(url: url) { [weak self] (finalURL, content) in
                             let htmlResult = self?.dataProcess.process(html: content)

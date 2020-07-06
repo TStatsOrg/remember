@@ -29,6 +29,8 @@ public struct BookmarkViewState: Identifiable {
             return BookmarkImageViewState(state: image)
         case let link as BookmarkStateLink:
             return BookmarkLinkViewState(state: link)
+        case let rssFeed as BookmarkStateRSSFeed:
+            return BookmarkRSSFeedViewState(state: rssFeed)
         default:
             return nil
         }
@@ -104,6 +106,40 @@ public struct BookmarkLinkViewState: BookmarkViewStateType {
             destinationUrl = url
         } else {
             source = "N/A"
+            destinationUrl = nil
+        }
+        
+        if let iconUrl = state.icon, iconUrl != "" {
+            icon = URL(string: iconUrl)
+            isIconHidden = false
+        } else {
+            icon = nil
+            isIconHidden = true
+        }
+    }
+}
+
+public struct BookmarkRSSFeedViewState: BookmarkViewStateType {
+    public var state: BookmarkState
+    public var source: String
+    
+    public let title: String
+    public let caption: String?
+    
+    public let icon: URL?
+    public let isIconHidden: Bool
+    public let destinationUrl: URL?
+    
+    public init(state: BookmarkStateRSSFeed) {
+        self.state = state
+        
+        title = state.title ?? "N/A"
+        caption = state.caption
+        source = state.url
+        
+        if let url = URL(string: state.url) {
+            destinationUrl = url
+        } else {
             destinationUrl = nil
         }
         

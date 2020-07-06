@@ -16,6 +16,13 @@ interface BookmarkDTO {
         val icon: String?
     }
 
+    interface RSSFeedDTO: BookmarkDTO {
+        val url: String
+        val title: String?
+        val caption: String?
+        val icon: String?
+    }
+
     interface ImageBookmarkDTO: BookmarkDTO {
         val url: String
     }

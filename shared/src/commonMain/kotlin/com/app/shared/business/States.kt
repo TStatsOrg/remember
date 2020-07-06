@@ -25,6 +25,16 @@ interface BookmarkState: AppState {
         val icon: String?
     ): BookmarkState
 
+    data class RSSFeed(
+        override val id: Int,
+        override val date: Long,
+        override val topic: TopicState?,
+        val url: String,
+        val title: String?,
+        val caption: String?,
+        val icon: String?
+    ): BookmarkState
+
     data class Image(
         override val id: Int,
         override val date: Long,
