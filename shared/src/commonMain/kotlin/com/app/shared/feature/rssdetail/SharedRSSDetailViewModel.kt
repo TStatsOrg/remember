@@ -6,6 +6,7 @@ import com.app.shared.business.MainState
 import com.app.shared.business.RSSFeedDetailState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
+import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.RSSFeedBookmarkRepository
 import com.app.shared.data.repository.RSSRepository
 import com.app.shared.observ.map
@@ -16,6 +17,7 @@ import kotlinx.coroutines.launch
 class SharedRSSDetailViewModel(
     private val store: Store<MainState>,
     private val feedBookmarkRepository: RSSFeedBookmarkRepository,
+    private val bookmarkRepository: BookmarkRepository,
     private val repository: RSSRepository
 ): RSSDetailViewModel {
 
@@ -38,25 +40,23 @@ class SharedRSSDetailViewModel(
         }
     }
 
-    override fun subscribe(feedId: Int) {
+    override fun save(bookmarkId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
 
-            // subscribe
-//            repository.subscribe(rssId = feedId)
+            val dto = feedBookmarkRepository.get(bookmarkId = bookmarkId)
 
-            // dispatch action
-//            store.dispatch(action = Actions.RSS.Subscribe(id = feedId))
+            dto?.let {
+                bookmarkRepository.save(dto = dto)
+                store.dispatch(action = Actions.Bookmark.Add(dto = dto))
+            }
         }
     }
 
-    override fun unsubscribe(feedId: Int) {
+    override fun delete(bookmarkId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
 
-            // unsubscribe
-//            repository.unsubscribe(rssId = feedId)
-
-            // dispatch action
-//            store.dispatch(action = Actions.RSS.Unsubscribe(id = feedId))
+            bookmarkRepository.delete(bookmarkId = bookmarkId)
+            store.dispatch(action = Actions.Bookmark.Delete(bookmarkId = bookmarkId))
         }
     }
 

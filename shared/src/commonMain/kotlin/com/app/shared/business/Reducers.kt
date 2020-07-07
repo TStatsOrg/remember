@@ -14,10 +14,13 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             val newBookmark = action.dto.toState()
             val newBookmarks = listOf(newBookmark) + old.bookmarks.bookmarks
             val allNewBookmarks = listOf(newBookmark) + old.allBookmarks
+
             old.copy(
                 allBookmarks = allNewBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
-                display = old.display.copy(isBookmarked = newBookmark.id == old.display.item?.id))
+                display = old.display.copy(isBookmarked = newBookmark.id == old.display.item?.id),
+                rssFeedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isSubscribed = true))
+            )
         }
         // bookmark/present
         is Actions.Bookmark.Load.Start -> old.copy(bookmarks = BookmarksState(date = action.time))
@@ -82,7 +85,8 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             old.copy(
                 allBookmarks = allNewBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
-                display = old.display.copy(isBookmarked = false)
+                display = old.display.copy(isBookmarked = false),
+                rssFeedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isSubscribed = false))
             )
         }
         // topics/present

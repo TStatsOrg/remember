@@ -4,8 +4,8 @@ import com.app.shared.business.RSSFeedDetailState
 
 interface RSSDetailViewModel {
     fun loadFeedItems(bookmarkId: Int)
-    fun subscribe(feedId: Int)
-    fun unsubscribe(feedId: Int)
+    fun save(bookmarkId: Int)
+    fun delete(bookmarkId: Int)
     fun observeRSSDetailsState(callback: (RSSFeedDetailState) -> Unit)
     fun cleanup()
 }

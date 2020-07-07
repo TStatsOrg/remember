@@ -31,8 +31,8 @@ public struct RSSDetailView: View {
         .navigationBarTitle(Text(state.title), displayMode: .inline)
         .navigationBarItems(trailing:
             ManagedSubscribeButton(isSubscribed: self.state.isSubscribed,
-                                   subscribeAction: { self.viewModel.subscribe(feedId: self.state.id) },
-                                   unsubscribeAction: { self.viewModel.unsubscribe(feedId: self.state.id) })
+                                   subscribeAction: { self.viewModel.save(bookmarkId: self.state.id) },
+                                   unsubscribeAction: { self.viewModel.delete(bookmarkId: self.state.id) })
         )
         .onAppear {
             self.viewModel.observeRSSDetailsState {

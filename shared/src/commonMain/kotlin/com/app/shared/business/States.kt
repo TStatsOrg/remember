@@ -99,7 +99,7 @@ data class RSSFeedItemState(
 ): AppState
 
 data class RSSFeedDetailState(
-    val feedState: BookmarkState? = null,
+    val feedState: BookmarkState.RSSFeed? = null,
     val items: List<RSSFeedItemState> = listOf(),
     val error: Throwable? = null
 ): AppState {

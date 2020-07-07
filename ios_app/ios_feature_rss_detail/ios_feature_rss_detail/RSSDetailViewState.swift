@@ -19,7 +19,7 @@ public struct RSSDetailViewState {
     }
     
     private var feedState: BookmarkRSSFeedViewState? {
-        if let state = state.feedState as? BookmarkStateRSSFeed {
+        if let state = state.feedState {
             return BookmarkRSSFeedViewState(state: state)
         } else {
             return nil

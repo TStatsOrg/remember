@@ -122,6 +122,19 @@ fun BookmarkState.toDTO(withTopic: TopicState? = null): BookmarkDTO? {
     }
 }
 
+fun BookmarkDTO.RSSFeedBookmarkDTO.toState(): BookmarkState.RSSFeed {
+    return BookmarkState.RSSFeed(
+        id = this.id,
+        caption = this.caption,
+        isSubscribed = this.isSubscribed,
+        title = this.title,
+        topic = this.topic?.toState(),
+        date = this.date,
+        icon = this.icon,
+        url = this.url
+    )
+}
+
 fun BookmarkState.copy(withTopic: TopicState?): BookmarkState {
     return when (this) {
         is BookmarkState.Image -> BookmarkState.Image(id = id, date = date, url = url, topic = withTopic)
@@ -141,15 +154,6 @@ fun TopicState.toDTO(): TopicDTO = object : TopicDTO {
 }
 
 fun List<TopicDTO>.toTopicState(): List<TopicState> = this.map { it.toState() }
-
-fun RSSDTO.toState(): RSSFeedState = RSSFeedState(
-    id = id,
-    title = title,
-    description = caption,
-    link = link,
-    icon = icon,
-    isSubscribed = isSubscribed
-)
 
 fun RSSItemDTO.toState(): RSSFeedItemState = RSSFeedItemState(
     id = id,
