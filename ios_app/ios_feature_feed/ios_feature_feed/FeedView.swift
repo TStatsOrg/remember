@@ -56,7 +56,13 @@ public struct FeedView: View {
         
         switch viewState {
         case let rssFeed as BookmarkRSSFeedViewState:
-            return AnyView(RSSFeedBookmarkView(viewState: rssFeed))
+            return AnyView(
+                RSSFeedBookmarkView(viewState: rssFeed)
+                .onTapGesture {
+                    self.navigation.showRSSDetail(rssId: rssFeed.id)
+                    self.isShowingSheet = true
+                }
+            )
         default:
             return AnyView(Text("N/A"))
         }
