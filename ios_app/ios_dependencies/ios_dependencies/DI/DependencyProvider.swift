@@ -67,7 +67,7 @@ public class DependencyProvider {
         
         // data sources
         register {
-            FeedKitRSSItemDataSource() as RSSItemDataSource
+            FeedKitItemDataSource() as FeedItemDataSource
         }
         
         // repos
@@ -83,9 +83,7 @@ public class DependencyProvider {
         }
         
         register {
-            SharedRSSRepository(defaultRSSDAO: DefaultRSSDAO(),
-                                userRSSDAO: (self.resolve() as Database).getUserRSSDAO(),
-                                rssItemDataSource: self.resolve()) as RSSRepository
+            SharedFeedItemRepository(dataSource: self.resolve()) as FeedItemRepository
         }
         
         register {

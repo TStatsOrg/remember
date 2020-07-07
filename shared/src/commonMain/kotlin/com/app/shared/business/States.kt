@@ -90,13 +90,7 @@ data class PreviewState(
     val isLoading: Boolean = false
 ): AppState
 
-@Deprecated(message = "Not")
-data class FeedsState(
-    val feeds: List<BookmarkState> = listOf(),
-    val error: Throwable? = null
-): AppState
-
-data class RSSFeedItemState(
+data class FeedItemState(
     val id: Int = 0,
     val title: String = "",
     val link: String = "",
@@ -104,9 +98,9 @@ data class RSSFeedItemState(
     val caption: String?
 ): AppState
 
-data class RSSFeedDetailState(
+data class FeedDetailState(
     val feedState: BookmarkState.RSSFeed? = null,
-    val items: List<RSSFeedItemState> = listOf(),
+    val items: List<FeedItemState> = listOf(),
     val error: Throwable? = null
 ): AppState {
 
@@ -132,20 +126,6 @@ data class MainState(
     val preview: PreviewState = PreviewState(),
     val editBookmark: EditBookmarkState? = null,
     val editTopic: EditTopicState? = null,
-    val display: DisplayState = DisplayState(),
-    @Deprecated(message = "To remove")
-    val feedsState: FeedsState = FeedsState(),
-
-    // deprecated
-    val rssFeedDetail: RSSFeedDetailState = RSSFeedDetailState()
-): AppState
-
-@Deprecated(message = "Old state")
-data class RSSFeedState(
-    val id: Int = 0,
-    val title: String = "",
-    val description: String? = null,
-    val link: String = "",
-    val icon: String? = null,
-    val isSubscribed: Boolean = false
+    val feedDetail: FeedDetailState = FeedDetailState(),
+    val display: DisplayState = DisplayState()
 ): AppState

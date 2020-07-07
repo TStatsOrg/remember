@@ -9,14 +9,16 @@ sealed class MockBookmarkDTO {
         override val id: Int,
         override val date: Long,
         override val topic: TopicDTO?,
-        override val url: String
+        override val url: String,
+        override val isFavourite: Boolean = false
     ) : MockBookmarkDTO(), BookmarkDTO.ImageBookmarkDTO
 
     data class Text(
         override val id: Int,
         override val date: Long,
         override val topic: TopicDTO?,
-        override val text: String
+        override val text: String,
+        override val isFavourite: Boolean = false
     ) : MockBookmarkDTO(), BookmarkDTO.TextBookmarkDTO
 
     data class Link(
@@ -26,7 +28,8 @@ sealed class MockBookmarkDTO {
         override val url: String,
         override val title: String?,
         override val caption: String?,
-        override val icon: String?
+        override val icon: String?,
+        override val isFavourite: Boolean = false
     ) : MockBookmarkDTO(), BookmarkDTO.LinkBookmarkDTO
 
     data class RSSFeed(
@@ -36,6 +39,7 @@ sealed class MockBookmarkDTO {
         override val url: String,
         override val title: String?,
         override val caption: String?,
-        override val icon: String?
+        override val icon: String?,
+        override val isFavourite: Boolean = false
     ) : MockBookmarkDTO(), BookmarkDTO.RSSFeedBookmarkDTO
 }

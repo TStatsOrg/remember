@@ -10,7 +10,7 @@ import Foundation
 import RememberShared
 import FeedKit
 
-class FeedKitRSSItemDTO: RSSItemDTO {
+class FeedKitRSSItemDTO: FeedItemDTO {
     var caption: String? = ""
     var id: Int32 = 0
     var link: String = ""

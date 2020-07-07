@@ -10,9 +10,9 @@ import Foundation
 import RememberShared
 import FeedKit
 
-public class FeedKitRSSItemDataSource: RSSItemDataSource {
+public class FeedKitItemDataSource: FeedItemDataSource {
     
-    public func getRSSItems(fromLink: String) -> Either {
+    public func getItems(fromLink: String) -> Either {
         
         guard let url = URL(string: fromLink) else {
             return Either.Failure(error: Errors.InvalidURL())

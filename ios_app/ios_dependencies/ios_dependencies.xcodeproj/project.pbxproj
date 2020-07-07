@@ -13,9 +13,8 @@
 		1B169C7E24B3606A00F962FB /* ContentResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7D24B3606A00F962FB /* ContentResolver.swift */; };
 		1B169C8224B37D8100F962FB /* RealmRSSFeedBookmarkDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C8124B37D8100F962FB /* RealmRSSFeedBookmarkDAO.swift */; };
 		1B169C8424B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C8324B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift */; };
-		1B84146E249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146D249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift */; };
+		1B84146E249FBC9800AD4660 /* FeedKitItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146D249FBC9800AD4660 /* FeedKitItemDataSource.swift */; };
 		1B841470249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */; };
-		1B8ABAB124AA6A8300D35366 /* RealmRSSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */; };
 		1B8ABAB524AA7EC500D35366 /* FeedKitAtomItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB424AA7EC500D35366 /* FeedKitAtomItemDTO.swift */; };
 		1BDE1FB224B1073900C3C2E8 /* SwiftSoupHTMLDataProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE1FB124B1073900C3C2E8 /* SwiftSoupHTMLDataProcess.swift */; };
 		1BE2B54C2493CBAE00A082BC /* ios_dependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE2B54A2493CBAE00A082BC /* ios_dependencies.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,7 +34,6 @@
 		1BE2B57E2493CD1300A082BC /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B56C2493CD1200A082BC /* DependencyProvider.swift */; };
 		1BE2B57F2493CD1300A082BC /* iOSDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B56E2493CD1300A082BC /* iOSDeviceUtils.swift */; };
 		1BE2B5842493CD3E00A082BC /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE2B5832493CD3E00A082BC /* RememberShared.framework */; };
-		1BE2B7AE249AA8D700A082BC /* RealmUserRSSDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2B7AD249AA8D700A082BC /* RealmUserRSSDAO.swift */; };
 		61621C4FA413BB61F8291239 /* Pods_ios_dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0ADB771741B48B955BAA4E5 /* Pods_ios_dependencies.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,9 +45,8 @@
 		1B169C7D24B3606A00F962FB /* ContentResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentResolver.swift; sourceTree = "<group>"; };
 		1B169C8124B37D8100F962FB /* RealmRSSFeedBookmarkDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRSSFeedBookmarkDAO.swift; sourceTree = "<group>"; };
 		1B169C8324B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRSSFeedBookmarkObject.swift; sourceTree = "<group>"; };
-		1B84146D249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitRSSItemDataSource.swift; sourceTree = "<group>"; };
+		1B84146D249FBC9800AD4660 /* FeedKitItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitItemDataSource.swift; sourceTree = "<group>"; };
 		1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitRSSItemDTO.swift; sourceTree = "<group>"; };
-		1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRSSObject.swift; sourceTree = "<group>"; };
 		1B8ABAB424AA7EC500D35366 /* FeedKitAtomItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitAtomItemDTO.swift; sourceTree = "<group>"; };
 		1BDE1FB124B1073900C3C2E8 /* SwiftSoupHTMLDataProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSoupHTMLDataProcess.swift; sourceTree = "<group>"; };
 		1BE2B5472493CBAE00A082BC /* ios_dependencies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_dependencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +68,6 @@
 		1BE2B56C2493CD1200A082BC /* DependencyProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
 		1BE2B56E2493CD1300A082BC /* iOSDeviceUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSDeviceUtils.swift; sourceTree = "<group>"; };
 		1BE2B5832493CD3E00A082BC /* RememberShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RememberShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BE2B7AD249AA8D700A082BC /* RealmUserRSSDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserRSSDAO.swift; sourceTree = "<group>"; };
 		8A797628AA4B2837DD6659F0 /* Pods-ios_dependencies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_dependencies.release.xcconfig"; path = "Target Support Files/Pods-ios_dependencies/Pods-ios_dependencies.release.xcconfig"; sourceTree = "<group>"; };
 		B0ADB771741B48B955BAA4E5 /* Pods_ios_dependencies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_dependencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,7 +99,7 @@
 		1B84146C249FBC7700AD4660 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				1B84146D249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift */,
+				1B84146D249FBC9800AD4660 /* FeedKitItemDataSource.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -158,7 +154,6 @@
 				1BE2B55C2493CD1200A082BC /* RealmTextBookmarkObject.swift */,
 				1B169C8324B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift */,
 				1BE2B55D2493CD1200A082BC /* RealmLinkBookmarkObject.swift */,
-				1B8ABAB024AA6A8300D35366 /* RealmRSSObject.swift */,
 				1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */,
 				1B8ABAB424AA7EC500D35366 /* FeedKitAtomItemDTO.swift */,
 			);
@@ -183,7 +178,6 @@
 				1B169C8124B37D8100F962FB /* RealmRSSFeedBookmarkDAO.swift */,
 				1BE2B5662493CD1200A082BC /* RealmLinkBookmarkDAO.swift */,
 				1BE2B5672493CD1200A082BC /* RealmTopicDAO.swift */,
-				1BE2B7AD249AA8D700A082BC /* RealmUserRSSDAO.swift */,
 				1BE2B5682493CD1200A082BC /* RealmDatabase.swift */,
 				1BE2B5692493CD1200A082BC /* RealmDAO.swift */,
 				1BE2B56A2493CD1200A082BC /* RealmTextBookmarkDAO.swift */,
@@ -336,18 +330,16 @@
 				1B169C8424B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift in Sources */,
 				1BE2B57D2493CD1300A082BC /* RealmTextBookmarkDAO.swift in Sources */,
 				1BE2B5782493CD1300A082BC /* RealmImageBookmarkDAO.swift in Sources */,
-				1B84146E249FBC9800AD4660 /* FeedKitRSSItemDataSource.swift in Sources */,
+				1B84146E249FBC9800AD4660 /* FeedKitItemDataSource.swift in Sources */,
 				1B169C7E24B3606A00F962FB /* ContentResolver.swift in Sources */,
 				1BE2B57B2493CD1300A082BC /* RealmDatabase.swift in Sources */,
 				1BE2B5762493CD1300A082BC /* UrlDownloader.swift in Sources */,
 				1B169C7A24B35AE600F962FB /* WebViewDelegate.swift in Sources */,
-				1B8ABAB124AA6A8300D35366 /* RealmRSSObject.swift in Sources */,
 				1B8ABAB524AA7EC500D35366 /* FeedKitAtomItemDTO.swift in Sources */,
 				1BE2B5792493CD1300A082BC /* RealmLinkBookmarkDAO.swift in Sources */,
 				1BE2B5722493CD1300A082BC /* RealmLinkBookmarkObject.swift in Sources */,
 				1BE2B5772493CD1300A082BC /* ExtensionContextDataCapture.swift in Sources */,
 				1B841470249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift in Sources */,
-				1BE2B7AE249AA8D700A082BC /* RealmUserRSSDAO.swift in Sources */,
 				1BE2B5702493CD1300A082BC /* RealmTopicObject.swift in Sources */,
 				1BE2B56F2493CD1300A082BC /* RealmImageBookmarkObject.swift in Sources */,
 				1BE2B5732493CD1300A082BC /* iOSDataProcess.swift in Sources */,

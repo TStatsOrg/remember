@@ -94,12 +94,12 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             }
             val newBookmarks = old.bookmarks.bookmarks.map(func)
             val newAllBookmarks = old.allBookmarks.map(func)
-            val feedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isFavourite = true))
+            val feedDetail = old.feedDetail.copy(feedState = old.feedDetail.feedState?.copy(isFavourite = true))
 
             old.copy(
                 allBookmarks = newAllBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
-                rssFeedDetail = feedDetail)
+                feedDetail = feedDetail)
         }
         is Actions.Bookmark.Favourite.Remove -> {
             val func: (BookmarkState) -> BookmarkState = {
@@ -107,12 +107,12 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             }
             val newBookmarks = old.bookmarks.bookmarks.map(func)
             val newAllBookmarks = old.allBookmarks.map(func)
-            val feedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isFavourite = false))
+            val feedDetail = old.feedDetail.copy(feedState = old.feedDetail.feedState?.copy(isFavourite = false))
 
             old.copy(
                 allBookmarks = newAllBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
-                rssFeedDetail = feedDetail)
+                feedDetail = feedDetail)
         }
         // topics/present
         is Actions.Topics.Load.Start -> old.copy(topics = TopicsState(date = action.time, isLoading = true))
@@ -195,15 +195,11 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
                 editBookmark = newEditableBookmark
             )
         }
-        // feeds/load
-        is Actions.Feeds.Load.Start -> old.copy(feedsState = FeedsState())
-        is Actions.Feeds.Load.Success -> old.copy(feedsState = FeedsState(feeds = action.feeds.toBookmarkState()))
-        is Actions.Feeds.Load.Error -> old.copy(feedsState = FeedsState(error = action.error))
-        // rss/detail
-        is Actions.RSS.Detail.Present -> old.copy(rssFeedDetail = RSSFeedDetailState(feedState = action.dto.toState()))
-        is Actions.RSS.Detail.LoadItems.Start -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = listOf(), error = null))
-        is Actions.RSS.Detail.LoadItems.Success -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = action.items.toRSSItemState(), error = null))
-        is Actions.RSS.Detail.LoadItems.Error -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(error = action.error, items = listOf()))
+        // feed/detail
+        is Actions.Feed.Detail.Present -> old.copy(feedDetail = FeedDetailState(feedState = action.dto.toState()))
+        is Actions.Feed.Detail.LoadItems.Start -> old.copy(feedDetail = old.feedDetail.copy(items = listOf(), error = null))
+        is Actions.Feed.Detail.LoadItems.Success -> old.copy(feedDetail = old.feedDetail.copy(items = action.items.toRSSItemState(), error = null))
+        is Actions.Feed.Detail.LoadItems.Error -> old.copy(feedDetail = old.feedDetail.copy(error = action.error, items = listOf()))
         // display
         is Actions.Display.Load.Start -> old.copy(display = DisplayState(isLoading = true))
         is Actions.Display.Load.Success -> {

@@ -6,5 +6,4 @@ interface Database {
     fun getTextBookmarkDAO(): TextBookmarkDAO
     fun getRSSFeedBookmarkDAO(): RSSFeedBookmarkDAO
     fun getTopicDAO(): TopicDAO
-    fun getUserRSSDAO(): RSSDAO
 }

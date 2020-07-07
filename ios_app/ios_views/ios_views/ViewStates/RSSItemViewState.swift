@@ -11,9 +11,9 @@ import RememberShared
 
 public struct RSSItemViewState: Identifiable {
     
-    private let state: RSSFeedItemState
+    private let state: FeedItemState
     
-    public init(state: RSSFeedItemState) {
+    public init(state: FeedItemState) {
         self.state = state
     }
     

@@ -2,7 +2,6 @@ package com.app.shared.feature.rss
 
 import com.app.shared.business.Actions
 import com.app.shared.business.BookmarkState
-import com.app.shared.business.FeedsState
 import com.app.shared.business.MainState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope

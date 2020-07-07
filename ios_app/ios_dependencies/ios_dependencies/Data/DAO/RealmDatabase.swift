@@ -57,8 +57,4 @@ extension RealmDatabase: Database {
     public func getTopicDAO() -> TopicDAO {
         return RealmTopicDAO(realm: database)
     }
-    
-    public func getUserRSSDAO() -> RSSDAO {
-        return RealmUserRSSDAO(realm: database)
-    }
 }

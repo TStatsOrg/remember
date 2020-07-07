@@ -1,6 +1,6 @@
 package com.app.shared.data.dto
 
-interface RSSItemDTO {
+interface FeedItemDTO {
     val id: Int
     val title: String
     val link: String

@@ -18,7 +18,7 @@ class RealmTopicDAO: RealmDAO, TopicDAO {
         self.realm = realm
     }
     
-    func insert(dto_____ dto: TopicDTO) {
+    func insert(dto____ dto: TopicDTO) {
         try? realm?.write {
             realm?.add(dto.toObject(), update: Realm.UpdatePolicy.all)
         }

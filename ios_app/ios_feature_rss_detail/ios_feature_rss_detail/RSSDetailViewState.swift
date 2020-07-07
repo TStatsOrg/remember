@@ -12,9 +12,9 @@ import ios_views
 
 public struct RSSDetailViewState {
     
-    private let state: RSSFeedDetailState
+    private let state: FeedDetailState
     
-    public init(state: RSSFeedDetailState = RSSFeedDetailState()) {
+    public init(state: FeedDetailState = FeedDetailState()) {
         self.state = state
     }
     
