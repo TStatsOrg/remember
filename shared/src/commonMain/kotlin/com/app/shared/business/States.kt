@@ -85,6 +85,7 @@ data class PreviewState(
     val isLoading: Boolean = false
 ): AppState
 
+@Deprecated(message = "Not")
 data class FeedsState(
     val feeds: List<BookmarkState> = listOf(),
     val error: Throwable? = null

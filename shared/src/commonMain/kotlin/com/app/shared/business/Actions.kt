@@ -56,6 +56,8 @@ sealed class Actions: Action {
             data class Success(val time: Long, val feeds: List<BookmarkDTO>): Load()
             data class Error(val time: Long, val error: Throwable): Load()
         }
+
+        data class Unsubscribe(val bookmarkId: Int): Feeds()
     }
 
     @Deprecated(message = "Old actions")

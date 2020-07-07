@@ -14,7 +14,7 @@ class SharedRSSFeedBookmarkRepository(
     override suspend fun loadAll(): List<BookmarkDTO> {
         return withContext(context = DispatcherFactory.io()) {
 
-            val user = userBookmarkedRSSFeedDAO.getAll().map { dto ->
+            val user = userBookmarkedRSSFeedDAO.getAll()/*.map { dto ->
                 return@map UserBookmarkedRSSFeed(
                     id = dto.id,
                     date = dto.date,
@@ -24,7 +24,7 @@ class SharedRSSFeedBookmarkRepository(
                     caption = dto.caption,
                     icon = dto.icon
                 )
-            }
+            }*/
             val userIds = user.map { it.id }
 
             val all = allBookmarkRSSFeedDAO.getAll().filter { !userIds.contains(it.id) }
@@ -39,6 +39,13 @@ class SharedRSSFeedBookmarkRepository(
             return@withContext loadAll()
                 .filterIsInstance<BookmarkDTO.RSSFeedBookmarkDTO>()
                 .firstOrNull { it.id == bookmarkId }
+        }
+    }
+
+    override suspend fun save(dto: BookmarkDTO.RSSFeedBookmarkDTO) {
+        return withContext(context = DispatcherFactory.io()) {
+            allBookmarkRSSFeedDAO.insert(dto = dto)
+            userBookmarkedRSSFeedDAO.insert(dto = dto)
         }
     }
 

@@ -6,6 +6,8 @@ import com.app.shared.business.MainState
 import com.app.shared.business.RSSFeedDetailState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
+import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.RSSFeedBookmarkRepository
 import com.app.shared.data.repository.RSSRepository
@@ -46,17 +48,44 @@ class SharedRSSDetailViewModel(
             val dto = feedBookmarkRepository.get(bookmarkId = bookmarkId)
 
             dto?.let {
-                bookmarkRepository.save(dto = dto)
-                store.dispatch(action = Actions.Bookmark.Add(dto = dto))
+                val newDto = object : BookmarkDTO.RSSFeedBookmarkDTO {
+                    override val url: String = dto.url
+                    override val isSubscribed: Boolean = true
+                    override val title: String? = dto.title
+                    override val caption: String? = dto.caption
+                    override val icon: String? = dto.icon
+                    override val id: Int = dto.id
+                    override val date: Long = dto.date
+                    override val topic: TopicDTO? = dto.topic
+                }
+
+                bookmarkRepository.save(dto = newDto)
+                store.dispatch(action = Actions.Bookmark.Add(dto = newDto))
             }
         }
     }
 
-    override fun delete(bookmarkId: Int) {
+    override fun unsubscribe(bookmarkId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
 
-            bookmarkRepository.delete(bookmarkId = bookmarkId)
-            store.dispatch(action = Actions.Bookmark.Delete(bookmarkId = bookmarkId))
+            val dto = feedBookmarkRepository.get(bookmarkId = bookmarkId)
+
+            dto?.let {
+                val newDto = object : BookmarkDTO.RSSFeedBookmarkDTO {
+                    override val url: String = dto.url
+                    override val isSubscribed: Boolean = false
+                    override val title: String? = dto.title
+                    override val caption: String? = dto.caption
+                    override val icon: String? = dto.icon
+                    override val id: Int = dto.id
+                    override val date: Long = dto.date
+                    override val topic: TopicDTO? = dto.topic
+                }
+
+
+                feedBookmarkRepository.save(dto = newDto)
+                store.dispatch(action = Actions.Feeds.Unsubscribe(bookmarkId = bookmarkId))
+            }
         }
     }
 

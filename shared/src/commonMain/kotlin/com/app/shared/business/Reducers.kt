@@ -85,8 +85,8 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             old.copy(
                 allBookmarks = allNewBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
-                display = old.display.copy(isBookmarked = false),
-                rssFeedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isSubscribed = false))
+                display = old.display.copy(isBookmarked = false)/*,
+                rssFeedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isSubscribed = false))*/
             )
         }
         // topics/present
@@ -174,7 +174,31 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         is Actions.Feeds.Load.Start -> old.copy(feedsState = FeedsState())
         is Actions.Feeds.Load.Success -> old.copy(feedsState = FeedsState(feeds = action.feeds.toBookmarkState()))
         is Actions.Feeds.Load.Error -> old.copy(feedsState = FeedsState(error = action.error))
+        is Actions.Feeds.Unsubscribe -> {
+            val detail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isSubscribed = false))
 
+            val mapFunc: (BookmarkState) -> BookmarkState = {
+                when (it) {
+                    is BookmarkState.RSSFeed -> {
+                        if (it.id == action.bookmarkId) {
+                            it.copy(isSubscribed = false)
+                        } else {
+                            it
+                        }
+                    }
+                    else -> it
+                }
+            }
+
+            val allBookmarks = old.allBookmarks.map(mapFunc)
+            val bookmarks = old.bookmarks.copy(bookmarks = old.bookmarks.bookmarks.map(mapFunc))
+
+            old.copy(
+                allBookmarks = allBookmarks,
+                bookmarks = bookmarks,
+                rssFeedDetail = detail
+            )
+        }
         // rss/detail
         is Actions.RSS.Detail.Present -> old.copy(rssFeedDetail = RSSFeedDetailState(feedState = action.dto.toState()))
         is Actions.RSS.Detail.LoadItems.Start -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = listOf(), error = null))

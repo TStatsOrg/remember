@@ -32,7 +32,7 @@ public struct RSSDetailView: View {
         .navigationBarItems(trailing:
             ManagedSubscribeButton(isSubscribed: self.state.isSubscribed,
                                    subscribeAction: { self.viewModel.save(bookmarkId: self.state.id) },
-                                   unsubscribeAction: { self.viewModel.delete(bookmarkId: self.state.id) })
+                                   unsubscribeAction: { self.viewModel.unsubscribe(bookmarkId: self.state.id) })
         )
         .onAppear {
             self.viewModel.observeRSSDetailsState {
