@@ -36,7 +36,7 @@ public class RealmRSSFeedBookmarkDAO: RealmDAO, RSSFeedBookmarkDAO {
         return result?.map { $0 }.map { $0.toDTO() } ?? []
     }
     
-    public func insert(dto___ dto: BookmarkDTORSSFeedBookmarkDTO) {
+    public func insert(dto_ dto: BookmarkDTORSSFeedBookmarkDTO) {
         try? realm?.write {
             realm?.add(dto.toObject(), update: Realm.UpdatePolicy.all)
         }

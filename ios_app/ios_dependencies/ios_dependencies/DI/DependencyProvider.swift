@@ -88,6 +88,11 @@ public class DependencyProvider {
                                 rssItemDataSource: self.resolve()) as RSSRepository
         }
         
+        register {
+            SharedRSSFeedBookmarkRepository(userBookmarkedRSSFeedDAO: (self.resolve() as Database).getRSSFeedBookmarkDAO(),
+                                            allBookmarkRSSFeedDAO: DefaultRSSFeedBookmarkDAO()) as RSSFeedBookmarkRepository
+        }
+        
         // view models
         register {
             SharedPreviewViewModel(store: self.resolve(),

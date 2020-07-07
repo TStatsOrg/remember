@@ -1,9 +1,9 @@
 package com.app.shared.feature.rss
 
-import com.app.shared.business.RSSState
+import com.app.shared.business.FeedsState
 
 interface RSSViewModel {
     fun loadRSSFeeds()
-    fun observeRSSState(callback: (RSSState) -> Unit)
+    fun observeRSSState(callback: (FeedsState) -> Unit)
     fun cleanup()
 }

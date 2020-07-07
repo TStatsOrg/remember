@@ -2,6 +2,7 @@ package com.app.shared.data.dao
 
 import com.app.shared.data.dto.RSSDTO
 
+@Deprecated(message = "Old code")
 class DefaultRSSDAO: RSSDAO {
 
     private val defaultRSSFeeds = listOf(

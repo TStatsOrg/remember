@@ -12,13 +12,17 @@ import RememberShared
 
 public struct RSSListViewState {
     
-    private let state: [RSSFeedState]
+    private let state: FeedsState?
     
-    public init(state: [RSSFeedState] = []) {
+    public init(state: FeedsState? = nil) {
         self.state = state
     }
     
-    public var items: [RSSViewState] {
-        return state.map(RSSViewState.init)
+    private var bookmarks: [BookmarkState] {
+        return state?.feeds ?? []
+    }
+    
+    var items: [BookmarkViewState] {
+        return bookmarks.map(BookmarkViewState.init)
     }
 }

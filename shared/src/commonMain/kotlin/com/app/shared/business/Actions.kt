@@ -50,16 +50,21 @@ sealed class Actions: Action {
         data class Delete(val topicId: Int): Topics()
     }
 
+    sealed class Feeds: Actions() {
+        sealed class Load: Feeds() {
+            data class Start(val time: Long): Load()
+            data class Success(val time: Long, val feeds: List<BookmarkDTO>): Load()
+            data class Error(val time: Long, val error: Throwable): Load()
+        }
+    }
+
+    @Deprecated(message = "Old actions")
     sealed class RSS: Actions() {
 
         sealed class Load: RSS() {
             data class Start(val time: Long): Load()
             data class Success(val time: Long, val rss: List<RSSDTO>): Load()
             data class Error(val time: Long, val error: Throwable): Load()
-        }
-
-        sealed class User: RSS() {
-            data class Load(val time: Long, val rss: List<RSSDTO>): User()
         }
 
         data class Subscribe(val id: Int): RSS()

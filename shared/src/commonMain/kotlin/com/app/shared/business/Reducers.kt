@@ -166,12 +166,15 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
                 editBookmark = newEditableBookmark
             )
         }
+        // feeds/load
+        is Actions.Feeds.Load.Start -> old.copy(feedsState = FeedsState())
+        is Actions.Feeds.Load.Success -> old.copy(feedsState = FeedsState(feeds = action.feeds.toBookmarkState()))
+        is Actions.Feeds.Load.Error -> old.copy(feedsState = FeedsState(error = action.error))
+
         // rss/load
         is Actions.RSS.Load.Start -> old.copy(allRssFeeds = RSSState())
         is Actions.RSS.Load.Success -> old.copy(allRssFeeds = RSSState(feed = action.rss.toRSSState(), time = action.time))
         is Actions.RSS.Load.Error -> old.copy(allRssFeeds = RSSState(error = action.error, time = action.time))
-        // rss/user/load
-        is Actions.RSS.User.Load -> old.copy(userRssFeeds = RSSState(feed = action.rss.toRSSState(), time = action.time))
         // rss/detail
         is Actions.RSS.Detail.Present -> old.copy(rssFeedDetail = RSSFeedDetailState(feedState = action.rss.toState()))
         is Actions.RSS.Detail.LoadItems.Start -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = listOf(), error = null))

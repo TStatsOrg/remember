@@ -3,9 +3,9 @@ package com.app.shared.feature
 import com.app.shared.DefaultTest
 import com.app.shared.business.*
 import com.app.shared.coroutines.runTest
-import com.app.shared.data.repository.RSSRepository
+import com.app.shared.data.repository.RSSFeedBookmarkRepository
 import com.app.shared.feature.rss.SharedRSSViewModel
-import com.app.shared.mocks.MockRSSDTO
+import com.app.shared.mocks.MockBookmarkDTO
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
 import io.mockk.coEvery
@@ -19,7 +19,7 @@ class SharedRSSViewModelTest: DefaultTest() {
 
     private val store = mockk<Store<MainState>>(relaxed = true)
     private val calendar = mockk<CalendarUtils>(relaxed = true)
-    private val repository = mockk<RSSRepository>(relaxed = true)
+    private val repository = mockk<RSSFeedBookmarkRepository>(relaxed = true)
 
     private val viewModel = SharedRSSViewModel(
         store = store,
@@ -30,19 +30,20 @@ class SharedRSSViewModelTest: DefaultTest() {
     @Test
     fun `view model can load all RSS items`() = runTest {
         // data
-        val dto1 = MockRSSDTO(id = 1, title = "RSS 1", link = "https://rss.1/feed.xml", caption = null, isSubscribed = false)
-        val dto2 = MockRSSDTO(id = 2, title = "RSS 2", link = "https://rss.2/feed.xml", caption = null, isSubscribed = true)
+        val dto1 = MockBookmarkDTO.RSSFeed(id = 1, title = "My RSS 1", url = "https://feed.1/feed.xml", icon = null, isSubscribed = true, date = 1, caption = null, topic = null)
+        val dto2 = MockBookmarkDTO.RSSFeed(id = 2, title = "My RSS 2", url = "https://feed.2/feed.xml", icon = null, isSubscribed = false, date = 2, caption = null, topic = null)
 
         // given
         every { calendar.getTime() } returns 123L
-        coEvery { repository.getAll() } returns listOf(dto1, dto2)
+        coEvery { repository.loadAll() } returns listOf(dto1, dto2)
 
         // when
         viewModel.loadRSSFeeds()
 
         // then
         verify {
-            store.dispatch(action = Actions.RSS.Load.Success(time = 123L, rss = listOf(dto1, dto2)))
+            store.dispatch(action = Actions.Feeds.Load.Start(time = 123L))
+            store.dispatch(action = Actions.Feeds.Load.Success(feeds = listOf(dto1, dto2), time = 123L))
         }
     }
 
@@ -60,8 +61,8 @@ class SharedRSSViewModelTest: DefaultTest() {
     @Test
     fun `view model can observe changes in the RSS state`() = runTest {
         // data
-        val dto1 = MockRSSDTO(id = 1, title = "RSS 1", link = "https://rss.1/feed.xml", caption = null, isSubscribed = false)
-        val dto2 = MockRSSDTO(id = 2, title = "RSS 2", link = "https://rss.2/feed.xml", caption = null, isSubscribed = true)
+        val dto1 = MockBookmarkDTO.RSSFeed(id = 1, title = "My RSS 1", url = "https://feed.1/feed.xml", icon = null, isSubscribed = true, date = 1, caption = null, topic = null)
+        val dto2 = MockBookmarkDTO.RSSFeed(id = 2, title = "My RSS 2", url = "https://feed.2/feed.xml", icon = null, isSubscribed = false, date = 2, caption = null, topic = null)
 
         val store = Store(
             reducer = AppStateReducer,
@@ -75,10 +76,10 @@ class SharedRSSViewModelTest: DefaultTest() {
 
         // given
         every { calendar.getTime() } returns 123L
-        coEvery { repository.getAll() } returns listOf(dto1, dto2)
+        coEvery { repository.loadAll() } returns listOf(dto1, dto2)
 
         // when
-        var newState: RSSState? = null
+        var newState: FeedsState? = null
         viewModel.observeRSSState {
             // then
             newState = it
@@ -88,25 +89,29 @@ class SharedRSSViewModelTest: DefaultTest() {
 
         // then
         assertEquals(
-            RSSState(
-                feed = listOf(
-                    RSSFeedState(
+            FeedsState(
+                feeds = listOf(
+                    BookmarkState.RSSFeed(
                         id = 1,
-                        title = "RSS 1",
-                        link = "https://rss.1/feed.xml",
-                        description = null,
-                        isSubscribed = false
+                        title = "My RSS 1",
+                        url = "https://feed.1/feed.xml",
+                        icon = null,
+                        isSubscribed = true,
+                        date = 1,
+                        caption = null,
+                        topic = null
                     ),
-                    RSSFeedState(
+                    BookmarkState.RSSFeed(
                         id = 2,
-                        title = "RSS 2",
-                        link = "https://rss.2/feed.xml",
-                        description = null,
-                        isSubscribed = true
+                        title = "My RSS 2",
+                        url = "https://feed.2/feed.xml",
+                        icon = null,
+                        isSubscribed = false,
+                        date = 2,
+                        caption = null,
+                        topic = null
                     )
-                ),
-                time = 123L,
-                error = null
+                )
             ),
             newState
         )

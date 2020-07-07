@@ -1,11 +1,11 @@
 package com.app.shared.feature.rss
 
 import com.app.shared.business.Actions
+import com.app.shared.business.FeedsState
 import com.app.shared.business.MainState
-import com.app.shared.business.RSSState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
-import com.app.shared.data.repository.RSSRepository
+import com.app.shared.data.repository.RSSFeedBookmarkRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class SharedRSSViewModel(
     private val store: Store<MainState>,
-    private val repository: RSSRepository,
+    private val repository: RSSFeedBookmarkRepository,
     private val calendarUtils: CalendarUtils
 ): RSSViewModel {
 
@@ -24,17 +24,20 @@ class SharedRSSViewModel(
     override fun loadRSSFeeds() {
         scope.launch(context = DispatcherFactory.main()) {
 
-            // get all RSS data items
-            val rss = repository.getAll()
+            // dispatch initial action
+            store.dispatch(action = Actions.Feeds.Load.Start(time = calendarUtils.getTime()))
 
-            // dispatch action
-            store.dispatch(action = Actions.RSS.Load.Success(rss = rss, time = calendarUtils.getTime()))
+            // get all Bookmarked RSS items, users and default ones
+            val rss = repository.loadAll()
+
+            // dispatch final action
+            store.dispatch(action = Actions.Feeds.Load.Success(time = calendarUtils.getTime(), feeds = rss))
         }
     }
 
-    override fun observeRSSState(callback: (RSSState) -> Unit) {
+    override fun observeRSSState(callback: (FeedsState) -> Unit) {
         storeObserver
-            .map { it.allRssFeeds }
+            .map { it.feedsState }
             .collect(callback)
     }
 

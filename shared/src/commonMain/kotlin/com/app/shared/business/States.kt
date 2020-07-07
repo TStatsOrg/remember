@@ -85,38 +85,10 @@ data class PreviewState(
     val isLoading: Boolean = false
 ): AppState
 
-data class RSSFeedState(
-    val id: Int = 0,
-    val title: String = "",
-    val description: String? = null,
-    val link: String = "",
-    val icon: String? = null,
-    val isSubscribed: Boolean = false
-): AppState
-
-data class RSSFeedItemState(
-    val id: Int = 0,
-    val title: String = "",
-    val link: String = "",
-    val pubDate: Long = 0L,
-    val caption: String?
-): AppState
-
-data class RSSState(
-    val feed: List<RSSFeedState> = listOf(),
-    val error: Throwable? = null,
-    val time: Long = 0L
-): AppState
-
-data class RSSFeedDetailState(
-    val feedState: RSSFeedState = RSSFeedState(),
-    val items: List<RSSFeedItemState> = listOf(),
+data class FeedsState(
+    val feeds: List<BookmarkState> = listOf(),
     val error: Throwable? = null
-): AppState {
-
-    // iOS constructor
-    constructor(): this(feedState = RSSFeedState(), items = listOf(), error = null)
-}
+): AppState
 
 data class DisplayState(
     val item: BookmarkState.Link? = null,
@@ -136,8 +108,48 @@ data class MainState(
     val preview: PreviewState = PreviewState(),
     val editBookmark: EditBookmarkState? = null,
     val editTopic: EditTopicState? = null,
+    val display: DisplayState = DisplayState(),
+    val feedsState: FeedsState = FeedsState(),
+
+    // deprecated
     val allRssFeeds: RSSState = RSSState(),
     val userRssFeeds: RSSState = RSSState(),
-    val rssFeedDetail: RSSFeedDetailState = RSSFeedDetailState(),
-    val display: DisplayState = DisplayState()
+    val rssFeedDetail: RSSFeedDetailState = RSSFeedDetailState()
 ): AppState
+
+@Deprecated(message = "Old state")
+data class RSSFeedState(
+    val id: Int = 0,
+    val title: String = "",
+    val description: String? = null,
+    val link: String = "",
+    val icon: String? = null,
+    val isSubscribed: Boolean = false
+): AppState
+
+@Deprecated(message = "Old state")
+data class RSSFeedItemState(
+    val id: Int = 0,
+    val title: String = "",
+    val link: String = "",
+    val pubDate: Long = 0L,
+    val caption: String?
+): AppState
+
+@Deprecated(message = "Old state")
+data class RSSState(
+    val feed: List<RSSFeedState> = listOf(),
+    val error: Throwable? = null,
+    val time: Long = 0L
+): AppState
+
+@Deprecated(message = "Old state")
+data class RSSFeedDetailState(
+    val feedState: RSSFeedState = RSSFeedState(),
+    val items: List<RSSFeedItemState> = listOf(),
+    val error: Throwable? = null
+): AppState {
+
+    // iOS constructor
+    constructor(): this(feedState = RSSFeedState(), items = listOf(), error = null)
+}
