@@ -19,7 +19,11 @@ public class RealmDatabase: NSObject {
             
         if var directory: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:RealmDatabase.GROUP_ID) {
             directory.appendPathComponent(RealmDatabase.PATH_COMPONENT, isDirectory: true)
-            return Realm.Configuration(fileURL: directory, schemaVersion: 1)
+            return Realm.Configuration(fileURL: directory, schemaVersion: 2, migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 2) {
+                    // do nothing
+                }
+            })
         } else {
             return Realm.Configuration.defaultConfiguration
         }
