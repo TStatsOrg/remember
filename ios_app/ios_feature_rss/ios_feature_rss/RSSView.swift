@@ -22,43 +22,7 @@ public struct RSSView: View {
     public init() {}
     
     public var body: some View {
-        List(state.items, rowContent: { content in
-            self.getCellType(state: content)
-//            VStack {
-//                HStack(alignment: .center) {
-//
-//                    WebImage(url: content.icon)
-//                        .placeholder(content: {
-//                            Image(systemName: "bookmark.fill")
-//                                .foregroundColor(AppColors.secondaryColor)
-//                        })
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: 60, height: 60)
-//                        .background(AppColors.mainColor)
-//                        .clipped()
-//
-//                    Button(action: {
-//                        self.navigation.showRSSDetail(rssId: content.id)
-//                        self.isShowingSheet = true
-//                    }) {
-//                        VStack(alignment: .leading) {
-//                            Text(content.title)
-//                                .font(.body)
-//                                .fontWeight(.bold)
-//                            Text(content.link)
-//                                .font(.caption)
-//                                .foregroundColor(.secondary)
-//                                .lineLimit(1)
-//                        }
-//                    }
-//
-//                    Spacer()
-//                    ManagedSubscribeButton(isSubscribed: content.isSubscribed)
-//                }
-//                Divider()
-//            }
-        })
+        List(state.items, rowContent: self.getCellType)
         .navigationBarTitle(Text(Translations.RSS.title))
         .onAppear {
             self.viewModel.observeRSSState {
@@ -79,7 +43,13 @@ public struct RSSView: View {
         
         switch viewState {
         case let rssFeed as BookmarkRSSFeedViewState:
-            return AnyView(RSSFeedBookmarkView(viewState: rssFeed))
+            return AnyView(
+                HStack {
+                    RSSFeedBookmarkView(viewState: rssFeed)
+                    Spacer()
+                    ManagedSubscribeButton(isSubscribed: rssFeed.isSubscribed)
+                }
+            )
         default:
             return AnyView(Text("N/A"))
         }

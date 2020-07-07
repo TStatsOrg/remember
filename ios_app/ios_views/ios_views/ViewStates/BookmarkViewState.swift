@@ -130,12 +130,15 @@ public struct BookmarkRSSFeedViewState: BookmarkViewStateType {
     public let isIconHidden: Bool
     public let destinationUrl: URL?
     
+    public let isSubscribed: Bool
+    
     public init(state: BookmarkStateRSSFeed) {
         self.state = state
         
         title = state.title ?? "N/A"
         caption = state.caption
         source = state.url
+        isSubscribed = state.isSubscribed
         
         if let url = URL(string: state.url) {
             destinationUrl = url
