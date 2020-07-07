@@ -151,8 +151,6 @@ fun RSSDTO.toState(): RSSFeedState = RSSFeedState(
     isSubscribed = isSubscribed
 )
 
-fun List<RSSDTO>.toRSSState(): List<RSSFeedState> = this.map { it.toState() }
-
 fun RSSItemDTO.toState(): RSSFeedItemState = RSSFeedItemState(
     id = id,
     title = title,

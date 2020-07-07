@@ -61,17 +61,8 @@ sealed class Actions: Action {
     @Deprecated(message = "Old actions")
     sealed class RSS: Actions() {
 
-        sealed class Load: RSS() {
-            data class Start(val time: Long): Load()
-            data class Success(val time: Long, val rss: List<RSSDTO>): Load()
-            data class Error(val time: Long, val error: Throwable): Load()
-        }
-
-        data class Subscribe(val id: Int): RSS()
-        data class Unsubscribe(val id: Int): RSS()
-
         sealed class Detail: RSS() {
-            data class Present(val rss: RSSDTO): Detail()
+            data class Present(val dto: BookmarkDTO.RSSFeedBookmarkDTO): Detail()
             sealed class LoadItems: Detail() {
                 object Start: LoadItems()
                 data class Success(val items: List<RSSItemDTO>): LoadItems()

@@ -38,7 +38,7 @@ public struct RSSDetailView: View {
             self.viewModel.observeRSSDetailsState {
                 self.state = RSSDetailViewState(state: $0)
             }
-            self.viewModel.loadRSSFeedData(rssId: self.rssId)
+            self.viewModel.loadFeedItems(bookmarkId: self.rssId)
         }
         .onDisappear {
             self.viewModel.cleanup()

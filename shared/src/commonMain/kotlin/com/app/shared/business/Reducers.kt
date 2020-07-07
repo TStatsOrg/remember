@@ -171,60 +171,11 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         is Actions.Feeds.Load.Success -> old.copy(feedsState = FeedsState(feeds = action.feeds.toBookmarkState()))
         is Actions.Feeds.Load.Error -> old.copy(feedsState = FeedsState(error = action.error))
 
-        // rss/load
-        is Actions.RSS.Load.Start -> old.copy(allRssFeeds = RSSState())
-        is Actions.RSS.Load.Success -> old.copy(allRssFeeds = RSSState(feed = action.rss.toRSSState(), time = action.time))
-        is Actions.RSS.Load.Error -> old.copy(allRssFeeds = RSSState(error = action.error, time = action.time))
         // rss/detail
-        is Actions.RSS.Detail.Present -> old.copy(rssFeedDetail = RSSFeedDetailState(feedState = action.rss.toState()))
+        is Actions.RSS.Detail.Present -> old.copy(rssFeedDetail = RSSFeedDetailState(feedState = action.dto.toState()))
         is Actions.RSS.Detail.LoadItems.Start -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = listOf(), error = null))
         is Actions.RSS.Detail.LoadItems.Success -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = action.items.toRSSItemState(), error = null))
         is Actions.RSS.Detail.LoadItems.Error -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(error = action.error, items = listOf()))
-        // rss/subscribe
-        is Actions.RSS.Subscribe -> {
-
-            val feeds = old.allRssFeeds.feed.map {
-                if (it.id == action.id) {
-                    it.copy(isSubscribed = true)
-                } else {
-                    it
-                }
-            }
-
-            val oldFeedDetailState = old.rssFeedDetail.feedState
-            val newRssFeedDetail = if (oldFeedDetailState.id == action.id) oldFeedDetailState.copy(isSubscribed = true) else oldFeedDetailState
-            val allUserFeeds = feeds.filter { it.isSubscribed }
-
-            old.copy(
-                allRssFeeds = old.allRssFeeds.copy(feed = feeds),
-                userRssFeeds = old.userRssFeeds.copy(feed = allUserFeeds),
-                rssFeedDetail = old.rssFeedDetail.copy(feedState = newRssFeedDetail)
-            )
-        }
-        is Actions.RSS.Unsubscribe -> {
-
-            val filterFunc: (RSSFeedState) -> RSSFeedState = {
-                if (it.id == action.id) {
-                    it.copy(isSubscribed = false)
-                } else {
-                    it
-                }
-            }
-
-            val allRssFeeds = old.allRssFeeds.feed.map(filterFunc)
-            val userRssFeeds = old.userRssFeeds.feed.map(filterFunc)
-            val feeds = (allRssFeeds + userRssFeeds).distinctBy { it.id }
-
-            val oldFeedDetailState = old.rssFeedDetail.feedState
-            val newRssFeedDetail = if (oldFeedDetailState.id == action.id) oldFeedDetailState.copy(isSubscribed = false) else oldFeedDetailState
-            val newUserFeeds = feeds.filter { it.isSubscribed }
-
-            old.copy(
-                allRssFeeds = old.allRssFeeds.copy(feed = feeds),
-                userRssFeeds = old.userRssFeeds.copy(feed = newUserFeeds),
-                rssFeedDetail = old.rssFeedDetail.copy(feedState = newRssFeedDetail)
-            )
-        }
         // display
         is Actions.Display.Load.Start -> old.copy(display = DisplayState(isLoading = true))
         is Actions.Display.Load.Success -> {

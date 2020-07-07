@@ -22,7 +22,7 @@ class RSSDetailActionsTest: DefaultTest() {
 
         // given
         val main = MainState()
-        val action = Actions.RSS.Detail.Present(rss = rss)
+        val action = Actions.RSS.Detail.Present(dto = rss)
 
         // when
         val result = AppStateReducer(main, action)

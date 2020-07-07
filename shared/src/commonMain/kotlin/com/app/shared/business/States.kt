@@ -90,6 +90,24 @@ data class FeedsState(
     val error: Throwable? = null
 ): AppState
 
+data class RSSFeedItemState(
+    val id: Int = 0,
+    val title: String = "",
+    val link: String = "",
+    val pubDate: Long = 0L,
+    val caption: String?
+): AppState
+
+data class RSSFeedDetailState(
+    val feedState: BookmarkState? = null,
+    val items: List<RSSFeedItemState> = listOf(),
+    val error: Throwable? = null
+): AppState {
+
+    // iOS constructor
+    constructor(): this(feedState = null, items = listOf(), error = null)
+}
+
 data class DisplayState(
     val item: BookmarkState.Link? = null,
     val error: Throwable? = null,
@@ -112,8 +130,6 @@ data class MainState(
     val feedsState: FeedsState = FeedsState(),
 
     // deprecated
-    val allRssFeeds: RSSState = RSSState(),
-    val userRssFeeds: RSSState = RSSState(),
     val rssFeedDetail: RSSFeedDetailState = RSSFeedDetailState()
 ): AppState
 
@@ -126,30 +142,3 @@ data class RSSFeedState(
     val icon: String? = null,
     val isSubscribed: Boolean = false
 ): AppState
-
-@Deprecated(message = "Old state")
-data class RSSFeedItemState(
-    val id: Int = 0,
-    val title: String = "",
-    val link: String = "",
-    val pubDate: Long = 0L,
-    val caption: String?
-): AppState
-
-@Deprecated(message = "Old state")
-data class RSSState(
-    val feed: List<RSSFeedState> = listOf(),
-    val error: Throwable? = null,
-    val time: Long = 0L
-): AppState
-
-@Deprecated(message = "Old state")
-data class RSSFeedDetailState(
-    val feedState: RSSFeedState = RSSFeedState(),
-    val items: List<RSSFeedItemState> = listOf(),
-    val error: Throwable? = null
-): AppState {
-
-    // iOS constructor
-    constructor(): this(feedState = RSSFeedState(), items = listOf(), error = null)
-}

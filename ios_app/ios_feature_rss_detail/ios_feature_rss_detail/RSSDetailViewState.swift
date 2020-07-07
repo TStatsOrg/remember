@@ -18,8 +18,12 @@ public struct RSSDetailViewState {
         self.state = state
     }
     
-    private var feedState: RSSFeedState {
-        return state.feedState
+    private var feedState: BookmarkRSSFeedViewState? {
+        if let state = state.feedState as? BookmarkStateRSSFeed {
+            return BookmarkRSSFeedViewState(state: state)
+        } else {
+            return nil
+        }
     }
     
     public var items: [RSSItemViewState] {
@@ -27,15 +31,15 @@ public struct RSSDetailViewState {
     }
     
     public var title: String {
-        return feedState.title
+        return feedState?.title ?? "N/A"
     }
     
     public var isSubscribeButtonVisible: Bool {
-        return !feedState.isSubscribed
+        return !(feedState?.isSubscribed ?? false)
     }
     
     public var isUnsubscribeButtonVisible: Bool {
-        return feedState.isSubscribed
+        return feedState?.isSubscribed ?? false
     }
     
     public var errorViewState: ErrorViewState {
@@ -47,10 +51,10 @@ public struct RSSDetailViewState {
     }
     
     public var id: Int32 {
-        return feedState.id
+        return feedState?.id ?? 0
     }
     
     public var isSubscribed: Bool {
-        return feedState.isSubscribed
+        return feedState?.isSubscribed ?? false
     }
 }

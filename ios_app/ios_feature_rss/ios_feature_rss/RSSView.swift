@@ -49,6 +49,10 @@ public struct RSSView: View {
                     Spacer()
                     ManagedSubscribeButton(isSubscribed: rssFeed.isSubscribed)
                 }
+                .onTapGesture {
+                    self.navigation.showRSSDetail(rssId: rssFeed.id)
+                    self.isShowingSheet = true
+                }
             )
         default:
             return AnyView(Text("N/A"))

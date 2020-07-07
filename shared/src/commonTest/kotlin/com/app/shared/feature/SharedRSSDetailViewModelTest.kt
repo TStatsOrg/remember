@@ -35,11 +35,11 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
         // when
         coEvery { repository.get(rssId = 13) } returns rss
         coEvery { repository.getAllItems(dto = rss) } returns Either.Success(listOf(item1, item2))
-        viewModel.loadRSSFeedData(rssId = 13)
+        viewModel.loadFeedItems(bookmarkId = 13)
 
         // then
         verify(exactly = 1) {
-            store.dispatch(action = Actions.RSS.Detail.Present(rss = rss))
+            store.dispatch(action = Actions.RSS.Detail.Present(dto = rss))
             store.dispatch(action = Actions.RSS.Detail.LoadItems.Success(items = listOf(item1, item2)))
         }
     }
@@ -53,11 +53,11 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
         // when
         coEvery { repository.get(rssId = 13) } returns rss
         coEvery { repository.getAllItems(dto = rss) } returns  Either.Failure(error)
-        viewModel.loadRSSFeedData(rssId = 13)
+        viewModel.loadFeedItems(bookmarkId = 13)
 
         // then
         verify(exactly = 1) {
-            store.dispatch(action = Actions.RSS.Detail.Present(rss = rss))
+            store.dispatch(action = Actions.RSS.Detail.Present(dto = rss))
             store.dispatch(action = Actions.RSS.Detail.LoadItems.Error(error = error))
         }
     }
@@ -69,7 +69,7 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
 
         // when
         coEvery { repository.get(rssId = 13) } returns null
-        viewModel.loadRSSFeedData(rssId = 13)
+        viewModel.loadFeedItems(bookmarkId = 13)
 
         // then
         verify(exactly = 0) {
@@ -112,13 +112,13 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
             newState = it
         }
 
-        viewModel.loadRSSFeedData(rssId = 2)
+        viewModel.loadFeedItems(bookmarkId = 2)
 
         // then
         assertNull(newState)
 
         // when
-        viewModel.loadRSSFeedData(rssId = 1)
+        viewModel.loadFeedItems(bookmarkId = 1)
 
         // then
         assertEquals(
@@ -155,7 +155,7 @@ class SharedRSSDetailViewModelTest: DefaultTest() {
         val error = Errors.Network
         coEvery { repository.getAllItems(dto = rss1) } returns Either.Failure(error)
 
-        viewModel.loadRSSFeedData(rssId = 1)
+        viewModel.loadFeedItems(bookmarkId = 1)
 
         // then
         assertEquals(
