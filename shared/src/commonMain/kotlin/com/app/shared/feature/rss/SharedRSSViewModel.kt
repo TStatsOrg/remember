@@ -1,10 +1,12 @@
 package com.app.shared.feature.rss
 
 import com.app.shared.business.Actions
+import com.app.shared.business.BookmarkState
 import com.app.shared.business.FeedsState
 import com.app.shared.business.MainState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
+import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.RSSFeedBookmarkRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
@@ -25,19 +27,19 @@ class SharedRSSViewModel(
         scope.launch(context = DispatcherFactory.main()) {
 
             // dispatch initial action
-            store.dispatch(action = Actions.Feeds.Load.Start(time = calendarUtils.getTime()))
+            store.dispatch(action = Actions.Bookmark.Load.Start(time = calendarUtils.getTime()))
 
             // get all Bookmarked RSS items, users and default ones
-            val rss = repository.loadAll()
+            val rss = repository.loadAll().filterIsInstance<BookmarkDTO.RSSFeedBookmarkDTO>()
 
             // dispatch final action
-            store.dispatch(action = Actions.Feeds.Load.Success(time = calendarUtils.getTime(), feeds = rss))
+            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendarUtils.getTime(), bookmarks = rss))
         }
     }
 
-    override fun observeRSSState(callback: (FeedsState) -> Unit) {
+    override fun observeRSSState(callback: (List<BookmarkState>) -> Unit) {
         storeObserver
-            .map { it.feedsState }
+            .map { it.allBookmarks }
             .collect(callback)
     }
 

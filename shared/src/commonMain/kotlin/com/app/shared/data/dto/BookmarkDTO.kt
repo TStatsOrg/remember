@@ -4,6 +4,7 @@ interface BookmarkDTO {
     val id: Int
     val date: Long
     val topic: TopicDTO?
+    val isFavourite: Boolean
 
     interface TextBookmarkDTO: BookmarkDTO {
         val text: String
@@ -18,7 +19,6 @@ interface BookmarkDTO {
 
     interface RSSFeedBookmarkDTO: BookmarkDTO {
         val url: String
-        val isSubscribed: Boolean
         val title: String?
         val caption: String?
         val icon: String?

@@ -99,9 +99,9 @@ class DefaultRSSFeedBookmarkDAO: RSSFeedBookmarkDAO {
         override val date: Long = 0L,
         override val topic: TopicDTO? = null,
         override val url: String,
-        override val isSubscribed: Boolean = false,
         override val title: String?,
         override val caption: String? = null,
+        override val isFavourite: Boolean = false,
         override val icon: String?
     ) : BookmarkDTO.RSSFeedBookmarkDTO
 }

@@ -49,14 +49,14 @@ class SharedRSSFeedBookmarkRepository(
         }
     }
 
-    private data class UserBookmarkedRSSFeed(
-        override val id: Int,
-        override val date: Long,
-        override val topic: TopicDTO?,
-        override val url: String,
-        override val title: String?,
-        override val caption: String?,
-        override val icon: String?,
-        override val isSubscribed: Boolean = true
-    ) : BookmarkDTO.RSSFeedBookmarkDTO
+//    private data class UserBookmarkedRSSFeed(
+//        override val id: Int,
+//        override val date: Long,
+//        override val topic: TopicDTO?,
+//        override val url: String,
+//        override val title: String?,
+//        override val caption: String?,
+//        override val icon: String?,
+//        override val isSubscribed: Boolean = true
+//    ) : BookmarkDTO.RSSFeedBookmarkDTO
 }

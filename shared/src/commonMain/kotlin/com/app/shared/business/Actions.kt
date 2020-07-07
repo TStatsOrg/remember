@@ -31,6 +31,11 @@ sealed class Actions: Action {
         data class Filter(val topic: TopicState): Bookmark()
 
         data class Delete(val bookmarkId: Int): Bookmark()
+
+        sealed class Favourite: Bookmark() {
+            data class Add(val bookmarkId: Int): Favourite()
+            data class Remove(val bookmarkId: Int): Favourite()
+        }
     }
 
     sealed class Topics: Actions() {

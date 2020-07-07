@@ -138,7 +138,7 @@ public struct BookmarkRSSFeedViewState: BookmarkViewStateType {
         title = state.title ?? "N/A"
         caption = state.caption
         source = state.url
-        isSubscribed = state.isSubscribed
+        isSubscribed = state.isFavourite
         
         if let url = URL(string: state.url) {
             destinationUrl = url

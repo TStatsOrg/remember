@@ -34,7 +34,6 @@ sealed class MockBookmarkDTO {
         override val date: Long,
         override val topic: TopicDTO?,
         override val url: String,
-        override val isSubscribed: Boolean,
         override val title: String?,
         override val caption: String?,
         override val icon: String?

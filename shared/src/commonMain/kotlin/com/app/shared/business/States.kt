@@ -7,11 +7,13 @@ interface BookmarkState: AppState {
     val id: Int
     val date: Long
     val topic: TopicState?
+    val isFavourite: Boolean
 
     data class Text(
         override val id: Int,
         override val date: Long,
         override val topic: TopicState?,
+        override val isFavourite: Boolean,
         val text: String
     ) : BookmarkState
 
@@ -19,6 +21,7 @@ interface BookmarkState: AppState {
         override val id: Int,
         override val date: Long,
         override val topic: TopicState?,
+        override val isFavourite: Boolean,
         val url: String,
         val title: String?,
         val caption: String?,
@@ -29,24 +32,26 @@ interface BookmarkState: AppState {
         override val id: Int,
         override val date: Long,
         override val topic: TopicState?,
+        override val isFavourite: Boolean,
         val url: String,
         val title: String?,
         val caption: String?,
-        val icon: String?,
-        val isSubscribed: Boolean
+        val icon: String?
     ): BookmarkState
 
     data class Image(
         override val id: Int,
         override val date: Long,
         override val topic: TopicState?,
+        override val isFavourite: Boolean,
         val url: String
     ): BookmarkState
 
     data class Unsupported(
         override val id: Int,
         override val date: Long,
-        override val topic: TopicState?
+        override val topic: TopicState?,
+        override val isFavourite: Boolean
     ): BookmarkState
 }
 
@@ -128,6 +133,7 @@ data class MainState(
     val editBookmark: EditBookmarkState? = null,
     val editTopic: EditTopicState? = null,
     val display: DisplayState = DisplayState(),
+    @Deprecated(message = "To remove")
     val feedsState: FeedsState = FeedsState(),
 
     // deprecated

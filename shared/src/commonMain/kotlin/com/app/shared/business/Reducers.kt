@@ -18,8 +18,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             old.copy(
                 allBookmarks = allNewBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
-                display = old.display.copy(isBookmarked = newBookmark.id == old.display.item?.id),
-                rssFeedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isSubscribed = true))
+                display = old.display.copy(isBookmarked = newBookmark.id == old.display.item?.id)
             )
         }
         // bookmark/present
@@ -85,9 +84,35 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
             old.copy(
                 allBookmarks = allNewBookmarks,
                 bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
-                display = old.display.copy(isBookmarked = false)/*,
-                rssFeedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isSubscribed = false))*/
+                display = old.display.copy(isBookmarked = false)
             )
+        }
+        // bookmark/favourite
+        is Actions.Bookmark.Favourite.Add -> {
+            val func: (BookmarkState) -> BookmarkState = {
+                if (it.id == action.bookmarkId) it.copy(withIsFavourite = true) else it
+            }
+            val newBookmarks = old.bookmarks.bookmarks.map(func)
+            val newAllBookmarks = old.allBookmarks.map(func)
+            val feedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isFavourite = true))
+
+            old.copy(
+                allBookmarks = newAllBookmarks,
+                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
+                rssFeedDetail = feedDetail)
+        }
+        is Actions.Bookmark.Favourite.Remove -> {
+            val func: (BookmarkState) -> BookmarkState = {
+                if (it.id == action.bookmarkId) it.copy(withIsFavourite = false) else it
+            }
+            val newBookmarks = old.bookmarks.bookmarks.map(func)
+            val newAllBookmarks = old.allBookmarks.map(func)
+            val feedDetail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isFavourite = false))
+
+            old.copy(
+                allBookmarks = newAllBookmarks,
+                bookmarks = old.bookmarks.copy(bookmarks = newBookmarks),
+                rssFeedDetail = feedDetail)
         }
         // topics/present
         is Actions.Topics.Load.Start -> old.copy(topics = TopicsState(date = action.time, isLoading = true))
@@ -174,31 +199,6 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         is Actions.Feeds.Load.Start -> old.copy(feedsState = FeedsState())
         is Actions.Feeds.Load.Success -> old.copy(feedsState = FeedsState(feeds = action.feeds.toBookmarkState()))
         is Actions.Feeds.Load.Error -> old.copy(feedsState = FeedsState(error = action.error))
-        is Actions.Feeds.Unsubscribe -> {
-            val detail = old.rssFeedDetail.copy(feedState = old.rssFeedDetail.feedState?.copy(isSubscribed = false))
-
-            val mapFunc: (BookmarkState) -> BookmarkState = {
-                when (it) {
-                    is BookmarkState.RSSFeed -> {
-                        if (it.id == action.bookmarkId) {
-                            it.copy(isSubscribed = false)
-                        } else {
-                            it
-                        }
-                    }
-                    else -> it
-                }
-            }
-
-            val allBookmarks = old.allBookmarks.map(mapFunc)
-            val bookmarks = old.bookmarks.copy(bookmarks = old.bookmarks.bookmarks.map(mapFunc))
-
-            old.copy(
-                allBookmarks = allBookmarks,
-                bookmarks = bookmarks,
-                rssFeedDetail = detail
-            )
-        }
         // rss/detail
         is Actions.RSS.Detail.Present -> old.copy(rssFeedDetail = RSSFeedDetailState(feedState = action.dto.toState()))
         is Actions.RSS.Detail.LoadItems.Start -> old.copy(rssFeedDetail = old.rssFeedDetail.copy(items = listOf(), error = null))
@@ -219,6 +219,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
                     caption = action.caption,
                     icon = action.icon,
                     title = action.title,
+                    isFavourite = false, // todo: is it so?
                     topic = null
                 ),
                 isBookmarked = bookmarkItem != null

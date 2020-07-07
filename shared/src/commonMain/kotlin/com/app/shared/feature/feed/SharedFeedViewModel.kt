@@ -7,6 +7,7 @@ import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.BookmarkDTO
 import com.app.shared.data.repository.BookmarkRepository
+import com.app.shared.data.repository.RSSFeedBookmarkRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class SharedFeedViewModel(
     private val store: Store<MainState>,
-    private val bookmarkRepository: BookmarkRepository,
+    private val bookmarkRepository: RSSFeedBookmarkRepository,
     private val calendar: CalendarUtils
 ): FeedViewModel {
 
@@ -27,7 +28,8 @@ class SharedFeedViewModel(
 
             store.dispatch(action = Actions.Bookmark.Load.Start(time = calendar.getTime()))
 
-            val dtos = bookmarkRepository.load().filterIsInstance<BookmarkDTO.RSSFeedBookmarkDTO>()
+            val dtos = bookmarkRepository.loadAll()
+                .filterIsInstance<BookmarkDTO.RSSFeedBookmarkDTO>()
 
             store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = dtos))
         }

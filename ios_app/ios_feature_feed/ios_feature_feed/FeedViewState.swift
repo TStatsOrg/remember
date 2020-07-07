@@ -19,7 +19,7 @@ public struct FeedViewState {
     }
     
     private var bookmarks: [BookmarkState] {
-        return state?.bookmarks ?? []
+        return state?.bookmarks.filter { $0.isFavourite } ?? []
     }
     
     var bookmarksViewState: [BookmarkViewState] {
