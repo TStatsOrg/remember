@@ -17,12 +17,12 @@ import com.app.shared.utils.toState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class SharedRSSDetailViewModel(
+class SharedFeedDetailViewModel(
     private val store: Store<MainState>,
     private val feedBookmarkRepository: RSSFeedBookmarkRepository,
     private val bookmarkRepository: BookmarkRepository,
     private val repository: FeedItemRepository
-): RSSDetailViewModel {
+): FeedDetailViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
@@ -43,7 +43,7 @@ class SharedRSSDetailViewModel(
         }
     }
 
-    override fun save(bookmarkId: Int) {
+    override fun subscribe(bookmarkId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
 
             val dto = feedBookmarkRepository.get(bookmarkId = bookmarkId)

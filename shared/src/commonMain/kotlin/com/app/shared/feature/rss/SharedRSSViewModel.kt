@@ -22,7 +22,7 @@ class SharedRSSViewModel(
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
 
-    override fun loadRSSFeeds() {
+    override fun loadData() {
         scope.launch(context = DispatcherFactory.main()) {
 
             // dispatch initial action

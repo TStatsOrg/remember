@@ -13,7 +13,7 @@ import RememberShared
 
 public struct RSSDetailView: View {
     
-    @Injected private var viewModel: RSSDetailViewModel
+    @Injected private var viewModel: FeedDetailViewModel
     @Injected private var navigation: Navigation
     @State private var state: RSSDetailViewState = RSSDetailViewState()
     @State private var isShowingSheet: Bool = false
@@ -31,7 +31,7 @@ public struct RSSDetailView: View {
         .navigationBarTitle(Text(state.title), displayMode: .inline)
         .navigationBarItems(trailing:
             ManagedSubscribeButton(isSubscribed: self.state.isSubscribed,
-                                   subscribeAction: { self.viewModel.save(bookmarkId: self.state.id) },
+                                   subscribeAction: { self.viewModel.subscribe(bookmarkId: self.state.id) },
                                    unsubscribeAction: { self.viewModel.unsubscribe(bookmarkId: self.state.id) })
         )
         .onAppear {

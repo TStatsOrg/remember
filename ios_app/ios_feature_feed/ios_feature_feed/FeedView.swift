@@ -38,13 +38,13 @@ public struct FeedView: View {
                 self.state = FeedViewState(state: $0)
             }
             
-            self.viewModel.loadBookmarkedRSSFeeds()
+            self.viewModel.loadData()
         }
         .onDisappear {
             // self.viewModel.cleanup()
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-            self.viewModel.loadBookmarkedRSSFeeds()
+            self.viewModel.loadData()
         }
         .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }

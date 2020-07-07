@@ -23,7 +23,7 @@ class SharedFeedViewModel(
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
 
-    override fun loadBookmarkedRSSFeeds() {
+    override fun loadData() {
         scope.launch(context = DispatcherFactory.main()) {
 
             store.dispatch(action = Actions.Bookmark.Load.Start(time = calendar.getTime()))
