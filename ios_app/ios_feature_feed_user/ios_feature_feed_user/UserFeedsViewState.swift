@@ -22,8 +22,10 @@ public struct UserFeedsViewState {
         return state?.bookmarks.filter { $0.isFavourite } ?? []
     }
     
-    var bookmarksViewState: [BookmarkViewState] {
+    var bookmarksViewState: [BookmarkFeedViewState] {
         return bookmarks.map(BookmarkViewState.init)
+            .compactMap { $0.viewState }
+            .compactMap { $0 as? BookmarkFeedViewState }
     }
     
     public var empty: EmptyViewState {

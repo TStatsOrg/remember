@@ -120,12 +120,14 @@ public struct BookmarkLinkViewState: BookmarkViewStateType {
     }
 }
 
-public struct BookmarkFeedViewState: BookmarkViewStateType {
+public struct BookmarkFeedViewState: Identifiable, BookmarkViewStateType {
     public var state: BookmarkState
     public var source: String
     
     public let title: String
     public let caption: String?
+    
+    public let id: Int32
     
     public let icon: URL?
     public let isIconHidden: Bool
@@ -140,6 +142,7 @@ public struct BookmarkFeedViewState: BookmarkViewStateType {
     public init(state: BookmarkStateFeed) {
         self.state = state
         
+        id = state.id
         title = state.title ?? "N/A"
         caption = state.caption
         source = state.url

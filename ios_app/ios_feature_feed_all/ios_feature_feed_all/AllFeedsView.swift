@@ -22,7 +22,7 @@ public struct AllFeedsView: View {
     public init() {}
     
     public var body: some View {
-        List(state.items, rowContent: self.getCellType)
+        List(state.items, rowContent: buildRow)
         .navigationBarTitle(Text(Translations.AllFeeds.title))
         .onAppear {
             self.viewModel.observeState {
@@ -36,29 +36,18 @@ public struct AllFeedsView: View {
         .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
     
-    private func getCellType(state: BookmarkViewState) -> AnyView {
-        guard let viewState = state.viewState else {
-            return AnyView(Text("N/A"))
+    private func buildRow(state: BookmarkFeedViewState) -> some View {
+        VStack {
+            HStack(alignment: .center) {
+                FeedBookmarkView(viewState: state)
+                Spacer()
+                ManagedSubscribeButton(isSubscribed: state.isSubscribed)
+            }
+            Divider()
         }
-        
-        switch viewState {
-        case let feed as BookmarkFeedViewState:
-            return AnyView(
-                VStack {
-                    HStack(alignment: .center) {
-                        FeedBookmarkView(viewState: feed)
-                        Spacer()
-                        ManagedSubscribeButton(isSubscribed: feed.isSubscribed)
-                    }
-                    Divider()
-                }
-                .onTapGesture {
-                    self.navigation.showFeedDetail(bookmarkId: feed.id)
-                    self.isShowingSheet = true
-                }
-            )
-        default:
-            return AnyView(Text("N/A"))
+        .onTapGesture {
+            self.navigation.showFeedDetail(bookmarkId: state.id)
+            self.isShowingSheet = true
         }
     }
 }

@@ -18,7 +18,9 @@ public struct AllFeedsViewState {
         self.state = state
     }
     
-    var items: [BookmarkViewState] {
+    var items: [BookmarkFeedViewState] {
         return state.map(BookmarkViewState.init)
+            .compactMap { $0.viewState }
+            .compactMap { $0 as? BookmarkFeedViewState }
     }
 }

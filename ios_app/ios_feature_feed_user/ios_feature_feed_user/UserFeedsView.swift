@@ -24,7 +24,7 @@ public struct UserFeedsView: View {
     public var body: some View {
         VStack {
             ManagedEmptyView(state: state.empty)
-            List(state.bookmarksViewState, rowContent: getCellType)
+            List(state.bookmarksViewState, rowContent: buildRow)
         }
         .navigationBarTitle(Text(Translations.UserFeeds.title), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
@@ -49,25 +49,14 @@ public struct UserFeedsView: View {
         .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
     
-    private func getCellType(state: BookmarkViewState) -> AnyView {
-        guard let viewState = state.viewState else {
-            return AnyView(Text("N/A"))
+    private func buildRow(state: BookmarkFeedViewState) -> some View {
+        VStack {
+            FeedBookmarkView(viewState: state)
+            Divider()
         }
-        
-        switch viewState {
-        case let feed as BookmarkFeedViewState:
-            return AnyView(
-                VStack {
-                    FeedBookmarkView(viewState: feed)
-                    Divider()
-                }
-                .onTapGesture {
-                    self.navigation.showFeedDetail(bookmarkId: feed.id)
-                    self.isShowingSheet = true
-                }
-            )
-        default:
-            return AnyView(Text("N/A"))
+        .onTapGesture {
+            self.navigation.showFeedDetail(bookmarkId: state.id)
+            self.isShowingSheet = true
         }
     }
 }
