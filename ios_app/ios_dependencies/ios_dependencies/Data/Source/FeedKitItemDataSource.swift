@@ -36,10 +36,10 @@ public class FeedKitItemDataSource: FeedItemDataSource {
                 return Either.Success(data: result)
             // JSON Feed Model
             case .json:
-                return Either.Failure(error: Errors.InvalidRSSFormat())
+                return Either.Failure(error: Errors.InvalidFeedFormat())
             }
         case .failure:
-            return Either.Failure(error: Errors.InvalidRSSFormat())
+            return Either.Failure(error: Errors.InvalidFeedFormat())
         }
     }
 }

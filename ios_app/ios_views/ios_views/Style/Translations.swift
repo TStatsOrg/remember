@@ -46,7 +46,7 @@ public struct Translations {
     
     public struct Errors {
         public static let Network: LocalizedStringKey = "error_network"
-        public static let InvalidRSSFormat: LocalizedStringKey = "error_rss"
+        public static let InvalidFeedFormat: LocalizedStringKey = "error_feed"
         public static let Database: LocalizedStringKey = "error_database"
         public static let InvalidURL: LocalizedStringKey = "error_url"
         public static let Other: LocalizedStringKey = "error_other"

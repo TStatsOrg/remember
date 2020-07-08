@@ -33,7 +33,7 @@
 
 // errors
 "error_network" = "There seems to have been a network error.\nPlease try again!";
-"error_rss" = "This RSS Feed is not in the correct format.";
+"error_feed" = "This Feed is not in the correct format.";
 "error_database" = "There seems to have been an internal error.\nPlease try again!";
 "error_url" = "That seems to be an invalid URL.\nPlease try again!";
 "error_other" = "An unknown error occurred";
