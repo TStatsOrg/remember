@@ -5,18 +5,18 @@ import com.app.shared.data.dao.RSSFeedBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
 import kotlinx.coroutines.withContext
 
-class SharedRSSFeedBookmarkRepository(
-    private val userBookmarkedRSSFeedDAO: RSSFeedBookmarkDAO,
-    private val allBookmarkRSSFeedDAO: RSSFeedBookmarkDAO
-): RSSFeedBookmarkRepository {
+class SharedFeedsRepository(
+    private val userFeedsDAO: RSSFeedBookmarkDAO,
+    private val allFeedsDAO: RSSFeedBookmarkDAO
+): FeedsRepository {
 
     override suspend fun loadAll(): List<BookmarkDTO> {
         return withContext(context = DispatcherFactory.io()) {
 
-            val user = userBookmarkedRSSFeedDAO.getAll()
+            val user = userFeedsDAO.getAll()
             val userIds = user.map { it.id }
 
-            val all = allBookmarkRSSFeedDAO.getAll().filter { !userIds.contains(it.id) }
+            val all = allFeedsDAO.getAll().filter { !userIds.contains(it.id) }
 
             return@withContext (all + user).sortedBy { it.id }
         }

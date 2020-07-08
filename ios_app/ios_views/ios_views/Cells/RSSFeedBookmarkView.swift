@@ -14,9 +14,9 @@ import SDWebImageSwiftUI
 
 public struct RSSFeedBookmarkView: View {
     
-    private let viewState: BookmarkRSSFeedViewState
+    private let viewState: BookmarkFeedViewState
     
-    public init(viewState: BookmarkRSSFeedViewState) {
+    public init(viewState: BookmarkFeedViewState) {
         self.viewState = viewState
     }
     

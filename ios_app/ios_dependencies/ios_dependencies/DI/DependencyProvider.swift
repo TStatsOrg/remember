@@ -87,8 +87,8 @@ public class DependencyProvider {
         }
         
         register {
-            SharedRSSFeedBookmarkRepository(userBookmarkedRSSFeedDAO: (self.resolve() as Database).getRSSFeedBookmarkDAO(),
-                                            allBookmarkRSSFeedDAO: DefaultRSSFeedBookmarkDAO()) as RSSFeedBookmarkRepository
+            SharedFeedsRepository(userFeedsDAO: (self.resolve() as Database).getRSSFeedBookmarkDAO(),
+                                  allFeedsDAO: DefaultRSSFeedBookmarkDAO()) as FeedsRepository
         }
         
         // view models

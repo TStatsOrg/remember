@@ -42,15 +42,15 @@ public struct AllFeedsView: View {
         }
         
         switch viewState {
-        case let rssFeed as BookmarkRSSFeedViewState:
+        case let feed as BookmarkFeedViewState:
             return AnyView(
                 HStack {
-                    RSSFeedBookmarkView(viewState: rssFeed)
+                    RSSFeedBookmarkView(viewState: feed)
                     Spacer()
-                    ManagedSubscribeButton(isSubscribed: rssFeed.isSubscribed)
+                    ManagedSubscribeButton(isSubscribed: feed.isSubscribed)
                 }
                 .onTapGesture {
-                    self.navigation.showFeedDetail(bookmarkId: rssFeed.id)
+                    self.navigation.showFeedDetail(bookmarkId: feed.id)
                     self.isShowingSheet = true
                 }
             )

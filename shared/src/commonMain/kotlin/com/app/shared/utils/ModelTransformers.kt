@@ -25,7 +25,7 @@ fun RawDataProcess.Item.toDTO(date: Long, topic: TopicDTO? = null): BookmarkDTO?
             override val isFavourite: Boolean = false
             override val topic: TopicDTO? = topic
         }
-        is RawDataProcess.Item.RSSFeed -> object : BookmarkDTO.RSSFeedBookmarkDTO {
+        is RawDataProcess.Item.Feed -> object : BookmarkDTO.RSSFeedBookmarkDTO {
             override val url: String = this@toDTO.url
             override val title: String? = this@toDTO.title
             override val caption: String? = this@toDTO.caption
@@ -72,7 +72,7 @@ fun BookmarkDTO.toState(): BookmarkState {
             isFavourite = isFavourite,
             topic = topic?.toState()
         )
-        is BookmarkDTO.RSSFeedBookmarkDTO -> BookmarkState.RSSFeed(
+        is BookmarkDTO.RSSFeedBookmarkDTO -> BookmarkState.Feed(
             id = id,
             date = date,
             url = url,
@@ -117,7 +117,7 @@ fun BookmarkState.toDTO(withTopic: TopicState? = null): BookmarkDTO? {
             override val isFavourite: Boolean = this@toDTO.isFavourite
             override val topic: TopicDTO? = withTopic?.toDTO() ?: this@toDTO.topic?.toDTO()
         }
-        is BookmarkState.RSSFeed -> object : BookmarkDTO.RSSFeedBookmarkDTO {
+        is BookmarkState.Feed -> object : BookmarkDTO.RSSFeedBookmarkDTO {
             override val url: String = this@toDTO.url
             override val title: String? = this@toDTO.title
             override val caption: String? = this@toDTO.caption
@@ -131,8 +131,8 @@ fun BookmarkState.toDTO(withTopic: TopicState? = null): BookmarkDTO? {
     }
 }
 
-fun BookmarkDTO.RSSFeedBookmarkDTO.toState(): BookmarkState.RSSFeed {
-    return BookmarkState.RSSFeed(
+fun BookmarkDTO.RSSFeedBookmarkDTO.toState(): BookmarkState.Feed {
+    return BookmarkState.Feed(
         id = this.id,
         caption = this.caption,
         title = this.title,
@@ -149,7 +149,7 @@ fun BookmarkState.copy(withTopic: TopicState?): BookmarkState {
         is BookmarkState.Image -> BookmarkState.Image(id = id, date = date, url = url, isFavourite = isFavourite, topic = withTopic)
         is BookmarkState.Link -> BookmarkState.Link(id = id, url = url, title = title, caption = caption, icon = icon, date = date, isFavourite = isFavourite, topic = withTopic)
         is BookmarkState.Text -> BookmarkState.Text(id = id, text = text, date = date, isFavourite = isFavourite, topic = withTopic)
-        is BookmarkState.RSSFeed -> BookmarkState.RSSFeed(id = id, title = title, url = url, caption = caption, isFavourite = isFavourite, date = date, icon = icon, topic = withTopic)
+        is BookmarkState.Feed -> BookmarkState.Feed(id = id, title = title, url = url, caption = caption, isFavourite = isFavourite, date = date, icon = icon, topic = withTopic)
         else -> BookmarkState.Unsupported(id = id, date = date, isFavourite = isFavourite, topic = withTopic)
     }
 }
@@ -157,7 +157,7 @@ fun BookmarkState.copy(withTopic: TopicState?): BookmarkState {
 fun BookmarkState.copy(withIsFavourite: Boolean): BookmarkState {
     return when (this) {
         is BookmarkState.Image -> this.copy(isFavourite = withIsFavourite)
-        is BookmarkState.RSSFeed -> this.copy(isFavourite = withIsFavourite)
+        is BookmarkState.Feed -> this.copy(isFavourite = withIsFavourite)
         is BookmarkState.Link -> this.copy(isFavourite = withIsFavourite)
         is BookmarkState.Text -> this.copy(isFavourite = withIsFavourite)
         else -> BookmarkState.Unsupported(id = id, date = date, isFavourite = withIsFavourite, topic = topic)
@@ -183,4 +183,4 @@ fun FeedItemDTO.toState(): FeedItemState = FeedItemState(
     caption = caption
 )
 
-fun List<FeedItemDTO>.toRSSItemState(): List<FeedItemState> = this.map { it.toState() }
+fun List<FeedItemDTO>.toFeedItemState(): List<FeedItemState> = this.map { it.toState() }

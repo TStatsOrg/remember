@@ -28,7 +28,7 @@ interface BookmarkState: AppState {
         val icon: String?
     ): BookmarkState
 
-    data class RSSFeed(
+    data class Feed(
         override val id: Int,
         override val date: Long,
         override val topic: TopicState?,
@@ -99,7 +99,7 @@ data class FeedItemState(
 ): AppState
 
 data class FeedDetailState(
-    val feedState: BookmarkState.RSSFeed? = null,
+    val feedState: BookmarkState.Feed? = null,
     val items: List<FeedItemState> = listOf(),
     val error: Throwable? = null
 ): AppState {

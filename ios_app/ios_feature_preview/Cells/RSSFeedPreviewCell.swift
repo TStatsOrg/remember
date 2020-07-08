@@ -17,7 +17,7 @@ class RSSFeedPreviewCell: UITableViewCell, GenericIdentifiable {
     @IBOutlet weak var feedTitle: UILabel!
     @IBOutlet weak var feedSource: UILabel!
     
-    func redraw(viewState: BookmarkRSSFeedViewState) {
+    func redraw(viewState: BookmarkFeedViewState) {
         feedTitle.text = viewState.title
         feedSource.text = viewState.source
         feedIcon.sd_setImage(with: viewState.icon)

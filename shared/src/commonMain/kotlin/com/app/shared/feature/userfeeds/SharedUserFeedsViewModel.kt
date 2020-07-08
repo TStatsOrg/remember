@@ -6,7 +6,7 @@ import com.app.shared.business.MainState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.BookmarkDTO
-import com.app.shared.data.repository.RSSFeedBookmarkRepository
+import com.app.shared.data.repository.FeedsRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class SharedUserFeedsViewModel(
     private val store: Store<MainState>,
-    private val bookmarkRepository: RSSFeedBookmarkRepository,
+    private val bookmarkRepository: FeedsRepository,
     private val calendar: CalendarUtils
 ): UserFeedsViewModel {
 

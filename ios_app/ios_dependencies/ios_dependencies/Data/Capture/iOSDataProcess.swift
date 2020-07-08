@@ -64,10 +64,10 @@ public class iOSDataProcess: RawDataProcess {
                         let icon = feed.rssFeed?.image?.link ?? feed.atomFeed?.icon
                         let caption = feed.rssFeed?.description ?? feed.atomFeed?.subtitle?.value
                         
-                        result(RawDataProcessItem.RSSFeed(url: url.absoluteString,
-                                                          title: title,
-                                                          caption: caption,
-                                                          icon: icon))
+                        result(RawDataProcessItem.Feed(url: url.absoluteString,
+                                                       title: title,
+                                                       caption: caption,
+                                                       icon: icon))
                     case .failure:
 
                         self?.resolver.getContent(url: url) { [weak self] (finalURL, content) in
@@ -79,7 +79,7 @@ public class iOSDataProcess: RawDataProcess {
                                                                description: successResult.caption,
                                                                icon: successResult.icon))
                             }
-                            if let error = htmlResult as? Either.Failure {
+                            if (htmlResult as? Either.Failure) != nil {
                                 result(RawDataProcessItem.Unknown())
                             }
                         }

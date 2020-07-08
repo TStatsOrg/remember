@@ -29,8 +29,8 @@ public struct BookmarkViewState: Identifiable {
             return BookmarkImageViewState(state: image)
         case let link as BookmarkStateLink:
             return BookmarkLinkViewState(state: link)
-        case let rssFeed as BookmarkStateRSSFeed:
-            return BookmarkRSSFeedViewState(state: rssFeed)
+        case let rssFeed as BookmarkStateFeed:
+            return BookmarkFeedViewState(state: rssFeed)
         default:
             return nil
         }
@@ -119,7 +119,7 @@ public struct BookmarkLinkViewState: BookmarkViewStateType {
     }
 }
 
-public struct BookmarkRSSFeedViewState: BookmarkViewStateType {
+public struct BookmarkFeedViewState: BookmarkViewStateType {
     public var state: BookmarkState
     public var source: String
     
@@ -132,7 +132,7 @@ public struct BookmarkRSSFeedViewState: BookmarkViewStateType {
     
     public let isSubscribed: Bool
     
-    public init(state: BookmarkStateRSSFeed) {
+    public init(state: BookmarkStateFeed) {
         self.state = state
         
         title = state.title ?? "N/A"

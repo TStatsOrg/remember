@@ -198,7 +198,7 @@ val AppStateReducer: Reducer<MainState> = { old, action ->
         // feed/detail
         is Actions.Feed.Detail.Present -> old.copy(feedDetail = FeedDetailState(feedState = action.dto.toState()))
         is Actions.Feed.Detail.LoadItems.Start -> old.copy(feedDetail = old.feedDetail.copy(items = listOf(), error = null))
-        is Actions.Feed.Detail.LoadItems.Success -> old.copy(feedDetail = old.feedDetail.copy(items = action.items.toRSSItemState(), error = null))
+        is Actions.Feed.Detail.LoadItems.Success -> old.copy(feedDetail = old.feedDetail.copy(items = action.items.toFeedItemState(), error = null))
         is Actions.Feed.Detail.LoadItems.Error -> old.copy(feedDetail = old.feedDetail.copy(error = action.error, items = listOf()))
         // display
         is Actions.Display.Load.Start -> old.copy(display = DisplayState(isLoading = true))

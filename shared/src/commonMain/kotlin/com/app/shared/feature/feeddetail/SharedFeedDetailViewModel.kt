@@ -7,7 +7,7 @@ import com.app.shared.business.FeedDetailState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.repository.BookmarkRepository
-import com.app.shared.data.repository.RSSFeedBookmarkRepository
+import com.app.shared.data.repository.FeedsRepository
 import com.app.shared.data.repository.FeedItemRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class SharedFeedDetailViewModel(
     private val store: Store<MainState>,
-    private val feedBookmarkRepository: RSSFeedBookmarkRepository,
+    private val feedBookmarkRepository: FeedsRepository,
     private val bookmarkRepository: BookmarkRepository,
     private val repository: FeedItemRepository
 ): FeedDetailViewModel {
