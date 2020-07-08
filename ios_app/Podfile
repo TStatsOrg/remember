@@ -76,25 +76,6 @@ target 'ios_feature_topic_edit' do
   use_frameworks!
 end
 
-target 'ios_feature_feed' do
-  project 'ios_feature_feed/ios_feature_feed.xcodeproj'
-  use_frameworks!
-  
-  pod 'SDWebImageSwiftUI', '1.3.3'
-end
-
-target 'ios_feature_rss' do
-  project 'ios_feature_rss/ios_feature_rss.xcodeproj'
-  use_frameworks!
-  
-  pod 'SDWebImageSwiftUI', '1.3.3'
-end
-
-target 'ios_feature_rss_detail' do
-  project 'ios_feature_rss_detail/ios_feature_rss_detail.xcodeproj'
-  use_frameworks!
-end
-
 target 'ios_feature_bookmarks' do
   project 'ios_feature_bookmarks/ios_feature_bookmarks.xcodeproj'
   use_frameworks!
@@ -102,3 +83,21 @@ target 'ios_feature_bookmarks' do
   pod 'SDWebImageSwiftUI', '1.3.3'
 end
 
+target 'ios_feature_feed_user' do
+  project 'ios_feature_feed_user/ios_feature_feed_user.xcodeproj'
+  use_frameworks!
+  
+  pod 'SDWebImageSwiftUI', '1.3.3'
+end
+
+target 'ios_feature_feed_all' do
+  project 'ios_feature_feed_all/ios_feature_feed_all.xcodeproj'
+  use_frameworks!
+  
+  pod 'SDWebImageSwiftUI', '1.3.3'
+end
+
+target 'ios_feature_feed_detail' do
+  project 'ios_feature_feed_detail/ios_feature_feed_detail.xcodeproj'
+  use_frameworks!
+end

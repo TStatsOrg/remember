@@ -2,16 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ios_feature_feed_detail/ios_feature_feed_detail.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ios_feature_feed_all/ios_feature_feed_all.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ios_feature_feed_user/ios_feature_feed_user.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ios_feature_display/ios_feature_display.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:ios_feature_rss_detail/ios_feature_rss_detail.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:ios_feature_rss/ios_feature_rss.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:ios_feature_feed/ios_feature_feed.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:ios_feature_bookmarks/ios_feature_bookmarks.xcodeproj">

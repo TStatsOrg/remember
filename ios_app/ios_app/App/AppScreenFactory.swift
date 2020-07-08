@@ -14,9 +14,9 @@ import ios_feature_hub
 import ios_feature_topics
 import ios_feature_topic_edit
 import ios_feature_bookmarks
-import ios_feature_feed
-import ios_feature_rss
-import ios_feature_rss_detail
+import ios_feature_feed_user
+import ios_feature_feed_all
+import ios_feature_feed_detail
 import ios_feature_display
 
 struct AppScreenFactory: ScreenFactory {
