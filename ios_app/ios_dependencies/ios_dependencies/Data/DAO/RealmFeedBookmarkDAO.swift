@@ -20,7 +20,7 @@ public class RealmFeedBookmarkDAO: RealmDAO, FeedBookmarkDAO {
     }
     
     public func delete(bookmarkId: Int32) {
-        let result = realm?.objects(RealmRSSFeedBookmarkObject.self).filter { $0.id == bookmarkId }
+        let result = realm?.objects(RealmFeedBookmarkObject.self).filter { $0.id == bookmarkId }
         
         guard let dto = result?.first else {
             return
@@ -31,12 +31,12 @@ public class RealmFeedBookmarkDAO: RealmDAO, FeedBookmarkDAO {
         }
     }
     
-    public func getAll() -> [BookmarkDTORSSFeedBookmarkDTO] {
-        let result = realm?.objects(RealmRSSFeedBookmarkObject.self)
+    public func getAll() -> [BookmarkDTOFeedBookmarkDTO] {
+        let result = realm?.objects(RealmFeedBookmarkObject.self)
         return result?.map { $0 }.map { $0.toDTO() } ?? []
     }
     
-    public func insert(dto: BookmarkDTORSSFeedBookmarkDTO) {
+    public func insert(dto: BookmarkDTOFeedBookmarkDTO) {
         try? realm?.write {
             realm?.add(dto.toObject(), update: Realm.UpdatePolicy.all)
         }
@@ -44,7 +44,7 @@ public class RealmFeedBookmarkDAO: RealmDAO, FeedBookmarkDAO {
     
     public func replaceTopic(topicId: Int32, withTopicDTO: TopicDTO) {
         let topicResult = realm?.objects(RealmTopicObject.self).filter { $0.id == withTopicDTO.id }
-        let bookmarkResult = realm?.objects(RealmRSSFeedBookmarkObject.self).filter { $0.topic?.id == topicId }
+        let bookmarkResult = realm?.objects(RealmFeedBookmarkObject.self).filter { $0.topic?.id == topicId }
         
         guard let defaultTopic = topicResult?.first, let bookmarks = bookmarkResult else {
             return

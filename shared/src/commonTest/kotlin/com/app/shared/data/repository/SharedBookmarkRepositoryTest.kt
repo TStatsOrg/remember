@@ -28,7 +28,7 @@ class SharedBookmarkRepositoryTest: DefaultTest() {
         val textDTO = MockBookmarkDTO.Text(id = 1, date = 1000, text = "cool", topic = null)
         val imageDTO = MockBookmarkDTO.Image(id = 2, url = "https://my.image/image.png", date = 1001, topic = null)
         val linkDTO = MockBookmarkDTO.Link(id = 3, date = 1002, topic = null, title = "title", caption = "caption", url = "https://my.link/link.html", icon = null)
-        val rssFeedDTO = MockBookmarkDTO.RSSFeed(id = 4, date = 1003, topic = null, title = "My Feed", caption = "My Feed", url = "https://my.feed/index.xml", icon = null, isSubscribed = false)
+        val rssFeedDTO = MockBookmarkDTO.Feed(id = 4, date = 1003, topic = null, title = "My Feed", caption = "My Feed", url = "https://my.feed/index.xml", icon = null, isSubscribed = false)
 
         // when
         repository.save(dto = textDTO)
@@ -51,7 +51,7 @@ class SharedBookmarkRepositoryTest: DefaultTest() {
         val textDTO = MockBookmarkDTO.Text(id = 1, date = 1000, text = "cool", topic = null)
         val imageDTO = MockBookmarkDTO.Image(id = 2, url = "https://my.image/image.png", date = 1001, topic = null)
         val linkDTO = MockBookmarkDTO.Link(id = 3, date = 1002, topic = null, title = "title", caption = "caption", url = "https://my.link/link.html", icon = null)
-        val rssFeedDTO = MockBookmarkDTO.RSSFeed(id = 4, date = 1003, topic = null, title = "My Feed", caption = "My Feed", url = "https://my.feed/index.xml", icon = null, isSubscribed = false)
+        val rssFeedDTO = MockBookmarkDTO.Feed(id = 4, date = 1003, topic = null, title = "My Feed", caption = "My Feed", url = "https://my.feed/index.xml", icon = null, isSubscribed = false)
 
         every { imageBookmarkDAO.getAll() } returns listOf(imageDTO)
         every { linkBookmarkDAO.getAll() } returns listOf(linkDTO)

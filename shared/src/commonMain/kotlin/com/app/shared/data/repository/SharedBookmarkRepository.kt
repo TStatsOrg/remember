@@ -22,7 +22,7 @@ class SharedBookmarkRepository(
                 is BookmarkDTO.TextBookmarkDTO -> textBookmarkDAO.insert(dto = dto)
                 is BookmarkDTO.LinkBookmarkDTO -> linkBookmarkDAO.insert(dto = dto)
                 is BookmarkDTO.ImageBookmarkDTO -> imageBookmarkDAO.insert(dto = dto)
-                is BookmarkDTO.RSSFeedBookmarkDTO -> feedBookmarkDAO.insert(dto = dto)
+                is BookmarkDTO.FeedBookmarkDTO -> feedBookmarkDAO.insert(dto = dto)
             }
         }
     }

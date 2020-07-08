@@ -26,7 +26,7 @@ class SharedBookmarksViewModel(
 
             store.dispatch(action = Actions.Bookmark.Load.Start(time = calendar.getTime()))
 
-            val dtos = bookmarkRepository.load().filter { it !is BookmarkDTO.RSSFeedBookmarkDTO }
+            val dtos = bookmarkRepository.load().filter { it !is BookmarkDTO.FeedBookmarkDTO }
 
             store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = dtos))
         }

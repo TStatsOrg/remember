@@ -10,7 +10,7 @@ import Foundation
 import RememberShared
 import RealmSwift
 
-class RealmRSSFeedBookmarkObject: Object {
+class RealmFeedBookmarkObject: Object {
     @objc dynamic var id: Int32 = 0
     @objc dynamic var url: String = ""
     @objc dynamic var title: String? = nil
@@ -37,7 +37,7 @@ class RealmRSSFeedBookmarkObject: Object {
         return "id"
     }
     
-    internal class DTO: BookmarkDTORSSFeedBookmarkDTO {
+    internal class DTO: BookmarkDTOFeedBookmarkDTO {
         let caption: String?
         let icon: String?
         let title: String?
@@ -67,14 +67,14 @@ class RealmRSSFeedBookmarkObject: Object {
     }
 }
 
-extension RealmRSSFeedBookmarkObject {
-    func toDTO() -> BookmarkDTORSSFeedBookmarkDTO {
-        return RealmRSSFeedBookmarkObject.DTO(id: id, url: url, title: title, caption: caption, icon: icon, date: date, isFavourite: isFavourite, topic: topic?.toDTO())
+extension RealmFeedBookmarkObject {
+    func toDTO() -> BookmarkDTOFeedBookmarkDTO {
+        return RealmFeedBookmarkObject.DTO(id: id, url: url, title: title, caption: caption, icon: icon, date: date, isFavourite: isFavourite, topic: topic?.toDTO())
     }
 }
 
-extension BookmarkDTORSSFeedBookmarkDTO {
-    func toObject() -> RealmRSSFeedBookmarkObject {
-        return RealmRSSFeedBookmarkObject(id: id, date: date, url: url, title: title, icon: icon, caption: caption, isFavourite: isFavourite, topic: topic?.toObject())
+extension BookmarkDTOFeedBookmarkDTO {
+    func toObject() -> RealmFeedBookmarkObject {
+        return RealmFeedBookmarkObject(id: id, date: date, url: url, title: title, icon: icon, caption: caption, isFavourite: isFavourite, topic: topic?.toObject())
     }
 }

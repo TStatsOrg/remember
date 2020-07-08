@@ -32,7 +32,7 @@ sealed class MockBookmarkDTO {
         override val isFavourite: Boolean = false
     ) : MockBookmarkDTO(), BookmarkDTO.LinkBookmarkDTO
 
-    data class RSSFeed(
+    data class Feed(
         override val id: Int,
         override val date: Long,
         override val topic: TopicDTO?,
@@ -41,5 +41,5 @@ sealed class MockBookmarkDTO {
         override val caption: String?,
         override val icon: String?,
         override val isFavourite: Boolean = false
-    ) : MockBookmarkDTO(), BookmarkDTO.RSSFeedBookmarkDTO
+    ) : MockBookmarkDTO(), BookmarkDTO.FeedBookmarkDTO
 }

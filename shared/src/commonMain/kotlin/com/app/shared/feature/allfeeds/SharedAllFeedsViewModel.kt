@@ -28,8 +28,8 @@ class SharedAllFeedsViewModel(
             // dispatch initial action
             store.dispatch(action = Actions.Bookmark.Load.Start(time = calendarUtils.getTime()))
 
-            // get all Bookmarked RSS items, users and default ones
-            val rss = repository.loadAll().filterIsInstance<BookmarkDTO.RSSFeedBookmarkDTO>()
+            // get all Bookmarked items, users and default ones
+            val rss = repository.loadAll().filterIsInstance<BookmarkDTO.FeedBookmarkDTO>()
 
             // dispatch final action
             store.dispatch(action = Actions.Bookmark.Load.Success(time = calendarUtils.getTime(), bookmarks = rss))

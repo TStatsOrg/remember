@@ -21,7 +21,7 @@ interface RawDataProcess {
         ): Item()
 
         /**
-         * A RSS Feed item the user has captured - with a feed url, title, caption, icon
+         * A Feed item the user has captured - with a feed url, title, caption, icon
          */
         data class Feed(
             val url: String,

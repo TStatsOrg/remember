@@ -22,11 +22,11 @@ class SharedFeedsRepository(
         }
     }
 
-    override suspend fun get(bookmarkId: Int): BookmarkDTO.RSSFeedBookmarkDTO? {
+    override suspend fun get(bookmarkId: Int): BookmarkDTO.FeedBookmarkDTO? {
         return withContext(context = DispatcherFactory.io()) {
             // todo: very inefficient way
             return@withContext loadAll()
-                .filterIsInstance<BookmarkDTO.RSSFeedBookmarkDTO>()
+                .filterIsInstance<BookmarkDTO.FeedBookmarkDTO>()
                 .firstOrNull { it.id == bookmarkId }
         }
     }

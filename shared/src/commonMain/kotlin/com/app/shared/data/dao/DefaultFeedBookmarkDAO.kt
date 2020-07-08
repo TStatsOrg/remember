@@ -86,9 +86,9 @@ class DefaultFeedBookmarkDAO: FeedBookmarkDAO {
         )
     )
 
-    override fun insert(dto: BookmarkDTO.RSSFeedBookmarkDTO) = Unit
+    override fun insert(dto: BookmarkDTO.FeedBookmarkDTO) = Unit
 
-    override fun getAll(): List<BookmarkDTO.RSSFeedBookmarkDTO> = defaultFeeds
+    override fun getAll(): List<BookmarkDTO.FeedBookmarkDTO> = defaultFeeds
 
     override fun delete(bookmarkId: Int) = Unit
 
@@ -103,5 +103,5 @@ class DefaultFeedBookmarkDAO: FeedBookmarkDAO {
         override val caption: String? = null,
         override val isFavourite: Boolean = false,
         override val icon: String?
-    ) : BookmarkDTO.RSSFeedBookmarkDTO
+    ) : BookmarkDTO.FeedBookmarkDTO
 }

@@ -25,7 +25,7 @@ fun RawDataProcess.Item.toDTO(date: Long, topic: TopicDTO? = null): BookmarkDTO?
             override val isFavourite: Boolean = false
             override val topic: TopicDTO? = topic
         }
-        is RawDataProcess.Item.Feed -> object : BookmarkDTO.RSSFeedBookmarkDTO {
+        is RawDataProcess.Item.Feed -> object : BookmarkDTO.FeedBookmarkDTO {
             override val url: String = this@toDTO.url
             override val title: String? = this@toDTO.title
             override val caption: String? = this@toDTO.caption
@@ -72,7 +72,7 @@ fun BookmarkDTO.toState(): BookmarkState {
             isFavourite = isFavourite,
             topic = topic?.toState()
         )
-        is BookmarkDTO.RSSFeedBookmarkDTO -> BookmarkState.Feed(
+        is BookmarkDTO.FeedBookmarkDTO -> BookmarkState.Feed(
             id = id,
             date = date,
             url = url,
@@ -117,7 +117,7 @@ fun BookmarkState.toDTO(withTopic: TopicState? = null): BookmarkDTO? {
             override val isFavourite: Boolean = this@toDTO.isFavourite
             override val topic: TopicDTO? = withTopic?.toDTO() ?: this@toDTO.topic?.toDTO()
         }
-        is BookmarkState.Feed -> object : BookmarkDTO.RSSFeedBookmarkDTO {
+        is BookmarkState.Feed -> object : BookmarkDTO.FeedBookmarkDTO {
             override val url: String = this@toDTO.url
             override val title: String? = this@toDTO.title
             override val caption: String? = this@toDTO.caption
@@ -131,7 +131,7 @@ fun BookmarkState.toDTO(withTopic: TopicState? = null): BookmarkDTO? {
     }
 }
 
-fun BookmarkDTO.RSSFeedBookmarkDTO.toState(): BookmarkState.Feed {
+fun BookmarkDTO.FeedBookmarkDTO.toState(): BookmarkState.Feed {
     return BookmarkState.Feed(
         id = this.id,
         caption = this.caption,

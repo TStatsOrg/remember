@@ -57,7 +57,7 @@ sealed class Actions: Action {
     sealed class Feed: Actions() {
 
         sealed class Detail: Feed() {
-            data class Present(val dto: BookmarkDTO.RSSFeedBookmarkDTO): Detail()
+            data class Present(val dto: BookmarkDTO.FeedBookmarkDTO): Detail()
             sealed class LoadItems: Detail() {
                 object Start: LoadItems()
                 data class Success(val items: List<FeedItemDTO>): LoadItems()

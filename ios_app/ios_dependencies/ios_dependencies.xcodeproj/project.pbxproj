@@ -12,7 +12,7 @@
 		1B169C7C24B35B7200F962FB /* WebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7B24B35B7200F962FB /* WebViewProgress.swift */; };
 		1B169C7E24B3606A00F962FB /* ContentResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C7D24B3606A00F962FB /* ContentResolver.swift */; };
 		1B169C8224B37D8100F962FB /* RealmFeedBookmarkDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C8124B37D8100F962FB /* RealmFeedBookmarkDAO.swift */; };
-		1B169C8424B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169C8324B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift */; };
+		1B169D2124B5F73F00F962FB /* RealmFeedBookmarkObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169D2024B5F73F00F962FB /* RealmFeedBookmarkObject.swift */; };
 		1B84146E249FBC9800AD4660 /* FeedKitItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146D249FBC9800AD4660 /* FeedKitItemDataSource.swift */; };
 		1B841470249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */; };
 		1B8ABAB524AA7EC500D35366 /* FeedKitAtomItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8ABAB424AA7EC500D35366 /* FeedKitAtomItemDTO.swift */; };
@@ -44,7 +44,7 @@
 		1B169C7B24B35B7200F962FB /* WebViewProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewProgress.swift; sourceTree = "<group>"; };
 		1B169C7D24B3606A00F962FB /* ContentResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentResolver.swift; sourceTree = "<group>"; };
 		1B169C8124B37D8100F962FB /* RealmFeedBookmarkDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeedBookmarkDAO.swift; sourceTree = "<group>"; };
-		1B169C8324B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRSSFeedBookmarkObject.swift; sourceTree = "<group>"; };
+		1B169D2024B5F73F00F962FB /* RealmFeedBookmarkObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmFeedBookmarkObject.swift; sourceTree = "<group>"; };
 		1B84146D249FBC9800AD4660 /* FeedKitItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitItemDataSource.swift; sourceTree = "<group>"; };
 		1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitRSSItemDTO.swift; sourceTree = "<group>"; };
 		1B8ABAB424AA7EC500D35366 /* FeedKitAtomItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedKitAtomItemDTO.swift; sourceTree = "<group>"; };
@@ -149,10 +149,10 @@
 		1BE2B5592493CD1200A082BC /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				1B169D2024B5F73F00F962FB /* RealmFeedBookmarkObject.swift */,
 				1BE2B55B2493CD1200A082BC /* RealmTopicObject.swift */,
 				1BE2B55A2493CD1200A082BC /* RealmImageBookmarkObject.swift */,
 				1BE2B55C2493CD1200A082BC /* RealmTextBookmarkObject.swift */,
-				1B169C8324B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift */,
 				1BE2B55D2493CD1200A082BC /* RealmLinkBookmarkObject.swift */,
 				1B84146F249FBD0C00AD4660 /* FeedKitRSSItemDTO.swift */,
 				1B8ABAB424AA7EC500D35366 /* FeedKitAtomItemDTO.swift */,
@@ -327,7 +327,6 @@
 			files = (
 				1B169C7C24B35B7200F962FB /* WebViewProgress.swift in Sources */,
 				1B169C7824B35AA000F962FB /* WebViewProvider.swift in Sources */,
-				1B169C8424B37E7D00F962FB /* RealmRSSFeedBookmarkObject.swift in Sources */,
 				1BE2B57D2493CD1300A082BC /* RealmTextBookmarkDAO.swift in Sources */,
 				1BE2B5782493CD1300A082BC /* RealmImageBookmarkDAO.swift in Sources */,
 				1B84146E249FBC9800AD4660 /* FeedKitItemDataSource.swift in Sources */,
@@ -336,6 +335,7 @@
 				1BE2B5762493CD1300A082BC /* UrlDownloader.swift in Sources */,
 				1B169C7A24B35AE600F962FB /* WebViewDelegate.swift in Sources */,
 				1B8ABAB524AA7EC500D35366 /* FeedKitAtomItemDTO.swift in Sources */,
+				1B169D2124B5F73F00F962FB /* RealmFeedBookmarkObject.swift in Sources */,
 				1BE2B5792493CD1300A082BC /* RealmLinkBookmarkDAO.swift in Sources */,
 				1BE2B5722493CD1300A082BC /* RealmLinkBookmarkObject.swift in Sources */,
 				1BE2B5772493CD1300A082BC /* ExtensionContextDataCapture.swift in Sources */,

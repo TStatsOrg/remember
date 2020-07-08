@@ -4,5 +4,5 @@ import com.app.shared.data.dto.BookmarkDTO
 
 interface FeedsRepository {
     suspend fun loadAll(): List<BookmarkDTO>
-    suspend fun get(bookmarkId: Int): BookmarkDTO.RSSFeedBookmarkDTO?
+    suspend fun get(bookmarkId: Int): BookmarkDTO.FeedBookmarkDTO?
 }
