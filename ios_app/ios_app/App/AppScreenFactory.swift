@@ -21,20 +21,20 @@ import ios_feature_display
 
 struct AppScreenFactory: ScreenFactory {
     
-    func buildRSSDetailScreen(rssId: Int32) -> AnyView {
-        return AnyView(NavigationView { RSSDetailView(rssId: rssId) }.navigationViewStyle(StackNavigationViewStyle()))
+    func buildFeedDetailScreen(bookmarkId: Int32) -> AnyView {
+        return AnyView(NavigationView { FeedDetailView(rssId: bookmarkId) }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
-    func buildRSSScreen() -> AnyView {
-        return AnyView(NavigationView { RSSView() }.navigationViewStyle(StackNavigationViewStyle()))
+    func buildAllFeedsScreen() -> AnyView {
+        return AnyView(NavigationView { AllFeedsView() }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildMainHubScreen() -> AnyView {
         return AnyView(EmptyView())
     }
     
-    func buildFeedScreen() -> AnyView {
-        return AnyView(NavigationView { FeedView() }.navigationViewStyle(StackNavigationViewStyle()))
+    func buildUserFeedsScreen() -> AnyView {
+        return AnyView(NavigationView { UserFeedsView() }.navigationViewStyle(StackNavigationViewStyle()))
     }
 
     func buildBookmarksScreen() -> AnyView {

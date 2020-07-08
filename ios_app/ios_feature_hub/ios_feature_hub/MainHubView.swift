@@ -20,7 +20,7 @@ public struct MainHubView: View  {
 
     public var body: some View {
         TabView {
-            screenFactory.buildFeedScreen()
+            screenFactory.buildUserFeedsScreen()
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text(Translations.MainHub.tab1Title)

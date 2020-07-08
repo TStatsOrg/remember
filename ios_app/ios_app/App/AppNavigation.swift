@@ -17,20 +17,20 @@ class AppNavigation: Navigation {
     
     private var destination: NavigationDestination = .None
     
-    func showRSSDetail(rssId: Int32) {
-        destination = .RSSDetail(view: factory.buildRSSDetailScreen(rssId: rssId))
+    func showFeedDetail(bookmarkId: Int32) {
+        destination = .FeedDetail(view: factory.buildFeedDetailScreen(bookmarkId: bookmarkId))
     }
     
-    func showRSS() {
-        destination = .RSS(view: factory.buildRSSScreen())
+    func showAllFeeds() {
+        destination = .AllFeeds(view: factory.buildAllFeedsScreen())
     }
     
     func showBookmarks() {
         destination = .Bookmarks(view: factory.buildBookmarksScreen())
     }
     
-    func showFeed() {
-        destination = .Feed(view: factory.buildFeedScreen())
+    func showUserFeeds() {
+        destination = .UserFeeds(view: factory.buildUserFeedsScreen())
     }
     
     func showTopicList() {
@@ -61,9 +61,9 @@ class AppNavigation: Navigation {
     
     func content() -> AnyView {
         switch destination {
-        case .RSS(let view):
+        case .AllFeeds(let view):
             return view
-        case .Feed(let view):
+        case .UserFeeds(let view):
             return view
         case .Bookmarks(let view):
             return view
@@ -75,7 +75,7 @@ class AppNavigation: Navigation {
             return view
         case .EditTopic(let view):
             return view
-        case .RSSDetail(let view):
+        case .FeedDetail(let view):
             return view
         case .Display(let view):
             return view

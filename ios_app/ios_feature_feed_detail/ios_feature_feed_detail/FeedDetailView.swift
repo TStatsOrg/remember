@@ -11,11 +11,11 @@ import ios_dependencies
 import ios_views
 import RememberShared
 
-public struct RSSDetailView: View {
+public struct FeedDetailView: View {
     
     @Injected private var viewModel: FeedDetailViewModel
     @Injected private var navigation: Navigation
-    @State private var state: RSSDetailViewState = RSSDetailViewState()
+    @State private var state: FeedDetailViewState = FeedDetailViewState()
     @State private var isShowingSheet: Bool = false
     
     private let rssId: Int32
@@ -36,7 +36,7 @@ public struct RSSDetailView: View {
         )
         .onAppear {
             self.viewModel.observeRSSDetailsState {
-                self.state = RSSDetailViewState(state: $0)
+                self.state = FeedDetailViewState(state: $0)
             }
             self.viewModel.loadFeedItems(bookmarkId: self.rssId)
         }

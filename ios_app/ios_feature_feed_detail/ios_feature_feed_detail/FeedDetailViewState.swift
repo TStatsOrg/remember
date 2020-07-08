@@ -10,7 +10,7 @@ import Foundation
 import RememberShared
 import ios_views
 
-public struct RSSDetailViewState {
+public struct FeedDetailViewState {
     
     private let state: FeedDetailState
     

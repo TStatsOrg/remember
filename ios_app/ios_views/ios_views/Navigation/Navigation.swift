@@ -12,23 +12,23 @@ import SwiftUI
 public enum NavigationDestination {
     case None
     case Bookmarks(view: AnyView)
-    case Feed(view: AnyView)
+    case UserFeeds(view: AnyView)
     case TopicList(view: AnyView)
     case AddTopic(view: AnyView)
     case EditBookmark(view: AnyView)
     case EditTopic(view: AnyView)
-    case RSS(view: AnyView)
-    case RSSDetail(view: AnyView)
+    case AllFeeds(view: AnyView)
+    case FeedDetail(view: AnyView)
     case Display(view: AnyView)
     case UrlDestination
 }
 
 public protocol Navigation {
     
-    func showRSSDetail(rssId: Int32)
-    func showRSS()
+    func showFeedDetail(bookmarkId: Int32)
+    func showAllFeeds()
     func showBookmarks()
-    func showFeed()
+    func showUserFeeds()
     func showTopicList()
     func showEditBookmark(bookmarkId: Int32)
     func showAddTopic()

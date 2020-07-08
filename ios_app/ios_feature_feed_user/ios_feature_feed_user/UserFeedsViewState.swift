@@ -10,7 +10,7 @@ import SwiftUI
 import ios_views
 import RememberShared
 
-public struct FeedViewState {
+public struct UserFeedsViewState {
     
     private let state: BookmarksState?
     

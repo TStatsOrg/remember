@@ -12,11 +12,11 @@ import RememberShared
 import ios_views
 import SDWebImageSwiftUI
 
-public struct RSSView: View {
+public struct AllFeedsView: View {
     
     @Injected private var viewModel: RSSViewModel
     @Injected private var navigation: Navigation
-    @State private var state: RSSListViewState = RSSListViewState()
+    @State private var state: AllFeedsViewState = AllFeedsViewState()
     @State private var isShowingSheet: Bool = false
     
     public init() {}
@@ -26,7 +26,7 @@ public struct RSSView: View {
         .navigationBarTitle(Text(Translations.RSS.title))
         .onAppear {
             self.viewModel.observeRSSState {
-                self.state = RSSListViewState(state: $0)
+                self.state = AllFeedsViewState(state: $0)
             }
             self.viewModel.loadData()
         }
@@ -50,7 +50,7 @@ public struct RSSView: View {
                     ManagedSubscribeButton(isSubscribed: rssFeed.isSubscribed)
                 }
                 .onTapGesture {
-                    self.navigation.showRSSDetail(rssId: rssFeed.id)
+                    self.navigation.showFeedDetail(bookmarkId: rssFeed.id)
                     self.isShowingSheet = true
                 }
             )

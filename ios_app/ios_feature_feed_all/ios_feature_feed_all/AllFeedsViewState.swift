@@ -10,7 +10,7 @@ import Foundation
 import ios_views
 import RememberShared
 
-public struct RSSListViewState {
+public struct AllFeedsViewState {
     
     private let state: [BookmarkState]
     

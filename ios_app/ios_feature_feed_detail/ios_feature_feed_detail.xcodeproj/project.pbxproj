@@ -11,8 +11,8 @@
 		1B169CE424B5E71800F962FB /* ios_views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B169CE324B5E71800F962FB /* ios_views.framework */; };
 		1B169CE824B5E71D00F962FB /* ios_dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B169CE724B5E71D00F962FB /* ios_dependencies.framework */; };
 		1B169CEC24B5E72500F962FB /* RememberShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B169CEB24B5E72500F962FB /* RememberShared.framework */; };
-		1B169D0B24B5E7C500F962FB /* RSSDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169D0924B5E7C500F962FB /* RSSDetailViewState.swift */; };
-		1B169D0C24B5E7C500F962FB /* RSSDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169D0A24B5E7C500F962FB /* RSSDetailView.swift */; };
+		1B169D0B24B5E7C500F962FB /* FeedDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169D0924B5E7C500F962FB /* FeedDetailViewState.swift */; };
+		1B169D0C24B5E7C500F962FB /* FeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169D0A24B5E7C500F962FB /* FeedDetailView.swift */; };
 		4B78F5FE412695632F706632 /* Pods_ios_feature_feed_detail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F84431E96C499CCE82CA8DE /* Pods_ios_feature_feed_detail.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,8 +24,8 @@
 		1B169CE324B5E71800F962FB /* ios_views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B169CE724B5E71D00F962FB /* ios_dependencies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_dependencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B169CEB24B5E72500F962FB /* RememberShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RememberShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B169D0924B5E7C500F962FB /* RSSDetailViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSDetailViewState.swift; sourceTree = "<group>"; };
-		1B169D0A24B5E7C500F962FB /* RSSDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSDetailView.swift; sourceTree = "<group>"; };
+		1B169D0924B5E7C500F962FB /* FeedDetailViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDetailViewState.swift; sourceTree = "<group>"; };
+		1B169D0A24B5E7C500F962FB /* FeedDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDetailView.swift; sourceTree = "<group>"; };
 		8891ECC5389E336E2F5B1BBE /* Pods-ios_feature_feed_detail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_feature_feed_detail.release.xcconfig"; path = "Target Support Files/Pods-ios_feature_feed_detail/Pods-ios_feature_feed_detail.release.xcconfig"; sourceTree = "<group>"; };
 		A7501BF8D2C5F537F1A2D5B2 /* Pods-ios_feature_feed_detail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_feature_feed_detail.debug.xcconfig"; path = "Target Support Files/Pods-ios_feature_feed_detail/Pods-ios_feature_feed_detail.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,8 +66,8 @@
 		1B169CD924B5E6FC00F962FB /* ios_feature_feed_detail */ = {
 			isa = PBXGroup;
 			children = (
-				1B169D0A24B5E7C500F962FB /* RSSDetailView.swift */,
-				1B169D0924B5E7C500F962FB /* RSSDetailViewState.swift */,
+				1B169D0A24B5E7C500F962FB /* FeedDetailView.swift */,
+				1B169D0924B5E7C500F962FB /* FeedDetailViewState.swift */,
 				1B169CDA24B5E6FC00F962FB /* ios_feature_feed_detail.h */,
 				1B169CDB24B5E6FC00F962FB /* Info.plist */,
 			);
@@ -201,8 +201,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B169D0C24B5E7C500F962FB /* RSSDetailView.swift in Sources */,
-				1B169D0B24B5E7C500F962FB /* RSSDetailViewState.swift in Sources */,
+				1B169D0C24B5E7C500F962FB /* FeedDetailView.swift in Sources */,
+				1B169D0B24B5E7C500F962FB /* FeedDetailViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

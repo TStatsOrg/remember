@@ -12,12 +12,12 @@ import ios_dependencies
 import RememberShared
 import SDWebImageSwiftUI
 
-public struct FeedView: View {
+public struct UserFeedsView: View {
     
     @Injected private var navigation: Navigation
     @Injected private var viewModel: FeedViewModel
     @State private var isShowingSheet: Bool = false
-    @State private var state: FeedViewState = FeedViewState()
+    @State private var state: UserFeedsViewState = UserFeedsViewState()
     
     public init() { /* n/a */ }
     
@@ -28,14 +28,14 @@ public struct FeedView: View {
         }
         .navigationBarTitle(Text(Translations.Feed.title), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
-            self.navigation.showRSS()
+            self.navigation.showAllFeeds()
             self.isShowingSheet = true
         }, label: {
             Text(Translations.Feed.feedButtonTitle)
         }))
         .onAppear {
             self.viewModel.observeBookmarkState {
-                self.state = FeedViewState(state: $0)
+                self.state = UserFeedsViewState(state: $0)
             }
             
             self.viewModel.loadData()
@@ -59,7 +59,7 @@ public struct FeedView: View {
             return AnyView(
                 RSSFeedBookmarkView(viewState: rssFeed)
                 .onTapGesture {
-                    self.navigation.showRSSDetail(rssId: rssFeed.id)
+                    self.navigation.showFeedDetail(bookmarkId: rssFeed.id)
                     self.isShowingSheet = true
                 }
             )
