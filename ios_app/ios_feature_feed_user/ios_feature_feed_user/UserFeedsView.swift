@@ -57,7 +57,10 @@ public struct UserFeedsView: View {
         switch viewState {
         case let feed as BookmarkFeedViewState:
             return AnyView(
-                FeedBookmarkView(viewState: feed)
+                VStack {
+                    FeedBookmarkView(viewState: feed)
+                    Divider()
+                }
                 .onTapGesture {
                     self.navigation.showFeedDetail(bookmarkId: feed.id)
                     self.isShowingSheet = true

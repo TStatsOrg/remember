@@ -44,10 +44,13 @@ public struct AllFeedsView: View {
         switch viewState {
         case let feed as BookmarkFeedViewState:
             return AnyView(
-                HStack {
-                    FeedBookmarkView(viewState: feed)
-                    Spacer()
-                    ManagedSubscribeButton(isSubscribed: feed.isSubscribed)
+                VStack {
+                    HStack(alignment: .center) {
+                        FeedBookmarkView(viewState: feed)
+                        Spacer()
+                        ManagedSubscribeButton(isSubscribed: feed.isSubscribed)
+                    }
+                    Divider()
                 }
                 .onTapGesture {
                     self.navigation.showFeedDetail(bookmarkId: feed.id)

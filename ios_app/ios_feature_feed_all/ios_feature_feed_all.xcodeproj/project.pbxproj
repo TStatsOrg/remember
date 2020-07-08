@@ -66,8 +66,8 @@
 		1B169CC424B5E6C100F962FB /* ios_feature_feed_all */ = {
 			isa = PBXGroup;
 			children = (
-				1B169D0D24B5E7CC00F962FB /* AllFeedsViewState.swift */,
 				1B169D0E24B5E7CC00F962FB /* AllFeedsView.swift */,
+				1B169D0D24B5E7CC00F962FB /* AllFeedsViewState.swift */,
 				1B169CC524B5E6C100F962FB /* ios_feature_feed_all.h */,
 				1B169CC624B5E6C100F962FB /* Info.plist */,
 			);
