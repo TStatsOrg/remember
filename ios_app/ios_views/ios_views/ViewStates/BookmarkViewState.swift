@@ -40,6 +40,7 @@ public struct BookmarkViewState: Identifiable {
 public protocol BookmarkViewStateType {
     var state: BookmarkState { get }
     var source: String { get }
+    var info: String { get }
 }
 
 public extension BookmarkViewStateType {
@@ -131,6 +132,10 @@ public struct BookmarkFeedViewState: BookmarkViewStateType {
     public let destinationUrl: URL?
     
     public let isSubscribed: Bool
+    
+    public var info: String {
+        return source
+    }
     
     public init(state: BookmarkStateFeed) {
         self.state = state
