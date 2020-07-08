@@ -1,4 +1,4 @@
-package com.app.shared.feature.rssdetail
+package com.app.shared.feature.feeddetail
 
 import com.app.shared.business.Actions
 import com.app.shared.business.Either
@@ -69,7 +69,7 @@ class SharedFeedDetailViewModel(
         }
     }
 
-    override fun observeRSSDetailsState(callback: (FeedDetailState) -> Unit) {
+    override fun observeState(callback: (FeedDetailState) -> Unit) {
         storeObserver
             .map { it.feedDetail }
             .collect(callback)

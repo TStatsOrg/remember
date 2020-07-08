@@ -15,7 +15,7 @@ import SDWebImageSwiftUI
 public struct UserFeedsView: View {
     
     @Injected private var navigation: Navigation
-    @Injected private var viewModel: FeedViewModel
+    @Injected private var viewModel: UserFeedsViewModel
     @State private var isShowingSheet: Bool = false
     @State private var state: UserFeedsViewState = UserFeedsViewState()
     
@@ -34,7 +34,7 @@ public struct UserFeedsView: View {
             Text(Translations.Feed.feedButtonTitle)
         }))
         .onAppear {
-            self.viewModel.observeBookmarkState {
+            self.viewModel.observeState {
                 self.state = UserFeedsViewState(state: $0)
             }
             

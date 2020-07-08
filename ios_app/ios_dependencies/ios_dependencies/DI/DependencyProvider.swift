@@ -130,9 +130,9 @@ public class DependencyProvider {
         }
         
         register {
-            SharedRSSViewModel(store: self.resolve(),
-                               repository: self.resolve(),
-                               calendarUtils: self.resolve()) as RSSViewModel
+            SharedAllFeedsViewModel(store: self.resolve(),
+                                    repository: self.resolve(),
+                                    calendarUtils: self.resolve()) as AllFeedsViewModel
         }
         
         register {
@@ -156,9 +156,9 @@ public class DependencyProvider {
         }
         
         register {
-            SharedFeedViewModel(store: self.resolve(),
-                                bookmarkRepository: self.resolve(),
-                                calendar: self.resolve()) as FeedViewModel
+            SharedUserFeedsViewModel(store: self.resolve(),
+                                     bookmarkRepository: self.resolve(),
+                                     calendar: self.resolve()) as UserFeedsViewModel
         }
     }
 }

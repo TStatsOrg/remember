@@ -14,7 +14,7 @@ import SDWebImageSwiftUI
 
 public struct AllFeedsView: View {
     
-    @Injected private var viewModel: RSSViewModel
+    @Injected private var viewModel: AllFeedsViewModel
     @Injected private var navigation: Navigation
     @State private var state: AllFeedsViewState = AllFeedsViewState()
     @State private var isShowingSheet: Bool = false
@@ -25,7 +25,7 @@ public struct AllFeedsView: View {
         List(state.items, rowContent: self.getCellType)
         .navigationBarTitle(Text(Translations.RSS.title))
         .onAppear {
-            self.viewModel.observeRSSState {
+            self.viewModel.observeState {
                 self.state = AllFeedsViewState(state: $0)
             }
             self.viewModel.loadData()

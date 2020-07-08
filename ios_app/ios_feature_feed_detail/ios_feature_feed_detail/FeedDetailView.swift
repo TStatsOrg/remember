@@ -35,7 +35,7 @@ public struct FeedDetailView: View {
                                    unsubscribeAction: { self.viewModel.unsubscribe(bookmarkId: self.state.id) })
         )
         .onAppear {
-            self.viewModel.observeRSSDetailsState {
+            self.viewModel.observeState {
                 self.state = FeedDetailViewState(state: $0)
             }
             self.viewModel.loadFeedItems(bookmarkId: self.rssId)

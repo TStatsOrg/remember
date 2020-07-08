@@ -1,12 +1,11 @@
-package com.app.shared.feature.feed
+package com.app.shared.feature.allfeeds
 
 import com.app.shared.business.Actions
-import com.app.shared.business.BookmarksState
+import com.app.shared.business.BookmarkState
 import com.app.shared.business.MainState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.BookmarkDTO
-import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.RSSFeedBookmarkRepository
 import com.app.shared.observ.map
 import com.app.shared.redux.Store
@@ -14,11 +13,11 @@ import com.app.shared.utils.CalendarUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class SharedFeedViewModel(
+class SharedAllFeedsViewModel(
     private val store: Store<MainState>,
-    private val bookmarkRepository: RSSFeedBookmarkRepository,
-    private val calendar: CalendarUtils
-): FeedViewModel {
+    private val repository: RSSFeedBookmarkRepository,
+    private val calendarUtils: CalendarUtils
+): AllFeedsViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
@@ -26,18 +25,20 @@ class SharedFeedViewModel(
     override fun loadData() {
         scope.launch(context = DispatcherFactory.main()) {
 
-            store.dispatch(action = Actions.Bookmark.Load.Start(time = calendar.getTime()))
+            // dispatch initial action
+            store.dispatch(action = Actions.Bookmark.Load.Start(time = calendarUtils.getTime()))
 
-            val dtos = bookmarkRepository.loadAll()
-                .filterIsInstance<BookmarkDTO.RSSFeedBookmarkDTO>()
+            // get all Bookmarked RSS items, users and default ones
+            val rss = repository.loadAll().filterIsInstance<BookmarkDTO.RSSFeedBookmarkDTO>()
 
-            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = dtos))
+            // dispatch final action
+            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendarUtils.getTime(), bookmarks = rss))
         }
     }
 
-    override fun observeBookmarkState(callback: (BookmarksState) -> Unit) {
+    override fun observeState(callback: (List<BookmarkState>) -> Unit) {
         storeObserver
-            .map { it.bookmarks }
+            .map { it.allBookmarks }
             .collect(callback)
     }
 
