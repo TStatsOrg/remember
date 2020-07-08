@@ -3,6 +3,7 @@ package com.app.shared.feature.edittopic
 import com.app.shared.business.Actions
 import com.app.shared.business.EditTopicState
 import com.app.shared.business.MainState
+import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.MainDispatcher
 import com.app.shared.coroutines.provideViewModelScope
 import com.app.shared.data.dto.TopicDTO
@@ -24,13 +25,13 @@ class SharedEditTopicViewModel(
     private val emitter = InfiniteEmitter<Boolean>()
 
     override fun loadEditableTopic(forTopicId: Int) {
-        scope.launch(context = MainDispatcher) {
+        scope.launch(context = DispatcherFactory.main()) {
             store.dispatch(action = Actions.Topics.Edit(topicId = forTopicId))
         }
     }
 
     override fun updateTopic(topicId: Int, name: String) {
-        scope.launch(context = MainDispatcher) {
+        scope.launch(context = DispatcherFactory.main()) {
             val newDto = object : TopicDTO {
                 override val id: Int = topicId
                 override val name: String = name

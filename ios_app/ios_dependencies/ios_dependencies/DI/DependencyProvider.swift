@@ -144,9 +144,9 @@ public class DependencyProvider {
         }
         
         register {
-            ShardHubViewModel(store: self.resolve(),
-                              calendar: self.resolve(),
-                              bookmarkRepository: self.resolve()) as HubViewModel
+            SharedHubViewModel(store: self.resolve(),
+                               calendar: self.resolve(),
+                               bookmarkRepository: self.resolve()) as HubViewModel
         }
         
         register {

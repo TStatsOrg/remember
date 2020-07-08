@@ -9,7 +9,7 @@ import com.app.shared.redux.Store
 import com.app.shared.utils.CalendarUtils
 import kotlinx.coroutines.launch
 
-class ShardHubViewModel(
+class SharedHubViewModel(
     private val store: Store<MainState>,
     private val calendar: CalendarUtils,
     private val bookmarkRepository: BookmarkRepository
