@@ -73,7 +73,8 @@ class SharedPreviewViewModelTest: DefaultTest() {
                     id = 1,
                     text = "My text",
                     date = 123,
-                    topic = null
+                    topic = null,
+                    isFavourite = false
                 )
             )
         )

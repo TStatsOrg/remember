@@ -13,14 +13,14 @@ class TopicsDeleteActionsTest: DefaultTest() {
         val topic2 = TopicState(id = 0, name = "General", isEditable = false)
 
         val bookmarks = listOf(
-            BookmarkState.Text(id = 999, text = "Caption", topic = topic1, date = 123L),
-            BookmarkState.Link(id = 1000, title = "Title", caption = "Caption", url = "https://my.url.com", topic = topic2, date = 123L, icon = null)
+            BookmarkState.Text(id = 999, text = "Caption", topic = topic1, date = 123L, isFavourite = false),
+            BookmarkState.Link(id = 1000, title = "Title", caption = "Caption", url = "https://my.url.com", topic = topic2, date = 123L, icon = null, isFavourite = false)
         )
         val state = MainState(
             allBookmarks = bookmarks,
             topics = TopicsState(topics = listOf(topic1, topic2)),
             editBookmark = EditBookmarkState(
-                bookmark = BookmarkState.Text(id = 999, text = "Caption", topic = topic1, date = 123L),
+                bookmark = BookmarkState.Text(id = 999, text = "Caption", topic = topic1, date = 123L, isFavourite = false),
                 topics = listOf(topic1, topic2)
             ),
             bookmarks = BookmarksState(bookmarks = bookmarks)
@@ -32,15 +32,15 @@ class TopicsDeleteActionsTest: DefaultTest() {
 
         // then
         val newBookmarks = listOf(
-            BookmarkState.Text(id = 999, text = "Caption", topic = topic2, date = 123L),
-            BookmarkState.Link(id = 1000, title = "Title", caption = "Caption", url = "https://my.url.com", topic = topic2, date = 123L, icon = null)
+            BookmarkState.Text(id = 999, text = "Caption", topic = topic2, date = 123L, isFavourite = false),
+            BookmarkState.Link(id = 1000, title = "Title", caption = "Caption", url = "https://my.url.com", topic = topic2, date = 123L, icon = null, isFavourite = false)
         )
         assertEquals(
             MainState(
                 allBookmarks = newBookmarks,
                 topics = TopicsState(topics = listOf(topic2)),
                 editBookmark = EditBookmarkState(
-                    bookmark = BookmarkState.Text(id = 999, text = "Caption", topic = topic2, date = 123L),
+                    bookmark = BookmarkState.Text(id = 999, text = "Caption", topic = topic2, date = 123L, isFavourite = false),
                     topics = listOf(topic2)
                 ),
                 bookmarks = BookmarksState(bookmarks = newBookmarks)

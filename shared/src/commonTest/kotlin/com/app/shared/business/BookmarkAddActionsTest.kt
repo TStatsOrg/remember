@@ -10,11 +10,11 @@ class BookmarkAddActionsTest: DefaultTest() {
     @Test
     fun `reducer deals with Actions Bookmark Add correctly`() {
         // given
-        val bookmark1 = BookmarkState.Text(id = 1, text = "Text", topic = null, date = 123)
-        val bookmark2 = BookmarkState.Image(id = 2, url = "https://my.cdn/image.png", topic = null, date = 123)
+        val bookmark1 = BookmarkState.Text(id = 1, text = "Text", topic = null, date = 123, isFavourite = false)
+        val bookmark2 = BookmarkState.Image(id = 2, url = "https://my.cdn/image.png", topic = null, date = 123, isFavourite = false)
         val bookmarks = listOf(bookmark1, bookmark2)
 
-        val newDto = MockBookmarkDTO.Link(id = 3, url = "https://my.article.com/index.html", date = 123, title = "Title", caption = "Caption", icon = null, topic = null)
+        val newDto = MockBookmarkDTO.Link(id = 3, url = "https://my.article.com/index.html", date = 123, title = "Title", caption = "Caption", icon = null, topic = null, isFavourite = false)
 
         val state = MainState(allBookmarks = bookmarks, bookmarks = BookmarksState(bookmarks = bookmarks))
         val action = Actions.Bookmark.Add(dto = newDto)
@@ -30,7 +30,8 @@ class BookmarkAddActionsTest: DefaultTest() {
             date = 123,
             title = "Title",
             caption = "Caption",
-            topic = null
+            topic = null,
+            isFavourite = false
         )
         val newBookmarks = listOf(
             addedBookmark,

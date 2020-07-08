@@ -21,7 +21,7 @@ class TopicsAddActionsTest: DefaultTest() {
                 topics = topics
             ),
             editBookmark = EditBookmarkState(
-                bookmark = BookmarkState.Text(id = 111, text = "Some text", topic = dto2, date = 123L),
+                bookmark = BookmarkState.Text(id = 111, text = "Some text", topic = dto2, date = 123L, isFavourite = false),
                 topics = topics
             )
         )
@@ -38,7 +38,7 @@ class TopicsAddActionsTest: DefaultTest() {
                     topics = listOf(TopicState(id = 456, name = "My topic", isEditable = true), dto1, dto2)
                 ),
                 editBookmark = EditBookmarkState(
-                    bookmark = BookmarkState.Text(id = 111, text = "Some text", topic = dto2, date = 123L),
+                    bookmark = BookmarkState.Text(id = 111, text = "Some text", topic = dto2, date = 123L, isFavourite = false),
                     topics = listOf(TopicState(id = 456, name = "My topic", isEditable = true), dto1, dto2)
                 )
             ),

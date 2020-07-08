@@ -12,8 +12,8 @@ class BookmarkEditActionsTest: DefaultTest() {
     @Test
     fun `reducer deals with Actions Bookmark Edit correctly with no preview`() {
         // given
-        val bookmark1 = BookmarkState.Text(id = 1, text = "Text", topic = null, date = 123)
-        val bookmark2 = BookmarkState.Image(id = 2, url = "https://my.cdn/image.png", topic = null, date = 123)
+        val bookmark1 = BookmarkState.Text(id = 1, text = "Text", topic = null, date = 123, isFavourite = false)
+        val bookmark2 = BookmarkState.Image(id = 2, url = "https://my.cdn/image.png", topic = null, date = 123, isFavourite = false)
         val bookmarks = listOf(bookmark1, bookmark2)
 
         val dto1 = MockTopicDTO(id = 123, name = "News").toState()
@@ -45,8 +45,8 @@ class BookmarkEditActionsTest: DefaultTest() {
     @Test
     fun `reducer deals with Actions Bookmark Edit correctly from preview`() {
         // given
-        val bookmark1 = BookmarkState.Text(id = 1, text = "Text", topic = null, date = 123)
-        val bookmark2 = BookmarkState.Image(id = 2, url = "https://my.cdn/image.png", topic = null, date = 123)
+        val bookmark1 = BookmarkState.Text(id = 1, text = "Text", topic = null, date = 123, isFavourite = false)
+        val bookmark2 = BookmarkState.Image(id = 2, url = "https://my.cdn/image.png", topic = null, date = 123, isFavourite = false)
         val bookmarks = listOf(bookmark1)
 
         val dto1 = MockTopicDTO(id = 123, name = "News").toState()

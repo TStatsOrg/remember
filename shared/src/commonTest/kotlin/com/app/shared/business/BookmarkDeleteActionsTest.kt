@@ -9,9 +9,9 @@ class BookmarkDeleteActionsTest: DefaultTest() {
     @Test
     fun `reducer deals with Actions Bookmark Add correctly`() {
         // given
-        val bookmark1 = BookmarkState.Text(id = 1, text = "Text", topic = null, date = 123)
-        val bookmark2 = BookmarkState.Image(id = 2, url = "https://my.cdn/image.png", topic = null, date = 123)
-        val bookmark3 = BookmarkState.Link(id = 3, url = "https://my.article.com/index.html", icon = null, date = 123, title = "Title", caption = "Caption", topic = null)
+        val bookmark1 = BookmarkState.Text(id = 1, text = "Text", topic = null, date = 123, isFavourite = false)
+        val bookmark2 = BookmarkState.Image(id = 2, url = "https://my.cdn/image.png", topic = null, date = 123, isFavourite = false)
+        val bookmark3 = BookmarkState.Link(id = 3, url = "https://my.article.com/index.html", icon = null, date = 123, title = "Title", caption = "Caption", topic = null, isFavourite = false)
         val bookmarks = listOf(bookmark1, bookmark2, bookmark3)
 
         val state = MainState(allBookmarks = bookmarks, bookmarks = BookmarksState(bookmarks = bookmarks))

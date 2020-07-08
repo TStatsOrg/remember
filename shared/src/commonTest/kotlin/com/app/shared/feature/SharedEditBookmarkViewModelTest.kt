@@ -78,7 +78,7 @@ class SharedEditBookmarkViewModelTest: DefaultTest() {
         // given
         val oldTopic = TopicState(id = 999, name = "old-topic", isEditable = false)
         val newTopic = TopicState(id = 456, name = "my-topic", isEditable = false)
-        val bookmark = BookmarkState.Text(id = 123, date = 0L, topic = oldTopic, text = "some text")
+        val bookmark = BookmarkState.Text(id = 123, date = 0L, topic = oldTopic, text = "some text", isFavourite = false)
         val topics = listOf(oldTopic, newTopic)
         val state = MainState(
             editBookmark = EditBookmarkState(bookmark = bookmark),
@@ -97,7 +97,7 @@ class SharedEditBookmarkViewModelTest: DefaultTest() {
         // then
         verify {
             store.dispatch(action = Actions.Bookmark.Update(
-                state = BookmarkState.Text(id = 123, date = 0L, topic = newTopic, text = "some text")))
+                state = BookmarkState.Text(id = 123, date = 0L, topic = newTopic, text = "some text", isFavourite = false)))
         }
     }
 
@@ -105,7 +105,7 @@ class SharedEditBookmarkViewModelTest: DefaultTest() {
     fun `user can observe when a bookmark is saved`() = runTest {
         // given
         val topic = TopicState(id = 456, name = "my-topic", isEditable = false)
-        val bookmark = BookmarkState.Text(id = 123, date = 0L, topic = topic, text = "some text")
+        val bookmark = BookmarkState.Text(id = 123, date = 0L, topic = topic, text = "some text", isFavourite = false)
         val state = MainState(editBookmark = EditBookmarkState(bookmark = bookmark))
 
         every { store.state } returns state
@@ -126,7 +126,7 @@ class SharedEditBookmarkViewModelTest: DefaultTest() {
         // given
         val oldTopic = TopicState(id = 999, name = "old-topic", isEditable = false)
         val newTopic = TopicState(id = 456, name = "my-topic", isEditable = false)
-        val bookmark = BookmarkState.Text(id = 123, date = 0L, topic = oldTopic, text = "some text")
+        val bookmark = BookmarkState.Text(id = 123, date = 0L, topic = oldTopic, text = "some text", isFavourite = false)
         val topics = listOf(oldTopic, newTopic)
         val state = MainState(
             editBookmark = EditBookmarkState(bookmark = bookmark),

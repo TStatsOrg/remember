@@ -42,7 +42,8 @@ class BookmarkPreviewActionsTest: DefaultTest() {
                     id = 1,
                     text = "Text",
                     topic = null,
-                    date = 123L
+                    date = 123L,
+                    isFavourite = false
                 ))
         ), newState)
     }

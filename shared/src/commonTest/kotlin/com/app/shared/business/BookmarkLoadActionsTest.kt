@@ -41,13 +41,15 @@ class BookmarkLoadActionsTest: DefaultTest() {
                 id = 1,
                 text = "Text",
                 topic = null,
-                date = 123
+                date = 123,
+                isFavourite = false
             ),
             BookmarkState.Image(
                 id = 2,
                 url = "https://my.cdn/image.png",
                 topic = null,
-                date = 123
+                date = 123,
+                isFavourite = false
             )
         )
         assertEquals(MainState(
