@@ -4,7 +4,7 @@ import com.app.shared.DefaultTest
 import com.app.shared.coroutines.runTest
 import com.app.shared.data.dao.ImageBookmarkDAO
 import com.app.shared.data.dao.LinkBookmarkDAO
-import com.app.shared.data.dao.RSSFeedBookmarkDAO
+import com.app.shared.data.dao.FeedBookmarkDAO
 import com.app.shared.data.dao.TextBookmarkDAO
 import com.app.shared.mocks.MockBookmarkDTO
 import com.app.shared.mocks.MockTopicDTO
@@ -19,7 +19,7 @@ class SharedBookmarkRepositoryTest: DefaultTest() {
     private val imageBookmarkDAO = mockk<ImageBookmarkDAO>(relaxed = true)
     private val linkBookmarkDAO = mockk<LinkBookmarkDAO>(relaxed = true)
     private val textBookmarkDAO = mockk<TextBookmarkDAO>(relaxed = true)
-    private val rssFeedBookmarkDAO = mockk<RSSFeedBookmarkDAO>(relaxed = true)
+    private val rssFeedBookmarkDAO = mockk<FeedBookmarkDAO>(relaxed = true)
     private val repository = SharedBookmarkRepository(imageBookmarkDAO, textBookmarkDAO, linkBookmarkDAO, rssFeedBookmarkDAO)
 
     @Test

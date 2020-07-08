@@ -1,13 +1,13 @@
 package com.app.shared.data.repository
 
 import com.app.shared.coroutines.DispatcherFactory
-import com.app.shared.data.dao.RSSFeedBookmarkDAO
+import com.app.shared.data.dao.FeedBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
 import kotlinx.coroutines.withContext
 
 class SharedFeedsRepository(
-    private val userFeedsDAO: RSSFeedBookmarkDAO,
-    private val allFeedsDAO: RSSFeedBookmarkDAO
+    private val userFeedsDAO: FeedBookmarkDAO,
+    private val allFeedsDAO: FeedBookmarkDAO
 ): FeedsRepository {
 
     override suspend fun loadAll(): List<BookmarkDTO> {

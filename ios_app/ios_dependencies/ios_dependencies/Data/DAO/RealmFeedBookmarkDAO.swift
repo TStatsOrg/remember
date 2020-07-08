@@ -11,7 +11,7 @@ import RememberShared
 import Realm
 import RealmSwift
 
-public class RealmRSSFeedBookmarkDAO: RealmDAO, RSSFeedBookmarkDAO {
+public class RealmFeedBookmarkDAO: RealmDAO, FeedBookmarkDAO {
     
     var realm: Realm?
     

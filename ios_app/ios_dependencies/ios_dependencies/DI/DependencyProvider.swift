@@ -75,7 +75,7 @@ public class DependencyProvider {
             SharedBookmarkRepository(imageBookmarkDAO: (self.resolve() as Database).getImageBookmarkDAO(),
                                      textBookmarkDAO: (self.resolve() as Database).getTextBookmarkDAO(),
                                      linkBookmarkDAO: (self.resolve() as Database).getLinkBookmarkDAO(),
-                                     rssFeedBookmarkDAO: (self.resolve() as Database).getRSSFeedBookmarkDAO()) as BookmarkRepository
+                                     feedBookmarkDAO: (self.resolve() as Database).getFeedBookmarkDAO()) as BookmarkRepository
         }
         
         register {
@@ -87,8 +87,8 @@ public class DependencyProvider {
         }
         
         register {
-            SharedFeedsRepository(userFeedsDAO: (self.resolve() as Database).getRSSFeedBookmarkDAO(),
-                                  allFeedsDAO: DefaultRSSFeedBookmarkDAO()) as FeedsRepository
+            SharedFeedsRepository(userFeedsDAO: (self.resolve() as Database).getFeedBookmarkDAO(),
+                                  allFeedsDAO: DefaultFeedBookmarkDAO()) as FeedsRepository
         }
         
         // view models
