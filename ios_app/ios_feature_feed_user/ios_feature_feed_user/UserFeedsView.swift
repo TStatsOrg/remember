@@ -15,7 +15,7 @@ import SDWebImageSwiftUI
 public struct UserFeedsView: View {
     
     @Injected private var navigation: Navigation
-    @Injected private var viewModel: UserFeedsViewModel
+    @Injected private var viewModel: FeedsViewModel
     @State private var isShowingSheet: Bool = false
     @State private var state: UserFeedsViewState = UserFeedsViewState()
     
@@ -24,7 +24,7 @@ public struct UserFeedsView: View {
     public var body: some View {
         VStack {
             ManagedEmptyView(state: state.empty)
-            List(state.bookmarksViewState, rowContent: buildRow)
+            List(state.items, rowContent: buildRow)
         }
         .navigationBarTitle(Text(Translations.UserFeeds.title), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {

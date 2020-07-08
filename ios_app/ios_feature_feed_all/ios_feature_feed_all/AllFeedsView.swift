@@ -14,7 +14,7 @@ import SDWebImageSwiftUI
 
 public struct AllFeedsView: View {
     
-    @Injected private var viewModel: AllFeedsViewModel
+    @Injected private var viewModel: FeedsViewModel
     @Injected private var navigation: Navigation
     @State private var state: AllFeedsViewState = AllFeedsViewState()
     @State private var isShowingSheet: Bool = false

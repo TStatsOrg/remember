@@ -38,7 +38,7 @@ public struct FeedDetailView: View {
             self.viewModel.observeState {
                 self.state = FeedDetailViewState(state: $0)
             }
-            self.viewModel.loadFeedItems(bookmarkId: self.bookmarkId)
+            self.viewModel.loadData(bookmarkId: self.bookmarkId)
         }
         .onDisappear {
             self.viewModel.cleanup()

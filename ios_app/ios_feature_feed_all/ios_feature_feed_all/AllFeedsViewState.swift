@@ -12,14 +12,18 @@ import RememberShared
 
 public struct AllFeedsViewState {
     
-    private let state: [BookmarkState]
+    private let state: BookmarksState?
     
-    public init(state: [BookmarkState] = []) {
+    public init(state: BookmarksState? = nil) {
         self.state = state
     }
     
+    private var bookmarks: [BookmarkState] {
+        return state?.bookmarks ?? []
+    }
+    
     var items: [BookmarkFeedViewState] {
-        return state.map(BookmarkViewState.init)
+        return bookmarks.map(BookmarkViewState.init)
             .compactMap { $0.viewState }
             .compactMap { $0 as? BookmarkFeedViewState }
     }

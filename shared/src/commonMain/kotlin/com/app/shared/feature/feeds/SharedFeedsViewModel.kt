@@ -1,7 +1,7 @@
-package com.app.shared.feature.allfeeds
+package com.app.shared.feature.feeds
 
 import com.app.shared.business.Actions
-import com.app.shared.business.BookmarkState
+import com.app.shared.business.BookmarksState
 import com.app.shared.business.MainState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
@@ -13,11 +13,11 @@ import com.app.shared.utils.CalendarUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class SharedAllFeedsViewModel(
+class SharedFeedsViewModel(
     private val store: Store<MainState>,
-    private val repository: FeedsRepository,
-    private val calendarUtils: CalendarUtils
-): AllFeedsViewModel {
+    private val bookmarkRepository: FeedsRepository,
+    private val calendar: CalendarUtils
+): FeedsViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
@@ -25,20 +25,18 @@ class SharedAllFeedsViewModel(
     override fun loadData() {
         scope.launch(context = DispatcherFactory.main()) {
 
-            // dispatch initial action
-            store.dispatch(action = Actions.Bookmark.Load.Start(time = calendarUtils.getTime()))
+            store.dispatch(action = Actions.Bookmark.Load.Start(time = calendar.getTime()))
 
-            // get all Bookmarked items, users and default ones
-            val rss = repository.loadAll().filterIsInstance<BookmarkDTO.FeedBookmarkDTO>()
+            val dtos = bookmarkRepository.loadAll()
+                .filterIsInstance<BookmarkDTO.FeedBookmarkDTO>()
 
-            // dispatch final action
-            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendarUtils.getTime(), bookmarks = rss))
+            store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = dtos))
         }
     }
 
-    override fun observeState(callback: (List<BookmarkState>) -> Unit) {
+    override fun observeState(callback: (BookmarksState) -> Unit) {
         storeObserver
-            .map { it.allBookmarks }
+            .map { it.bookmarks }
             .collect(callback)
     }
 

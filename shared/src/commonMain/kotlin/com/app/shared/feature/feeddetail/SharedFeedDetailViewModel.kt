@@ -19,23 +19,23 @@ import kotlinx.coroutines.launch
 
 class SharedFeedDetailViewModel(
     private val store: Store<MainState>,
-    private val feedBookmarkRepository: FeedsRepository,
+    private val feedsRepository: FeedsRepository,
     private val bookmarkRepository: BookmarkRepository,
-    private val repository: FeedItemRepository
+    private val feedItemRepository: FeedItemRepository
 ): FeedDetailViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
     private val storeObserver = store.observe()
 
-    override fun loadFeedItems(bookmarkId: Int) {
+    override fun loadData(bookmarkId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
 
-            val rss = feedBookmarkRepository.get(bookmarkId = bookmarkId)
+            val rss = feedsRepository.get(bookmarkId = bookmarkId)
 
             if (rss != null) {
                 store.dispatch(action = Actions.Feed.Detail.Present(dto = rss))
 
-                when (val result = repository.getAllItems(url = rss.url)) {
+                when (val result = feedItemRepository.getAllItems(url = rss.url)) {
                     is Either.Success -> store.dispatch(action = Actions.Feed.Detail.LoadItems.Success(items = result.data))
                     is Either.Failure -> store.dispatch(action = Actions.Feed.Detail.LoadItems.Error(error = result.error))
                 }
@@ -46,7 +46,7 @@ class SharedFeedDetailViewModel(
     override fun subscribe(bookmarkId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
 
-            val dto = feedBookmarkRepository.get(bookmarkId = bookmarkId)
+            val dto = feedsRepository.get(bookmarkId = bookmarkId)
             val newDto = dto?.toState()?.copy(withIsFavourite = true)?.toDTO()
 
             newDto?.let {
@@ -59,7 +59,7 @@ class SharedFeedDetailViewModel(
     override fun unsubscribe(bookmarkId: Int) {
         scope.launch(context = DispatcherFactory.main()) {
 
-            val dto = feedBookmarkRepository.get(bookmarkId = bookmarkId)
+            val dto = feedsRepository.get(bookmarkId = bookmarkId)
             val newDto = dto?.toState()?.copy(withIsFavourite = false)?.toDTO()
 
             newDto?.let {

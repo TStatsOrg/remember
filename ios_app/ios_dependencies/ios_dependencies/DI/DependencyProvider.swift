@@ -130,16 +130,10 @@ public class DependencyProvider {
         }
         
         register {
-            SharedAllFeedsViewModel(store: self.resolve(),
-                                    repository: self.resolve(),
-                                    calendarUtils: self.resolve()) as AllFeedsViewModel
-        }
-        
-        register {
             SharedFeedDetailViewModel(store: self.resolve(),
-                                      feedBookmarkRepository: self.resolve(),
+                                      feedsRepository: self.resolve(),
                                       bookmarkRepository: self.resolve(),
-                                      repository: self.resolve()) as FeedDetailViewModel
+                                      feedItemRepository: self.resolve()) as FeedDetailViewModel
         }
         
         register {
@@ -156,9 +150,9 @@ public class DependencyProvider {
         }
         
         register {
-            SharedUserFeedsViewModel(store: self.resolve(),
-                                     bookmarkRepository: self.resolve(),
-                                     calendar: self.resolve()) as UserFeedsViewModel
+            SharedFeedsViewModel(store: self.resolve(),
+                                 bookmarkRepository: self.resolve(),
+                                 calendar: self.resolve()) as FeedsViewModel
         }
     }
 }

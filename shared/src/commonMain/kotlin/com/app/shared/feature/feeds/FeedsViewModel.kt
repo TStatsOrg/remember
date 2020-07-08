@@ -1,8 +1,8 @@
-package com.app.shared.feature.userfeeds
+package com.app.shared.feature.feeds
 
 import com.app.shared.business.BookmarksState
 
-interface UserFeedsViewModel {
+interface FeedsViewModel {
     fun loadData()
     fun observeState(callback: (BookmarksState) -> Unit)
     fun cleanup()

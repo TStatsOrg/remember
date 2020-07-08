@@ -64,6 +64,7 @@ public struct DisplayView: View {
                     Image(systemName: "square.and.arrow.up")
                 }
                 .frame(maxWidth: .infinity)
+                .disabled(state.isDisabled)
                 
                 Button(action: {
                     self.dismiss()
