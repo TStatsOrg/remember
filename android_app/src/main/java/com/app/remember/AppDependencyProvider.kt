@@ -64,7 +64,8 @@ class AppDependencyProvider(private val appContext: Context) {
             SharedBookmarkRepository(
                 imageBookmarkDAO = (get() as Database).getImageBookmarkDAO(),
                 linkBookmarkDAO = (get() as Database).getLinkBookmarkDAO(),
-                textBookmarkDAO = (get() as Database).getTextBookmarkDAO()
+                textBookmarkDAO = (get() as Database).getTextBookmarkDAO(),
+                feedBookmarkDAO = (get() as Database).getFeedBookmarkDAO()
             )
         }
         single<TopicsRepository> {

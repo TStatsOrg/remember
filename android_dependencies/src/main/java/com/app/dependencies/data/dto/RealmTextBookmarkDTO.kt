@@ -9,5 +9,6 @@ open class RealmTextBookmarkDTO(
     override var id: Int = 0,
     override var date: Long = 0L,
     override var text: String = "",
-    override var topic: RealmTopicDTO? = null
+    override var topic: RealmTopicDTO? = null,
+    override var isFavourite: Boolean = false
 ) : RealmObject(), BookmarkDTO.TextBookmarkDTO
