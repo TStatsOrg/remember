@@ -16,8 +16,10 @@ public struct DisplayView: View {
     private let url: URL?
     private let provider = WebViewProvider()
     @Injected private var viewModel: DisplayViewModel
-    @State var progressValue: Float = 0.0
+    @State private var progressValue: Float = 0.0
     @State private var state: DisplayViewState = DisplayViewState()
+    @State private var currentUrl: URL? = nil
+    @State private var isShowingSheet: Bool = false
     @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
     
     public init(url: URL?) {
@@ -38,6 +40,7 @@ public struct DisplayView: View {
                     self.progressValue = value
                 }
                 .onFinishedLoading { url, content in
+                    self.currentUrl = url
                     self.viewModel.finishLoad(url: url.absoluteString, content: content)
                 }
             HStack {
@@ -52,6 +55,13 @@ public struct DisplayView: View {
                     self.provider.goForward()
                 }) {
                     Image(systemName: "arrowtriangle.right")
+                }
+                .frame(maxWidth: .infinity)
+                
+                Button(action: {
+                    self.isShowingSheet = true
+                }) {
+                    Image(systemName: "square.and.arrow.up")
                 }
                 .frame(maxWidth: .infinity)
                 
@@ -90,6 +100,9 @@ public struct DisplayView: View {
         }
         .onDisappear {
             self.viewModel.cleanup()
+        }
+        .sheet(isPresented: $isShowingSheet) {
+            ManagedShareSheet(items: [self.currentUrl!])
         }
     }
     
