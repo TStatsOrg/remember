@@ -1,5 +1,5 @@
 //
-//  FeedKitRSSItemDataSource.swift
+//  FeedKitItemDataSource.swift
 //  ios_dependencies
 //
 //  Created by Gabriel Coman on 21/06/2020.

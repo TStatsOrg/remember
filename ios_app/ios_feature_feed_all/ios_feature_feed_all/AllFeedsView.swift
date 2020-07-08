@@ -1,6 +1,6 @@
 //
-//  RSSView.swift
-//  ios_feature_rss
+//  AllFeedsView.swift
+//  ios_feature_feed_all
 //
 //  Created by Gabriel Coman on 17/06/2020.
 //  Copyright © 2020 Gabriel Coman. All rights reserved.
@@ -23,7 +23,7 @@ public struct AllFeedsView: View {
     
     public var body: some View {
         List(state.items, rowContent: self.getCellType)
-        .navigationBarTitle(Text(Translations.RSS.title))
+        .navigationBarTitle(Text(Translations.AllFeeds.title))
         .onAppear {
             self.viewModel.observeState {
                 self.state = AllFeedsViewState(state: $0)
@@ -45,7 +45,7 @@ public struct AllFeedsView: View {
         case let feed as BookmarkFeedViewState:
             return AnyView(
                 HStack {
-                    RSSFeedBookmarkView(viewState: feed)
+                    FeedBookmarkView(viewState: feed)
                     Spacer()
                     ManagedSubscribeButton(isSubscribed: feed.isSubscribed)
                 }

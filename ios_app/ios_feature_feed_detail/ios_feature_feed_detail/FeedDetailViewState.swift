@@ -1,6 +1,6 @@
 //
-//  RSSDetailViewState.swift
-//  ios_feature_rss_detail
+//  FeedDetailViewState.swift
+//  ios_feature_feed_detail
 //
 //  Created by Gabriel Coman on 21/06/2020.
 //  Copyright © 2020 Gabriel Coman. All rights reserved.
@@ -26,8 +26,8 @@ public struct FeedDetailViewState {
         }
     }
     
-    public var items: [RSSItemViewState] {
-        return state.items.map(RSSItemViewState.init)
+    public var items: [FeedItemViewState] {
+        return state.items.map(FeedItemViewState.init)
     }
     
     public var title: String {

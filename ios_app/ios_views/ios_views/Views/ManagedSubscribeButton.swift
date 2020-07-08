@@ -28,14 +28,14 @@ public struct ManagedSubscribeButton: View {
                 Button(action: {
                     self.unsubscribeAction?()
                 }) {
-                    Text(Translations.RSS.unsubscribeTitle)
+                    Text(Translations.AllFeeds.unsubscribeTitle)
                         .foregroundColor(Color.red)
                 }
             } else {
                 Button(action: {
                     self.subscribeAction?()
                 }) {
-                    Text(Translations.RSS.subscribeTitle)
+                    Text(Translations.AllFeeds.subscribeTitle)
                         .foregroundColor(Color.green)
                 }
             }

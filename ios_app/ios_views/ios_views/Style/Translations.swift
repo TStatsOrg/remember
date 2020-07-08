@@ -32,16 +32,16 @@ public struct Translations {
         public static let tab2Title: LocalizedStringKey = "main_hub_tab_2"
     }
     
-    public struct Feed {
-        public static let title: LocalizedStringKey = "feed_title"
-        public static let feedButtonTitle: LocalizedStringKey = "feed_button_title"
-        public static let startupMessage: LocalizedStringKey = "feed_startup_message"
+    public struct UserFeeds {
+        public static let title: LocalizedStringKey = "user_feed_title"
+        public static let feedButtonTitle: LocalizedStringKey = "user_feed_button_title"
+        public static let startupMessage: LocalizedStringKey = "user_feed_startup_message"
     }
     
-    public struct RSS {
-        public static let title: LocalizedStringKey = "rss_title"
-        public static let subscribeTitle: LocalizedStringKey = "rss_subscribe_button_title"
-        public static let unsubscribeTitle: LocalizedStringKey = "rss_unsubscribe_button_title"
+    public struct AllFeeds {
+        public static let title: LocalizedStringKey = "all_feeds_title"
+        public static let subscribeTitle: LocalizedStringKey = "all_feeds_subscribe_button_title"
+        public static let unsubscribeTitle: LocalizedStringKey = "all_feeds_unsubscribe_button_title"
     }
     
     public struct Errors {

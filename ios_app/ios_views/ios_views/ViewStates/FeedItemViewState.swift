@@ -1,5 +1,5 @@
 //
-//  RSSItemViewState.swift
+//  FeedItemViewState.swift
 //  ios_views
 //
 //  Created by Gabriel Coman on 21/06/2020.
@@ -9,7 +9,7 @@
 import Foundation
 import RememberShared
 
-public struct RSSItemViewState: Identifiable {
+public struct FeedItemViewState: Identifiable {
     
     private let state: FeedItemState
     

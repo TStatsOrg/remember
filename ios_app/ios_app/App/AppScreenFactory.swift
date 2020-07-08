@@ -22,7 +22,7 @@ import ios_feature_display
 struct AppScreenFactory: ScreenFactory {
     
     func buildFeedDetailScreen(bookmarkId: Int32) -> AnyView {
-        return AnyView(NavigationView { FeedDetailView(rssId: bookmarkId) }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { FeedDetailView(bookmarkId: bookmarkId) }.navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildAllFeedsScreen() -> AnyView {

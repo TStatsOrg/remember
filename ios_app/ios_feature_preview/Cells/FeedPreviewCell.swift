@@ -1,5 +1,5 @@
 //
-//  RSSFeedPreviewCell.swift
+//  FeedPreviewCell.swift
 //  ios_feature_preview
 //
 //  Created by Gabriel Coman on 06/07/2020.
@@ -11,7 +11,7 @@ import ios_dependencies
 import ios_views
 import SDWebImage
 
-class RSSFeedPreviewCell: UITableViewCell, GenericIdentifiable {
+class FeedPreviewCell: UITableViewCell, GenericIdentifiable {
     
     @IBOutlet weak var feedIcon: UIImageView!
     @IBOutlet weak var feedTitle: UILabel!

@@ -29,8 +29,8 @@ public struct BookmarkViewState: Identifiable {
             return BookmarkImageViewState(state: image)
         case let link as BookmarkStateLink:
             return BookmarkLinkViewState(state: link)
-        case let rssFeed as BookmarkStateFeed:
-            return BookmarkFeedViewState(state: rssFeed)
+        case let feed as BookmarkStateFeed:
+            return BookmarkFeedViewState(state: feed)
         default:
             return nil
         }

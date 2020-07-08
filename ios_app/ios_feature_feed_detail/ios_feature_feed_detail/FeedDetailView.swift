@@ -1,6 +1,6 @@
 //
-//  RSSItemsView.swift
-//  ios_feature_rss_items
+//  FeedDetailView.swift
+//  ios_feature_feed_detail
 //
 //  Created by Gabriel Coman on 21/06/2020.
 //  Copyright © 2020 Gabriel Coman. All rights reserved.
@@ -18,15 +18,15 @@ public struct FeedDetailView: View {
     @State private var state: FeedDetailViewState = FeedDetailViewState()
     @State private var isShowingSheet: Bool = false
     
-    private let rssId: Int32
+    private let bookmarkId: Int32
     
-    public init(rssId: Int32) {
-        self.rssId = rssId
+    public init(bookmarkId: Int32) {
+        self.bookmarkId = bookmarkId
     }
     
     public var body: some View {
         VStack(alignment: .center) {
-            RSSFeedItems()
+            MainView()
         }
         .navigationBarTitle(Text(state.title), displayMode: .inline)
         .navigationBarItems(trailing:
@@ -38,7 +38,7 @@ public struct FeedDetailView: View {
             self.viewModel.observeState {
                 self.state = FeedDetailViewState(state: $0)
             }
-            self.viewModel.loadFeedItems(bookmarkId: self.rssId)
+            self.viewModel.loadFeedItems(bookmarkId: self.bookmarkId)
         }
         .onDisappear {
             self.viewModel.cleanup()
@@ -46,7 +46,7 @@ public struct FeedDetailView: View {
         .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
     
-    private func RSSFeedItems() -> some View {
+    private func MainView() -> some View {
         HStack {
             if state.isContentVisible {
                 List(state.items, rowContent: { content in

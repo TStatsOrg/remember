@@ -21,15 +21,15 @@
 "topics_title" = "Topics";
 "topics_add" = "Add";
 
-// feed
-"feed_title" = "Your feed";
-"feed_button_title" = "Feeds";
-"feed_startup_message" = "You don't have any of your own feeds yet.\nTap \"Feeds\" to browse some of our highlighted content";
+// user feeds
+"user_feed_title" = "Your feed";
+"user_feed_button_title" = "Feeds";
+"user_feed_startup_message" = "You don't have any of your own feeds yet.\nTap \"Feeds\" to browse some of our highlighted content";
 
-// rss
-"rss_title" = "Highlighted feeds";
-"rss_subscribe_button_title" = "Subscribe";
-"rss_unsubscribe_button_title" = "Unsubscribe";
+// all feeds
+"all_feeds_title" = "Highlighted feeds";
+"all_feeds_subscribe_button_title" = "Subscribe";
+"all_feeds_unsubscribe_button_title" = "Unsubscribe";
 
 // errors
 "error_network" = "There seems to have been a network error.\nPlease try again!";

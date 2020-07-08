@@ -29,6 +29,6 @@ public struct UserFeedsViewState {
     public var empty: EmptyViewState {
         return EmptyViewState(isVisible: bookmarks.isEmpty,
                               image: "bookmark.fill",
-                              text: Translations.Feed.startupMessage)
+                              text: Translations.UserFeeds.startupMessage)
     }
 }

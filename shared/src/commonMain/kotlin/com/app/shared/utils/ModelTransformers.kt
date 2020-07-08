@@ -32,7 +32,7 @@ fun RawDataProcess.Item.toDTO(date: Long, topic: TopicDTO? = null): BookmarkDTO?
             override val icon: String? = this@toDTO.icon
             override val id: Int = this@toDTO.url.hashCode()
             override val date: Long = date
-            override val isFavourite: Boolean = false
+            override val isFavourite: Boolean = true
             override val topic: TopicDTO? = topic
         }
         is RawDataProcess.Item.Image -> object : BookmarkDTO.ImageBookmarkDTO {

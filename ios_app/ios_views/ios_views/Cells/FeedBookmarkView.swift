@@ -1,5 +1,5 @@
 //
-//  RSSFeedBookmarkView.swift
+//  FeedBookmarkView.swift
 //  ios_feature_bookmarks
 //
 //  Created by Gabriel Coman on 06/07/2020.
@@ -12,7 +12,7 @@ import ios_dependencies
 import RememberShared
 import SDWebImageSwiftUI
 
-public struct RSSFeedBookmarkView: View {
+public struct FeedBookmarkView: View {
     
     private let viewState: BookmarkFeedViewState
     

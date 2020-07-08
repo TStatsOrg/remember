@@ -49,7 +49,7 @@ extension PreviewDataSource: UITableViewDataSource {
             cell.redraw(viewState: image)
             return cell
         case let feed as BookmarkFeedViewState:
-            let cell = tableView.dequeueReusableCell(withIdentifier: RSSFeedPreviewCell.identifier, for: indexPath) as! RSSFeedPreviewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: FeedPreviewCell.identifier, for: indexPath) as! FeedPreviewCell
             cell.redraw(viewState: feed)
             return cell
         default:

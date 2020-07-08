@@ -26,12 +26,12 @@ public struct UserFeedsView: View {
             ManagedEmptyView(state: state.empty)
             List(state.bookmarksViewState, rowContent: getCellType)
         }
-        .navigationBarTitle(Text(Translations.Feed.title), displayMode: .inline)
+        .navigationBarTitle(Text(Translations.UserFeeds.title), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             self.navigation.showAllFeeds()
             self.isShowingSheet = true
         }, label: {
-            Text(Translations.Feed.feedButtonTitle)
+            Text(Translations.UserFeeds.feedButtonTitle)
         }))
         .onAppear {
             self.viewModel.observeState {
@@ -57,7 +57,7 @@ public struct UserFeedsView: View {
         switch viewState {
         case let feed as BookmarkFeedViewState:
             return AnyView(
-                RSSFeedBookmarkView(viewState: feed)
+                FeedBookmarkView(viewState: feed)
                 .onTapGesture {
                     self.navigation.showFeedDetail(bookmarkId: feed.id)
                     self.isShowingSheet = true
