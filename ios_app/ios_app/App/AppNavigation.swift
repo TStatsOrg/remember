@@ -12,7 +12,7 @@ import ios_views
 import ios_dependencies
 
 class AppNavigation: Navigation {
-    
+   
     @Injected private var factory: ScreenFactory
     
     private var destination: NavigationDestination = .None

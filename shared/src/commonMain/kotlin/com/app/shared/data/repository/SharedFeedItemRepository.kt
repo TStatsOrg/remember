@@ -16,7 +16,7 @@ class SharedFeedItemRepository(
             val data = dataSource.getItems(fromLink = url)
 
             return@withContext when (data) {
-                is Either.Success -> Either.Success<List<FeedItemDTO>>(data = data.data.sortedBy { it.title })
+                is Either.Success -> Either.Success<List<FeedItemDTO>>(data = data.data.sortedByDescending { it.pubDate })
                 is Either.Failure -> Either.Failure<List<FeedItemDTO>>(error = data.error)
             }
         }

@@ -26,12 +26,13 @@ public struct FeedBookmarkView: View {
             WebImage(url: viewState.icon)
                 .placeholder(content: {
                     Image(systemName: "bookmark.fill")
+                        .frame(width: 60, height: 60)
                         .foregroundColor(AppColors.secondaryColor)
+                        .background(AppColors.mainColor)
                 })
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60)
-                .background(AppColors.mainColor)
                 .clipped()
 
             VStack(alignment: .leading) {
