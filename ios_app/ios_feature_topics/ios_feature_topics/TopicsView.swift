@@ -26,7 +26,7 @@ public struct TopicsView: View {
         List(state.viewStates, rowContent: { content in
             VStack(alignment: .leading, spacing: 0) {
                 Text(content.name)
-                    .ActionButton()
+                    .asActionButton()
                     .padding(bottom: 4.0)
                 Text("\(content.noBookmarks) bookmarks")
                     .font(.caption)

@@ -1,5 +1,5 @@
 //
-//  iOSDeviceUtils.swift
+//  SystemDeviceUtils.swift
 //  ios_dependencies
 //
 //  Created by Gabriel Coman on 07/06/2020.
@@ -9,7 +9,9 @@
 import UIKit
 import RememberShared
 
-public class iOSDeviceUtils: DeviceUtils {
+public class SystemDeviceUtils: DeviceUtils {
+    
+    public init() {}
     
     public func isLandscape() -> Bool {
         return false

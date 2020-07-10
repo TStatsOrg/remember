@@ -32,7 +32,7 @@ public class ExtensionContextDataCapture: NSObject, RawDataCapture {
         
         // the case where we have a simple Text
         if itemProvider.hasItemConformingToTypeIdentifier("public.text") {
-            itemProvider.loadItem(forTypeIdentifier: "public.text") { (item, error) in
+            itemProvider.loadItem(forTypeIdentifier: "public.text") { (item, _) in
                 let textItem: String? = item as? String
                 
                 DispatchQueue.main.async {
@@ -43,7 +43,7 @@ public class ExtensionContextDataCapture: NSObject, RawDataCapture {
         
         // the case where we have a URL
         if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
-            itemProvider.loadItem(forTypeIdentifier: "public.url") { (item, error) in
+            itemProvider.loadItem(forTypeIdentifier: "public.url") { (item, _) in
                 
                 let url: URL? = item as? URL
                 let urlItem: String? = url?.absoluteString

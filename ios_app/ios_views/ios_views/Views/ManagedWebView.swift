@@ -48,7 +48,7 @@ extension ManagedWebView {
 
 extension ManagedWebView: UIViewRepresentable {
     
-    public func makeUIView(context: Context) -> WKWebView  {
+    public func makeUIView(context: Context) -> WKWebView {
         return webView
     }
     

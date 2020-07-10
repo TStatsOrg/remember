@@ -54,14 +54,14 @@ public class DependencyProvider {
         register { RealmDatabase() as Database }
         
         // different utils
-        register { iOSDeviceUtils() as DeviceUtils }
+        register { SystemDeviceUtils() as DeviceUtils }
         register { SimpleUrlDownloader() as UrlDownloader }
         register { SystemCalendarUtils() as CalendarUtils }
         register { ExtensionContextDataCapture() as RawDataCapture }
         register { SwiftSoupHTMLDataProcess() as HTMLDataProcess }
         register { WebViewProvider() as WebViewProvider }
         register { WebViewContentResolver(provider: self.resolve()) as ContentResolver }
-        register { iOSDataProcess(downloader: self.resolve(),
+        register { SystemDataProcess(downloader: self.resolve(),
                                   resolver: self.resolve(),
                                   dataProcess: self.resolve()) as RawDataProcess }
         
@@ -72,10 +72,11 @@ public class DependencyProvider {
         
         // repos
         register {
-            SharedBookmarkRepository(imageBookmarkDAO: (self.resolve() as Database).getImageBookmarkDAO(),
-                                     textBookmarkDAO: (self.resolve() as Database).getTextBookmarkDAO(),
-                                     linkBookmarkDAO: (self.resolve() as Database).getLinkBookmarkDAO(),
-                                     feedBookmarkDAO: (self.resolve() as Database).getFeedBookmarkDAO()) as BookmarkRepository
+            SharedBookmarkRepository(
+                imageBookmarkDAO: (self.resolve() as Database).getImageBookmarkDAO(),
+                textBookmarkDAO: (self.resolve() as Database).getTextBookmarkDAO(),
+                linkBookmarkDAO: (self.resolve() as Database).getLinkBookmarkDAO(),
+                feedBookmarkDAO: (self.resolve() as Database).getFeedBookmarkDAO()) as BookmarkRepository
         }
         
         register {

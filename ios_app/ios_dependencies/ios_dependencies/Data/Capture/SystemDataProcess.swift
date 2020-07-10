@@ -11,15 +11,15 @@ import RememberShared
 import SwiftSoup
 import FeedKit
 
-public class iOSDataProcess: RawDataProcess {
+public class SystemDataProcess: RawDataProcess {
     
     private let downloader: UrlDownloader
     private let resolver: ContentResolver
     private let dataProcess: HTMLDataProcess
     
-    init(downloader: UrlDownloader,
-         resolver: ContentResolver,
-         dataProcess: HTMLDataProcess) {
+    public init(downloader: UrlDownloader,
+                resolver: ContentResolver,
+                dataProcess: HTMLDataProcess) {
         self.downloader = downloader
         self.resolver = resolver
         self.dataProcess = dataProcess
@@ -73,7 +73,8 @@ public class iOSDataProcess: RawDataProcess {
                         self?.resolver.getContent(url: url) { [weak self] (finalURL, content) in
                             let htmlResult = self?.dataProcess.process(html: content)
                             
-                            if let success = htmlResult as? Either.Success, let successResult = success.data as? HTMLDataProcessResult {
+                            if let success = htmlResult as? Either.Success,
+                               let successResult = success.data as? HTMLDataProcessResult {
                                 result(RawDataProcessItem.Link(url: finalURL.absoluteString,
                                                                title: successResult.title,
                                                                description: successResult.caption,

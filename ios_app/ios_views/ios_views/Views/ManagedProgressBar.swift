@@ -29,7 +29,7 @@ public struct ManagedProgressBar: View {
             ZStack(alignment: .leading) {
                 Rectangle()
                     .foregroundColor(Color.white)
-                    .frame(width: geometry.size.width , height: geometry.size.height)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
                 
                 Rectangle()
                     .foregroundColor(self.foregroundBarColor)

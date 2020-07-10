@@ -122,9 +122,9 @@ public struct SearchView: View {
                 self.searchText = ""
                 self.bookmarksViewModel.loadBookmarks()
                 self.dismissKeyboard()
-            }) {
+            }, label: {
                 Text("Clear")
-            }
+            })
             .padding(trailing: 12)
         }
     }

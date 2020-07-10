@@ -16,6 +16,7 @@
 		1B169D1A24B5E7F300F962FB /* ios_feature_feed_all.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B169D1824B5E7F300F962FB /* ios_feature_feed_all.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B169D1C24B5E7F800F962FB /* ios_feature_feed_detail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B169D1B24B5E7F800F962FB /* ios_feature_feed_detail.framework */; };
 		1B169D1D24B5E7F800F962FB /* ios_feature_feed_detail.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B169D1B24B5E7F800F962FB /* ios_feature_feed_detail.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B169D2A24B7872E00F962FB /* AppDependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169D2924B7872E00F962FB /* AppDependencyInjection.swift */; };
 		1B1826432444D67C002F1361 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B1826422444D67B002F1361 /* MainInterface.storyboard */; };
 		1B682C9524731AFA00658151 /* AppScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B682C9424731AFA00658151 /* AppScreenFactory.swift */; };
 		1B72E0F72444905D0042EBD7 /* ios_feature_preview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B72E0ED2444905C0042EBD7 /* ios_feature_preview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -140,6 +141,7 @@
 		1B169D1524B5E7EF00F962FB /* ios_feature_feed_user.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_feed_user.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B169D1824B5E7F300F962FB /* ios_feature_feed_all.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_feed_all.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B169D1B24B5E7F800F962FB /* ios_feature_feed_detail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ios_feature_feed_detail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B169D2924B7872E00F962FB /* AppDependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyInjection.swift; sourceTree = "<group>"; };
 		1B1826422444D67B002F1361 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		1B1826442444D6AD002F1361 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B682C9424731AFA00658151 /* AppScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScreenFactory.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 		1BE01D562459F372000FC4AF /* App */ = {
 			isa = PBXGroup;
 			children = (
+				1B169D2924B7872E00F962FB /* AppDependencyInjection.swift */,
 				1BE01D542459F2B3000FC4AF /* AppNavigation.swift */,
 				1B682C9424731AFA00658151 /* AppScreenFactory.swift */,
 				1BA773D02441E9600060EC1D /* AppDelegate.swift */,
@@ -560,6 +563,7 @@
 				1BA774052441ED240060EC1D /* Embed Frameworks */,
 				1B72E0FB2444905D0042EBD7 /* Embed App Extensions */,
 				8F7C1CB80A635B8E9D5D2AEB /* [CP] Embed Pods Frameworks */,
+				1B169D2424B763A000F962FB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -722,6 +726,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1B169D2424B763A000F962FB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		1B7723D62482F890006150F2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -847,6 +868,7 @@
 				1BA773D12441E9600060EC1D /* AppDelegate.swift in Sources */,
 				1B682C9524731AFA00658151 /* AppScreenFactory.swift in Sources */,
 				1BA773D32441E9600060EC1D /* SceneDelegate.swift in Sources */,
+				1B169D2A24B7872E00F962FB /* AppDependencyInjection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

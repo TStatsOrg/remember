@@ -34,8 +34,8 @@ public class WebViewContentResolver: ContentResolver {
     public func getContent(url: URL, callback: @escaping (URL, String) -> Void) {
         delegate.finishNavigationObserver = callback
         
-        let vc = getTopMostViewController()
-        vc?.view.addSubview(webView)
+        let viewController = getTopMostViewController()
+        viewController?.view.addSubview(webView)
         
         provider.load(url: url)
     }

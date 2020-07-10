@@ -27,28 +27,7 @@ public struct EditBookmarkView: View {
     }
     
     public var body: some View {
-        List(state.viewStates, rowContent: { content in
-            Button(action: {
-                self.viewModel.update(bookmark: self.bookmarkId, withTopic: content.id)
-                self.viewModel.save()
-            }) {
-                HStack {
-                    if content.isSelected {
-                        Image(systemName: "checkmark")
-                            .resizable()
-                            .foregroundColor(.secondary)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 20, height: 20)
-                    } else {
-                        Color(.clear)
-                            .frame(width: 20.0, height: 20.0)
-                    }
-                    Text(content.name)
-                        .ActionButton()
-                }
-                
-            }
-        })
+        List(state.viewStates, rowContent: buildRow)
         .navigationBarTitle(Translations.EditBookmarks.title, displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             self.navigation.showAddTopic()
@@ -58,7 +37,7 @@ public struct EditBookmarkView: View {
         }))
         .onAppear {
             self.viewModel.loadEditableBookmark(forId: self.bookmarkId)
-            self.viewModel.observeBookmarkSaved { (success) in
+            self.viewModel.observeBookmarkSaved { _ in
                 self.dismiss()
             }
             self.viewModel.observeEditBookmarkState(callback: self.update)
@@ -67,6 +46,28 @@ public struct EditBookmarkView: View {
             self.viewModel.cleanup()
         }
         .sheet(isPresented: $isShowingSheet, content: navigation.content)
+    }
+    
+    private func buildRow(content: TopicViewState.Selectable) -> some View {
+        Button(action: {
+            self.viewModel.update(bookmark: self.bookmarkId, withTopic: content.id)
+            self.viewModel.save()
+        }, label: {
+            HStack {
+                if content.isSelected {
+                    Image(systemName: "checkmark")
+                        .resizable()
+                        .foregroundColor(.secondary)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
+                } else {
+                    Color(.clear)
+                        .frame(width: 20.0, height: 20.0)
+                }
+                Text(content.name)
+                    .asActionButton()
+            }
+        })
     }
     
     private func update(state: EditBookmarkState) {

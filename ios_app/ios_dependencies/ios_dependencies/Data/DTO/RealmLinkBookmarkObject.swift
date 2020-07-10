@@ -20,7 +20,14 @@ class RealmLinkBookmarkObject: Object {
     @objc dynamic var isFavourite: Bool = false
     @objc dynamic var topic: RealmTopicObject? = nil
     
-    init(id: Int32, date: Int64, url: String, title: String?, icon: String?, caption: String?, isFavourite: Bool, topic: RealmTopicObject?) {
+    init(id: Int32,
+         date: Int64,
+         url: String,
+         title: String?,
+         icon: String?,
+         caption: String?,
+         isFavourite: Bool,
+         topic: RealmTopicObject?) {
         self.id = id
         self.date = date
         self.url = url
@@ -47,7 +54,14 @@ class RealmLinkBookmarkObject: Object {
         let isFavourite: Bool
         let topic: TopicDTO?
         
-        init(id: Int32, date: Int64, url: String, title: String?, icon: String?, caption: String?, isFavourite: Bool, topic: TopicDTO?) {
+        init(id: Int32,
+             date: Int64,
+             url: String,
+             title: String?,
+             icon: String?,
+             caption: String?,
+             isFavourite: Bool,
+             topic: TopicDTO?) {
             self.id = id
             self.date = date
             self.url = url
@@ -62,12 +76,30 @@ class RealmLinkBookmarkObject: Object {
 
 extension RealmLinkBookmarkObject {
     func toDTO() -> BookmarkDTOLinkBookmarkDTO {
-        return RealmLinkBookmarkObject.DTO(id: id, date: date, url: url, title: title, icon: icon, caption: caption, isFavourite: isFavourite, topic: topic?.toDTO())
+        return RealmLinkBookmarkObject.DTO(
+            id: id,
+            date: date,
+            url: url,
+            title: title,
+            icon: icon,
+            caption: caption,
+            isFavourite: isFavourite,
+            topic: topic?.toDTO()
+        )
     }
 }
 
 extension BookmarkDTOLinkBookmarkDTO {
     func toObject() -> RealmLinkBookmarkObject {
-        return RealmLinkBookmarkObject(id: id, date: date, url: url, title: title, icon: icon, caption: caption, isFavourite: isFavourite, topic: topic?.toObject())
+        return RealmLinkBookmarkObject(
+            id: id,
+            date: date,
+            url: url,
+            title: title,
+            icon: icon,
+            caption: caption,
+            isFavourite: isFavourite,
+            topic: topic?.toObject()
+        )
     }
 }

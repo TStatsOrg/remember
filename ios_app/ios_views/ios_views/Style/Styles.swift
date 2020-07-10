@@ -10,7 +10,7 @@ import SwiftUI
 
 public extension Text {
     
-    func ActionButton() -> some View {
+    func asActionButton() -> some View {
         return self
             .font(.footnote)
             .fontWeight(.bold)

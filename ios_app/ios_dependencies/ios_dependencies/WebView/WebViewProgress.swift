@@ -32,4 +32,3 @@ public class WebViewProgress: NSObject {
         observation = nil
     }
 }
-

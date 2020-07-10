@@ -15,42 +15,42 @@ class AppNavigation: Navigation {
    
     @Injected private var factory: ScreenFactory
     
-    private var destination: NavigationDestination = .None
+    private var destination: NavigationDestination = .none
     
     func showFeedDetail(bookmarkId: Int32) {
-        destination = .FeedDetail(view: factory.buildFeedDetailScreen(bookmarkId: bookmarkId))
+        destination = .feedDetail(view: factory.buildFeedDetailScreen(bookmarkId: bookmarkId))
     }
     
     func showAllFeeds() {
-        destination = .AllFeeds(view: factory.buildAllFeedsScreen())
+        destination = .allFeeds(view: factory.buildAllFeedsScreen())
     }
     
     func showBookmarks() {
-        destination = .Bookmarks(view: factory.buildBookmarksScreen())
+        destination = .bookmarks(view: factory.buildBookmarksScreen())
     }
     
     func showUserFeeds() {
-        destination = .UserFeeds(view: factory.buildUserFeedsScreen())
+        destination = .userFeeds(view: factory.buildUserFeedsScreen())
     }
     
     func showTopicList() {
-        destination = .TopicList(view: factory.buildTopicsListScreen())
+        destination = .topicList(view: factory.buildTopicsListScreen())
     }
     
     func showEditBookmark(bookmarkId: Int32) {
-        destination = .EditBookmark(view: factory.buildEditBookmarkScreen(bookmarkId: bookmarkId))
+        destination = .editBookmark(view: factory.buildEditBookmarkScreen(bookmarkId: bookmarkId))
     }
     
     func showAddTopic() {
-        destination = .AddTopic(view: factory.buildAddTopicScreen())
+        destination = .addTopic(view: factory.buildAddTopicScreen())
     }
     
     func showEditTopic(topicId: Int32) {
-        destination = .EditTopic(view: factory.buildEditTopicScreen(topicId: topicId))
+        destination = .editTopic(view: factory.buildEditTopicScreen(topicId: topicId))
     }
     
     func showDisplay(url: URL?) {
-        destination = .Display(view: factory.buildDisplayView(url: url))
+        destination = .display(view: factory.buildDisplayView(url: url))
     }
     
     func showUrl(url: URL?) {
@@ -61,23 +61,23 @@ class AppNavigation: Navigation {
     
     func content() -> AnyView {
         switch destination {
-        case .AllFeeds(let view):
+        case .allFeeds(let view):
             return view
-        case .UserFeeds(let view):
+        case .userFeeds(let view):
             return view
-        case .Bookmarks(let view):
+        case .bookmarks(let view):
             return view
-        case .TopicList(let view):
+        case .topicList(let view):
             return view
-        case .EditBookmark(let view):
+        case .editBookmark(let view):
             return view
-        case .AddTopic(let view):
+        case .addTopic(let view):
             return view
-        case .EditTopic(let view):
+        case .editTopic(let view):
             return view
-        case .FeedDetail(let view):
+        case .feedDetail(let view):
             return view
-        case .Display(let view):
+        case .display(let view):
             return view
         default:
             return AnyView(EmptyView())

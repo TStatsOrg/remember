@@ -18,7 +18,7 @@ public struct DisplayView: View {
     @Injected private var viewModel: DisplayViewModel
     @State private var progressValue: Float = 0.0
     @State private var state: DisplayViewState = DisplayViewState()
-    @State private var currentUrl: URL? = nil
+    @State private var currentUrl: URL?
     @State private var isShowingSheet: Bool = false
     @Environment(\.presentationMode) private var mode: Binding<PresentationMode>
     
@@ -46,31 +46,31 @@ public struct DisplayView: View {
             HStack {
                 Button(action: {
                     self.provider.goBack()
-                }) {
+                }, label: {
                     Image(systemName: "arrowtriangle.left")
-                }
+                })
                 .frame(maxWidth: .infinity)
                 
                 Button(action: {
                     self.provider.goForward()
-                }) {
+                }, label: {
                     Image(systemName: "arrowtriangle.right")
-                }
+                })
                 .frame(maxWidth: .infinity)
                 
                 Button(action: {
                     self.isShowingSheet = true
-                }) {
+                }, label: {
                     Image(systemName: "square.and.arrow.up")
-                }
+                })
                 .frame(maxWidth: .infinity)
                 .disabled(state.isDisabled)
                 
                 Button(action: {
                     self.dismiss()
-                }) {
+                }, label: {
                     Image(systemName: "xmark")
-                }
+                })
                 .frame(maxWidth: .infinity)
                 
                 Button(action: {
@@ -79,13 +79,13 @@ public struct DisplayView: View {
                     } else {
                         self.viewModel.save()
                     }
-                }) {
+                }, label: {
                     if self.state.isBookmarked {
                         Image(systemName: "bookmark.fill")
                     } else {
                         Image(systemName: "bookmark")
                     }
-                }
+                })
                 .disabled(state.isDisabled)
                 .frame(maxWidth: .infinity)
             }

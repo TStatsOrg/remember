@@ -26,7 +26,7 @@ public struct FeedDetailView: View {
     
     public var body: some View {
         VStack(alignment: .center) {
-            MainView()
+            buildMainView()
         }
         .navigationBarTitle(Text(state.title), displayMode: .inline)
         .navigationBarItems(trailing:
@@ -46,7 +46,7 @@ public struct FeedDetailView: View {
         .sheet(isPresented: $isShowingSheet, content: navigation.content)
     }
     
-    private func MainView() -> some View {
+    private func buildMainView() -> some View {
         HStack {
             if state.isContentVisible {
                 List(state.items, rowContent: { content in

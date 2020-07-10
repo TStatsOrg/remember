@@ -17,6 +17,8 @@ public protocol UrlDownloader {
 
 public struct SimpleUrlDownloader: UrlDownloader {
     
+    public init() {}
+    
     public func download(url: URL, callback: @escaping (Result<String, DownloaderError>) -> Void) {
         DispatchQueue.global(qos: .default).async {
             

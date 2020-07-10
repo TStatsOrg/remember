@@ -32,7 +32,7 @@ class PreviewViewController: UIViewController {
             self.activityIndicator.isHidden = viewState.isHidden
         }
         
-        viewModel.observeBookmarkSaved { bookmarkId in
+        viewModel.observeBookmarkSaved { _ in
             self.extensionContext?.completeRequest(returningItems: [])
         }
         

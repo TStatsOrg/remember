@@ -12,6 +12,8 @@ import FeedKit
 
 public class FeedKitItemDataSource: FeedItemDataSource {
     
+    public init() {}
+    
     public func getItems(fromLink: String) -> Either {
         
         guard let url = URL(string: fromLink) else {

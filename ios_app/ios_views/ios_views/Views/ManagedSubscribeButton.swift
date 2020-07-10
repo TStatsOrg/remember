@@ -11,8 +11,8 @@ import SwiftUI
 public struct ManagedSubscribeButton: View {
     
     private var isSubscribed: Bool
-    private var subscribeAction: (() -> Void)? = nil
-    private var unsubscribeAction: (() -> Void)? = nil
+    private var subscribeAction: (() -> Void)?
+    private var unsubscribeAction: (() -> Void)?
     
     public init(isSubscribed: Bool,
                 subscribeAction:  (() -> Void)? = nil,
@@ -27,17 +27,17 @@ public struct ManagedSubscribeButton: View {
             if self.isSubscribed {
                 Button(action: {
                     self.unsubscribeAction?()
-                }) {
+                }, label: {
                     Text(Translations.AllFeeds.unsubscribeTitle)
                         .foregroundColor(Color.red)
-                }
+                })
             } else {
                 Button(action: {
                     self.subscribeAction?()
-                }) {
+                }, label: {
                     Text(Translations.AllFeeds.subscribeTitle)
                         .foregroundColor(Color.green)
-                }
+                })
             }
         }
     }

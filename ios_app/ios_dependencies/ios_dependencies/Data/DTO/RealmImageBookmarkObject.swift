@@ -17,7 +17,11 @@ class RealmImageBookmarkObject: Object {
     @objc dynamic var isFavourite: Bool = false
     @objc dynamic var topic: RealmTopicObject? = nil
     
-    init(id: Int32, date: Int64, url: String, isFavourite: Bool, topic: RealmTopicObject?) {
+    init(id: Int32,
+         date: Int64,
+         url: String,
+         isFavourite: Bool,
+         topic: RealmTopicObject?) {
         self.id = id
         self.date = date
         self.url = url
@@ -38,7 +42,11 @@ class RealmImageBookmarkObject: Object {
         let isFavourite: Bool
         let topic: TopicDTO?
         
-        init(id: Int32, date: Int64, url: String, isFavourite: Bool, topic: TopicDTO?) {
+        init(id: Int32,
+             date: Int64,
+             url: String,
+             isFavourite: Bool,
+             topic: TopicDTO?) {
             self.id = id
             self.date = date
             self.url = url
@@ -50,12 +58,24 @@ class RealmImageBookmarkObject: Object {
 
 extension BookmarkDTOImageBookmarkDTO {
     func toObject() -> RealmImageBookmarkObject {
-        return RealmImageBookmarkObject(id: id, date: date, url: url, isFavourite: isFavourite, topic: topic?.toObject())
+        return RealmImageBookmarkObject(
+            id: id,
+            date: date,
+            url: url,
+            isFavourite: isFavourite,
+            topic: topic?.toObject()
+        )
     }
 }
 
 extension RealmImageBookmarkObject {
     func toDTO() -> BookmarkDTOImageBookmarkDTO {
-        return RealmImageBookmarkObject.DTO(id: id, date: date, url: url, isFavourite: isFavourite, topic: topic?.toDTO())
+        return RealmImageBookmarkObject.DTO(
+            id: id,
+            date: date,
+            url: url,
+            isFavourite: isFavourite,
+            topic: topic?.toDTO()
+        )
     }
 }

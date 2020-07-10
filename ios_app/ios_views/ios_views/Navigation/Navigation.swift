@@ -10,17 +10,17 @@ import Foundation
 import SwiftUI
 
 public enum NavigationDestination {
-    case None
-    case Bookmarks(view: AnyView)
-    case UserFeeds(view: AnyView)
-    case TopicList(view: AnyView)
-    case AddTopic(view: AnyView)
-    case EditBookmark(view: AnyView)
-    case EditTopic(view: AnyView)
-    case AllFeeds(view: AnyView)
-    case FeedDetail(view: AnyView)
-    case Display(view: AnyView)
-    case UrlDestination
+    case none
+    case bookmarks(view: AnyView)
+    case userFeeds(view: AnyView)
+    case topicList(view: AnyView)
+    case addTopic(view: AnyView)
+    case editBookmark(view: AnyView)
+    case editTopic(view: AnyView)
+    case allFeeds(view: AnyView)
+    case feedDetail(view: AnyView)
+    case display(view: AnyView)
+    case urlDestination
 }
 
 public protocol Navigation {

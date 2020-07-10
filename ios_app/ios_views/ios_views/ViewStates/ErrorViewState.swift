@@ -28,7 +28,7 @@ public struct ErrorViewState {
             return Translations.Errors.Network
         case let feed where feed is Errors.InvalidFeedFormat:
             return Translations.Errors.InvalidFeedFormat
-        case let db where db is Errors.Database:
+        case let database where database is Errors.Database:
             return Translations.Errors.Database
         case let url where url is Errors.InvalidURL:
             return Translations.Errors.InvalidURL

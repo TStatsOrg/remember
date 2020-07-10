@@ -15,7 +15,7 @@ class RealmImageBookmarkDAO: RealmDAO, ImageBookmarkDAO {
     
     let realm: Realm?
     
-    public init(realm: Realm?){
+    public init(realm: Realm?) {
         self.realm = realm
     }
     

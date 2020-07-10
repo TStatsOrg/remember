@@ -20,7 +20,14 @@ class RealmFeedBookmarkObject: Object {
     @objc dynamic var isFavourite: Bool = false
     @objc dynamic var topic: RealmTopicObject? = nil
     
-    init(id: Int32, date: Int64, url: String, title: String?, icon: String?, caption: String?, isFavourite: Bool, topic: RealmTopicObject?) {
+    init(id: Int32,
+         date: Int64,
+         url: String,
+         title: String?,
+         icon: String?,
+         caption: String?,
+         isFavourite: Bool,
+         topic: RealmTopicObject?) {
         self.id = id
         self.date = date
         self.url = url
@@ -69,12 +76,30 @@ class RealmFeedBookmarkObject: Object {
 
 extension RealmFeedBookmarkObject {
     func toDTO() -> BookmarkDTOFeedBookmarkDTO {
-        return RealmFeedBookmarkObject.DTO(id: id, url: url, title: title, caption: caption, icon: icon, date: date, isFavourite: isFavourite, topic: topic?.toDTO())
+        return RealmFeedBookmarkObject.DTO(
+            id: id,
+            url: url,
+            title: title,
+            caption: caption,
+            icon: icon,
+            date: date,
+            isFavourite: isFavourite,
+            topic: topic?.toDTO()
+        )
     }
 }
 
 extension BookmarkDTOFeedBookmarkDTO {
     func toObject() -> RealmFeedBookmarkObject {
-        return RealmFeedBookmarkObject(id: id, date: date, url: url, title: title, icon: icon, caption: caption, isFavourite: isFavourite, topic: topic?.toObject())
+        return RealmFeedBookmarkObject(
+            id: id,
+            date: date,
+            url: url,
+            title: title,
+            icon: icon,
+            caption: caption,
+            isFavourite: isFavourite,
+            topic: topic?.toObject()
+        )
     }
 }

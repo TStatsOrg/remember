@@ -12,17 +12,19 @@ import RealmSwift
 
 public class RealmDatabase: NSObject {
     
-    private static let GROUP_ID = "group.app.keepjar"
-    private static let PATH_COMPONENT = "db.realm"
+    private static let GROUP = "group.app.keepjar"
+    private static let PATH = "db.realm"
     
     private lazy var config: Realm.Configuration = {
             
-        if var directory: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:RealmDatabase.GROUP_ID) {
-            directory.appendPathComponent(RealmDatabase.PATH_COMPONENT, isDirectory: true)
-            return Realm.Configuration(fileURL: directory, schemaVersion: 3, migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 2) {
-                    // do nothing
-                }
+        if var directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: RealmDatabase.GROUP) {
+            directory.appendPathComponent(RealmDatabase.PATH, isDirectory: true)
+            return Realm.Configuration(fileURL: directory,
+                                       schemaVersion: 3,
+                                       migrationBlock: { migration, oldSchemaVersion in
+//                if (oldSchemaVersion < 2) {
+//                    // do nothing
+//                }
             })
         } else {
             return Realm.Configuration.defaultConfiguration

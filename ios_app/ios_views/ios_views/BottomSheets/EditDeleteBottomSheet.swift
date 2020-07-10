@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-func EditDeleteBottomSheet(
+func createEditDeleteBottomSheet(
     title: String,
     editAction: @escaping () -> Void,
     deleteAction: (() -> Void)? = nil
@@ -43,9 +43,9 @@ struct EditDeleteActionSheetModifier: ViewModifier {
                 }
             }
             .actionSheet(isPresented: $isShowing) {
-                EditDeleteBottomSheet(title: title,
-                                      editAction: editAction,
-                                      deleteAction: deleteAction)
+                createEditDeleteBottomSheet(title: title,
+                                            editAction: editAction,
+                                            deleteAction: deleteAction)
             }
     }
 }

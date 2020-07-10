@@ -22,7 +22,7 @@ public struct BookmarkTopicView: View {
     
     public var body: some View {
         Text(viewState.topic)
-            .ActionButton()
+            .asActionButton()
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
         
     }

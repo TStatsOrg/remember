@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import SharePreview
 import ios_dependencies
 import ios_views
 
@@ -35,24 +34,85 @@ extension PreviewDataSource: UITableViewDataSource {
             return UITableViewCell()
         }
         
+        let cellFunc: (UITableView, IndexPath) -> UITableViewCell
+        
         switch viewState {
         case let link as BookmarkLinkViewState:
-            let cell = tableView.dequeueReusableCell(withIdentifier: LinkPreviewCell.identifier, for: indexPath) as! LinkPreviewCell
-            cell.redraw(viewState: link)
-            return cell
+            cellFunc = getLinkCell(state: link)
         case let text as BookmarkTextViewState:
-            let cell = tableView.dequeueReusableCell(withIdentifier: TextPreviewCell.identifier, for: indexPath) as! TextPreviewCell
-            cell.redraw(viewState: text)
-            return cell
+            cellFunc = getTextCell(state: text)
         case let image as BookmarkImageViewState:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ImagePreviewCell.identifier, for: indexPath) as! ImagePreviewCell
-            cell.redraw(viewState: image)
-            return cell
+            cellFunc = getImageCell(state: image)
         case let feed as BookmarkFeedViewState:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FeedPreviewCell.identifier, for: indexPath) as! FeedPreviewCell
-            cell.redraw(viewState: feed)
-            return cell
+            cellFunc = getFeedCell(state: feed)
         default:
+            cellFunc = getDefaultCell()
+        }
+        
+        return cellFunc(tableView, indexPath)
+    }
+}
+
+extension PreviewDataSource {
+    
+    func getLinkCell(state: BookmarkLinkViewState) -> (UITableView, IndexPath) -> UITableViewCell {
+        return { table, indexPath in
+            
+            guard let cell = table.dequeueReusableCell(withIdentifier: LinkPreviewCell.identifier,
+                                                       for: indexPath) as? LinkPreviewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.redraw(viewState: state)
+            
+            return cell
+        }
+    }
+    
+    func getTextCell(state: BookmarkTextViewState) -> (UITableView, IndexPath) -> UITableViewCell {
+        return { table, indexPath in
+            
+            guard let cell = table.dequeueReusableCell(withIdentifier: TextPreviewCell.identifier,
+                                                       for: indexPath) as? TextPreviewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.redraw(viewState: state)
+            
+            return cell
+        }
+    }
+    
+    func getImageCell(state: BookmarkImageViewState) -> (UITableView, IndexPath) -> UITableViewCell {
+        return { table, indexPath in
+            
+            guard let cell = table.dequeueReusableCell(withIdentifier: ImagePreviewCell.identifier,
+                                                       for: indexPath) as? ImagePreviewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.redraw(viewState: state)
+            
+            return cell
+        }
+    }
+    
+    func getFeedCell(state: BookmarkFeedViewState) -> (UITableView, IndexPath) -> UITableViewCell {
+        return { table, indexPath in
+            
+            guard let cell = table.dequeueReusableCell(withIdentifier: FeedPreviewCell.identifier,
+                                                       for: indexPath) as? FeedPreviewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.redraw(viewState: state)
+            
+            return cell
+        }
+    }
+    
+    func getDefaultCell() -> (UITableView, IndexPath) -> UITableViewCell {
+        return { _, _ in
             return UITableViewCell()
         }
     }

@@ -14,6 +14,7 @@ target 'ios_app' do
   pod 'SwiftSoup', '2.3.1'
   pod 'RealmSwift', '4.4.0'
   pod 'FeedKit', '~> 9.0'
+  pod 'SwiftLint'
 
   target 'ios_app_tests' do
     inherit! :search_paths

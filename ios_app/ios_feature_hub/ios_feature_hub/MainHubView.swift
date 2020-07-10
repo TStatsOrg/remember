@@ -11,7 +11,7 @@ import ios_views
 import ios_dependencies
 import RememberShared
 
-public struct MainHubView: View  {
+public struct MainHubView: View {
 
     @Injected private var screenFactory: ScreenFactory
     @Injected private var viewModel: HubViewModel

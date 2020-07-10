@@ -10,6 +10,7 @@ PODS:
   - SDWebImage/Core (5.8.3)
   - SDWebImageSwiftUI (1.3.3):
     - SDWebImage (~> 5.7)
+  - SwiftLint (0.39.2)
   - SwiftSoup (2.3.1)
 
 DEPENDENCIES:
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - RealmSwift (= 4.4.0)
   - SDWebImage (~> 5.0)
   - SDWebImageSwiftUI (= 1.3.3)
+  - SwiftLint
   - SwiftSoup (= 2.3.1)
 
 SPEC REPOS:
@@ -26,6 +28,7 @@ SPEC REPOS:
     - RealmSwift
     - SDWebImage
     - SDWebImageSwiftUI
+    - SwiftLint
     - SwiftSoup
 
 SPEC CHECKSUMS:
@@ -34,8 +37,9 @@ SPEC CHECKSUMS:
   RealmSwift: 33656a42bd300959a081fc13347376bc478071af
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SDWebImageSwiftUI: a34ad354527ec71f8dcb5c5e82179734285280a6
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftSoup: e5af192bc99be8398d5f93e15ff6a3c80ba81de1
 
-PODFILE CHECKSUM: 12802931a6927eb20384892472b48471c0c19df4
+PODFILE CHECKSUM: 801c2d26afb9865f23a6f9eadef69a766cd9e0bc
 
 COCOAPODS: 1.7.5

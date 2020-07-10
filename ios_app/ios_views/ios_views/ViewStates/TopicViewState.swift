@@ -35,7 +35,6 @@ public class TopicViewState {
         public let topic: TopicState
         public let noBookmarks: Int
          
-        
         public init(state: TopicState, noBookmarks: Int) {
             self.topic = state
             self.noBookmarks = noBookmarks

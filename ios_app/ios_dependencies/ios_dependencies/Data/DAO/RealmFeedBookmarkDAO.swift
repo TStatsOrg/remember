@@ -15,7 +15,7 @@ public class RealmFeedBookmarkDAO: RealmDAO, FeedBookmarkDAO {
     
     var realm: Realm?
     
-    public init(realm: Realm?){
+    public init(realm: Realm?) {
         self.realm = realm
     }
     

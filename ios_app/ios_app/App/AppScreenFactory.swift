@@ -22,11 +22,13 @@ import ios_feature_display
 struct AppScreenFactory: ScreenFactory {
     
     func buildFeedDetailScreen(bookmarkId: Int32) -> AnyView {
-        return AnyView(NavigationView { FeedDetailView(bookmarkId: bookmarkId) }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { FeedDetailView(bookmarkId: bookmarkId) }
+            .navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildAllFeedsScreen() -> AnyView {
-        return AnyView(NavigationView { AllFeedsView() }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { AllFeedsView() }
+            .navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildMainHubScreen() -> AnyView {
@@ -34,30 +36,37 @@ struct AppScreenFactory: ScreenFactory {
     }
     
     func buildUserFeedsScreen() -> AnyView {
-        return AnyView(NavigationView { UserFeedsView() }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { UserFeedsView() }
+            .navigationViewStyle(StackNavigationViewStyle()))
     }
 
     func buildBookmarksScreen() -> AnyView {
-        return AnyView(NavigationView { BookmarksView() }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { BookmarksView() }
+            .navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildTopicsListScreen() -> AnyView {
-        return AnyView(NavigationView { TopicsView() }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { TopicsView() }
+            .navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildEditBookmarkScreen(bookmarkId: Int32) -> AnyView {
-        return AnyView(NavigationView { EditBookmarkView(bookmarkId: bookmarkId) }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { EditBookmarkView(bookmarkId: bookmarkId) }
+            .navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildAddTopicScreen() -> AnyView {
-        return AnyView(NavigationView { AddTopicView() }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { AddTopicView() }
+            .navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildEditTopicScreen(topicId: Int32) -> AnyView {
-        return AnyView(NavigationView { EditTopicView(topicId: topicId) }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { EditTopicView(topicId: topicId) }
+            .navigationViewStyle(StackNavigationViewStyle()))
     }
     
     func buildDisplayView(url: URL?) -> AnyView {
-        return AnyView(NavigationView { DisplayView(url: url) }.navigationViewStyle(StackNavigationViewStyle()))
+        return AnyView(NavigationView { DisplayView(url: url) }
+            .navigationViewStyle(StackNavigationViewStyle()))
     }
 }
