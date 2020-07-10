@@ -1,0 +1,32 @@
+disabled_rules:
+  - trailing_whitespace
+  - redundant_optional_initialization
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+
+line_length: 130
+type_body_length:
+  warning: 60 
+  # error: 100
+function_body_length:
+  warning: 30
+  # error: 30
+file_length:
+  warning: 180
+  error: 180
+cyclomatic_complexity:
+  ignores_case_statements: true
+  warning: 7
+  error: 7
+identifier_name:
+  min_length: # only min_length
+    error: 3 # only error
+  excluded: # excluded via string array
+    - id
+    - URL
+    - url
+    - key
+    - Key
+    - dto
+    - app
