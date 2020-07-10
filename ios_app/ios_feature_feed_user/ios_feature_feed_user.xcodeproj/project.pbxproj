@@ -124,6 +124,8 @@
 			dependencies = (
 			);
 			name = ios_feature_feed_user;
+			packageProductDependencies = (
+			);
 			productName = ios_feature_feed_user;
 			productReference = 1B169CAD24B5E67400F962FB /* ios_feature_feed_user.framework */;
 			productType = "com.apple.product-type.framework";
@@ -152,6 +154,8 @@
 				Base,
 			);
 			mainGroup = 1B169CA324B5E67400F962FB;
+			packageReferences = (
+			);
 			productRefGroup = 1B169CAE24B5E67400F962FB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
