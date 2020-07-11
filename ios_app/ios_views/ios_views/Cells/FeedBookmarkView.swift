@@ -21,25 +21,31 @@ public struct FeedBookmarkView: View {
     }
     
     public var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .top) {
 
             WebImage(url: viewState.icon)
                 .placeholder(content: {
                     Image(systemName: "bookmark.fill")
-                        .frame(width: 60, height: 60)
+                        .frame(width: 36, height: 36)
                         .foregroundColor(AppColors.secondaryColor)
                         .background(AppColors.mainColor)
                 })
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 60, height: 60)
+                .frame(width: 36, height: 36)
                 .clipped()
+                .padding(trailing: 8.0)
 
             VStack(alignment: .leading) {
                 Text(viewState.title)
                     .font(.body)
                     .fontWeight(.bold)
-                BookmarkInfoView(viewState: viewState)
+                Text(viewState.info)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .lineLimit(1)
+                    .padding(top: 4.0)
+                    .padding(bottom: 4.0)
             }
             Spacer()
         }

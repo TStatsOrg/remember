@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B169D2624B77FA000F962FB /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B169D2524B77FA000F962FB /* BottomSheetView.swift */; };
 		1B84149024A1338200AD4660 /* ios_feature_display.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B84148E24A1338200AD4660 /* ios_feature_display.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B84149824A1338A00AD4660 /* ios_dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B84149724A1338A00AD4660 /* ios_dependencies.framework */; };
 		1B84149C24A1339100AD4660 /* ios_views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B84149B24A1339100AD4660 /* ios_views.framework */; };
@@ -17,7 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B169D2524B77FA000F962FB /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		1B84148B24A1338200AD4660 /* ios_feature_display.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_feature_display.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B84148E24A1338200AD4660 /* ios_feature_display.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_feature_display.h; sourceTree = "<group>"; };
 		1B84148F24A1338200AD4660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,7 +63,6 @@
 				1B84148E24A1338200AD4660 /* ios_feature_display.h */,
 				1B84148F24A1338200AD4660 /* Info.plist */,
 				1B8414A624A1341500AD4660 /* DisplayView.swift */,
-				1B169D2524B77FA000F962FB /* BottomSheetView.swift */,
 				1B8ABAAA24A8C29000D35366 /* DisplayViewState.swift */,
 			);
 			path = ios_feature_display;
@@ -163,7 +160,6 @@
 			files = (
 				1B8414A724A1341500AD4660 /* DisplayView.swift in Sources */,
 				1B8ABAAB24A8C29000D35366 /* DisplayViewState.swift in Sources */,
-				1B169D2624B77FA000F962FB /* BottomSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

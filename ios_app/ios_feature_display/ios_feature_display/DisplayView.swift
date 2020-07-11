@@ -73,19 +73,9 @@ public struct DisplayView: View {
                 })
                 .frame(maxWidth: .infinity)
                 
-                Button(action: {
-                    if self.state.isBookmarked {
-                        self.viewModel.delete()
-                    } else {
-                        self.viewModel.save()
-                    }
-                }, label: {
-                    if self.state.isBookmarked {
-                        Image(systemName: "bookmark.fill")
-                    } else {
-                        Image(systemName: "bookmark")
-                    }
-                })
+                ManagedSubscribeButton(isSubscribed: state.isBookmarked,
+                                       subscribeAction: viewModel.save,
+                                       unsubscribeAction: viewModel.delete)
                 .disabled(state.isDisabled)
                 .frame(maxWidth: .infinity)
             }

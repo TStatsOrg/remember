@@ -24,21 +24,19 @@ public struct ManagedSubscribeButton: View {
     
     public var body: some View {
         VStack(alignment: .trailing) {
-            if self.isSubscribed {
-                Button(action: {
+            Button(action: {
+                if self.isSubscribed {
                     self.unsubscribeAction?()
-                }, label: {
-                    Text(Translations.AllFeeds.unsubscribeTitle)
-                        .foregroundColor(Color.red)
-                })
-            } else {
-                Button(action: {
+                } else {
                     self.subscribeAction?()
-                }, label: {
-                    Text(Translations.AllFeeds.subscribeTitle)
-                        .foregroundColor(Color.green)
-                })
-            }
+                }
+            }, label: {
+                if self.isSubscribed {
+                    Image(systemName: "bookmark.fill")
+                } else {
+                    Image(systemName: "bookmark")
+                }
+            })
         }
     }
 }

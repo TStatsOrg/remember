@@ -145,7 +145,7 @@ public struct BookmarkFeedViewState: Identifiable, BookmarkViewStateType {
         id = state.id
         title = state.title ?? "N/A"
         caption = state.caption
-        source = state.url
+        source = URL(string: state.url)?.host ?? "N/A"
         isSubscribed = state.isFavourite
         
         if let url = URL(string: state.url) {

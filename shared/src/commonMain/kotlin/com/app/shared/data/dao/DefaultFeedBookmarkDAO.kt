@@ -10,37 +10,37 @@ class DefaultFeedBookmarkDAO: FeedBookmarkDAO {
             id = "http://feeds.feedburner.com/TechCrunch/".hashCode(),
             title = "Tech Crunch",
             url = "http://feeds.feedburner.com/TechCrunch/",
-            icon = "http://www.techcrunch.com/wp-content/themes/techcrunchmu/images/techcrunch_logo.png"
+            icon = "https://techcrunch.com/wp-content/uploads/2015/02/cropped-cropped-favicon-gradient.png?w=32"
         ),
         DefaultFeedBookmarkDTO(
             id = "https://www.theguardian.com/uk/rss".hashCode(),
             title = "The Guardian UK",
             url = "https://www.theguardian.com/uk/rss",
-            icon = "https://assets.guim.co.uk/images/guardian-logo-rss.c45beb1bafa34b347ac333af2e6fe23f.png"
+            icon = "https://www.theguardian.com/favicon.ico"
         ),
         DefaultFeedBookmarkDTO(
             id = "http://feeds.bbci.co.uk/news/world/rss.xml".hashCode(),
             title = "BBC News - World",
             url = "http://feeds.bbci.co.uk/news/world/rss.xml",
-            icon = "https://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif"
+            icon = "https://www.bbc.co.uk/favicon.ico"
         ),
         DefaultFeedBookmarkDTO(
             id = "http://feeds.washingtonpost.com/rss/rss_blogpost".hashCode(),
             title = "Washington Post",
             url = "http://feeds.washingtonpost.com/rss/rss_blogpost",
-            icon = null
+            icon = "https://www.washingtonpost.com/favicon.ico"
         ),
         DefaultFeedBookmarkDTO(
             id = "https://zoso.ro/feed/".hashCode(),
             title = "Zoso.ro",
             url = "https://zoso.ro/feed/",
-            icon = null
+            icon = "https://zoso.ro/favicon.ico"
         ),
         DefaultFeedBookmarkDTO(
             id = "http://xkcd.com/atom.xml".hashCode(),
             title = "xkcd.com",
             url = "http://xkcd.com/atom.xml",
-            icon = null
+            icon = "https://xkcd.com/favicon.ico"
         ),
         DefaultFeedBookmarkDTO(
             id = "http://feeds.feedburner.com/Explosm".hashCode(),
@@ -64,25 +64,25 @@ class DefaultFeedBookmarkDAO: FeedBookmarkDAO {
             id = "http://feeds.wired.com/wired/index".hashCode(),
             title = "Wired",
             url = "http://feeds.wired.com/wired/index",
-            icon = null
+            icon = "https://www.wired.com/favicon.ico"
         ),
         DefaultFeedBookmarkDTO(
             id = "http://feeds.feedburner.com/oatmealfeed".hashCode(),
             title = "Oatmeal",
             url = "http://feeds.feedburner.com/oatmealfeed",
-            icon = null
+            icon = "https://theoatmeal.com/favicon.ico"
         ),
         DefaultFeedBookmarkDTO(
             id = "https://news.ycombinator.com/rss".hashCode(),
             title = "Hacker News",
             url = "https://news.ycombinator.com/rss",
-            icon = null
+            icon = "https://news.ycombinator.com/favicon.ico"
         ),
         DefaultFeedBookmarkDTO(
             id = "https://utopiabalcanica.net/feed/".hashCode(),
             title = "Utopia Balcanica",
             url = "https://utopiabalcanica.net/feed/",
-            icon = null
+            icon = "https://utopiabalcanica.net/favicon.ico"
         )
     )
 

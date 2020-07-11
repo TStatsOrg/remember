@@ -60,8 +60,18 @@ public class SystemDataProcess: RawDataProcess {
                     
                     switch parseResult {
                     case .success(let feed):
+                        
+                        let link = feed.rssFeed?.link ?? feed.atomFeed?.links?.first?.attributes?.href
+                        var favico: String?
+                        if let favicoLink = link,
+                           let url = URL(string: favicoLink),
+                           let host = url.host,
+                           let scheme = url.scheme {
+                            favico = "\(scheme)://\(host)/favicon.ico"
+                        }
+                        
                         let title = feed.rssFeed?.title ?? feed.atomFeed?.title
-                        let icon = feed.rssFeed?.image?.link ?? feed.atomFeed?.icon
+                        let icon = favico ?? feed.rssFeed?.image?.link ?? feed.atomFeed?.icon
                         let caption = feed.rssFeed?.description ?? feed.atomFeed?.subtitle?.value
                         
                         result(RawDataProcessItem.Feed(url: url.absoluteString,
