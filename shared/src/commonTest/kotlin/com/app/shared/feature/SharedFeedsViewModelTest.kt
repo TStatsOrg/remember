@@ -4,6 +4,7 @@ import com.app.shared.DefaultTest
 import com.app.shared.business.Actions
 import com.app.shared.business.MainState
 import com.app.shared.coroutines.runTest
+import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.data.repository.FeedsRepository
 import com.app.shared.feature.feeds.SharedFeedsViewModel
 import com.app.shared.mocks.MockBookmarkDTO
@@ -20,7 +21,8 @@ class SharedFeedsViewModelTest: DefaultTest() {
     private val store = mockk<Store<MainState>>(relaxed = true)
     private val calendar = mockk<CalendarUtils>(relaxed = true)
     private val repository = mockk<FeedsRepository>(relaxed = true)
-    private val viewModel = SharedFeedsViewModel(store = store, calendar = calendar, repository = repository)
+    private val bookmarkRepository = mockk<BookmarkRepository>(relaxed = true)
+    private val viewModel = SharedFeedsViewModel(store = store, calendar = calendar, repository = repository, bookmarkRepository = bookmarkRepository)
 
     @Test
     fun `load data passes only feed type bookmarks to store actions`() = runTest {
