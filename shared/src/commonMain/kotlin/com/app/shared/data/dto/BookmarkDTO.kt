@@ -22,6 +22,7 @@ interface BookmarkDTO {
         val title: String?
         val caption: String?
         val icon: String?
+        val latestUpdate: Long
     }
 
     interface ImageBookmarkDTO: BookmarkDTO {

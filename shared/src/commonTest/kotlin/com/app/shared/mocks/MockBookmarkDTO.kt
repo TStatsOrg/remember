@@ -40,6 +40,7 @@ sealed class MockBookmarkDTO {
         override val title: String?,
         override val caption: String?,
         override val icon: String?,
+        override val latestUpdate: Long = 0L,
         override val isFavourite: Boolean = false
     ) : MockBookmarkDTO(), BookmarkDTO.FeedBookmarkDTO
 }

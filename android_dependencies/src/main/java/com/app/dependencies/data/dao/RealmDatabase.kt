@@ -9,7 +9,7 @@ class RealmDatabase(context: Context): Database {
 
     private val config: RealmConfiguration by lazy {
         RealmConfiguration.Builder()
-            .schemaVersion(2L)
+            .schemaVersion(3L)
             .migration(RealmAppMigration())
             .build()
     }

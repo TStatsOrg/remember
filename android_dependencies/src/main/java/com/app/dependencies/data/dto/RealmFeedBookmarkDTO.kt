@@ -8,6 +8,7 @@ open class RealmFeedBookmarkDTO(
     @PrimaryKey
     override var id: Int = 0,
     override var date: Long = 0L,
+    override var latestUpdate: Long = 0L,
     override var topic: RealmTopicDTO? = null,
     override var isFavourite: Boolean = false,
     override var url: String = "",

@@ -20,11 +20,15 @@ public class RealmDatabase: NSObject {
         if var directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: RealmDatabase.GROUP) {
             directory.appendPathComponent(RealmDatabase.PATH, isDirectory: true)
             return Realm.Configuration(fileURL: directory,
-                                       schemaVersion: 3,
+                                       schemaVersion: 4,
                                        migrationBlock: { migration, oldSchemaVersion in
-//                if (oldSchemaVersion < 2) {
-//                    // do nothing
-//                }
+                
+                // migrate and add the "latestUpdate" field
+                if oldSchemaVersion < 4 {
+                    migration.enumerateObjects(ofType: RealmFeedBookmarkObject.className()) { (oldObject, newObject) in
+                        newObject?["latestUpdate"] = oldObject!["date"]
+                    }
+                }
             })
         } else {
             return Realm.Configuration.defaultConfiguration

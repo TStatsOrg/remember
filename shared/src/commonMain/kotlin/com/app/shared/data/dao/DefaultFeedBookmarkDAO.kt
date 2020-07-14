@@ -97,6 +97,7 @@ class DefaultFeedBookmarkDAO: FeedBookmarkDAO {
     private data class DefaultFeedBookmarkDTO(
         override val id: Int,
         override val date: Long = 0L,
+        override val latestUpdate: Long = 0L,
         override val topic: TopicDTO? = null,
         override val url: String,
         override val title: String?,

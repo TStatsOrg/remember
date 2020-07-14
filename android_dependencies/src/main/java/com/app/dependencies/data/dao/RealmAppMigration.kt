@@ -3,6 +3,7 @@ package com.app.dependencies.data.dao
 import io.realm.DynamicRealm
 import io.realm.FieldAttribute
 import io.realm.RealmMigration
+import java.nio.file.attribute.FileAttribute
 
 class RealmAppMigration: RealmMigration {
     override fun migrate(realm: DynamicRealm, oldVersion: Long, newVersion: Long) {
@@ -32,6 +33,14 @@ class RealmAppMigration: RealmMigration {
 
             schema.get("RealmTextBookmarkDTO")
                 ?.addField("isFavourite", Boolean::class.java)
+        }
+
+        /**
+         * In version 3L we added a new field to "RealmFeedBookmarkDTO": "latestUpdate"
+         */
+        if (oldVersion < 3L) {
+            schema.get("RealmFeedBookmarkDTO")
+                ?.addField("latestUpdate", Long::class.java)
         }
     }
 }

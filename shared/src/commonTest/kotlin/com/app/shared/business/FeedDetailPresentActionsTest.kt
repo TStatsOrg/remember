@@ -15,6 +15,7 @@ class FeedDetailPresentActionsTest: DefaultTest() {
             id = 2,
             caption = "My caption",
             date = 123L,
+            latestUpdate = 123L,
             icon = "https://my.feed.com/favico.jpg",
             title = "My Feed",
             url = "https://my.feed.com/feed.xml",
