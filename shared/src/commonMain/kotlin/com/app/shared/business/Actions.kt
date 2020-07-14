@@ -35,6 +35,8 @@ sealed class Actions: Action {
             data class Add(val bookmarkId: Int): Favourite()
             data class Remove(val bookmarkId: Int): Favourite()
         }
+
+        data class UpdateDate(val id: Int, val lastUpdate: Long): Bookmark()
     }
 
     sealed class Topics: Actions() {

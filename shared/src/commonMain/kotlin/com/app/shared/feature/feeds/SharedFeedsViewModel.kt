@@ -37,7 +37,11 @@ class SharedFeedsViewModel(
     override fun checkContentUpdates() {
         scope.launch(context = DispatcherFactory.main()) {
 
-            repository.getNewContent()
+            val updates = repository.getNewContent()
+
+            updates.forEach {
+                store.dispatch(action = Actions.Bookmark.UpdateDate(id = it.id, lastUpdate = it.lastUpdate))
+            }
         }
     }
 

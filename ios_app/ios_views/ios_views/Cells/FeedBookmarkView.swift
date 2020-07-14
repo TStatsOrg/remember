@@ -40,6 +40,7 @@ public struct FeedBookmarkView: View {
                 Text(viewState.title)
                     .font(.body)
                     .fontWeight(.bold)
+                    .foregroundColor(viewState.titleColor)
                 Text(viewState.info)
                     .font(.caption)
                     .foregroundColor(.secondary)

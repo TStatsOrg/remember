@@ -75,6 +75,7 @@ fun BookmarkDTO.toState(): BookmarkState {
         is BookmarkDTO.FeedBookmarkDTO -> BookmarkState.Feed(
             id = id,
             date = date,
+            latestUpdate = date,
             url = url,
             title = title,
             caption = caption,
@@ -138,6 +139,7 @@ fun BookmarkDTO.FeedBookmarkDTO.toState(): BookmarkState.Feed {
         title = this.title,
         topic = this.topic?.toState(),
         date = this.date,
+        latestUpdate = this.date,
         icon = this.icon,
         url = this.url,
         isFavourite = this.isFavourite
@@ -149,7 +151,7 @@ fun BookmarkState.copy(withTopic: TopicState?): BookmarkState {
         is BookmarkState.Image -> BookmarkState.Image(id = id, date = date, url = url, isFavourite = isFavourite, topic = withTopic)
         is BookmarkState.Link -> BookmarkState.Link(id = id, url = url, title = title, caption = caption, icon = icon, date = date, isFavourite = isFavourite, topic = withTopic)
         is BookmarkState.Text -> BookmarkState.Text(id = id, text = text, date = date, isFavourite = isFavourite, topic = withTopic)
-        is BookmarkState.Feed -> BookmarkState.Feed(id = id, title = title, url = url, caption = caption, isFavourite = isFavourite, date = date, icon = icon, topic = withTopic)
+        is BookmarkState.Feed -> BookmarkState.Feed(id = id, title = title, url = url, caption = caption, isFavourite = isFavourite, date = date, latestUpdate = date, icon = icon, topic = withTopic)
         else -> BookmarkState.Unsupported(id = id, date = date, isFavourite = isFavourite, topic = withTopic)
     }
 }

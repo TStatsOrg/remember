@@ -4,8 +4,8 @@ import com.app.shared.business.Either
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.data.dao.FeedBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.FeedUpdateDTO
 import com.app.shared.data.source.FeedDataSource
-import com.app.shared.utils.MLogger
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
@@ -37,23 +37,21 @@ class SharedFeedsRepository(
         }
     }
 
-    override suspend fun getNewContent() {
-        withContext(context = DispatcherFactory.io()) {
-            val feeds = userFeedsDAO.getAll().take(2)
+    override suspend fun getNewContent(): List<FeedUpdateDTO> {
+        return withContext(context = DispatcherFactory.io()) {
+            val feeds = userFeedsDAO.getAll()//.take(2)
                 .map { it.url }
                 .map { async { feedDataSource.getLastUpdateDate(url = it) } }
                 .toTypedArray()
 
             val result = awaitAll(*feeds)
 
-            val unpacked = result.mapNotNull {
+            return@withContext result.mapNotNull {
                 when (it) {
                     is Either.Success -> it.data
                     else -> null
                 }
             }
-
-            MLogger.log("GABBOX ==> feeds are $unpacked")
         }
     }
 }

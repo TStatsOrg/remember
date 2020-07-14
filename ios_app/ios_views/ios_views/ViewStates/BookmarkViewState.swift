@@ -8,6 +8,7 @@
 
 import Foundation
 import RememberShared
+import SwiftUI
 
 public struct BookmarkViewState: Identifiable {
     
@@ -135,6 +136,14 @@ public struct BookmarkFeedViewState: Identifiable, BookmarkViewStateType {
     
     public let isSubscribed: Bool
     
+    public let lastUpdate: String
+    
+    public var info: String {
+        return "\(source) - \(date) - \(lastUpdate)"
+    }
+    
+    public let titleColor: Color
+    
     public init(state: BookmarkStateFeed) {
         self.state = state
         
@@ -143,6 +152,13 @@ public struct BookmarkFeedViewState: Identifiable, BookmarkViewStateType {
         caption = state.caption
         source = URL(string: state.url)?.host ?? "N/A"
         isSubscribed = state.isFavourite
+        lastUpdate = DateUtils.format(fromLong: state.latestUpdate)
+        
+        if state.latestUpdate == state.date {
+            titleColor = Color.primary
+        } else {
+            titleColor = Color.yellow
+        }
         
         if let url = URL(string: state.url) {
             destinationUrl = url

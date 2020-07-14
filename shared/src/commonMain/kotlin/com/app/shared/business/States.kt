@@ -33,6 +33,7 @@ interface BookmarkState: AppState {
         override val date: Long,
         override val topic: TopicState?,
         override val isFavourite: Boolean,
+        val latestUpdate: Long,
         val url: String,
         val title: String?,
         val caption: String?,
