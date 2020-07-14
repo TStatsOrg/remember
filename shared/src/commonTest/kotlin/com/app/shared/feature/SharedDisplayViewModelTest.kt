@@ -3,7 +3,7 @@ package com.app.shared.feature
 import com.app.shared.DefaultTest
 import com.app.shared.business.*
 import com.app.shared.coroutines.runTest
-import com.app.shared.data.capture.HTMLDataProcess
+import com.app.shared.data.parse.HTMLDataParser
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.feature.display.SharedDisplayViewModel
 import com.app.shared.redux.Store
@@ -19,12 +19,12 @@ class SharedDisplayViewModelTest: DefaultTest() {
     private val store = mockk<Store<MainState>>(relaxed = true)
     private val calendar = mockk<CalendarUtils>(relaxed = true)
     private val bookmarksRepository = mockk<BookmarkRepository>(relaxed = true)
-    private val htmlDataProcess = mockk<HTMLDataProcess>(relaxed = true)
+    private val htmlDataParse = mockk<HTMLDataParser>(relaxed = true)
     private val viewMode = SharedDisplayViewModel(
         store = store,
         bookmarkRepository = bookmarksRepository,
         calendarUtils = calendar,
-        htmlDataProcess = htmlDataProcess
+        htmlDataParser = htmlDataParse
     )
 
     @Test
@@ -44,13 +44,13 @@ class SharedDisplayViewModelTest: DefaultTest() {
     @Test
     fun `view model can finish the load of a feed item or web page in case of success`() = runTest {
         // given
-        val result = HTMLDataProcess.Result(
+        val result = HTMLDataParser.Result(
             title = "My Web Page",
             caption = "My description",
             icon = "https://url.1/icon.jpg"
         )
         every { calendar.getTime() } returns 123L
-        every { htmlDataProcess.process(html = "<html><head></head><body>WOW</body></html>") } returns Either.Success(data = result)
+        every { htmlDataParse.process(html = "<html><head></head><body>WOW</body></html>") } returns Either.Success(data = result)
 
         // when
         viewMode.finishLoad(url = "https://my.new.url/index.html", content = "<html><head></head><body>WOW</body></html>")
@@ -74,7 +74,7 @@ class SharedDisplayViewModelTest: DefaultTest() {
         val error = Errors.InvalidHTMLFormat
 
         every { calendar.getTime() } returns 123L
-        every { htmlDataProcess.process(html = "<html><head></head><body>WOW</body></html>") } returns Either.Failure(error = error)
+        every { htmlDataParse.process(html = "<html><head></head><body>WOW</body></html>") } returns Either.Failure(error = error)
 
         // when
         viewMode.finishLoad(url = "https://my.new.url/index.html", content = "<html><head></head><body>WOW</body></html>")

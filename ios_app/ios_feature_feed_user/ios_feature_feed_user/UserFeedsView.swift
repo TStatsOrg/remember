@@ -51,6 +51,7 @@ public struct UserFeedsView: View {
             }
             
             self.viewModel.loadData()
+            self.viewModel.checkContentUpdates()
         }
         .onDisappear {
             // self.viewModel.cleanup()

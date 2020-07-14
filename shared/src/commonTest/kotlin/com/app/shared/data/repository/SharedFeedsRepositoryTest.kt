@@ -3,6 +3,7 @@ package com.app.shared.data.repository
 import com.app.shared.DefaultTest
 import com.app.shared.coroutines.runTest
 import com.app.shared.data.dao.FeedBookmarkDAO
+import com.app.shared.data.source.FeedDataSource
 import com.app.shared.mocks.MockBookmarkDTO
 import io.mockk.every
 import io.mockk.mockk
@@ -14,7 +15,8 @@ class SharedFeedsRepositoryTest: DefaultTest() {
 
     private val userFeedsDAO = mockk<FeedBookmarkDAO>(relaxed = true)
     private val allFeedsDAO = mockk<FeedBookmarkDAO>(relaxed = true)
-    private val repository = SharedFeedsRepository(userFeedsDAO = userFeedsDAO, allFeedsDAO = allFeedsDAO)
+    private val feedDataSource = mockk<FeedDataSource>(relaxed = true)
+    private val repository = SharedFeedsRepository(userFeedsDAO = userFeedsDAO, allFeedsDAO = allFeedsDAO, feedDataSource = feedDataSource)
 
     @Test
     fun `repository will return all external feeds if user feed is empty`() = runTest {

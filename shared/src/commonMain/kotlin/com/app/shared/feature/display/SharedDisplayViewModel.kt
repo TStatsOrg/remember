@@ -6,7 +6,7 @@ import com.app.shared.business.Either
 import com.app.shared.business.MainState
 import com.app.shared.coroutines.DispatcherFactory
 import com.app.shared.coroutines.provideViewModelScope
-import com.app.shared.data.capture.HTMLDataProcess
+import com.app.shared.data.parse.HTMLDataParser
 import com.app.shared.data.dto.TopicDTO
 import com.app.shared.data.repository.BookmarkRepository
 import com.app.shared.observ.map
@@ -22,7 +22,7 @@ class SharedDisplayViewModel(
     private val store: Store<MainState>,
     private val bookmarkRepository: BookmarkRepository,
     private val calendarUtils: CalendarUtils,
-    private val htmlDataProcess: HTMLDataProcess
+    private val htmlDataParser: HTMLDataParser
 ): DisplayViewModel {
 
     private val scope: CoroutineScope = provideViewModelScope()
@@ -37,8 +37,8 @@ class SharedDisplayViewModel(
     override fun finishLoad(url: String, content: String) {
         scope.launch(context = DispatcherFactory.main()) {
 
-            val result: Either<HTMLDataProcess.Result> = withContext(context = DispatcherFactory.io()) {
-                htmlDataProcess.process(html = content)
+            val result: Either<HTMLDataParser.Result> = withContext(context = DispatcherFactory.io()) {
+                htmlDataParser.process(html = content)
             }
 
             when (result) {

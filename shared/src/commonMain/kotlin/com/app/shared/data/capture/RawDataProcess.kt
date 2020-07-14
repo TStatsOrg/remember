@@ -27,7 +27,8 @@ interface RawDataProcess {
             val url: String,
             val title: String?,
             val caption: String?,
-            val icon: String?
+            val icon: String?,
+            val lastUpdate: Long
         ): Item()
 
         /**

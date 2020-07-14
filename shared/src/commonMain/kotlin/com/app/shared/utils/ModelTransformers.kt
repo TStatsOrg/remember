@@ -31,7 +31,7 @@ fun RawDataProcess.Item.toDTO(date: Long, topic: TopicDTO? = null): BookmarkDTO?
             override val caption: String? = this@toDTO.caption
             override val icon: String? = this@toDTO.icon
             override val id: Int = this@toDTO.url.hashCode()
-            override val date: Long = date
+            override val date: Long = this@toDTO.lastUpdate
             override val isFavourite: Boolean = true
             override val topic: TopicDTO? = topic
         }

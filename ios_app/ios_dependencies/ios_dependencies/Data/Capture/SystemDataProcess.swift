@@ -15,14 +15,17 @@ public class SystemDataProcess: RawDataProcess {
     
     private let downloader: UrlDownloader
     private let resolver: ContentResolver
-    private let dataProcess: HTMLDataProcess
+    private let htmlParser: HTMLDataParser
+    private let feedParser: FeedDataParser
     
     public init(downloader: UrlDownloader,
                 resolver: ContentResolver,
-                dataProcess: HTMLDataProcess) {
+                htmlParser: HTMLDataParser,
+                feedParser: FeedDataParser) {
         self.downloader = downloader
         self.resolver = resolver
-        self.dataProcess = dataProcess
+        self.htmlParser = htmlParser
+        self.feedParser = feedParser
     }
     
     public func process(capture: String?, result: @escaping (RawDataProcessItem) -> Void) {
@@ -54,45 +57,28 @@ public class SystemDataProcess: RawDataProcess {
         downloader.download(url: url) { [weak self] (contentResult) in
             switch contentResult {
             case .success(let content):
-                if let data = content.data(using: .utf8) {
-                    let parser = FeedParser(data: data)
-                    let parseResult = parser.parse()
-                    
-                    switch parseResult {
-                    case .success(let feed):
-                        
-                        let link = feed.rssFeed?.link ?? feed.atomFeed?.links?.first?.attributes?.href
-                        var favico: String?
-                        if let favicoLink = link,
-                           let url = URL(string: favicoLink),
-                           let host = url.host,
-                           let scheme = url.scheme {
-                            favico = "\(scheme)://\(host)/favicon.ico"
-                        }
-                        
-                        let title = feed.rssFeed?.title ?? feed.atomFeed?.title
-                        let icon = favico ?? feed.rssFeed?.image?.link ?? feed.atomFeed?.icon
-                        let caption = feed.rssFeed?.description ?? feed.atomFeed?.subtitle?.value
-                        
-                        result(RawDataProcessItem.Feed(url: url.absoluteString,
-                                                       title: title,
-                                                       caption: caption,
-                                                       icon: icon))
-                    case .failure:
 
-                        self?.resolver.getContent(url: url) { [weak self] (finalURL, content) in
-                            let htmlResult = self?.dataProcess.process(html: content)
-                            
-                            if let success = htmlResult as? Either.Success,
-                               let successResult = success.data as? HTMLDataProcessResult {
-                                result(RawDataProcessItem.Link(url: finalURL.absoluteString,
-                                                               title: successResult.title,
-                                                               description: successResult.caption,
-                                                               icon: successResult.icon))
-                            }
-                            if (htmlResult as? Either.Failure) != nil {
-                                result(RawDataProcessItem.Unknown())
-                            }
+                let parseResult = self?.feedParser.process(feed: content)
+                
+                if let parseResult = parseResult as? Either.Success, let feed = parseResult.data as? FeedDataParserResult {
+                    result(RawDataProcessItem.Feed(url: url.absoluteString,
+                                                   title: feed.title,
+                                                   caption: feed.caption,
+                                                   icon: feed.icon,
+                                                   lastUpdate: feed.lastUpdate))
+                } else {
+                    self?.resolver.getContent(url: url) { [weak self] (finalURL, content) in
+                        let htmlResult = self?.htmlParser.process(html: content)
+                        
+                        if let success = htmlResult as? Either.Success,
+                           let successResult = success.data as? HTMLDataParserResult {
+                            result(RawDataProcessItem.Link(url: finalURL.absoluteString,
+                                                           title: successResult.title,
+                                                           description: successResult.caption,
+                                                           icon: successResult.icon))
+                        }
+                        if (htmlResult as? Either.Failure) != nil {
+                            result(RawDataProcessItem.Unknown())
                         }
                     }
                 }

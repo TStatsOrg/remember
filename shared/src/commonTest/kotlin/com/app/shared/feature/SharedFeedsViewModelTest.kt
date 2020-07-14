@@ -20,7 +20,7 @@ class SharedFeedsViewModelTest: DefaultTest() {
     private val store = mockk<Store<MainState>>(relaxed = true)
     private val calendar = mockk<CalendarUtils>(relaxed = true)
     private val repository = mockk<FeedsRepository>(relaxed = true)
-    private val viewModel = SharedFeedsViewModel(store = store, calendar = calendar, bookmarkRepository = repository)
+    private val viewModel = SharedFeedsViewModel(store = store, calendar = calendar, repository = repository)
 
     @Test
     fun `load data passes only feed type bookmarks to store actions`() = runTest {

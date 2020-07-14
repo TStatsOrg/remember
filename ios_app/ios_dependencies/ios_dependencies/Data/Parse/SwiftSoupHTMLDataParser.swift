@@ -1,5 +1,5 @@
 //
-//  HTMLProcess.swift
+//  SwiftSoupHTMLDataParse.swift
 //  ios_dependencies
 //
 //  Created by Gabriel Coman on 04/07/2020.
@@ -9,7 +9,7 @@
 import RememberShared
 import SwiftSoup
 
-public class SwiftSoupHTMLDataProcess: NSObject, HTMLDataProcess {
+public class SwiftSoupHTMLDataParser: NSObject, HTMLDataParser {
     
     public func process(html: String) -> Either {
         do {
@@ -20,9 +20,9 @@ public class SwiftSoupHTMLDataProcess: NSObject, HTMLDataProcess {
             let thumbnail1Image = try? document.body()?.select("link[rel=\"image_src\"]").first()?.attr("href")
             let thumbnial2Image = try? document.head()?.select("meta[property=og:image]").first()?.attr("content")
 
-            return Either.Success(data: HTMLDataProcessResult(title: title,
-                                                              caption: description,
-                                                              icon: thumbnial2Image ?? thumbnail1Image ?? iconImage))
+            return Either.Success(data: HTMLDataParserResult(title: title,
+                                                             caption: description,
+                                                             icon: thumbnial2Image ?? thumbnail1Image ?? iconImage))
         } catch {
             return Either.Failure(error: Errors.InvalidHTMLFormat())
         }

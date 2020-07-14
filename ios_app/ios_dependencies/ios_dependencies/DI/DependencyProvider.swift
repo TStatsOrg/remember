@@ -58,17 +58,18 @@ public class DependencyProvider {
         register { SimpleUrlDownloader() as UrlDownloader }
         register { SystemCalendarUtils() as CalendarUtils }
         register { ExtensionContextDataCapture() as RawDataCapture }
-        register { SwiftSoupHTMLDataProcess() as HTMLDataProcess }
+        register { SwiftSoupHTMLDataParser() as HTMLDataParser }
+        register { FeedKitFeedDataParser() as FeedDataParser }
         register { WebViewProvider() as WebViewProvider }
         register { WebViewContentResolver(provider: self.resolve()) as ContentResolver }
         register { SystemDataProcess(downloader: self.resolve(),
                                   resolver: self.resolve(),
-                                  dataProcess: self.resolve()) as RawDataProcess }
+                                  htmlParser: self.resolve(),
+                                  feedParser: self.resolve()) as RawDataProcess }
         
         // data sources
-        register {
-            FeedKitItemDataSource() as FeedItemDataSource
-        }
+        register { FeedKitItemDataSource() as FeedItemDataSource }
+        register { SharedFeedDataSource(feedDataParser: self.resolve()) as FeedDataSource }
         
         // repos
         register {
@@ -89,7 +90,8 @@ public class DependencyProvider {
         
         register {
             SharedFeedsRepository(userFeedsDAO: (self.resolve() as Database).getFeedBookmarkDAO(),
-                                  allFeedsDAO: DefaultFeedBookmarkDAO()) as FeedsRepository
+                                  allFeedsDAO: DefaultFeedBookmarkDAO(),
+                                  feedDataSource: self.resolve()) as FeedsRepository
         }
         
         // view models
@@ -141,7 +143,7 @@ public class DependencyProvider {
             SharedDisplayViewModel(store: self.resolve(),
                                    bookmarkRepository: self.resolve(),
                                    calendarUtils: self.resolve(),
-                                   htmlDataProcess: self.resolve()) as DisplayViewModel
+                                   htmlDataParser: self.resolve()) as DisplayViewModel
         }
         
         register {
@@ -152,7 +154,7 @@ public class DependencyProvider {
         
         register {
             SharedFeedsViewModel(store: self.resolve(),
-                                 bookmarkRepository: self.resolve(),
+                                 repository: self.resolve(),
                                  calendar: self.resolve()) as FeedsViewModel
         }
     }

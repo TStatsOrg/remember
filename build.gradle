@@ -6,7 +6,7 @@ buildscript {
     ext.targetVersion = 28
 
     // gradle
-    ext.gradleVersion = '4.0.0-rc01'
+    ext.gradleVersion = '4.0.0'
 
     // kotlin
     ext.kotlinVersion = "1.3.71"

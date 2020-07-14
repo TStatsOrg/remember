@@ -1,8 +1,8 @@
-package com.app.shared.data.capture
+package com.app.shared.data.parse
 
 import com.app.shared.business.Either
 
-interface HTMLDataProcess {
+interface HTMLDataParser {
 
     fun process(html: String): Either<Result>
 

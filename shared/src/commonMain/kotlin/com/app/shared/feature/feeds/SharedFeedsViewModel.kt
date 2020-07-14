@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class SharedFeedsViewModel(
     private val store: Store<MainState>,
-    private val bookmarkRepository: FeedsRepository,
+    private val repository: FeedsRepository,
     private val calendar: CalendarUtils
 ): FeedsViewModel {
 
@@ -27,10 +27,17 @@ class SharedFeedsViewModel(
 
             store.dispatch(action = Actions.Bookmark.Load.Start(time = calendar.getTime()))
 
-            val dtos = bookmarkRepository.loadAll()
+            val dtos = repository.loadAll()
                 .filterIsInstance<BookmarkDTO.FeedBookmarkDTO>()
 
             store.dispatch(action = Actions.Bookmark.Load.Success(time = calendar.getTime(), bookmarks = dtos))
+        }
+    }
+
+    override fun checkContentUpdates() {
+        scope.launch(context = DispatcherFactory.main()) {
+
+            repository.getNewContent()
         }
     }
 

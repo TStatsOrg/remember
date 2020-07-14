@@ -135,10 +135,6 @@ public struct BookmarkFeedViewState: Identifiable, BookmarkViewStateType {
     
     public let isSubscribed: Bool
     
-    public var info: String {
-        return source
-    }
-    
     public init(state: BookmarkStateFeed) {
         self.state = state
         

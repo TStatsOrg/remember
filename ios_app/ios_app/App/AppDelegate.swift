@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Prepare DI
         DependencyProvider.shared.register { AppScreenFactory() as ScreenFactory }
         DependencyProvider.shared.register { AppNavigation() as Navigation }
-        DependencyLocator.shared.setup()
         
         return true
     }
