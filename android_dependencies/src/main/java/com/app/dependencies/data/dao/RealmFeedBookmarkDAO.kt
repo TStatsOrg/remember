@@ -2,6 +2,7 @@ package com.app.dependencies.data.dao
 
 import com.app.shared.data.dao.FeedBookmarkDAO
 import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.FeedUpdateDTO
 import com.app.shared.data.dto.TopicDTO
 
 class RealmFeedBookmarkDAO(override val instance: RealmProvider) : RealmDAO, FeedBookmarkDAO {
@@ -12,4 +13,6 @@ class RealmFeedBookmarkDAO(override val instance: RealmProvider) : RealmDAO, Fee
     override fun delete(bookmarkId: Int) = Unit
 
     override fun replaceTopic(topicId: Int, withTopicDTO: TopicDTO) = Unit
+
+    override fun update(withNewDates: List<FeedUpdateDTO>) = Unit
 }

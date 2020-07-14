@@ -137,11 +137,6 @@ public struct BookmarkFeedViewState: Identifiable, BookmarkViewStateType {
     public let isSubscribed: Bool
     
     public let lastUpdate: String
-    
-    public var info: String {
-        return "\(source) - \(date) - \(lastUpdate)"
-    }
-    
     public let titleColor: Color
     
     public init(state: BookmarkStateFeed) {

@@ -7,4 +7,5 @@ interface FeedsRepository {
     suspend fun loadAll(): List<BookmarkDTO>
     suspend fun get(bookmarkId: Int): BookmarkDTO.FeedBookmarkDTO?
     suspend fun getNewContent(): List<FeedUpdateDTO>
+    suspend fun update(withNewDates: List<FeedUpdateDTO>)
 }

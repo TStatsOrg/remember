@@ -56,4 +56,26 @@ public class RealmFeedBookmarkDAO: RealmDAO, FeedBookmarkDAO {
             }
         }
     }
+    
+    public func update(withNewDates: [FeedUpdateDTO]) {
+        let bookmarkIds = withNewDates.map { $0.id }
+        let bookmarkResult = realm?.objects(RealmFeedBookmarkObject.self).filter { bookmarkIds.contains($0.id) }
+        
+        guard let bookmarks = bookmarkResult else {
+            return
+        }
+        
+        var valueMap: [Int32: Int64] = [:]
+        withNewDates.forEach {
+            valueMap[$0.id] = $0.lastUpdate
+        }
+        
+        try? realm?.write {
+            bookmarks.forEach {
+                if let latestUpdate = valueMap[$0.id] {
+                    $0.latestUpdate = latestUpdate
+                }
+            }
+        }
+    }
 }

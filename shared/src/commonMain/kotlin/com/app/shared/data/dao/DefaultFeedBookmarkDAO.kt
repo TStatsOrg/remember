@@ -1,6 +1,7 @@
 package com.app.shared.data.dao
 
 import com.app.shared.data.dto.BookmarkDTO
+import com.app.shared.data.dto.FeedUpdateDTO
 import com.app.shared.data.dto.TopicDTO
 
 class DefaultFeedBookmarkDAO: FeedBookmarkDAO {
@@ -93,6 +94,8 @@ class DefaultFeedBookmarkDAO: FeedBookmarkDAO {
     override fun delete(bookmarkId: Int) = Unit
 
     override fun replaceTopic(topicId: Int, withTopicDTO: TopicDTO) = Unit
+
+    override fun update(withNewDates: List<FeedUpdateDTO>) = Unit
 
     private data class DefaultFeedBookmarkDTO(
         override val id: Int,

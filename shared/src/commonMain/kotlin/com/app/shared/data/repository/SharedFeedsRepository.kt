@@ -54,4 +54,10 @@ class SharedFeedsRepository(
             }
         }
     }
+
+    override suspend fun update(withNewDates: List<FeedUpdateDTO>) {
+        withContext(context = DispatcherFactory.io()) {
+            userFeedsDAO.update(withNewDates = withNewDates)
+        }
+    }
 }

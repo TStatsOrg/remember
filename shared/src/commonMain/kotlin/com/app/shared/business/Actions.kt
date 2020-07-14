@@ -36,7 +36,11 @@ sealed class Actions: Action {
             data class Remove(val bookmarkId: Int): Favourite()
         }
 
+        @Deprecated(message = "Name as something else")
         data class UpdateDate(val id: Int, val lastUpdate: Long): Bookmark()
+
+        @Deprecated(message = "Name as something else")
+        data class MarkDate(val id: Int): Bookmark()
     }
 
     sealed class Topics: Actions() {

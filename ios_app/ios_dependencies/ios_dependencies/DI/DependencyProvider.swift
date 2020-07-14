@@ -155,6 +155,7 @@ public class DependencyProvider {
         register {
             SharedFeedsViewModel(store: self.resolve(),
                                  repository: self.resolve(),
+                                 bookmarkRepository: self.resolve(),
                                  calendar: self.resolve()) as FeedsViewModel
         }
     }

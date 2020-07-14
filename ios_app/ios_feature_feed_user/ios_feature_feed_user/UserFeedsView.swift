@@ -68,6 +68,7 @@ public struct UserFeedsView: View {
             Divider()
         }
         .onTapGesture {
+            self.viewModel.updateLatestDate(bookmarkId: state.id)
             self.navigation.showFeedDetail(bookmarkId: state.id)
             self.isShowingSheet = true
         }
