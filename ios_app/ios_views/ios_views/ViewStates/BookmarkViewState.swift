@@ -152,7 +152,7 @@ public struct BookmarkFeedViewState: Identifiable, BookmarkViewStateType {
         if state.latestUpdate == state.date {
             titleColor = Color.primary
         } else {
-            titleColor = Color.yellow
+            titleColor = Color.green
         }
         
         if let url = URL(string: state.url) {
